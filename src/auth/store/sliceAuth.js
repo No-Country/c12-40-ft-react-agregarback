@@ -1,11 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  value: 0,
+  user: {
+    name: '',
+    photo: '',
+    uid: '',
+    email: ''
+  },
+  loading: false,
+  authentication: 'not-authenticated',
+  error: false,
+  errorMessage: 'error'
 }
 
-export const counterSlice = createSlice({
-  name: 'counter',
+export const userSlice = createSlice({
+  name: 'user',
   initialState,
   reducers: {
     increment: (state) => {
