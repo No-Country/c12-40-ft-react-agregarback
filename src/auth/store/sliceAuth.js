@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-
+// not-authenticated, checking, authenticated
 const initialState = {
   user: {
     name: '',
@@ -27,8 +27,11 @@ export const userSlice = createSlice({
     decrement: (state) => {
       state.value -= 1
     },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload
+    checkingCredentials: (state) => {
+      state.authentication = 'checking'
+    },
+    login: (state) => {
+      state.authentication = 'auhtenticated'
     },
   },
 })
