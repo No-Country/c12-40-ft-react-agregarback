@@ -1,11 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit'
-
+// not-authenticated, checking, authenticated
 const initialState = {
-  value: 0,
+  user: {
+    name: '',
+    photo: '',
+    uid: '',
+    email: ''
+  },
+  loading: false,
+  authentication: 'not-authenticated',
+  error: false,
+  errorMessage: 'error'
 }
 
-export const counterSlice = createSlice({
-  name: 'counter',
+export const userSlice = createSlice({
+  name: 'user',
   initialState,
   reducers: {
     increment: (state) => {
@@ -18,8 +27,11 @@ export const counterSlice = createSlice({
     decrement: (state) => {
       state.value -= 1
     },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload
+    checkingCredentials: (state) => {
+      state.authentication = 'checking'
+    },
+    login: (state) => {
+      state.authentication = 'auhtenticated'
     },
   },
 })
