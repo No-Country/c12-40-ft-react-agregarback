@@ -16,6 +16,6 @@ export const lenguajeSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const {  } = counterSlice.actions
+export const {  } = lenguajeSlice.actions
 
-export default counterSlice.reducer
+export default lenguajeSlice.reducer
