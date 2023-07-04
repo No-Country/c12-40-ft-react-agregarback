@@ -7,8 +7,8 @@ const initialState = {
   errorMessage: 'error'
 }
 
-export const lenguajeSlice = createSlice({
-  name: 'lenguaje',
+export const languageSlice = createSlice({
+  name: 'language',
   initialState,
   reducers: {
 
@@ -16,6 +16,4 @@ export const lenguajeSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const {  } = counterSlice.actions
-
-export default counterSlice.reducer
+export const {  } = languageSlice.actions
