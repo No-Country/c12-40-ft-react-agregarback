@@ -1,25 +1,20 @@
 import { Route } from "react-router-dom"
 import { Routes } from "react-router-dom"
 import { Page as Login } from "./auth/page/login/Page"
+import { Page as Register } from "./auth/page/register/Page"
+import { Page as Chat } from "./client/page/chat/Page"
 import { useSelector } from 'react-redux'
 
 function App () {
   const auth = useSelector(state => state.auth)
 
-  const Public = (
-    <Route path="/" element={<Login />} />
-  )
-
-
   return (
     <>
       <Routes>
-        {/* Public */}
-        {
-          auth.authentication === 'not-authenticated' ? <Private/> : <Public />
-        }
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/chat" element={<Chat />} />
 
-        {/* Private */}
       </Routes>
     </>
   )
