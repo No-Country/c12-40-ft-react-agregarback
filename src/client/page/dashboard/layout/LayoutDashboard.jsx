@@ -1,5 +1,5 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 const Layout = styled.div`
@@ -13,7 +13,7 @@ const Aside = styled.aside`
   background-color: green;
 
   min-height: 100vh;
-  max-width: 30%;
+  max-width: 25%;
 
   display: flex;
   flex-direction: column;
@@ -21,6 +21,15 @@ const Aside = styled.aside`
   justify-content: center;
 
   padding: 32px;
+
+  ul{
+    margin-top: 32px;
+    
+    li{
+      margin-top: 8px;
+      cursor: pointer;
+    }
+  }
 
 `
 
@@ -35,7 +44,6 @@ const Header = styled.header`
 
   background-color: red;
 
-  min-width: 60%;
 `
 
 const Main = styled.main`
@@ -49,6 +57,12 @@ export const LayoutDashboard = () => {
     <Layout>
       <Aside>
         Aside
+        <ul>
+          <Link to={'.'}><li>Dashboard</li></Link>
+          <Link to={'opcion1'}><li>Opcion 1</li></Link>
+          <Link to={'opcion2'}><li>Opcion 2</li></Link>
+          <Link to={'opcion3'}><li>Opcion 3</li></Link>
+        </ul>
       </Aside>
       <InnerLayout>
         <Header>
