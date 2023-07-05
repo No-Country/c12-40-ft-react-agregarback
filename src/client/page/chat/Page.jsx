@@ -4,22 +4,35 @@ import React from 'react'
 import Sidebar from './components/Sidebar'
 import { styled } from 'styled-components'
 
+const Title = styled.h1`
+  color: red;
+`
+
+const Main = styled.div`
+  background-color: #a7bcff;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+const Container = styled.div`
+  border: 1px solid white;
+  border-radius: 10px;
+  width: 65%;
+  height: 80%;
+`
+
 export const Page = () => {
   return (
-    <div>
-      <h1>Chat</h1>
-      <Sidebar />
-    </div>
+    <Main>
+      <Container>
+        <Title>Chat</Title>
+        <Sidebar />
+      </Container>
+    </Main>
   )
 }
 
 // styles components abajo
 
-styled.div`
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  height: 100%;
-  overflow: hidden;
-  width: 100%;
-`
