@@ -1,29 +1,32 @@
 import {
-  Avatar,
   Button,
   Container,
-  TextField,
-  Typography
+  TextField
 } from '@mui/material'
 
-import { ContainerFlexCenter } from '../../../common/style/container/ContainerFlexCenter'
 import { InputPassword } from '../../components/InputPassword'
 import { Separator } from '../../components/Separator'
-import HowDy from '../../../assets/Howdy.svg'
 import { CloseAction } from '../../components/CloseAction'
 import { AccountDescription } from '../../components/AccountDescription'
+import { useForm } from 'react-hook-form'
+import { LogoDescription } from '../../components/LogoDescription'
 
 export const Page = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm()
+
+  const eventSubmit = (data) => {
+    console.log(data)
+  }
+
   return (
     <Container maxWidth='sm' sx={{ marginTop: 2 }}>
       <CloseAction />
-      <ContainerFlexCenter>
-        <Avatar alt='Remy Sharp' src={HowDy} sx={{ width: 76, height: 76 }} />
-        <Typography variant='h5' component='h2' color='black'>
-          Registrate en Howdy
-        </Typography>
-      </ContainerFlexCenter>
-      <form>
+      <LogoDescription title='Registrate en Lowdy' />
+      <form onSubmit={handleSubmit(eventSubmit)}>
         <TextField
           id='name'
           label='Nombre completo'
@@ -31,6 +34,9 @@ export const Page = () => {
           margin='normal'
           fullWidth
           color='secondary'
+          {...register('name', { required: true })}
+          error={!!errors.email}
+          helperText={errors.email && 'Este campo es requerido'}
         />
         <TextField
           id='email'
@@ -40,11 +46,14 @@ export const Page = () => {
           margin='normal'
           fullWidth
           color='secondary'
-          required
           autoComplete='current-password'
+          error={!!errors.email}
+          {...register('email', { required: true })}
+          helperText={errors.email && 'Este campo es requerido'}
         />
-        <InputPassword />
+        <InputPassword register={register} errors={errors} />
         <Button
+          type='submit'
           sx={{
             marginTop: 5,
             textTransform: 'none',
