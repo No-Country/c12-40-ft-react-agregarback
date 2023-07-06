@@ -3,9 +3,11 @@
 import React from 'react'
 import Sidebar from './components/Sidebar'
 import { styled } from 'styled-components'
+import Messages from './components/Messages'
+import Inputs from './components/Inputs'
 
 const Main = styled.div`
-  background-color: #a7bcff;
+  background-color: #F6E7F1;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -23,8 +25,25 @@ const Container = styled.div`
 
 const ChatSect = styled.section`
   flex: 2;
-  color: red;
   background-color: lightblue;
+  color: black;
+`
+
+const ChatInfo = styled.div`
+  height: 50px;
+  background-color: #5d5b8d;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+
+  span {
+    color: white;
+  }
+`
+
+const ChatIcons = styled.div`
+  
 `
 
 export const Page = () => {
@@ -32,7 +51,18 @@ export const Page = () => {
     <Main>
       <Container>
         <Sidebar />
-        <ChatSect>Chat section</ChatSect>
+        <ChatSect>
+          <ChatInfo>
+            <span>Mai</span>
+            <ChatIcons>
+              <img src="" alt="" />
+              <img src="" alt="" />
+              <img src="" alt="" />
+            </ChatIcons>
+          </ChatInfo>
+          <Messages />
+          <Inputs />
+        </ChatSect>
       </Container>
     </Main>
   )

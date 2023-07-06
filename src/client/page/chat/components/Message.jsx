@@ -1,8 +1,14 @@
 import React from 'react'
+import { styled } from 'styled-components'
+
+
+const MessageSect = styled.div`
+  
+`
 
 const Message = () => {
   return (
-    <div>Message</div>
+    <MessageSect>Message</MessageSect>
   )
 }
 
