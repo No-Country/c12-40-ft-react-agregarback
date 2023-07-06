@@ -1,6 +1,7 @@
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import {
   FormControl,
+  FormHelperText,
   IconButton,
   Input,
   InputAdornment,
@@ -8,7 +9,7 @@ import {
 } from '@mui/material'
 import React, { useState } from 'react'
 
-export const InputPassword = () => {
+export const InputPassword = ({ register, errors }) => {
   const [showPassword, setShowPassword] = useState(false)
 
   const handleClickShowPassword = () => {
@@ -21,13 +22,14 @@ export const InputPassword = () => {
 
   return (
     <FormControl fullWidth variant='standard' margin='normal'>
-      <InputLabel color='secondary' htmlFor='standard-adornment-password'>Contraseña</InputLabel>
+      <InputLabel error={!!errors.password} color='secondary' htmlFor='standard-adornment-password'>Contraseña</InputLabel>
       <Input
         color='secondary'
         id='standard-adornment-password'
         type={showPassword ? 'text' : 'password'}
-        required
         autoComplete='current-password'
+        {...register('password', { required: true })}
+        error={!!errors.password}
         endAdornment={
           <InputAdornment position='end'>
             <IconButton
@@ -40,6 +42,9 @@ export const InputPassword = () => {
           </InputAdornment>
         }
       />
+      {errors.password && (
+        <FormHelperText error>Este campo es requerido</FormHelperText>
+      )}
     </FormControl>
   )
 }
