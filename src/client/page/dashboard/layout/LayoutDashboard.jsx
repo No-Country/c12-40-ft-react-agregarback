@@ -75,9 +75,6 @@ export const LayoutDashboard = () => {
           Aside
           <ul>
             <Link to={'.'}><li>Dashboard</li></Link>
-            <Link to={'opcion1'}><li>Opcion 1</li></Link>
-            <Link to={'opcion2'}><li>Opcion 2</li></Link>
-            <Link to={'opcion3'}><li>Opcion 3</li></Link>
           </ul>
         </Aside>
 
