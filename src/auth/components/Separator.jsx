@@ -1,5 +1,5 @@
-import { styled } from "styled-components";
-import React from "react";
+import { styled } from 'styled-components'
+import React from 'react'
 
 const Divisor = styled.div`
   position: relative;
@@ -25,8 +25,8 @@ const Divisor = styled.div`
   &::after {
     right: 0;
   }
-`;
+`
 
 export const Separator = () => {
-  return <Divisor> O </Divisor>;
-};
+  return <Divisor> O </Divisor>
+}
