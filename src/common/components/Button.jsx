@@ -1,5 +1,11 @@
-export const Button = () => {
+import styled from "styled-components"
+
+const ButtonStyle = styled.button`
+  background-color: red;
+`
+
+export const Button = ({ click }) => {
   return (
-    <div>Button</div>
+    <ButtonStyle type="button" onClick={click}>button</ButtonStyle>
   )
 }
