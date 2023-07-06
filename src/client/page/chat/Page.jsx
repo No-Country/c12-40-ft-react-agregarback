@@ -4,10 +4,6 @@ import React from 'react'
 import Sidebar from './components/Sidebar'
 import { styled } from 'styled-components'
 
-const Title = styled.h1`
-  color: red;
-`
-
 const Main = styled.div`
   background-color: #a7bcff;
   height: 100vh;
@@ -21,18 +17,23 @@ const Container = styled.div`
   border-radius: 10px;
   width: 65%;
   height: 80%;
+  display: flex;
+  overflow: hidden;
+`
+
+const ChatSect = styled.section`
+  flex: 2;
+  color: red;
+  background-color: lightblue;
 `
 
 export const Page = () => {
   return (
     <Main>
       <Container>
-        <Title>Chat</Title>
         <Sidebar />
+        <ChatSect>Chat section</ChatSect>
       </Container>
     </Main>
   )
 }
-
-// styles components abajo
-
