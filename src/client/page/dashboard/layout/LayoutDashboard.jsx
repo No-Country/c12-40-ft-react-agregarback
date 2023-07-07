@@ -61,6 +61,25 @@ const Main = styled.main`
   width: 100%;
 `
 
+const data = [
+  {
+    name: 'Dashboard',
+    path: '.'
+  },
+  {
+    name: 'Opcion1',
+    path: 'opcion1'
+  },
+  {
+    name: 'Opcion2',
+    path: 'opcion2'
+  },
+  {
+    name: 'Opcion3',
+    path: 'opcion3'
+  }
+]
+
 export const LayoutDashboard = () => {
   return (
     <Layout>
@@ -74,7 +93,11 @@ export const LayoutDashboard = () => {
         <Aside>
           Aside
           <ul>
-            <Link to={'.'}><li>Dashboard</li></Link>
+            {
+              data.map((data, index) => {
+                return <Link to={data.path} key={index}><li>{data.name}</li></Link>
+              })
+            }
           </ul>
         </Aside>
 
