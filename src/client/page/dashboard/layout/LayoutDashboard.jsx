@@ -1,6 +1,10 @@
 import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import { styled } from 'styled-components'
+import chat from '../img/chat-icon.svg'
+import saved from '../img/saved-icon.svg'
+import notifications from '../img/notifications-icon.svg'
+import profile from '../img/profile-icon.svg'
 
 const Layout = styled.div`
 
@@ -34,14 +38,18 @@ const Header = styled.header`
   nav{
     ul{
       display: flex;
-      gap: 16px;
+      gap: 2rem;
     }
 
     select{
       outline: none;
+      appearance: radio;
+      -webkit-appearance: radio;
+      -moz-appearance: radio;
+      -ms-appearance: radio;
 
       option{
-        padding: 16px;
+        padding: 1rem;
       }
     }
   }
@@ -52,6 +60,10 @@ const Header = styled.header`
     align-items: center;
     gap: 8px;
 
+    h2{
+      margin-right: 4rem;
+    }
+
 
     img{
       max-width: 37.5px;
@@ -60,7 +72,11 @@ const Header = styled.header`
 
   .icons{
     display: flex;
-    gap: 16px;
+    gap: 2rem;
+
+    .icon{
+      object-fit: contain;
+    }
   }
 
 `
@@ -68,7 +84,7 @@ const Header = styled.header`
 const Main = styled.main`
   background-color: blue;
 
-  padding: 32px;
+  padding: 2rem;
 
   height: 100%;
   width: 100%;
@@ -93,28 +109,28 @@ export const LayoutDashboard = () => {
         <div className='logo'>
           <img alt='Howdy' src='/howdy-logo.svg' />
           <h2>Howdy</h2>
+
+          <nav>
+            <ul>
+              {
+                data.map((data, index) => {
+                  return <Link key={index} to={data.path}><li>{data.name}</li></Link>
+                })
+              }
+              <select label='lang'>
+                <option value='ES'>ES</option>
+                <option value='EN'>EN</option>
+              </select>
+            </ul>
+          </nav>
         </div>
 
-        <nav>
-          <ul>
-            {
-              data.map((data, index) => {
-                return <Link key={index} to={data.path}><li>{data.name}</li></Link>
-              })
-            }
-            <select label='lang'>
-              <option>ES</option>
-              <option>EN</option>
-            </select>
-          </ul>
-        </nav>
-
         <div className='icons'>
-          <img src='../img/chat.png' />
-          <img src='../img/saved.png' />
-          <img src='../img/notifications.png' />
+          <img src={chat} className='icon' />
+          <img src={saved} className='icon' />
+          <img src={notifications} className='icon' />
           |
-          <img src='#'/>
+          <img src={profile} alt='Perfil' />
         </div>
       </Header>
 
