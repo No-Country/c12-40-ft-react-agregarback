@@ -5,6 +5,7 @@ import chat from '../img/chat-icon.svg'
 import saved from '../img/saved-icon.svg'
 import notifications from '../img/notifications-icon.svg'
 import profile from '../img/profile-icon.svg'
+import arrow from '../img/arrow.svg'
 
 const Layout = styled.div`
 
@@ -38,19 +39,24 @@ const Header = styled.header`
   nav{
     ul{
       display: flex;
-      gap: 2rem;
+
+      :first-child{
+        margin-right: 1rem;
+      }
+      
     }
 
     select{
       outline: none;
-      appearance: radio;
-      -webkit-appearance: radio;
-      -moz-appearance: radio;
-      -ms-appearance: radio;
+      width: 100%;
+      padding: 0 1rem;
 
-      option{
-        padding: 1rem;
-      }
+      background: url(${arrow}) no-repeat;
+      
+      background-size: 12px;
+      background-position: calc(100%);
+      background-repeat: no-repeat;
+
     }
   }
 
