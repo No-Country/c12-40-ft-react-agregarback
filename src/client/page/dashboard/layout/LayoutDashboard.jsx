@@ -9,32 +9,6 @@ const Layout = styled.div`
   width: 100vw;
   height: 100vh;
 `
-
-const Aside = styled.aside`
-
-  background-color: green;
-
-  height: 100%;
-  max-width: 25%;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  padding: 32px;
-
-  ul{
-    margin-top: 32px;
-    
-    li{
-      margin-top: 8px;
-      cursor: pointer;
-    }
-  }
-
-`
-
 const InnerLayout = styled.div`
   display: flex;
 
@@ -44,11 +18,50 @@ const InnerLayout = styled.div`
 
 const Header = styled.header`
 
-  background-color: red;
+  background-color: white ;
 
-  padding: 16px;
+  padding: 24px 40px;
 
   width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  
+  color: black;
+
+  nav{
+    ul{
+      display: flex;
+      gap: 16px;
+    }
+
+    select{
+      outline: none;
+
+      option{
+        padding: 16px;
+      }
+    }
+  }
+
+  .logo{
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+
+    img{
+      max-width: 37.5px;
+    }
+  }
+
+  .icons{
+    display: flex;
+    gap: 16px;
+  }
 
 `
 
@@ -63,20 +76,12 @@ const Main = styled.main`
 
 const data = [
   {
-    name: 'Dashboard',
-    path: '.'
+    name: 'Blog',
+    path: 'blog'
   },
   {
-    name: 'Opcion1',
-    path: 'opcion1'
-  },
-  {
-    name: 'Opcion2',
-    path: 'opcion2'
-  },
-  {
-    name: 'Opcion3',
-    path: 'opcion3'
+    name: 'Nosotros',
+    path: 'nosotros '
   }
 ]
 
@@ -85,21 +90,35 @@ export const LayoutDashboard = () => {
     <Layout>
 
       <Header>
-        Header
-      </Header>
+        <div className='logo'>
+          <img alt='Howdy' src='/howdy-logo.svg' />
+          <h2>Howdy</h2>
+        </div>
 
-      <InnerLayout>
-
-        <Aside>
-          Aside
+        <nav>
           <ul>
             {
               data.map((data, index) => {
-                return <Link to={data.path} key={index}><li>{data.name}</li></Link>
+                return <Link key={index} to={data.path}><li>{data.name}</li></Link>
               })
             }
+            <select label='lang'>
+              <option>ES</option>
+              <option>EN</option>
+            </select>
           </ul>
-        </Aside>
+        </nav>
+
+        <div className='icons'>
+          <img src='../img/chat.png' />
+          <img src='../img/saved.png' />
+          <img src='../img/notifications.png' />
+          |
+          <img src='#'/>
+        </div>
+      </Header>
+
+      <InnerLayout>
 
         <Main>
           <Outlet />
