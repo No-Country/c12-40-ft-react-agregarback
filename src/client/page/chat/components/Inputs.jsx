@@ -36,7 +36,7 @@ const Send = styled.div`
     cursor: pointer;
     padding: 10px 15px;
     background-color: #DA7FBB;
-    border-radius: 10px;
+    border-radius: 5px;
 
     &:hover{
       background-color: #CE55A5;
