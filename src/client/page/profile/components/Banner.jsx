@@ -25,15 +25,18 @@ const BannerStyled = styled.header`
   .person{
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 16px;
+
+    width: 80%;
 
     margin-top: 2rem;
   }
 
   .person-img{
     background-color: green;
-    min-width: 125px;
-    max-width: 325px;
+    max-width: 125px;
+    width: 100%;
     
     aspect-ratio: 1/1;
 
@@ -44,6 +47,8 @@ const BannerStyled = styled.header`
   .person-info{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 1rem;
   }
 
   .languages{
@@ -76,6 +81,12 @@ const BannerStyled = styled.header`
     .person{
       flex-direction: row;
       align-items: flex-end;
+
+      gap: 2rem;
+    }
+
+    .person-img{
+      max-width: 200px;
     }
   }
 
@@ -86,10 +97,19 @@ const BannerStyled = styled.header`
 
       border-radius: 12px;
     }
+
+    .person{
+      gap: 4rem;
+    }
+
+    .person-img{
+      max-width: 325px;
+    }
   }
 `
 
-const Banner = () => {
+const Banner = ({ data }) => {
+  const { name, native, learning } = data
   return (
     <BannerStyled>
 
@@ -97,10 +117,14 @@ const Banner = () => {
         <Box className='person-img' />
 
         <div className='person-info'>
-          Luciana Guillermina
+          {name && name}
           <div className='languages'>
-            <LangBadge label='Español' />
-            <LangBadge label='Inglés' />
+            <LangBadge label={native && native} />
+            {
+              learning.map((lang, index) => {
+                return <LangBadge key={index} label={learning && lang} />
+              })
+            }
           </div>
         </div>
       </div>
