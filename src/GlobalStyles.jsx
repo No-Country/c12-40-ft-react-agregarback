@@ -12,7 +12,7 @@ const GlobalStyles = createGlobalStyle`
     /* Las adaptamos al modo oscuro */
     @media (prefers-color-scheme: dark) {
     :root {
-        --negro: #ececec;
+        --negro: #393939;
     }
     }
     /* Opcional */
@@ -151,6 +151,10 @@ const GlobalStyles = createGlobalStyle`
     /* opcional */
     -moz-osx-font-smoothing: grayscale;
     }
+
+    .MuiButton-contained {
+    text-transform: none!important;
+  }
 `
 
 export default GlobalStyles
