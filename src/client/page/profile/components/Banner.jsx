@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Box } from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit'
 
 import { LangBadge } from './LangBadge'
@@ -34,13 +33,17 @@ const BannerStyled = styled.header`
   }
 
   .person-img{
-    background-color: green;
     max-width: 125px;
-    width: 100%;
     
     aspect-ratio: 1/1;
-
     border-radius: 12px;
+
+    
+    img{
+      border-radius: 12px;
+      width: 100%;
+      aspect-ratio: 1/1;
+    }
     
   }
 
@@ -109,20 +112,22 @@ const BannerStyled = styled.header`
 `
 
 const Banner = ({ data }) => {
-  const { name, native, learning } = data
+  const { name, img, native, learning } = data
   return (
     <BannerStyled>
 
       <div className='person'>
-        <Box className='person-img' />
 
+        <div className='person-img'>
+          <img src={img} alt={name} />
+        </div>
         <div className='person-info'>
-          {name && name}
+          {name}
           <div className='languages'>
-            <LangBadge label={native && native} />
+            <LangBadge label={native} />
             {
               learning.map((lang, index) => {
-                return <LangBadge key={index} label={learning && lang} />
+                return <LangBadge key={index} label={lang} />
               })
             }
           </div>
