@@ -7,6 +7,7 @@ import { Page as Home } from './client/page/home/Page'
 import { Page as Dashboard } from './client/page/dashboard/Page'
 // import { useSelector } from 'react-redux'
 import { LayoutDashboard } from './client/page/dashboard/layout/LayoutDashboard'
+import { Page as Step } from './auth/page/step/Page'
 
 function App () {
   // const auth = useSelector(state => state.auth)
@@ -21,9 +22,10 @@ function App () {
           <Route index exact element={<Dashboard />} />
         </Route>
         <Route path='/' element={<Home />} />
+        <Route path='/date/:token' element={<Step />} />
       </Routes>
     </>
   )
 }
 
-export default App;
+export default App

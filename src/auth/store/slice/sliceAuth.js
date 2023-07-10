@@ -28,8 +28,8 @@ export const userSlice = createSlice({
     },
     login: (state) => {
       state.authentication = 'auhtenticated'
-    },
-  },
+    }
+  }
 })
 
 // Action creators are generated for each case reducer function

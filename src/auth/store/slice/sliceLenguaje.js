@@ -12,8 +12,5 @@ export const languageSlice = createSlice({
   initialState,
   reducers: {
 
-  },
+  }
 })
-
-// Action creators are generated for each case reducer function
-export const {  } = languageSlice.actions
