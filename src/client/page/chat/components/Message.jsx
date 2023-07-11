@@ -41,15 +41,16 @@ const MessageContent = styled.div`
   gap: 10px;
 
   p{
-    background-color: white;
+    background-color: #C32B8F2B;
     padding: 10px 20px;
     border-radius: 0 7px 7px 7px;
+    max-width: max-content;
   }
 `
 
 const Message = () => {
   return (
-    <MessageSect className='owner'>
+    <MessageSect className=''>
       <MessageInfo>
         <img src="https://cdn3.iconfinder.com/data/icons/avatars-9/145/Avatar_Cat-1024.png" alt="" />
         <span>just now</span>
