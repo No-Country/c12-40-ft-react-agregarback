@@ -7,16 +7,15 @@ import { LangBadge } from './LangBadge'
 
 const BannerStyled = styled.header`
 
-  background: linear-gradient(180deg, #FFC0CB 50%, #ffffff 50%);
+  background: linear-gradient(180deg, #FFC0CB 40%, #ffffff 20%);
 
   width: 100%;
 
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 
-  padding: 2rem 3rem;
+  padding: 2rem;
 
   gap: 1rem;
 
@@ -25,12 +24,10 @@ const BannerStyled = styled.header`
   .person{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 16px;
 
     width: 80%;
-
-    margin-top: 2rem;
   }
 
   .person-img{
@@ -51,7 +48,7 @@ const BannerStyled = styled.header`
   .person-info{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 0.5rem;
   }
 
@@ -83,6 +80,9 @@ const BannerStyled = styled.header`
   }
 
   @media screen and (min-width: 768px){
+
+    background: linear-gradient(180deg, #FFC0CB 50%, #ffffff 20%);
+
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
