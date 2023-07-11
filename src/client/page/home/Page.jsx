@@ -1,10 +1,10 @@
-import React from "react";
-import { styled } from "styled-components";
+import React from 'react'
+import { styled } from 'styled-components'
 
 const Nav = styled.nav`
   background-color: white;
   height: 50px;
-`;
+`
 
 const Menu = styled.ul`
   height: inherit;
@@ -15,7 +15,7 @@ const Menu = styled.ul`
   margin: auto;
   padding: 10px;
   width: 100%;
-`;
+`
 
 const Header = styled.header`
   background: var(
@@ -28,7 +28,7 @@ const Header = styled.header`
   flex-direction: column;
   align-items: center;
   gap: 24px;
-`;
+`
 
 const H1 = styled.h1`
   color: var(--white-opacity-100, #fff);
@@ -38,7 +38,7 @@ const H1 = styled.h1`
   font-weight: 700;
   line-height: 32px;
   font-weight: bold;
-`;
+`
 
 const H2 = styled.h2`
   color: var(--white-opacity-100, #fff);
@@ -48,22 +48,21 @@ const H2 = styled.h2`
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
-`;
+`
 
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-around;
   gap: 16px;
-`;
+`
 
 const Bold = styled.span`
   font-weight: bold;
-`;
+`
 
 const Button = styled.button`
   display: flex;
   cursor: pointer;
-  width:
   height: 48px;
   padding: 10px 16px;
   justify-content: center;
@@ -71,15 +70,15 @@ const Button = styled.button`
   gap: 10px;
   border-radius: 4px;
   color: ${(props) =>
-    (props.primary && "var(--white-opacity-100, #fff)") ||
-    (props.secondary && "var(--primary-100, #c32b8f)")};
+    (props.primary && 'var(--white-opacity-100, #fff)') ||
+    (props.secondary && 'var(--primary-100, #c32b8f)')};
   border: ${(props) =>
-    (props.primary && "none") ||
-    (props.secondary && "1.5px solid var(--primary-100, #c32b8f)")};
+    (props.primary && 'none') ||
+    (props.secondary && '1.5px solid var(--primary-100, #c32b8f)')};
   background: ${(props) =>
-    (props.primary && "var(--primary-100, #c32b8f)") ||
-    (props.secondary && "var(--white-opacity-100, #fff)")};
-`;
+    (props.primary && 'var(--primary-100, #c32b8f)') ||
+    (props.secondary && 'var(--white-opacity-100, #fff)')};
+`
 
 const Container = styled.div`
   height: 70vh;
@@ -89,7 +88,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
+`
 
 const Title = styled.h3`
   font-size: 24px;
@@ -98,14 +97,14 @@ const Title = styled.h3`
   font-weight: bold;
   text-align: center;
   padding: 10px;
-`;
+`
 
 const Subtitle = styled.h4`
   font-size: 18px;
   color: var(--neutral-100, #050505);
   font-family: Roboto;
   text-align: center;
-`;
+`
 
 const LayoutWhite = styled.div`
   display: inline-flex;
@@ -115,7 +114,7 @@ const LayoutWhite = styled.div`
   gap: 6px;
   background: var(--neutral-00, #fcfcfc);
   margin: auto;
-`;
+`
 
 const BoxGreen = styled.div`
   display: flex;
@@ -128,7 +127,7 @@ const BoxGreen = styled.div`
   flex-wrap: wrap;
   flex-direction: column;
   background: var(--success-100, #a2cd37);
-`;
+`
 
 const Box = styled.div`
   display: flex;
@@ -146,7 +145,7 @@ const Box = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
-`;
+`
 
 const LayoutLang = styled.section`
   height: max-content;
@@ -156,14 +155,14 @@ const LayoutLang = styled.section`
   justify-content: center;
   align-items: center;
   gap: 10px;
-`;
+`
 
 export const Page = () => {
   return (
     <>
       <Nav>
-        <Menu style={{ color: "black" }}>
-          <div style={{ display: "flex", gap: "10px" }}>
+        <Menu style={{ color: 'black' }}>
+          <div style={{ display: 'flex', gap: '10px' }}>
             <li>Logo</li>
             <li>Howdy</li>
           </div>
@@ -202,78 +201,78 @@ export const Page = () => {
         <Box>
           <div
             style={{
-              borderRadius: "100%",
-              width: "30px",
-              height: "30px",
-              backgroundColor: "#a2cd37",
+              borderRadius: '100%',
+              width: '30px',
+              height: '30px',
+              backgroundColor: '#a2cd37'
             }}
-          ></div>
+          />
           <p>Chatea con Nativos</p>
         </Box>
         <Box>
           <div
             style={{
-              borderRadius: "100%",
-              width: "30px",
-              height: "30px",
-              backgroundColor: "#a2cd37",
+              borderRadius: '100%',
+              width: '30px',
+              height: '30px',
+              backgroundColor: '#a2cd37'
             }}
-          ></div>
+          />
           <p>Traduce los mensajes</p>
         </Box>
         <Box>
           <div
             style={{
-              borderRadius: "100%",
-              width: "30px",
-              height: "30px",
-              backgroundColor: "#a2cd37",
+              borderRadius: '100%',
+              width: '30px',
+              height: '30px',
+              backgroundColor: '#a2cd37'
             }}
-          ></div>
-          <p>Crea Publicaciones</p>{" "}
+          />
+          <p>Crea Publicaciones</p>{' '}
         </Box>
         <Box>
           <div
             style={{
-              borderRadius: "100%",
-              width: "30px",
-              height: "30px",
-              backgroundColor: "#a2cd37",
+              borderRadius: '100%',
+              width: '30px',
+              height: '30px',
+              backgroundColor: '#a2cd37'
             }}
-          ></div>
+          />
           <p>Corrige y se evaluado</p>
         </Box>
         <Box>
           <div
             style={{
-              borderRadius: "100%",
-              width: "30px",
-              height: "30px",
-              backgroundColor: "#a2cd37",
+              borderRadius: '100%',
+              width: '30px',
+              height: '30px',
+              backgroundColor: '#a2cd37'
             }}
-          ></div>
+          />
           <p>Sin límite de idiomas</p>
         </Box>
         <Box>
           <div
             style={{
-              borderRadius: "100%",
-              width: "30px",
-              height: "30px",
-              backgroundColor: "#a2cd37",
+              borderRadius: '100%',
+              width: '30px',
+              height: '30px',
+              backgroundColor: '#a2cd37'
             }}
-          ></div>
+          />
           <p>Practica con la IA</p>
         </Box>
         <Box>
           <div
             style={{
-              borderRadius: "100%",
-              width: "30px",
-              height: "30px",
-              backgroundColor: "#a2cd37",
+              borderRadius: '100%',
+              width: '30px',
+              height: '30px',
+              backgroundColor: '#a2cd37'
             }}
-          ></div>
+          />
           <p>Guarda tu contenido</p>
         </Box>
       </BoxGreen>
@@ -281,13 +280,13 @@ export const Page = () => {
       <LayoutLang>
         <Title
           style={{
-            borderBottom: "1px solid var(--primary-100, #c32b8f)",
-            width: "100vw",
+            borderBottom: '1px solid var(--primary-100, #c32b8f)',
+            width: '100vw'
           }}
         >
           Idiomas disponibles
         </Title>
       </LayoutLang>
     </>
-  );
-};
+  )
+}
