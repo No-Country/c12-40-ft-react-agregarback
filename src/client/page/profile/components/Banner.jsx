@@ -129,17 +129,19 @@ const Banner = ({ data }) => {
       <div className='person'>
 
         <div className='person-img'>
-          <img src={img} alt={name} />
+          <img src={data && img} alt={data && name} />
         </div>
         <div className='person-info'>
-          {name}
+          {data && name}
           <div className='languages'>
-            <LangBadge label={native} />
+            <LangBadge label={data && native} />
             <Divider orientation='vertical' variant='middle' className='vertical' />
             {
-              learning.map((lang, index) => {
-                return <LangBadge key={index} label={lang} />
-              })
+              learning
+                ? learning.map((lang, index) => {
+                  return <LangBadge key={index} label={data && lang} />
+                })
+                : '...'
             }
           </div>
         </div>

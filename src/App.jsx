@@ -22,7 +22,9 @@ function App () {
         <Route path='dashboard/*' element={<LayoutDashboard />}>
           <Route index exact element={<Dashboard />} />
         </Route>
-        <Route path='/profile' element={<Profile />} />
+        <Route path='profile/*'>
+          <Route path=':id' element={<Profile />} />
+        </Route>
         <Route path='/' element={<Home />} />
         <Route path='/date/:token' element={<Step />} />
       </Routes>
