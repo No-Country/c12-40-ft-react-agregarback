@@ -93,9 +93,7 @@ const Header = styled.header`
 `
 
 const Main = styled.main`
-  background-color: blue;
-
-  padding: 2rem;
+  background-color: gray;
 
   height: 100%;
   width: 100%;
