@@ -21,9 +21,7 @@ function App () {
         <Route path='/chat' element={<Chat />} />
         <Route path='dashboard/*' element={<LayoutDashboard />}>
           <Route index exact element={<Dashboard />} />
-        </Route>
-        <Route path='profile/*'>
-          <Route path=':id' element={<Profile />} />
+          <Route path='profile/:id' exact element={<Profile />} />
         </Route>
         <Route path='/' element={<Home />} />
         <Route path='/date/:token' element={<Step />} />

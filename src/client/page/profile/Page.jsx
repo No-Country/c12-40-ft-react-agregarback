@@ -1,19 +1,25 @@
 import React, { useEffect, useState } from 'react'
+import { doc, getDoc } from 'firebase/firestore'
+
 import Banner from './components/Banner'
+import { useParams } from 'react-router-dom'
+import { app } from '../../../service/firebase'
 
 export const Page = () => {
   const [data, setData] = useState({})
 
+  const { id } = useParams()
+
   useEffect(() => {
-    setData({
-      name: 'Lucas Guillermina',
-      img: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      native: 'Español',
-      learning: ['Inglés', 'Francés']
-    })
+    const handleGetData = async () => {
+      const docRef = doc(app, 'users', id)
+      const docSnap = await getDoc(docRef)
+      console.log(docSnap.data())
+      return docSnap.data()
+    }
+
+    setData(handleGetData())
   }, [])
 
-  return (
-    <Banner data={data} />
-  )
+  return <Banner data={data} />
 }
