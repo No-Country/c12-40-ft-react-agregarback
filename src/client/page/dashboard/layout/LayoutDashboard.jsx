@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import { styled } from 'styled-components'
+import { Divider } from '@mui/material'
 import chat from '../img/chat-icon.svg'
 import saved from '../img/saved-icon.svg'
 import notifications from '../img/notifications-icon.svg'
@@ -76,6 +77,10 @@ const Header = styled.header`
     }
   }
 
+  .vertical{
+    height: 2rem;
+  }
+
   .icons{
     display: flex;
     gap: 2rem;
@@ -135,8 +140,8 @@ export const LayoutDashboard = () => {
           <img src={chat} className='icon' />
           <img src={saved} className='icon' />
           <img src={notifications} className='icon' />
-          |
-          <img src={profile} alt='Perfil' />
+          <Divider orientation='vertical' variant='middle' className='vertical' />
+          <img src={profile} alt='Perfil' className='icon' />
         </div>
       </Header>
 
