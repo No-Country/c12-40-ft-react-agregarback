@@ -3,7 +3,7 @@ import { doc, getDoc } from 'firebase/firestore'
 
 import Banner from './components/Banner'
 import { useParams } from 'react-router-dom'
-import { app } from '../../../service/firebase'
+import { db } from '../../../service/firebase'
 
 export const Page = () => {
   const [data, setData] = useState({})
@@ -12,13 +12,17 @@ export const Page = () => {
 
   useEffect(() => {
     const handleGetData = async () => {
-      const docRef = doc(app, 'users', id)
+      const docRef = doc(db, 'users', id)
       const docSnap = await getDoc(docRef)
-      console.log(docSnap.data())
       return docSnap.data()
     }
 
-    setData(handleGetData())
+    const fetchData = async () => {
+      const data = await handleGetData()
+      setData(data)
+    }
+
+    fetchData()
   }, [])
 
   return <Banner data={data} />

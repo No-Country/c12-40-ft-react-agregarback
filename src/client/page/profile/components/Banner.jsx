@@ -122,23 +122,22 @@ const BannerStyled = styled.header`
 `
 
 const Banner = ({ data }) => {
-  const { name, img, native, learning } = data
   return (
     <BannerStyled>
 
       <div className='person'>
 
         <div className='person-img'>
-          <img src={data && img} alt={data && name} />
+          <img src={data?.img} alt={data?.name} />
         </div>
         <div className='person-info'>
-          {data && name}
+          {data?.name}
           <div className='languages'>
-            <LangBadge label={data && native} />
+            <LangBadge label={data?.native} />
             <Divider orientation='vertical' variant='middle' className='vertical' />
             {
-              learning
-                ? learning.map((lang, index) => {
+              data?.learning
+                ? data?.learning.map((lang, index) => {
                   return <LangBadge key={index} label={data && lang} />
                 })
                 : '...'
