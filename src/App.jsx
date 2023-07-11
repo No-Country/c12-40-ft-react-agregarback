@@ -8,6 +8,7 @@ import { Page as Dashboard } from './client/page/dashboard/Page'
 import { Page as Profile } from './client/page/profile/Page'
 // import { useSelector } from 'react-redux'
 import { LayoutDashboard } from './client/page/dashboard/layout/LayoutDashboard'
+import { Page as Step } from './auth/page/step/Page'
 
 function App () {
   // const auth = useSelector(state => state.auth)
@@ -23,6 +24,7 @@ function App () {
         </Route>
         <Route path='/profile' element={<Profile />} />
         <Route path='/' element={<Home />} />
+        <Route path='/date/:token' element={<Step />} />
       </Routes>
     </>
   )
