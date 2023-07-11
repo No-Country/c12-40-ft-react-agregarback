@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import EditIcon from '@mui/icons-material/Edit'
+import { Divider } from '@mui/material'
 
 import { LangBadge } from './LangBadge'
 
@@ -51,11 +52,12 @@ const BannerStyled = styled.header`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
   }
 
   .languages{
     display: flex;
+    align-items: center;
 
     gap: 16px;
   }
@@ -76,6 +78,10 @@ const BannerStyled = styled.header`
     -moz-box-shadow: 0px 1px 3px 0px #C32B8F;
   }
 
+  .vertical{
+    height: 2.5rem;
+  }
+
   @media screen and (min-width: 768px){
     flex-direction: row;
     justify-content: space-between;
@@ -86,6 +92,10 @@ const BannerStyled = styled.header`
       align-items: flex-end;
 
       gap: 2rem;
+    }
+
+    .person-info{
+      align-items: flex-start;
     }
 
     .person-img{
@@ -125,6 +135,7 @@ const Banner = ({ data }) => {
           {name}
           <div className='languages'>
             <LangBadge label={native} />
+            <Divider orientation='vertical' variant='middle' className='vertical' />
             {
               learning.map((lang, index) => {
                 return <LangBadge key={index} label={lang} />
