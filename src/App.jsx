@@ -8,6 +8,7 @@ import { Page as Dashboard } from './client/page/dashboard/Page'
 // import { useSelector } from 'react-redux'
 import { LayoutDashboard } from './client/page/dashboard/layout/LayoutDashboard'
 import { Page as Step } from './auth/page/step/Page'
+import './translate/i18n.js'
 
 function App () {
   // const auth = useSelector(state => state.auth)

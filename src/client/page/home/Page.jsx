@@ -1,5 +1,6 @@
 import React from 'react'
 import { styled } from 'styled-components'
+import { useTranslation } from 'react-i18next'
 
 const Nav = styled.nav`
   background-color: white;
@@ -158,6 +159,8 @@ const LayoutLang = styled.section`
 `
 
 export const Page = () => {
+  const { t } = useTranslation()
+
   return (
     <>
       <Nav>
@@ -172,6 +175,7 @@ export const Page = () => {
 
       <Header>
         <H1>Habla con Howdy</H1>
+        <H1>{t('title')}</H1>
 
         <H2>
           Supera tu barrera <Bold>lingüística</Bold> comunicándote con personas
