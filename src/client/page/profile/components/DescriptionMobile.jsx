@@ -24,6 +24,8 @@ const DesciptionStyled = styled.section`
     color: #C32B8F;
     text-decoration: underline;
     cursor: pointer;
+
+    display: inline-block;
   }
 
 `

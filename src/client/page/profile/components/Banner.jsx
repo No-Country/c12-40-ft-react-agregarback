@@ -143,12 +143,12 @@ const Banner = ({ data }) => {
         <div className='person-info'>
           {data?.name}
           <div className='languages'>
-            <LangBadge label={data?.native} variante='native' />
+            <LangBadge label={data?.native.lang} variante='native' avatar={data?.native.img} />
             <Divider orientation='vertical' variant='middle' className='vertical' />
             {
               data?.learning
                 ? data?.learning.map((lang, index) => {
-                  return <LangBadge key={index} label={data && lang} variante='foraign' />
+                  return <LangBadge key={index} avatar={lang.img} label={data && lang.lang} variante='foraign' />
                 })
                 : '...'
             }
