@@ -55,9 +55,9 @@ export const Page = () => {
           <ChatInfo>
             <span>Mai</span>
             <ChatIcons>
-              <img src="" alt="" />
-              <img src="" alt="" />
-              <img src="" alt="" />
+              <img src='' alt='' />
+              <img src='' alt='' />
+              <img src='' alt='' />
             </ChatIcons>
           </ChatInfo>
           <Messages />
