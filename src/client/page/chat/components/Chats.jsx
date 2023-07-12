@@ -40,26 +40,28 @@ const Chats = () => {
   return (
     <UserChatSect>
       <UserChat>
-        <img src="https://cdn3.iconfinder.com/data/icons/avatars-9/145/Avatar_Cat-1024.png" alt="" placeholder='Busca un usuario' />
+        <img src='https://cdn3.iconfinder.com/data/icons/avatars-9/145/Avatar_Cat-1024.png' alt='' placeholder='Busca un usuario' />
         <UserChatInfo>
           <span>Mai</span>
           <p>Hola!</p>
         </UserChatInfo>
       </UserChat>
       <UserChat>
-        <img src="https://cdn3.iconfinder.com/data/icons/avatars-9/145/Avatar_Cat-1024.png" alt="" placeholder='Busca un usuario' />
+        <img src='https://cdn3.iconfinder.com/data/icons/avatars-9/145/Avatar_Cat-1024.png' alt='' placeholder='Busca un usuario' />
         <UserChatInfo>
           <span>Mai</span>
           <p>Hola!</p>
         </UserChatInfo>
-      </UserChat><UserChat>
-        <img src="https://cdn3.iconfinder.com/data/icons/avatars-9/145/Avatar_Cat-1024.png" alt="" placeholder='Busca un usuario' />
+      </UserChat>
+      <UserChat>
+        <img src='https://cdn3.iconfinder.com/data/icons/avatars-9/145/Avatar_Cat-1024.png' alt='' placeholder='Busca un usuario' />
         <UserChatInfo>
           <span>Mai</span>
           <p>Hola!</p>
         </UserChatInfo>
-      </UserChat><UserChat>
-        <img src="https://cdn3.iconfinder.com/data/icons/avatars-9/145/Avatar_Cat-1024.png" alt="" placeholder='Busca un usuario' />
+      </UserChat>
+      <UserChat>
+        <img src='https://cdn3.iconfinder.com/data/icons/avatars-9/145/Avatar_Cat-1024.png' alt='' placeholder='Busca un usuario' />
         <UserChatInfo>
           <span>Mai</span>
           <p>Hola!</p>
