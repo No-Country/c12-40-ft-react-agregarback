@@ -3,11 +3,17 @@ import { doc, getDoc } from 'firebase/firestore'
 
 import Banner from './components/Banner'
 import { Page as DescriptionMobile } from './components/DescriptionMobile'
+import { Page as Description } from './components/Description'
 import { useParams } from 'react-router-dom'
 import { db } from '../../../service/firebase'
 
 export const Page = () => {
   const [data, setData] = useState({})
+  const [desktop, setDesktop] = useState(window.innerWidth < 768)
+
+  const updateDesktop = () => {
+    setDesktop(window.innerWidth < 768)
+  }
 
   const { id } = useParams()
 
@@ -24,12 +30,16 @@ export const Page = () => {
     }
 
     fetchData()
+    window.addEventListener('resize', updateDesktop)
+    return () => window.removeEventListener('resize', updateDesktop)
   }, [])
 
   return (
     <>
       <Banner data={data} />
-      <DescriptionMobile />
+      {
+        desktop ? <DescriptionMobile /> : <Description />
+      }
     </>
   )
 }
