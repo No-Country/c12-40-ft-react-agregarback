@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { doc, getDoc } from 'firebase/firestore'
 
 import Banner from './components/Banner'
+import { Page as Description } from './components/Description'
 import { useParams } from 'react-router-dom'
 import { db } from '../../../service/firebase'
 
@@ -25,5 +26,10 @@ export const Page = () => {
     fetchData()
   }, [])
 
-  return <Banner data={data} />
+  return (
+    <>
+      <Banner data={data} />
+      <Description />
+    </>
+  )
 }
