@@ -103,6 +103,16 @@ const BannerStyled = styled.header`
     }
   }
 
+  .native{
+    background-color: #F5F8EC !important;
+    border: 1px solid #A2CD37 !important;
+  }
+
+  .foraign{
+    background-color: #F6E7F1 !important;
+    border: 1px solid #9C2272 !important;
+  }
+
   @media screen and (min-width: 1024px){
     .edit-icon{
       width: 36px;
@@ -133,12 +143,12 @@ const Banner = ({ data }) => {
         <div className='person-info'>
           {data?.name}
           <div className='languages'>
-            <LangBadge label={data?.native} />
+            <LangBadge label={data?.native} variante='native' />
             <Divider orientation='vertical' variant='middle' className='vertical' />
             {
               data?.learning
                 ? data?.learning.map((lang, index) => {
-                  return <LangBadge key={index} label={data && lang} />
+                  return <LangBadge key={index} label={data && lang} variante='foraign' />
                 })
                 : '...'
             }
