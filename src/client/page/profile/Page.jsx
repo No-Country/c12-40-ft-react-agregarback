@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { doc, getDoc } from 'firebase/firestore'
 
 import Banner from './components/Banner'
-import { Page as Description } from './components/Description'
+import { Page as DescriptionMobile } from './components/DescriptionMobile'
 import { useParams } from 'react-router-dom'
 import { db } from '../../../service/firebase'
 
@@ -29,7 +29,7 @@ export const Page = () => {
   return (
     <>
       <Banner data={data} />
-      <Description />
+      <DescriptionMobile />
     </>
   )
 }
