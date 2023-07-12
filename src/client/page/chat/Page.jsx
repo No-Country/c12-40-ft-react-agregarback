@@ -31,14 +31,14 @@ const ChatSect = styled.section`
 
 const ChatInfo = styled.div`
   height: 50px;
-  background-color: #5d5b8d;
+  background-color: #FAFBFF;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px;
 
   span {
-    color: white;
+    color: black;
   }
 `
 
