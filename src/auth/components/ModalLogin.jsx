@@ -1,13 +1,20 @@
 import React from 'react'
 import { CloseAction } from './CloseAction'
 import { LogoDescription } from './LogoDescription'
-import { Button, TextField } from '@mui/material'
+import { Grid, TextField } from '@mui/material'
 import { InputPassword } from './InputPassword'
 import { Separator } from './Separator'
-import { LoginFirebase } from './LoginFirebase'
 import { AccountDescription } from './AccountDescription'
+import { ButtonFirebase } from './ButtonFirebase'
+import { useAuth } from '../hook/useAuth'
+import { GoogleSVG } from '../icon/GoogleSVG'
+import { useAppSelector } from '../../common/store/config'
+import { ButtonSubmit } from './ButtonSubmit'
 
-export const ModalLogin = ({ register, submit, errors, event }) => {
+export const ModalLogin = ({ register, submit, errors, event, isValid }) => {
+  const auth = useAppSelector((state) => state.auth.user)
+  const { userRegisterWithGoogle } = useAuth()
+
   return (
     <>
       <CloseAction />
@@ -27,26 +34,19 @@ export const ModalLogin = ({ register, submit, errors, event }) => {
           helperText={errors.email && 'Este campo es requerido'}
         />
         <InputPassword register={register} errors={errors} />
-        <Button
-          type='submit'
-          sx={{
-            marginTop: 5,
-            textTransform: 'none',
-            fontSize: '16px',
-            p: '13px'
-          }}
-          size='large'
-          color='secondary'
-          variant='contained'
-          fullWidth
-        >
-          Iniciar sesión
-        </Button>
+        <ButtonSubmit title='Iniciar sesión' isValid={isValid} status={auth.status} />
       </form>
       <Separator />
-      <LoginFirebase />
+      <Grid container spacing={2} mt={1}>
+        <ButtonFirebase
+          click={userRegisterWithGoogle}
+          title='Ingresar con Google'
+          icon={<GoogleSVG />}
+          status={auth.status}
+        />
+      </Grid>
       <AccountDescription
-        path='/register'
+        path='/auth/register'
         title='¿No tienes cuenta aún?'
         linkName='Registrarse'
       />
