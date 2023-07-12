@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom'
 import { db } from '../../../service/firebase'
 
 export const Page = () => {
-  const [data, setData] = useState({})
+  const [data, setData] = useState(null)
   const [desktop, setDesktop] = useState(window.innerWidth < 768)
 
   const updateDesktop = () => {
