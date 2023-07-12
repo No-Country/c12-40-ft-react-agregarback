@@ -33,7 +33,7 @@ const Search = () => {
   const handleSearch = async () => {
     const q = query(
       collection(db, 'users'),
-      where('name', '==', username)
+      where('displayName', '==', username)
     )
 
     try {
@@ -90,7 +90,16 @@ const Search = () => {
   return (
     <SearchSect>
       <SearchForm>
-        <input type='text' onChange={(e) => setUsername(e.target.value)} onKeyDown={handleKey} />
+        <input type='text' placeholder='Encuentra un usuario' onChange={(e) => setUsername(e.target.value)} onKeyDown={handleKey} value={username} />
+        {err && <span>Usuario no encontrado!</span>}
+        {user && (
+          <div className='userChat' onClick={handleSelect}>
+            <img src={user.photoURL} alt='' />
+            <div>
+              <span>{user.displayName}</span>
+            </div>
+          </div>
+        )}
         <button onClick={handleSearch}>Search</button>
       </SearchForm>
 
