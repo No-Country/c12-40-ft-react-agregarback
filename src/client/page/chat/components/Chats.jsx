@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { db } from '../../../../service/firebase'
 import { doc, onSnapshot } from 'firebase/firestore'
-import { AuthContext } from '../../../../context/AuthContext'
-import { ChatContext } from '../../../../context/ChatContext'
 import { styled } from 'styled-components'
+import { useAuthStore } from '../store/useAuthStore'
 
 const UserChatSect = styled.div`
   
@@ -42,7 +41,7 @@ const UserChatInfo = styled.div`
 const Chats = () => {
   const [chats, setChats] = useState([])
 
-  const { currentUser } = useContext(AuthContext)
+  const { currentUser } = useAuthStore()
   const { dispatch } = useContext(ChatContext)
 
   useEffect(() => {

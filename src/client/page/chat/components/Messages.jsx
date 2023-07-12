@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Message from './Message'
 import { styled } from 'styled-components'
+import { useChatStore } from '../store/useChatStore'
+import { db } from '../../../../service/firebase'
+import { doc, onSnapshot } from '@firebase/firestore'
 
 const MessagesSect = styled.div`
     background-color: white;
@@ -10,18 +13,26 @@ const MessagesSect = styled.div`
 `
 
 const Messages = () => {
+  const [messages, setMessages] = useState([])
+  const { data } = useChatStore
+
+  useEffect(() => {
+    const unSub = onSnapshot(doc(db, 'chats', data.chatId), (doc) => {
+      doc.exists() && setMessages(doc.data().messages)
+    })
+
+    return () => {
+      unSub()
+    }
+  }, [data.chatId])
+
+  console.log(messages)
+
   return (
     <MessagesSect>
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
+      {messages.map((m) => (
+        <Message message={m} key={m.id} />
+      ))}
     </MessagesSect>
   )
 }
