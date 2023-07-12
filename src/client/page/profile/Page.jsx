@@ -30,6 +30,7 @@ export const Page = () => {
     }
 
     fetchData()
+
     window.addEventListener('resize', updateDesktop)
     return () => window.removeEventListener('resize', updateDesktop)
   }, [])
@@ -38,7 +39,7 @@ export const Page = () => {
     <>
       <Banner data={data} />
       {
-        desktop ? <DescriptionMobile /> : <Description />
+        desktop ? <DescriptionMobile data={data} /> : <Description data={data} />
       }
     </>
   )
