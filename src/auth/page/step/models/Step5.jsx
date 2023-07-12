@@ -14,6 +14,9 @@ export const Step5 = ({ register, errors }) => {
         placeholder='Un ejemplo: ¡Hola! Soy Lucía, hablo español y quiero mejorar mi inglés. Conversemos así nos ayudamos a practicar con vocabulario real.'
         rows={4}
         multiline
+        {...register('selectedDescription', { required: true })}
+        helperText={!!errors.selectedDescription && 'Completa este campo'}
+        error={!!errors.selectedDescription}
       />
       <Title title='¿Qué pronombre prefieres?' description='*Opcional' />
       <SelectInput
