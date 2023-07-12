@@ -10,20 +10,20 @@ const MessagesSect = styled.div`
 `
 
 const Messages = () => {
-    return (
-        <MessagesSect>
-            <Message />
-            <Message />
-            <Message />
-            <Message />
-            <Message />
-            <Message />
-            <Message />
-            <Message />
-            <Message />
-            <Message />
-        </MessagesSect>
-    )
+  return (
+    <MessagesSect>
+      <Message />
+      <Message />
+      <Message />
+      <Message />
+      <Message />
+      <Message />
+      <Message />
+      <Message />
+      <Message />
+      <Message />
+    </MessagesSect>
+  )
 }
 
 export default Messages

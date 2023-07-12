@@ -20,15 +20,13 @@ padding: 10px;
   }
 `
 
-
-
 const Search = () => {
   return (
     <SearchSect>
       <SearchForm>
-        <input type="text" />
+        <input type='text' />
       </SearchForm>
-      
+
     </SearchSect>
   )
 }
