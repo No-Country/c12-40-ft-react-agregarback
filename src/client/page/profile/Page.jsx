@@ -4,6 +4,7 @@ import { doc, getDoc } from 'firebase/firestore'
 import Banner from './components/Banner'
 import { Page as DescriptionMobile } from './components/DescriptionMobile'
 import { Page as Description } from './components/Description'
+import { Page as Interests } from './components/Interests'
 import { useParams } from 'react-router-dom'
 import { db } from '../../../service/firebase'
 
@@ -41,6 +42,7 @@ export const Page = () => {
       {
         desktop ? <DescriptionMobile data={data} /> : <Description data={data} />
       }
+      <Interests data={data} />
     </>
   )
 }
