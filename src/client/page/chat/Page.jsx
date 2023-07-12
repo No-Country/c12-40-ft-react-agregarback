@@ -5,7 +5,7 @@ import Sidebar from './components/Sidebar'
 import { styled } from 'styled-components'
 import Messages from './components/Messages'
 import Inputs from './components/Inputs'
-import { useChatStore } from './store/useChatStore'
+import { useChatStore } from './store/chatStore'
 
 const Main = styled.div`
   background-color: #F6E7F1;

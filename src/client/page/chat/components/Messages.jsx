@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Message from './Message'
 import { styled } from 'styled-components'
-import { useChatStore } from '../store/useChatStore'
+import { useChatStore } from '../store/chatStore'
 import { db } from '../../../../service/firebase'
 import { doc, onSnapshot } from '@firebase/firestore'
 

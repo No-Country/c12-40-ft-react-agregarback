@@ -3,6 +3,7 @@ import { db } from '../../../../service/firebase'
 import { doc, onSnapshot } from 'firebase/firestore'
 import { styled } from 'styled-components'
 import { useAuthStore } from '../store/useAuthStore'
+import { ChatContext } from '../store/chatStore'
 
 const UserChatSect = styled.div`
   
