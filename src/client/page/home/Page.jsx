@@ -119,7 +119,7 @@ const LayoutWhite = styled.div`
 
 const BoxGreen = styled.div`
   display: flex;
-  width: 80 vw;
+  width: 80vw;
   padding: 24px 16px;
   justify-content: center;
   align-items: center;
@@ -240,17 +240,6 @@ export const Page = () => {
               backgroundColor: '#a2cd37'
             }}
           />
-          <p>Corrige y se evaluado</p>
-        </Box>
-        <Box>
-          <div
-            style={{
-              borderRadius: '100%',
-              width: '30px',
-              height: '30px',
-              backgroundColor: '#a2cd37'
-            }}
-          />
           <p>{t('Home.Main.WhyChoose.Choose4')}</p>
         </Box>
         <Box>
@@ -275,6 +264,17 @@ export const Page = () => {
           />
           <p>{t('Home.Main.WhyChoose.Choose6')}</p>
         </Box>
+        <Box>
+          <div
+            style={{
+              borderRadius: '100%',
+              width: '30px',
+              height: '30px',
+              backgroundColor: '#a2cd37'
+            }}
+          />
+          <p>{t('Home.Main.WhyChoose.Choose7')}</p>
+        </Box>
       </BoxGreen>
 
       <LayoutLang>
@@ -284,7 +284,7 @@ export const Page = () => {
             width: '100vw'
           }}
         >
-          {t('Home.Main.WhyChoose.Choose7')}
+          {t('Home.Main.LangAvailable.Title')}
         </Title>
       </LayoutLang>
     </>
