@@ -1,4 +1,4 @@
-import { collection, getDocs, query, where } from '@firebase/firestore'
+import { collection, getDocs, query, where } from 'firebase/firestore'
 import React, { useState } from 'react'
 import { styled } from 'styled-components'
 import { db } from '../../../../service/firebase'

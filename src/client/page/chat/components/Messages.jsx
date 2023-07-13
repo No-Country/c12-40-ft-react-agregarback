@@ -3,7 +3,7 @@ import Message from './Message'
 import { styled } from 'styled-components'
 // import { ChatContext } from '../context/ChatContext'
 // import { db } from '../../../../service/firebase'
-// import { doc, onSnapshot } from '@firebase/firestore'
+// import { doc, onSnapshot } from 'firebase/firestore'
 
 const MessagesSect = styled.div`
     background-color: white;
