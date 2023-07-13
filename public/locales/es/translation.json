@@ -52,6 +52,10 @@
 			"Create": "Crear cuenta",
 			"SignIn": "Iniciar sesión"
 		},
-		"DoYou": "¿Ya tienes una cuenta?"
+		"DoYou": "¿Ya tienes una cuenta?",
+		"Step1": {
+			"Title": "¿De dónde eres?",
+			"Desc": "País de origen"
+		}
 	}
 }
