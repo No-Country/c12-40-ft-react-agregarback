@@ -47,7 +47,7 @@ export const Page = () => {
       }, 300)
     } else {
       const storage = getStorage()
-      console.log(data)
+
       try {
         const file = data.selectedImageProfile
         const filename = `${user.user.uid}-${file.name}-${crypto.randomUUID()}`
@@ -63,9 +63,10 @@ export const Page = () => {
           photo: downloadURL
         })
 
+        delete data.selectedImageProfile
+
         await setDoc(doc(db, 'profile', user.user.uid), {
-          ...data,
-          selectedImageProfile: downloadURL
+          ...data
         })
 
         await setDoc(doc(db, 'users', user.user.uid), {

@@ -78,27 +78,34 @@ export const onGoogleAuth = async () => {
     const provider = new GoogleAuthProvider()
     const result = await signInWithPopup(auth, provider)
     const user = result.user
+    console.log(user)
 
     const docRef = doc(db, 'users', user.uid)
     const docSnap = await getDoc(docRef)
+
+    let authentication = false
+
+    if (docSnap.exists()) {
+      authentication = docSnap.data().authentication
+    } else {
+      authentication = false
+    }
 
     if (!docSnap.exists()) {
       await setDoc(docRef, {
         name: user.displayName,
         email: user.email,
-        authetication: false,
+        authentication,
         timestamp: serverTimestamp()
       })
     }
-
-    console.log(docSnap.data().authetication)
 
     const userFirebase = {
       name: user.displayName,
       uid: user.uid,
       email: user.email,
       photo: user.photoURL,
-      authetication: docSnap.data().authetication
+      authentication
     }
 
     return { success: true, userFirebase }

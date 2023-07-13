@@ -19,7 +19,7 @@ export const registerAuthenticationGoogle = () => async (dispatch) => {
   dispatch(checkingCredentials())
 
   const result = await onGoogleAuth()
-
+  console.log(result)
   if (result.success) {
     console.log(result)
 
