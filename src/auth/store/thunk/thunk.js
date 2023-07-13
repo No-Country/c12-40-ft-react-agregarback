@@ -48,3 +48,4 @@ export const authenticatedLogout = () => (dispatch) => {
 
   dispatch(logout())
 }
+

@@ -1,7 +1,6 @@
 import React from 'react'
 import { styled } from 'styled-components'
 
-
 const MessageSect = styled.div`
   display: flex;
   gap: 20px;
@@ -52,7 +51,7 @@ const Message = () => {
   return (
     <MessageSect className=''>
       <MessageInfo>
-        <img src="https://cdn3.iconfinder.com/data/icons/avatars-9/145/Avatar_Cat-1024.png" alt="" />
+        <img src='https://cdn3.iconfinder.com/data/icons/avatars-9/145/Avatar_Cat-1024.png' alt='' />
         <span>just now</span>
       </MessageInfo>
       <MessageContent>
