@@ -8,29 +8,61 @@ const initialState = {
     email: ''
   },
   loading: false,
-  authentication: 'not-authenticated',
+  status: 'not-authenticated',
   error: false,
-  errorMessage: 'error'
+  errorMessage: '',
+  token: true
 }
 
 export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    increment: (state) => {
-      state.value += 1
-    },
-    decrement: (state) => {
-      state.value -= 1
-    },
     checkingCredentials: (state) => {
-      state.authentication = 'checking'
+      state.status = 'checking'
     },
-    login: (state) => {
-      state.authentication = 'auhtenticated'
+    validationAuthenticated: (state) => {
+      state.token = true
+    },
+    login: (state, { payload }) => {
+      state.user = {
+        name: payload.name,
+        photo: payload.photo,
+        uid: payload.uid,
+        email: payload.email
+      }
+      state.status = 'authenticated'
+      state.loading = false
+      state.errorMessage = ''
+      state.error = false
+      state.token = payload.authetication
+    },
+    loginError: (state, { payload }) => {
+      state.user = {
+        ...state.user,
+        displayName: '',
+        photoURL: '',
+        token: ''
+      }
+      state.status = 'not-authenticated'
+      state.loading = false
+      state.errorMessage = payload !== '' ? payload : 'Ocurrió un error desconocido'
+      state.error = true
+    },
+    logout: (state) => {
+      state.user = {
+        ...state.user,
+        displayName: '',
+        photoURL: '',
+        token: ''
+      }
+      state.status = 'not-authenticated'
+      state.loading = false
+      state.errorMessage = ''
+      state.error = false
     }
   }
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = userSlice.actions
+export const { checkingCredentials, login, loginError, logout, validationAuthenticated } = userSlice.actions

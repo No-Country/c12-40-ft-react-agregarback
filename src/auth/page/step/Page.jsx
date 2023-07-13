@@ -7,8 +7,17 @@ import { useForm } from 'react-hook-form'
 import { FadeIn } from '../../../common/style/fade/fade-in.style'
 import { Step1, Step2, Step3, Step4, Step5, Step6, Step7 } from './models'
 import { Link } from 'react-router-dom'
+import { doc, setDoc } from 'firebase/firestore'
+import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage'
+import { db, auth } from '../../../service/firebase'
+import { useAppDispatch, useAppSelector } from '../../../common/store/config'
+import { validationAuthenticated } from '../../store/slice/sliceAuth'
+import { updateProfile } from 'firebase/auth'
 
 export const Page = () => {
+  const user = useAppSelector(state => state.auth.user)
+
+  const dispatch = useAppDispatch()
   const components = [Step1, Step2, Step3, Step4, Step5, Step6, Step7]
 
   const [step, setStep] = useState(0)
@@ -37,7 +46,36 @@ export const Page = () => {
         setStep((prevStep) => prevStep + 1)
       }, 300)
     } else {
+      const storage = getStorage()
       console.log(data)
+      try {
+        const file = data.selectedImageProfile
+        const filename = `${user.user.uid}-${file.name}-${crypto.randomUUID()}`
+
+        const storageRef = ref(storage, `images/${filename}`)
+        await uploadBytes(storageRef, file)
+
+        const downloadURL = await getDownloadURL(storageRef)
+
+        console.log(downloadURL)
+
+        await updateProfile(auth.currentUser, {
+          photo: downloadURL
+        })
+
+        await setDoc(doc(db, 'profile', user.user.uid), {
+          ...data,
+          selectedImageProfile: downloadURL
+        })
+
+        await setDoc(doc(db, 'users', user.user.uid), {
+          authentication: true
+        })
+
+        dispatch(validationAuthenticated())
+      } catch (error) {
+        console.error('Error al guardar el archivo en Firebase Storage o actualizar los documentos:', error)
+      }
     }
   }
 
