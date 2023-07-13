@@ -1,5 +1,9 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { db } from '../../../../service/firebase'
+import { doc, onSnapshot } from 'firebase/firestore'
 import { styled } from 'styled-components'
+import { AuthContext } from '../context/AuthContext'
+import { ChatContext } from '../context/ChatContext'
 
 const UserChatSect = styled.div`
   
@@ -33,38 +37,46 @@ const UserChatInfo = styled.div`
     font-size: 14px;
     color: lightgray;
   }
-  
 `
 
 const Chats = () => {
+  const [chats, setChats] = useState([])
+
+  const { currentUser } = useContext(AuthContext)
+  const { dispatch } = useContext(ChatContext)
+
+  useEffect(() => {
+    const getChats = () => {
+      const unsub = onSnapshot(doc(db, 'userChats', currentUser.uid), (doc) => {
+        console.log(doc)
+        setChats(doc.data())
+      })
+      return () => {
+        unsub()
+      }
+    }
+    currentUser.uid && getChats()
+    console.log(Object.entries(chats))
+  }, [currentUser.uid])
+
+  const handleSelect = (u) => {
+    dispatch({ type: 'CHANGE_USER', payload: u })
+  }
+
   return (
     <UserChatSect>
-      <UserChat>
-        <img src="https://cdn3.iconfinder.com/data/icons/avatars-9/145/Avatar_Cat-1024.png" alt="" placeholder='Busca un usuario' />
-        <UserChatInfo>
-          <span>Mai</span>
-          <p>Hola!</p>
-        </UserChatInfo>
-      </UserChat>
-      <UserChat>
-        <img src="https://cdn3.iconfinder.com/data/icons/avatars-9/145/Avatar_Cat-1024.png" alt="" placeholder='Busca un usuario' />
-        <UserChatInfo>
-          <span>Mai</span>
-          <p>Hola!</p>
-        </UserChatInfo>
-      </UserChat><UserChat>
-        <img src="https://cdn3.iconfinder.com/data/icons/avatars-9/145/Avatar_Cat-1024.png" alt="" placeholder='Busca un usuario' />
-        <UserChatInfo>
-          <span>Mai</span>
-          <p>Hola!</p>
-        </UserChatInfo>
-      </UserChat><UserChat>
-        <img src="https://cdn3.iconfinder.com/data/icons/avatars-9/145/Avatar_Cat-1024.png" alt="" placeholder='Busca un usuario' />
-        <UserChatInfo>
-          <span>Mai</span>
-          <p>Hola!</p>
-        </UserChatInfo>
-      </UserChat>
+      {Object.entries(chats)?.map((chat) => (
+        <UserChat
+          key={chats[0]}
+          onClick={() => handleSelect(chat[1].userInfo)}
+        >
+          <img src={chat[1].userInfo.photoURL} alt='' />
+          <UserChatInfo>
+            <span>{chat[1].userInfo.displayName}</span>
+            <p>{chat[1].lastMessage?.text}</p>
+          </UserChatInfo>
+        </UserChat>
+      ))}
     </UserChatSect>
   )
 }
