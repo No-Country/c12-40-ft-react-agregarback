@@ -14,7 +14,6 @@ import { PrivateRoute } from './auth/layout/PrivateRoute'
 import { useEffect } from 'react'
 import { autheticatedAutomatic } from './auth/store/thunk/thunk'
 import { useAppDispatch } from './common/store/config'
-import { Prueba } from './Prueba'
 import { UserTokenAuth } from './auth/layout/UserTokenAuth'
 
 function App () {
@@ -42,7 +41,6 @@ function App () {
         </Route>
         <Route path='/profile' element={<Profile />} />
         <Route path='/' element={<Home />} />
-        <Route path='/test' element={<Prueba />} />
       </Routes>
     </>
   )
