@@ -175,7 +175,7 @@ export const Page = () => {
 
       <Header>
         <H1>Habla con Howdy</H1>
-        <H1>{t('Home.Header.TitleH1')}</H1>
+        <H1>{t('Home.Header.Title')}</H1>
 
         <H2>
           Supera tu barrera <Bold>lingüística</Bold> comunicándote con personas
