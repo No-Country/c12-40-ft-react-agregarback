@@ -68,12 +68,6 @@ const Layout = styled.div`
     }
   }
 `
-const InnerLayout = styled.div`
-  display: flex;
-
-  width: 100%;
-  height: 100%;
-`
 
 const Header = styled.header`
 
@@ -222,13 +216,10 @@ export const LayoutDashboard = () => {
         </nav>
       </div>
 
-      <InnerLayout>
+      <Main>
+        <Outlet />
+      </Main>
 
-        <Main>
-          <Outlet />
-        </Main>
-
-      </InnerLayout>
     </Layout>
   )
 }
