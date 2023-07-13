@@ -1,13 +1,17 @@
 import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import { styled } from 'styled-components'
-import { Divider } from '@mui/material'
+import { Divider, Badge } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import chat from '../img/chat-icon.svg'
 import saved from '../img/saved-icon.svg'
 import notifications from '../img/notifications-icon.svg'
 import profile from '../img/profile-icon.svg'
 import arrow from '../img/arrow.svg'
+import profileMobile from '../img/profile.svg'
+import home from '../img/home.svg'
+import savedMobile from '../img/saved-mobile.svg'
+import chatMobile from '../img/chat-mobile.svg'
 
 const Layout = styled.div`
 
@@ -58,9 +62,28 @@ const Layout = styled.div`
     }
   }
 
+  .mobile-nav{
+    ul{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      padding: 1rem 2rem;
+      gap: 3rem;
+    }
+  }
+
+  .icon-mobile{
+      
+  }
+
   @media screen and (min-width: 768px){
     .tablet-desktop{
       display: block;
+    }
+
+    .mobile-nav{
+      display: none;
     }
 
     .mobile{
@@ -112,7 +135,7 @@ const Header = styled.header`
 
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
 
     h2{
       margin-right: 4rem;
@@ -219,6 +242,19 @@ export const LayoutDashboard = () => {
       <Main>
         <Outlet />
       </Main>
+
+      <nav className='mobile-nav'>
+        <ul>
+          <li><img alt='Home' src={home} className='icon-mobile' /></li>
+          <li><img alt='Profile' src={profileMobile} className='icon-mobile' /></li>
+          <li><img alt='Saved' src={savedMobile} className='icon-mobile' /></li>
+          <li>
+            <Badge badgeContent={3} color='success'>
+              <img alt='Chats' src={chatMobile} className='icon-mobile' />
+            </Badge>
+          </li>
+        </ul>
+      </nav>
 
     </Layout>
   )
