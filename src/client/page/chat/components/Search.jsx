@@ -1,8 +1,9 @@
 import { collection, doc, getDoc, getDocs, query, serverTimestamp, setDoc, updateDoc, where } from '@firebase/firestore'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { styled } from 'styled-components'
 import { db } from '../../../../service/firebase'
-import { useAuthStore } from '../store/useAuthStore'
+import { AuthContext } from '../context/AuthContext'
+// import { AuthContext } from '../store/useAuthStore'
 
 const SearchSect = styled.div`
   border: 1px solid wheat;
@@ -28,7 +29,7 @@ const Search = () => {
   const [user, setUser] = useState(null)
   const [err, setErr] = useState(false)
 
-  const { currentUser } = useAuthStore()
+  const { currentUser } = useContext(AuthContext)
 
   const handleSearch = async () => {
     const q = query(
@@ -51,6 +52,7 @@ const Search = () => {
   }
 
   const handleSelect = async () => {
+    // check whether the group(chats in firestore) exists, if not create
     const combinedId =
       currentUser.uid > user.uid
         ? currentUser.uid + user.uid
@@ -90,19 +92,24 @@ const Search = () => {
   return (
     <SearchSect>
       <SearchForm>
-        <input type='text' placeholder='Encuentra un usuario' onChange={(e) => setUsername(e.target.value)} onKeyDown={handleKey} value={username} />
+        <input
+          type='text'
+          placeholder='Encuentra un usuario'
+          onChange={(e) => setUsername(e.target.value)}
+          onKeyDown={handleKey}
+          value={username}
+        />
         {err && <span>Usuario no encontrado!</span>}
         {user && (
           <div className='userChat' onClick={handleSelect}>
             <img src={user.photoURL} alt='' />
-            <div>
+            <div className='userChatInfo'>
               <span>{user.displayName}</span>
             </div>
           </div>
         )}
         <button onClick={handleSearch}>Search</button>
       </SearchForm>
-
     </SearchSect>
   )
 }

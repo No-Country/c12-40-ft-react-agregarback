@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Message from './Message'
 import { styled } from 'styled-components'
-import { useChatStore } from '../store/chatStore'
+import { ChatContext } from '../context/ChatContext'
 import { db } from '../../../../service/firebase'
 import { doc, onSnapshot } from '@firebase/firestore'
 
@@ -14,7 +14,7 @@ const MessagesSect = styled.div`
 
 const Messages = () => {
   const [messages, setMessages] = useState([])
-  const { data } = useChatStore
+  const { data } = useContext(ChatContext)
 
   useEffect(() => {
     const unSub = onSnapshot(doc(db, 'chats', data.chatId), (doc) => {

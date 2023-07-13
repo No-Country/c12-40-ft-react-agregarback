@@ -1,11 +1,11 @@
 // Esta es la pagina de chat, aqui se mostrara el chat y se podra enviar mensajes
 
-import React from 'react'
+import React, { useContext } from 'react'
 import Sidebar from './components/Sidebar'
 import { styled } from 'styled-components'
 import Messages from './components/Messages'
 import Inputs from './components/Inputs'
-import { useChatStore } from './store/chatStore'
+import { ChatContext } from './context/ChatContext'
 
 const Main = styled.div`
   background-color: #F6E7F1;
@@ -48,14 +48,14 @@ const ChatIcons = styled.div`
 `
 
 export const Page = () => {
-  const { data } = useChatStore()
+  const { data } = useContext(ChatContext)
   return (
     <Main>
       <Container>
         <Sidebar />
         <ChatSect>
           <ChatInfo>
-            <span>{data.users?.name}</span>
+            <span>{data.user?.displayName}</span>
             <ChatIcons>
               <img src='' alt='' />
               <img src='' alt='' />

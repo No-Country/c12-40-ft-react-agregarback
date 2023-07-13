@@ -1,30 +1,30 @@
-import { createContext } from 'react'
-import { create } from 'zustand'
-import { auth } from '../../../../service/firebase'
-import { onAuthStateChanged } from 'firebase/auth'
+// import { createContext } from 'react'
+// import { create } from 'zustand'
+// import { auth } from '../../../../service/firebase'
+// import { onAuthStateChanged } from 'firebase/auth'
 
-export const AuthContext = createContext()
+// export const AuthContext = createContext()
 
-const useAuthStore = create((set) => ({
-  currentUser: {},
+// const useAuthStore = create((set) => ({
+//   currentUser: {},
 
-  setCurrentUser: (user) =>
-    set((state) => ({
-      currentUser: user
-    }))
-}))
+//   setCurrentUser: (user) =>
+//     set((state) => ({
+//       currentUser: user
+//     }))
+// }))
 
-export const AuthContextProvider = ({ children }) => {
-  const { currentUser, setCurrentUser } = useAuthStore()
+// export const AuthContextProvider = ({ children }) => {
+//   const { currentUser, setCurrentUser } = useAuthStore()
 
-  onAuthStateChanged(auth, (user) => {
-    setCurrentUser(user)
-    console.log(user)
-  })
+//   onAuthStateChanged(auth, (user) => {
+//     setCurrentUser(user)
+//     console.log(user)
+//   })
 
-  return (
-    <AuthContext.Provider value={{ currentUser }}>
-      {children}
-    </AuthContext.Provider>
-  )
-}
+//   return (
+//     <AuthContext.Provider value={{ currentUser }}>
+//       {children}
+//     </AuthContext.Provider>
+//   )
+// }
