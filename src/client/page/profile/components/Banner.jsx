@@ -103,6 +103,16 @@ const BannerStyled = styled.header`
     }
   }
 
+  .native{
+    background-color: #F5F8EC !important;
+    border: 1px solid #A2CD37 !important;
+  }
+
+  .foraign{
+    background-color: #F6E7F1 !important;
+    border: 1px solid #9C2272 !important;
+  }
+
   @media screen and (min-width: 1024px){
     .edit-icon{
       width: 36px;
@@ -122,24 +132,25 @@ const BannerStyled = styled.header`
 `
 
 const Banner = ({ data }) => {
-  const { name, img, native, learning } = data
   return (
     <BannerStyled>
 
       <div className='person'>
 
         <div className='person-img'>
-          <img src={img} alt={name} />
+          <img src={data?.img} alt={data?.name} />
         </div>
         <div className='person-info'>
-          {name}
+          {data?.name}
           <div className='languages'>
-            <LangBadge label={native} />
+            <LangBadge label={data?.native.lang} variante='native' avatar={data?.native.img} />
             <Divider orientation='vertical' variant='middle' className='vertical' />
             {
-              learning.map((lang, index) => {
-                return <LangBadge key={index} label={lang} />
-              })
+              data?.learning
+                ? data?.learning.map((lang, index) => {
+                  return <LangBadge key={index} avatar={lang.img} label={data && lang.lang} variante='foraign' />
+                })
+                : '...'
             }
           </div>
         </div>

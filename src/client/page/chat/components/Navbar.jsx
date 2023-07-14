@@ -33,21 +33,19 @@ const Button = styled.button`
   }
 `
 
-const UserImg = styled.img `
+const UserImg = styled.img`
   background-color: #ddddf7;
   height: 24px;
   width: 24px;
   border-radius: 50%;
 `
 
-
-
 const Navbar = () => {
   return (
     <NavbarContainer>
       <span>Howdy chat</span>
       <User>
-        <UserImg src="https://cdn3.iconfinder.com/data/icons/avatars-9/145/Avatar_Penguin-512.png" alt="" />
+        <UserImg src='https://cdn3.iconfinder.com/data/icons/avatars-9/145/Avatar_Penguin-512.png' alt='' />
         <span>Cristian</span>
         <Button>Logout</Button>
       </User>

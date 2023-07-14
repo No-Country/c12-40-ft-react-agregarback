@@ -58,9 +58,10 @@ const ButtonContainer = styled.div`
   gap: 16px;
 `
 
-const Bold = styled.span`
-  font-weight: bold;
-`
+
+// const Bold = styled.span`
+//   font-weight: bold;
+// `
 
 // const Button = styled.button`
 //   display: flex;
@@ -133,7 +134,7 @@ const LayoutWhite = styled.div`
 
 const BoxGreen = styled.div`
   display: flex;
-  width: 80 vw;
+  width: 80vw;
   padding: 24px 16px;
   justify-content: center;
   align-items: center;
@@ -188,32 +189,28 @@ export const Page = () => {
       </Nav>
 
       <Header>
-        <H1>Habla con Howdy</H1>
-        <H1>{t('Home.Header.TitleH1')}</H1>
+        <H1>{t('Home.Header.Title')}</H1>
 
         <H2>
-          Supera tu barrera <Bold>lingüística</Bold> comunicándote con personas
-          <Bold> nativas</Bold> y con ayuda de nuestra
-          <Bold> inteligencia artificial</Bold>
+          {t('Home.Header.Subtitle')}
         </H2>
 
         <ButtonContainer>
-          <CustomButtonPri variant='contained'>Registrate</CustomButtonPri>
-          <CustomButtonSec variant='contained'>Inicia sesion</CustomButtonSec>
+          <CustomButtonPri variant='contained'>{t('Home.Header.Button.Register')}</CustomButtonPri>
+          <CustomButtonSec variant='contained'>{t('Home.Header.Button.Login')}</CustomButtonSec>
         </ButtonContainer>
       </Header>
 
       <Container>
         <LayoutWhite>
-          <Title>¿Que es Howdy?</Title>
+          <Title>{t('Home.Main.WhatIs.Title')}</Title>
           <Subtitle>
-            La plataforma para mejorar la comunicación en otros idiomas con
-            personas de todo el mundo
+            {t('Home.Main.WhatIs.Subtitle')}
           </Subtitle>
         </LayoutWhite>
       </Container>
 
-      <Title>¿Por qué elegir Howdy?</Title>
+      <Title>{t('Home.Main.WhyChoose.Title')}</Title>
 
       <BoxGreen>
         <Box>
@@ -225,7 +222,7 @@ export const Page = () => {
               backgroundColor: '#a2cd37'
             }}
           />
-          <p>Chatea con Nativos</p>
+          <p>{t('Home.Main.WhyChoose.Choose1')}</p>
         </Box>
         <Box>
           <div
@@ -236,7 +233,7 @@ export const Page = () => {
               backgroundColor: '#a2cd37'
             }}
           />
-          <p>Traduce los mensajes</p>
+          <p>{t('Home.Main.WhyChoose.Choose2')}</p>
         </Box>
         <Box>
           <div
@@ -247,7 +244,7 @@ export const Page = () => {
               backgroundColor: '#a2cd37'
             }}
           />
-          <p>Crea Publicaciones</p>{' '}
+          <p>{t('Home.Main.WhyChoose.Choose3')}</p>
         </Box>
         <Box>
           <div
@@ -258,7 +255,7 @@ export const Page = () => {
               backgroundColor: '#a2cd37'
             }}
           />
-          <p>Corrige y se evaluado</p>
+          <p>{t('Home.Main.WhyChoose.Choose4')}</p>
         </Box>
         <Box>
           <div
@@ -269,7 +266,7 @@ export const Page = () => {
               backgroundColor: '#a2cd37'
             }}
           />
-          <p>Sin límite de idiomas</p>
+          <p>{t('Home.Main.WhyChoose.Choose5')}</p>
         </Box>
         <Box>
           <div
@@ -280,7 +277,7 @@ export const Page = () => {
               backgroundColor: '#a2cd37'
             }}
           />
-          <p>Practica con la IA</p>
+          <p>{t('Home.Main.WhyChoose.Choose6')}</p>
         </Box>
         <Box>
           <div
@@ -291,7 +288,7 @@ export const Page = () => {
               backgroundColor: '#a2cd37'
             }}
           />
-          <p>Guarda tu contenido</p>
+          <p>{t('Home.Main.WhyChoose.Choose7')}</p>
         </Box>
       </BoxGreen>
 
@@ -302,7 +299,7 @@ export const Page = () => {
             width: '100vw'
           }}
         >
-          Idiomas disponibles
+          {t('Home.Main.LangAvailable.Title')}
         </Title>
       </LayoutLang>
     </>
