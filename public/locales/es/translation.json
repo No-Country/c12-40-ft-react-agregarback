@@ -1,12 +1,17 @@
 {
+	"Header":{
+		"menu":"Menú",
+		"AboutUs":"Nosotros",
+		"SignUp":"Regístrate",
+		"LogIn":"Inicia sesión"
+	},
 	"Home": {
-		"Nav": {},
 		"Header": {
 			"Title": "Habla con Howdy",
 			"Subtitle": "Supera tu barrera comunicándote con personas nativas y con ayuda de nuestra inteligencia artificial",
 			"Button": {
 				"Login": "Inicia Sesión",
-				"Register": "Registrate"
+				"Register": "Regístrate"
 			}
 		},
 		"Main": {
