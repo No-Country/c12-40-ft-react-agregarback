@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import { styled } from 'styled-components'
-import { Divider } from '@mui/material'
+import { Divider, Badge } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import chat from '../img/chat-icon.svg'
 import saved from '../img/saved-icon.svg'
