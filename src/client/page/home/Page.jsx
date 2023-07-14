@@ -7,26 +7,10 @@ import { primary, primary120, secondary, secondary120 } from '../../../common/va
 
 const colors = [secondary, secondary120, primary, primary120]
 
-// const Nav = styled.nav`
-//   background-color: white;
-//   height: 50px;
-// `
-
-// const Menu = styled.ul`
-//   height: inherit;
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-between;
-//   align-items: center;
-//   margin: auto;
-//   padding: 10px;
-//   width: 100%;
-// `
-
 const Header = styled.header`
   background: var(
     --degrad-titulos,
-    linear-gradient(260deg, #cae38c 0%, #a2cd37 20.5%, #c1358a 100%)
+    linear-gradient(260deg, #cae38c 0%, $secondary 20.5%, $primary 100%)
   );
   color: var(--white-opacity-100, #fff);
   display: flex;
