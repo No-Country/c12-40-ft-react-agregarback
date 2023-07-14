@@ -35,6 +35,7 @@ const GlobalStyles = createGlobalStyle`
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
     vertical-align: baseline;
+    font-family: 'Nunito Sans', sans-serif;
     }
 
     /* Evitamos problemas con las imagenes */
