@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import { styled } from 'styled-components'
-import { Divider, Badge } from '@mui/material'
+import { Divider } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import chat from '../img/chat-icon.svg'
 import saved from '../img/saved-icon.svg'
@@ -61,7 +61,7 @@ const Layout = styled.div`
       gap: 2rem;
     }
   }
-
+  
   .mobile-nav{
     ul{
       display: flex;
