@@ -5,13 +5,12 @@ import { useTranslation } from 'react-i18next'
 
 import { primary, primary120, secondary, secondary120 } from '../../../common/variables'
 
+import whatisbg from './img/bgimg2.png'
+
 const colors = [secondary, secondary120, primary, primary120]
 
 const Header = styled.header`
-  background: var(
-    --degrad-titulos,
-    linear-gradient(260deg, #cae38c 0%, $secondary 20.5%, $primary 100%)
-  );
+  background: linear-gradient(to right, ${primary} 1%, ${secondary120});
   color: var(--white-opacity-100, #fff);
   display: flex;
   padding: 40px 16px;
@@ -22,7 +21,6 @@ const Header = styled.header`
 
 const H1 = styled.h1`
   color: var(--white-opacity-100, #fff);
-  font-family: Nunito Sans;
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
@@ -46,67 +44,27 @@ const ButtonContainer = styled.div`
   gap: 16px;
 `
 
-// const Bold = styled.span`
-//   font-weight: bold;
-// `
-
-// const Button = styled.button`
-//   display: flex;
-//   cursor: pointer;
-//   height: 48px;
-//   padding: 10px 16px;
-//   justify-content: center;
-//   align-items: center;
-//   gap: 10px;
-//   border-radius: 4px;
-//   color: ${(props) =>
-//     (props.primary && 'var(--white-opacity-100, #fff)') ||
-//     (props.secondary && 'var(--primary-100, #c32b8f)')};
-//   border: ${(props) =>
-//     (props.primary && 'none') ||
-//     (props.secondary && '1.5px solid var(--primary-100, #c32b8f)')};
-//   background: ${(props) =>
-//     (props.primary && 'var(--primary-100, #c32b8f)') ||
-//     (props.secondary && 'var(--white-opacity-100, #fff)')};
-// `
-
 const CustomButtonPri = styled(Button)`
   && {
     background-color: white;
-    color: #c32b8f;
-    border: 1px solid #c32b8f;
+    color: ${primary};
+    border: 1px solid ${primary};
   }
 `
 const CustomButtonSec = styled(Button)`
   && {
-    background-color: #c32b8f;
+    background-color: ${primary};
   }
 `
 
 const Container = styled.div`
-  height: 70vh;
-  width: 100vw;
-  background: gray;
+  height: 433px;
+  width: 100%;
+  background-image: url(${whatisbg});
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`
-
-const Title = styled.h3`
-  font-size: 24px;
-  color: var(--neutral-100, #050505);
-  font-family: Nunito Sans;
-  font-weight: bold;
-  text-align: center;
-  padding: 10px;
-`
-
-const Subtitle = styled.h4`
-  font-size: 18px;
-  color: var(--neutral-100, #050505);
-  font-family: Roboto;
-  text-align: center;
 `
 
 const LayoutWhite = styled.div`
@@ -117,19 +75,38 @@ const LayoutWhite = styled.div`
   gap: 6px;
   background: var(--neutral-00, #fcfcfc);
   margin: auto;
+
+  div{
+    width: 90%;
+  }
+`
+
+const Title = styled.h3`
+  font-size: 24px;
+  color: #050505;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+`
+
+const Subtitle = styled.h4`
+  font-size: 18px;
+  color: #050505;
+  font-family: Roboto;
+  text-align: center;
+  overflow-wrap: break-word;
 `
 
 const BoxGreen = styled.div`
   display: flex;
-  width: 80vw;
+  width: 100%;
   padding: 24px 16px;
   justify-content: center;
   align-items: center;
-  align-content: center;
   gap: 16px;
   flex-wrap: wrap;
   flex-direction: column;
-  background: var(--success-100, #a2cd37);
+  background: ${secondary120};
 `
 
 const Box = styled.div`
@@ -180,10 +157,12 @@ export const Page = () => {
 
       <Container>
         <LayoutWhite>
-          <Title>{t('Home.Main.WhatIs.Title')}</Title>
-          <Subtitle>
-            {t('Home.Main.WhatIs.Subtitle')}
-          </Subtitle>
+          <div>
+            <Title>{t('Home.Main.WhatIs.Title')}</Title>
+            <Subtitle>
+              {t('Home.Main.WhatIs.Subtitle')}
+            </Subtitle>
+          </div>
         </LayoutWhite>
       </Container>
 
