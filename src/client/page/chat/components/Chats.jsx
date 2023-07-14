@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { db } from '../../../../service/firebase'
-import { doc, onSnapshot } from 'firebase/firestore'
+import React, { useState } from 'react'
+// import { db } from '../../../../service/firebase'
+// import { doc, onSnapshot } from 'firebase/firestore'
 import { styled } from 'styled-components'
-import { AuthContext } from '../context/AuthContext'
-import { ChatContext } from '../context/ChatContext'
+// import { AuthContext } from '../context/AuthContext'
+// import { ChatContext } from '../context/ChatContext'
 
 const UserChatSect = styled.div`
   
@@ -40,35 +40,35 @@ const UserChatInfo = styled.div`
 `
 
 const Chats = () => {
-  const [chats, setChats] = useState([])
+  const [chats] = useState([])
 
-  const { currentUser } = useContext(AuthContext)
-  const { dispatch } = useContext(ChatContext)
+  // const { currentUser } = useContext(AuthContext)
+  // const { dispatch } = useContext(ChatContext)
 
-  useEffect(() => {
-    const getChats = () => {
-      const unsub = onSnapshot(doc(db, 'userChats', currentUser.uid), (doc) => {
-        console.log(doc)
-        setChats(doc.data())
-      })
-      return () => {
-        unsub()
-      }
-    }
-    currentUser.uid && getChats()
-    console.log(Object.entries(chats))
-  }, [currentUser.uid])
+  // useEffect(() => {
+  //   const getChats = () => {
+  //     const unsub = onSnapshot(doc(db, 'userChats', currentUser.uid), (doc) => {
+  //       console.log(doc)
+  //       setChats(doc.data())
+  //     })
+  //     return () => {
+  //       unsub()
+  //     }
+  //   }
+  //   currentUser.uid && getChats()
+  //   console.log(Object.entries(chats))
+  // }, [currentUser.uid])
 
-  const handleSelect = (u) => {
-    dispatch({ type: 'CHANGE_USER', payload: u })
-  }
+  // const handleSelect = (u) => {
+  //   dispatch({ type: 'CHANGE_USER', payload: u })
+  // }
 
   return (
     <UserChatSect>
       {Object.entries(chats)?.map((chat) => (
         <UserChat
           key={chats[0]}
-          onClick={() => handleSelect(chat[1].userInfo)}
+          // onClick={() => handleSelect(chat[1].userInfo)}
         >
           <img src={chat[1].userInfo.photoURL} alt='' />
           <UserChatInfo>
