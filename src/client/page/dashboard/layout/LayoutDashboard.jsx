@@ -25,32 +25,30 @@ const Layout = styled.div`
   height: 100vh;
 
   .menu-icon{
-    z-index: 2;
+    z-index: 4;
     width: 2rem;
     height: 2rem;
   }
 
-  .active{
-      opacity: 1 !important;
-      transition: all ease-in-out 0.2s;
-    }
-
+  
   .nav-menu{
     color: black;
     position: absolute;
     top: 0;
     right: 0;
-
+    
+    z-index: -1;
+    
     min-width: 30%;
     max-width: 50%;
     height: 100vh;
-
+    
     padding: 8rem 3rem;
-
+    
     opacity: 0;
     transition: all ease-in-out 0.2s;
-
-
+    
+    
     background-color: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(5px);
     ul{
@@ -62,7 +60,26 @@ const Layout = styled.div`
     }
   }
   
+  .active{
+      opacity: 1 !important;
+      transition: all ease-in-out 0.2s;
+      z-index: 2;
+
+      position: fixed;
+      right: 0;
+    }
+
   .mobile-nav{
+
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+
+    z-index: 3;
+
+
+    background-color: white;
+
     ul{
       display: flex;
       justify-content: center;
@@ -89,6 +106,11 @@ const Layout = styled.div`
 `
 
 const Header = styled.header`
+
+  position: fixed;
+  top: 0;
+
+  z-index: 3;
 
   background-color: white ;
 
