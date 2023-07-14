@@ -73,10 +73,6 @@ const Layout = styled.div`
     }
   }
 
-  .icon-mobile{
-      
-  }
-
   @media screen and (min-width: 768px){
     .tablet-desktop{
       display: block;
@@ -107,30 +103,6 @@ const Header = styled.header`
   
   color: black;
 
-  nav{
-    ul{
-      display: flex;
-
-      :first-child{
-        margin-right: 1rem;
-      }
-      
-    }
-
-    select{
-      outline: none;
-      width: 100%;
-      padding: 0 1rem;
-
-      background: url(${arrow}) no-repeat;
-      
-      background-size: 12px;
-      background-position: calc(100%);
-      background-repeat: no-repeat;
-
-    }
-  }
-
   .logo{
 
     display: flex;
@@ -146,6 +118,34 @@ const Header = styled.header`
       max-width: 37.5px;
     }
   }
+  
+  nav{
+
+    ul{
+      display: flex;
+      justify-content:center;
+      align-items: center;
+      box-sizing: border-box;
+      gap: 1rem;
+      :first-child{
+        margin-right: 1rem;
+      }
+    
+    }
+
+    select{
+      outline: none;
+      padding: 0 1rem ;
+
+      background: url(${arrow}) no-repeat;
+      
+      background-size: 12px;
+      background-position: calc(100%);
+      background-repeat: no-repeat;
+
+    }
+  }
+
 
   .vertical{
     height: 2rem;
