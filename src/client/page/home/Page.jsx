@@ -1,5 +1,6 @@
 import React from 'react'
 import { styled } from 'styled-components'
+import { Button } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 
 const Nav = styled.nav`
@@ -62,24 +63,37 @@ const ButtonContainer = styled.div`
 //   font-weight: bold;
 // `
 
-const Button = styled.button`
-  display: flex;
-  cursor: pointer;
-  height: 48px;
-  padding: 10px 16px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border-radius: 4px;
-  color: ${(props) =>
-    (props.primary && 'var(--white-opacity-100, #fff)') ||
-    (props.secondary && 'var(--primary-100, #c32b8f)')};
-  border: ${(props) =>
-    (props.primary && 'none') ||
-    (props.secondary && '1.5px solid var(--primary-100, #c32b8f)')};
-  background: ${(props) =>
-    (props.primary && 'var(--primary-100, #c32b8f)') ||
-    (props.secondary && 'var(--white-opacity-100, #fff)')};
+// const Button = styled.button`
+//   display: flex;
+//   cursor: pointer;
+//   height: 48px;
+//   padding: 10px 16px;
+//   justify-content: center;
+//   align-items: center;
+//   gap: 10px;
+//   border-radius: 4px;
+//   color: ${(props) =>
+//     (props.primary && 'var(--white-opacity-100, #fff)') ||
+//     (props.secondary && 'var(--primary-100, #c32b8f)')};
+//   border: ${(props) =>
+//     (props.primary && 'none') ||
+//     (props.secondary && '1.5px solid var(--primary-100, #c32b8f)')};
+//   background: ${(props) =>
+//     (props.primary && 'var(--primary-100, #c32b8f)') ||
+//     (props.secondary && 'var(--white-opacity-100, #fff)')};
+// `
+
+const CustomButtonPri = styled(Button)`
+  && {
+    background-color: white;
+    color: #c32b8f;
+    border: 1px solid #c32b8f;
+  }
+`
+const CustomButtonSec = styled(Button)`
+  && {
+    background-color: #c32b8f;
+  }
 `
 
 const Container = styled.div`
@@ -182,8 +196,8 @@ export const Page = () => {
         </H2>
 
         <ButtonContainer>
-          <Button secondary>{t('Home.Header.Button.Login')}</Button>
-          <Button primary>{t('Home.Header.Button.Register')}</Button>
+          <CustomButtonPri variant='contained'>{t('Home.Header.Button.Register')}</CustomButtonPri>
+          <CustomButtonSec variant='contained'>{t('Home.Header.Button.Login')}</CustomButtonSec>
         </ButtonContainer>
       </Header>
 
