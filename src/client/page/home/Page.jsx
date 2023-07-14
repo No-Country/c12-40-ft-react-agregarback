@@ -58,7 +58,6 @@ const ButtonContainer = styled.div`
   gap: 16px;
 `
 
-
 // const Bold = styled.span`
 //   font-weight: bold;
 // `
