@@ -3,6 +3,10 @@ import { styled } from 'styled-components'
 import { Button } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 
+import { primary, primary120, secondary, secondary120 } from '../../../common/variables'
+
+const colors = [secondary, secondary120, primary, primary120]
+
 // const Nav = styled.nav`
 //   background-color: white;
 //   height: 50px;
