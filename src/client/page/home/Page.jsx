@@ -3,21 +3,21 @@ import { styled } from 'styled-components'
 import { Button } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 
-const Nav = styled.nav`
-  background-color: white;
-  height: 50px;
-`
+// const Nav = styled.nav`
+//   background-color: white;
+//   height: 50px;
+// `
 
-const Menu = styled.ul`
-  height: inherit;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin: auto;
-  padding: 10px;
-  width: 100%;
-`
+// const Menu = styled.ul`
+//   height: inherit;
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-between;
+//   align-items: center;
+//   margin: auto;
+//   padding: 10px;
+//   width: 100%;
+// `
 
 const Header = styled.header`
   background: var(
@@ -177,7 +177,7 @@ export const Page = () => {
 
   return (
     <>
-      <Nav>
+      {/* <Nav>
         <Menu style={{ color: 'black' }}>
           <div style={{ display: 'flex', gap: '10px' }}>
             <li>Logo</li>
@@ -185,7 +185,7 @@ export const Page = () => {
           </div>
           <li>MENÚ</li>
         </Menu>
-      </Nav>
+      </Nav> */}
 
       <Header>
         <H1>{t('Home.Header.Title')}</H1>
