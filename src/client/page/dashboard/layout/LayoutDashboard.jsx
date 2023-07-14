@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-indent */
 import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import { styled } from 'styled-components'
@@ -12,6 +13,7 @@ import profileMobile from '../img/profile.svg'
 import home from '../img/home.svg'
 import savedMobile from '../img/saved-mobile.svg'
 import chatMobile from '../img/chat-mobile.svg'
+import { useAppSelector } from '../../../../common/store/config'
 
 const Layout = styled.div`
 
@@ -208,6 +210,10 @@ const menuAnimation = () => {
 }
 
 export const LayoutDashboard = () => {
+  const auth = useAppSelector(state => state.auth.user)
+
+  console.log(auth)
+
   return (
     <Layout>
 
@@ -265,18 +271,22 @@ export const LayoutDashboard = () => {
         <Outlet />
       </Main>
 
-      <nav className='mobile-nav'>
-        <ul>
-          <li><img alt='Home' src={home} className='icon-mobile' /></li>
-          <li><img alt='Profile' src={profileMobile} className='icon-mobile' /></li>
-          <li><img alt='Saved' src={savedMobile} className='icon-mobile' /></li>
-          <li>
-            <Badge badgeContent={3} color='success'>
-              <img alt='Chats' src={chatMobile} className='icon-mobile' />
-            </Badge>
-          </li>
-        </ul>
-      </nav>
+      {
+        auth.status === 'authenticated'
+          ? <nav className='mobile-nav'>
+            <ul>
+              <li><img alt='Home' src={home} className='icon-mobile' /></li>
+              <li><img alt='Profile' src={profileMobile} className='icon-mobile' /></li>
+              <li><img alt='Saved' src={savedMobile} className='icon-mobile' /></li>
+              <li>
+                <Badge badgeContent={3} color='success'>
+                  <img alt='Chats' src={chatMobile} className='icon-mobile' />
+                </Badge>
+              </li>
+            </ul>
+            </nav>
+          : ''
+      }
 
     </Layout>
   )
