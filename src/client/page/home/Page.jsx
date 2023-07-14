@@ -177,16 +177,6 @@ export const Page = () => {
 
   return (
     <>
-      {/* <Nav>
-        <Menu style={{ color: 'black' }}>
-          <div style={{ display: 'flex', gap: '10px' }}>
-            <li>Logo</li>
-            <li>Howdy</li>
-          </div>
-          <li>MENÚ</li>
-        </Menu>
-      </Nav> */}
-
       <Header>
         <H1>{t('Home.Header.Title')}</H1>
 
