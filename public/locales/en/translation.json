@@ -1,0 +1,57 @@
+{
+	"Home": {
+		"Nav": {},
+		"Header": {
+			"Title": "Talk to Howdy",
+			"Subtitle": "Overcome your communication barrier by interacting with native speakers and leveraging our artificial intelligence",
+			"Button": {
+				"Login": "Log In",
+				"Register": "Sign Up"
+			}
+		},
+		"Main": {
+			"WhatIs": {
+				"Title": "What is Howdy?",
+				"Subtitle": "The platform to improve communication in other languages with people from around the world"
+			},
+			"WhyChoose": {
+				"Title": "Why Choose Howdy?",
+				"Choose1": "Chat with Natives",
+				"Choose2": "Translate Messages",
+				"Choose3": "Create Posts",
+				"Choose4": "Get Corrected and Evaluated",
+				"Choose5": "No Language Limitations",
+				"Choose6": "Practice with AI",
+				"Choose7": "Save Your Content"
+			},
+			"LangAvailable": {
+				"Title": "Available Languages"
+			}
+		}
+	},
+	"Login": {
+		"Title": "Log In with Howdy",
+		"Email": "Email",
+		"Password": "Password",
+		"Separator": "or",
+		"Button": {
+			"SignIn": "Log In",
+			"Google": "Sign in with Google",
+			"Facebook": "Sign in with Facebook",
+			"Register": "Sign Up"
+		},
+		"DoYou": "Don't have an account yet?"
+	},
+	"": "",
+	"Register": {
+		"Title": "Sign Up for Howdy",
+		"Name": "Full Name",
+		"Email": "Email",
+		"Password": "Password",
+		"Button": {
+			"Create": "Create Account",
+			"SignIn": "Log In"
+		},
+		"DoYou": "Already have an account?"
+	}
+}

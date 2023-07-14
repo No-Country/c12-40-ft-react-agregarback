@@ -48,7 +48,7 @@ const Send = styled.div`
 const Inputs = () => {
   return (
     <InputsSect>
-      <input type="text" placeholder='Escribe aqui...' />
+      <input type='text' placeholder='Escribe aqui...' />
       <Send>
         <button>Send</button>
       </Send>
