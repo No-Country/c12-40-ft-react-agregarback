@@ -3,7 +3,7 @@ import { Title } from '../../../components/Title'
 import { SelectedInterest } from '../../../components/SelectedInterest'
 import ControlPointIcon from '@mui/icons-material/ControlPoint'
 
-export const Step7 = ({ register, errors }) => {
+export const Step7 = ({ register, errors, watch, setValue }) => {
   return (
     <>
       <Title
@@ -17,6 +17,8 @@ export const Step7 = ({ register, errors }) => {
         icon={<ControlPointIcon />}
         placeholder='Ej: cantar'
         name='selectedInterest'
+        watch={watch}
+        setValue={setValue}
       />
     </>
   )
