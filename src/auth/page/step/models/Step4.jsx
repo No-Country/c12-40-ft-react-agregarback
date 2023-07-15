@@ -15,6 +15,7 @@ export const Step4 = ({ register, errors, watch, setValue }) => {
   }
 
   useEffect(() => {
+    register('selectedDate', { required: true })
     if (watch('selectedDate')) {
       const result = dayjs(watch('selectedDate'))
       setValue('selectedDate', result.valueOf(), { shouldValidate: true })
@@ -37,7 +38,6 @@ export const Step4 = ({ register, errors, watch, setValue }) => {
           renderInput={(params) => (
             <TextField
               {...params}
-              {...register('selectedDate', { required: true })}
               error={!!errors.selectedDate}
               helperText={errors.selectedDate && errors.selectedDate.message}
               fullWidth
