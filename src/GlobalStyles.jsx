@@ -142,9 +142,9 @@ const GlobalStyles = createGlobalStyle`
     /* opcional */
     line-height: 1.4em;
     /* opcional */
-    -webkit-hyphens: auto;
-        -ms-hyphens: auto;
-            hyphens: auto;
+    /* -webkit-hyphens: auto; */
+        /* -ms-hyphens: auto; */
+            /* hyphens: auto; */
     /* opcional */
     font-smooth: always;
     /* opcional */

@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next'
 import { primary, primary20, secondary120 } from '../../../common/variables'
 
 import whatisbg from './img/bgimg2.png'
-import { borderRadius } from '@mui/system'
 
 const Header = styled.header`
   background: linear-gradient(to right, ${primary} 1%, ${secondary120});
@@ -189,6 +188,11 @@ const LayoutHowDoes = styled.section`
         height: 200px;
         background-color: ${primary20};
         border-radius: 8px;
+      }
+
+      p{
+        padding: 0 16px;
+        word-wrap: break-word;
       }
     }
   }
