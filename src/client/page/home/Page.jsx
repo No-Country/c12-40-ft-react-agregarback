@@ -3,11 +3,9 @@ import { styled } from 'styled-components'
 import { Button } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 
-import { primary, primary120, secondary, secondary120 } from '../../../common/variables'
+import { primary, primary20, secondary120 } from '../../../common/variables'
 
 import whatisbg from './img/bgimg2.png'
-
-const colors = [secondary, secondary120, primary, primary120]
 
 const Header = styled.header`
   background: linear-gradient(to right, ${primary} 1%, ${secondary120});
@@ -73,7 +71,7 @@ const LayoutWhite = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  background: var(--neutral-00, #fcfcfc);
+  background: #fcfcfc;
   margin: auto;
 
   div{
@@ -97,7 +95,7 @@ const Subtitle = styled.h4`
   overflow-wrap: break-word;
 `
 
-const BoxGreen = styled.div`
+const BoxGreen = styled.section`
   display: flex;
   width: 100%;
   padding: 24px 16px;
@@ -125,16 +123,48 @@ const Box = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
+
+  div{
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    background-color: ${secondary120};
+  }
 `
 
 const LayoutLang = styled.section`
   height: max-content;
-  width: 100vw;
-  background: var(--primary-opacity-10, #f6e7f1);
+  width: 100%;
+  background: ${primary20};
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 10px;
+`
+
+const BoxLang = styled.div`
+  display: flex;
+  padding: 24px 16px;
+  
+  ul{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+  }
+  `
+const CustomButtonLang = styled(Button)`
+    && {
+      background-color: #FFFFFF;
+      color: ${primary};
+      border-radius: 100px;
+    }
+  `
+
+const LayoutHowDoes = styled.section`
+  width: 100%;
+  height: max-content;
 `
 
 export const Page = () => {
@@ -154,7 +184,6 @@ export const Page = () => {
           <CustomButtonSec variant='contained'>{t('Home.Header.Button.Login')}</CustomButtonSec>
         </ButtonContainer>
       </Header>
-
       <Container>
         <LayoutWhite>
           <div>
@@ -165,99 +194,65 @@ export const Page = () => {
           </div>
         </LayoutWhite>
       </Container>
-
       <Title>{t('Home.Main.WhyChoose.Title')}</Title>
-
       <BoxGreen>
         <Box>
-          <div
-            style={{
-              borderRadius: '100%',
-              width: '30px',
-              height: '30px',
-              backgroundColor: '#a2cd37'
-            }}
-          />
+          <div />
           <p>{t('Home.Main.WhyChoose.Choose1')}</p>
         </Box>
         <Box>
-          <div
-            style={{
-              borderRadius: '100%',
-              width: '30px',
-              height: '30px',
-              backgroundColor: '#a2cd37'
-            }}
-          />
+          <div />
           <p>{t('Home.Main.WhyChoose.Choose2')}</p>
         </Box>
         <Box>
-          <div
-            style={{
-              borderRadius: '100%',
-              width: '30px',
-              height: '30px',
-              backgroundColor: '#a2cd37'
-            }}
-          />
+          <div />
           <p>{t('Home.Main.WhyChoose.Choose3')}</p>
         </Box>
         <Box>
-          <div
-            style={{
-              borderRadius: '100%',
-              width: '30px',
-              height: '30px',
-              backgroundColor: '#a2cd37'
-            }}
-          />
+          <div />
           <p>{t('Home.Main.WhyChoose.Choose4')}</p>
         </Box>
         <Box>
-          <div
-            style={{
-              borderRadius: '100%',
-              width: '30px',
-              height: '30px',
-              backgroundColor: '#a2cd37'
-            }}
-          />
+          <div />
           <p>{t('Home.Main.WhyChoose.Choose5')}</p>
         </Box>
         <Box>
-          <div
-            style={{
-              borderRadius: '100%',
-              width: '30px',
-              height: '30px',
-              backgroundColor: '#a2cd37'
-            }}
-          />
+          <div />
           <p>{t('Home.Main.WhyChoose.Choose6')}</p>
         </Box>
         <Box>
-          <div
-            style={{
-              borderRadius: '100%',
-              width: '30px',
-              height: '30px',
-              backgroundColor: '#a2cd37'
-            }}
-          />
+          <div />
           <p>{t('Home.Main.WhyChoose.Choose7')}</p>
         </Box>
       </BoxGreen>
-
       <LayoutLang>
         <Title
           style={{
-            borderBottom: '1px solid var(--primary-100, #c32b8f)',
-            width: '100vw'
+            borderBottom: `1px solid ${primary}`,
+            width: '100%'
           }}
         >
           {t('Home.Main.LangAvailable.Title')}
         </Title>
+        <BoxLang>
+          <ul>
+            <CustomButtonLang variant='contained'>Español</CustomButtonLang>
+            <CustomButtonLang variant='contained'>Ingles</CustomButtonLang>
+            <CustomButtonLang variant='contained'>Frances</CustomButtonLang>
+            <CustomButtonLang variant='contained'>Portugues</CustomButtonLang>
+            <CustomButtonLang variant='contained'>Aleman</CustomButtonLang>
+            <CustomButtonLang variant='contained'>Italiano</CustomButtonLang>
+            <CustomButtonLang variant='contained'>Y muchos mas</CustomButtonLang>
+          </ul>
+        </BoxLang>
       </LayoutLang>
+      <LayoutHowDoes>
+        <Title style={{
+          borderBottom: `1px solid ${primary}`,
+          width: '100%'
+        }}
+        />
+      </LayoutHowDoes>
     </>
   )
 }

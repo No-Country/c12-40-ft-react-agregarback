@@ -6,3 +6,5 @@ export const secondary = '#0E8428'
 export const secondary120 = '#A2CD37'
 
 // opacity colors
+
+export const primary20 = '#F6E7F1'
