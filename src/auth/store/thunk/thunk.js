@@ -1,5 +1,16 @@
-import { onAuthenticatedAutomatic, onGoogleAuth, onLogout, signUp } from '../../../service/firebaseAuth'
-import { checkingCredentials, login, loginError, logout } from '../slice/sliceAuth'
+import {
+  onAuthenticatedAutomatic,
+  onGoogleAuth,
+  onLogout,
+  signUp
+} from '../../../service/firebaseAuth'
+
+import {
+  checkingCredentials,
+  login,
+  loginError,
+  logout
+} from '../slice/sliceAuth'
 
 export const registerAuthentication = (data) => async (dispatch) => {
   const { email, password, name } = data
@@ -48,4 +59,3 @@ export const authenticatedLogout = () => (dispatch) => {
 
   dispatch(logout())
 }
-

@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 
 const ButtonStyle = styled.button`
   background-color: red;
@@ -6,6 +6,6 @@ const ButtonStyle = styled.button`
 
 export const Button = ({ click }) => {
   return (
-    <ButtonStyle type="button" onClick={click}>button</ButtonStyle>
+    <ButtonStyle type='button' onClick={click}>button</ButtonStyle>
   )
 }
