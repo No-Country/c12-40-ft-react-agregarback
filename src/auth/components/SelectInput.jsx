@@ -1,17 +1,26 @@
-import { FormControl, FormHelperText, InputAdornment, InputLabel, MenuItem, Select } from '@mui/material'
+import {
+  FormControl,
+  FormHelperText,
+  InputAdornment,
+  InputLabel,
+  MenuItem,
+  Select
+} from '@mui/material'
 import React, { useState } from 'react'
 
-export const SelectInput = ({ label, items = [], name, register, errors, icon }) => {
-  const [value, setValue] = useState('')
+export const SelectInput = ({
+  label,
+  items = [],
+  name,
+  register,
+  errors,
+  icon,
+  watch
+}) => {
   const [adorn, setAdorn] = useState(false)
 
-  const handleBlur = () => {
-    value === '' ? setAdorn(false) : setAdorn(true)
-  }
-  const handleChange = (e) => {
-    if (e.target.value !== '') {
-      setValue(e.target.value)
-    }
+  const handleFocus = () => {
+    setAdorn(true)
   }
 
   return (
@@ -20,23 +29,28 @@ export const SelectInput = ({ label, items = [], name, register, errors, icon })
         {label}
       </InputLabel>
       <Select
-        onFocus={() => setAdorn(true)}
-        onBlur={handleBlur}
+        onFocus={handleFocus}
+        onBlur={() => setAdorn(false)}
         labelId='demo-simple-select-label'
         id={name}
         name={name}
         label={label}
-        value={value}
+        value={watch(name) ?? ''}
         color='secondary'
         {...register(name, { required: true })}
-        onChange={handleChange}
-        startAdornment={adorn ? <InputAdornment position='start'>{icon}</InputAdornment> : null}
-      >
-        {
-          items.map(item => (
-            <MenuItem key={item.id} value={item.value}>{item.title}</MenuItem>
-          ))
+        startAdornment={
+          adorn
+            ? (
+              <InputAdornment position='start'>{icon}</InputAdornment>
+              )
+            : null
         }
+      >
+        {items.map((item) => (
+          <MenuItem key={item.id} value={item.value.toLowerCase()}>
+            {item.title}
+          </MenuItem>
+        ))}
       </Select>
       {errors[name] && (
         <FormHelperText error>Este campo es requerido</FormHelperText>
