@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { primary, primary20, secondary120 } from '../../../common/variables'
 
 import whatisbg from './img/bgimg2.png'
+import { borderRadius } from '@mui/system'
 
 const Header = styled.header`
   background: linear-gradient(to right, ${primary} 1%, ${secondary120});
@@ -159,12 +160,38 @@ const CustomButtonLang = styled(Button)`
       background-color: #FFFFFF;
       color: ${primary};
       border-radius: 100px;
+      
+      &:hover{
+        color: white;
+        background-color: ${primary};
+      }
     }
   `
 
 const LayoutHowDoes = styled.section`
-  width: 100%;
   height: max-content;
+
+  div{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 24px 0;
+    gap: 16px;
+    justify-content: center;
+
+    div{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+
+      div{
+        height: 200px;
+        background-color: ${primary20};
+        border-radius: 8px;
+      }
+    }
+  }
 `
 
 export const Page = () => {
@@ -248,10 +275,29 @@ export const Page = () => {
       </LayoutLang>
       <LayoutHowDoes>
         <Title style={{
-          borderBottom: `1px solid ${primary}`,
+          borderBottom: `1px solid ${secondary120}`,
           width: '100%'
         }}
-        />
+        >
+          {t('Home.Main.HowDoes.Title')}
+        </Title>
+        <div>
+          <div>
+            <div>
+              <CustomButtonSec
+                variant='contained' style={{
+                  padding: '10px 16px',
+                  borderRadius: '8px'
+                }}
+              >
+                {t('Login.Button.Register')}
+              </CustomButtonSec>
+            </div>
+            <p>
+              {t('Home.Main.HowDoes.Step1')}
+            </p>
+          </div>
+        </div>
       </LayoutHowDoes>
     </>
   )
