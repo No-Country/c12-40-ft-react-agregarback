@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Container, Grid, LinearProgress } from '@mui/material'
+import { Button, CircularProgress, Container, Grid, LinearProgress } from '@mui/material'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import CloseIcon from '@mui/icons-material/Close'
 
@@ -22,6 +22,7 @@ export const Page = () => {
 
   const [step, setStep] = useState(0)
   const [showComponent, setShowComponent] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const {
     register,
@@ -49,19 +50,22 @@ export const Page = () => {
       const storage = getStorage()
 
       try {
+        setLoading(() => true)
+        console.log(data)
         const file = data.selectedImageProfile
-        const filename = `${user.user.uid}-${file.name}-${crypto.randomUUID()}`
-
-        const storageRef = ref(storage, `images/${filename}`)
-        await uploadBytes(storageRef, file)
-
-        const downloadURL = await getDownloadURL(storageRef)
-
-        console.log(downloadURL)
-
-        await updateProfile(auth.currentUser, {
-          photo: downloadURL
-        })
+        if (file) {
+          const filename = `${user.user.uid}-${file.name}-${crypto.randomUUID()}`
+          const storageRef = ref(storage, `images/${filename}`)
+          await uploadBytes(storageRef, file)
+          const downloadURL = await getDownloadURL(storageRef)
+          await updateProfile(auth.currentUser, {
+            photo: downloadURL
+          })
+        } else {
+          await updateProfile(auth.currentUser, {
+            photo: 'https://i.ibb.co/LzH1xPp/6f57760966a796644b8cfb0fbc449843.png'
+          })
+        }
 
         delete data.selectedImageProfile
 
@@ -76,6 +80,8 @@ export const Page = () => {
         dispatch(validationAuthenticated())
       } catch (error) {
         console.error('Error al guardar el archivo en Firebase Storage o actualizar los documentos:', error)
+      } finally {
+        setLoading(false)
       }
     }
   }
@@ -129,11 +135,15 @@ export const Page = () => {
           fullWidth
           variant='contained'
           type='submit'
-          disabled={!isValid}
+          disabled={!isValid || loading}
         >
-          {step === components.length - 1
-            ? 'Enviar'
-            : 'Siguiente'}
+          {loading
+            ? (
+              <CircularProgress size={24} color='secondary' />
+              )
+            : (
+              <div>{step === components.length - 1 ? 'Enviar' : 'Siguiente'}</div>
+              )}
         </Button>
       </form>
     </Container>
