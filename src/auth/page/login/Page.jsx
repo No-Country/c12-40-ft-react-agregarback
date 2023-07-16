@@ -1,8 +1,10 @@
 import { Container } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { ModalLogin } from '../../components/ModalLogin'
+import { useAuth } from '../../hook/useAuth'
 
 export const Page = () => {
+  const { userLogin } = useAuth()
   const {
     register,
     handleSubmit,
@@ -10,7 +12,7 @@ export const Page = () => {
   } = useForm({ mode: 'all' })
 
   const eventSubmit = (data) => {
-    console.log(data)
+    userLogin(data)
   }
 
   return (
