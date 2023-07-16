@@ -51,7 +51,6 @@ export const Page = () => {
 
       try {
         setLoading(() => true)
-        console.log(data)
         const file = data.selectedImageProfile
         if (file) {
           const filename = `${user.user.uid}-${file.name}-${crypto.randomUUID()}`
@@ -74,7 +73,7 @@ export const Page = () => {
         })
 
         await setDoc(doc(db, 'users', user.user.uid), {
-          authentication: true
+          auth: true
         })
 
         dispatch(validationAuthenticated())
