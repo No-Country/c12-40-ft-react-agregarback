@@ -7,6 +7,7 @@ import { primary, primary20, secondary120 } from '../../../common/variables'
 
 import whatisbg from './img/bgimg2.png'
 import { ContainerGeneral } from '../../../common/style/container/ContainerGeneral'
+import { chatImg } from './img/svg'
 
 const Header = styled.header`
   background: linear-gradient(to right, ${primary} 1%, ${secondary120});
@@ -97,7 +98,7 @@ const Subtitle = styled.h4`
   overflow-wrap: break-word;
 `
 
-const BoxGreen = styled.section`
+const BoxWhyChoose = styled.section`
   display: flex;
   width: 100%;
   padding: 24px 16px;
@@ -108,7 +109,7 @@ const BoxGreen = styled.section`
   background: ${secondary120};
 `
 
-const Box = styled.div`
+const WhyChoose = styled.div`
   display: flex;
   width: 173px;
   padding: 8px;
@@ -173,7 +174,7 @@ const LayoutHowDoes = styled.section`
   height: max-content;
 `
 
-const BoxChooses = styled.div`
+const BoxHowDoes = styled.div`
   padding: 24px 0;
   width: 100%;
   display: flex;
@@ -182,7 +183,7 @@ const BoxChooses = styled.div`
   justify-content: center;
 `
 
-const Chooses = styled.div`
+const HowDoes = styled.div`
   flex-basis: calc(33.33% - 16px);
   width: 360px;
   display: flex;
@@ -197,7 +198,7 @@ const Chooses = styled.div`
   }
 `
 
-const ImgChooses = styled.div`
+const ImgHowDoes = styled.div`
   display: grid;
   place-items: center;
   text-align: center;
@@ -239,36 +240,38 @@ export const Page = () => {
         </LayoutWhite>
       </Container>
       <Title>{t('Home.Main.WhyChoose.Title')}</Title>
-      <BoxGreen>
-        <Box>
-          <div />
+      <BoxWhyChoose>
+        <WhyChoose>
+          <div>
+            <img src={chatImg} alt='' />
+          </div>
           <p>{t('Home.Main.WhyChoose.Choose1')}</p>
-        </Box>
-        <Box>
+        </WhyChoose>
+        <WhyChoose>
           <div />
           <p>{t('Home.Main.WhyChoose.Choose2')}</p>
-        </Box>
-        <Box>
+        </WhyChoose>
+        <WhyChoose>
           <div />
           <p>{t('Home.Main.WhyChoose.Choose3')}</p>
-        </Box>
-        <Box>
+        </WhyChoose>
+        <WhyChoose>
           <div />
           <p>{t('Home.Main.WhyChoose.Choose4')}</p>
-        </Box>
-        <Box>
+        </WhyChoose>
+        <WhyChoose>
           <div />
           <p>{t('Home.Main.WhyChoose.Choose5')}</p>
-        </Box>
-        <Box>
+        </WhyChoose>
+        <WhyChoose>
           <div />
           <p>{t('Home.Main.WhyChoose.Choose6')}</p>
-        </Box>
-        <Box>
+        </WhyChoose>
+        <WhyChoose>
           <div />
           <p>{t('Home.Main.WhyChoose.Choose7')}</p>
-        </Box>
-      </BoxGreen>
+        </WhyChoose>
+      </BoxWhyChoose>
       <LayoutLang>
         <Title
           style={{
@@ -298,9 +301,9 @@ export const Page = () => {
         >
           {t('Home.Main.HowDoes.Title')}
         </Title>
-        <BoxChooses>
-          <Chooses>
-            <ImgChooses>
+        <BoxHowDoes>
+          <HowDoes>
+            <ImgHowDoes>
               <CustomButtonSec
                 variant='contained' style={{
                   padding: '10px 16px',
@@ -309,52 +312,52 @@ export const Page = () => {
               >
                 {t('Login.Button.Register')}
               </CustomButtonSec>
-            </ImgChooses>
+            </ImgHowDoes>
             <p>
               {t('Home.Main.HowDoes.Step1')}
             </p>
-          </Chooses>
-          <Chooses>
-            <ImgChooses>
+          </HowDoes>
+          <HowDoes>
+            <ImgHowDoes>
               <p>Foto</p>
-            </ImgChooses>
+            </ImgHowDoes>
             <p>
               {t('Home.Main.HowDoes.Step2')}
             </p>
-          </Chooses>
-          <Chooses>
-            <ImgChooses>
+          </HowDoes>
+          <HowDoes>
+            <ImgHowDoes>
               <p>Foto</p>
-            </ImgChooses>
+            </ImgHowDoes>
             <p>
               {t('Home.Main.HowDoes.Step3')}
             </p>
-          </Chooses>
-          <Chooses>
-            <ImgChooses>
+          </HowDoes>
+          <HowDoes>
+            <ImgHowDoes>
               <p>Foto</p>
-            </ImgChooses>
+            </ImgHowDoes>
             <p>
               {t('Home.Main.HowDoes.Step4')}
             </p>
-          </Chooses>
-          <Chooses>
-            <ImgChooses>
+          </HowDoes>
+          <HowDoes>
+            <ImgHowDoes>
               <p>Foto</p>
-            </ImgChooses>
+            </ImgHowDoes>
             <p>
               {t('Home.Main.HowDoes.Step5')}
             </p>
-          </Chooses>
-          <Chooses>
-            <ImgChooses>
+          </HowDoes>
+          <HowDoes>
+            <ImgHowDoes>
               <p>Foto</p>
-            </ImgChooses>
+            </ImgHowDoes>
             <p>
               {t('Home.Main.HowDoes.Step6')}
             </p>
-          </Chooses>
-        </BoxChooses>
+          </HowDoes>
+        </BoxHowDoes>
       </LayoutHowDoes>
       <LayoutReviews>
         <div>
