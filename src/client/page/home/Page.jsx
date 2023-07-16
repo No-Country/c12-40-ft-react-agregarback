@@ -7,7 +7,13 @@ import { primary, primary20, secondary120 } from '../../../common/variables'
 
 import whatisbg from './img/bgimg2.png'
 import { ContainerGeneral } from '../../../common/style/container/ContainerGeneral'
-import { chatImg } from './img/svg'
+import chat from './img/chat-img.svg'
+import translate from './img/translate-img.svg'
+import group from './img/group-img.svg'
+import academic from './img/academic-img.svg'
+import receipt from './img/receipt-img.svg'
+import logo from './img/logo-img.svg'
+import bookmark from './img/bookmark-img.svg'
 
 const Header = styled.header`
   background: linear-gradient(to right, ${primary} 1%, ${secondary120});
@@ -243,32 +249,44 @@ export const Page = () => {
       <BoxWhyChoose>
         <WhyChoose>
           <div>
-            <img src={chatImg} alt='' />
+            <img src={chat} alt='' />
           </div>
           <p>{t('Home.Main.WhyChoose.Choose1')}</p>
         </WhyChoose>
         <WhyChoose>
-          <div />
+          <div>
+            <img src={translate} alt='' />
+          </div>
           <p>{t('Home.Main.WhyChoose.Choose2')}</p>
         </WhyChoose>
         <WhyChoose>
-          <div />
+          <div>
+            <img src={group} alt='' />
+          </div>
           <p>{t('Home.Main.WhyChoose.Choose3')}</p>
         </WhyChoose>
         <WhyChoose>
-          <div />
+          <div>
+            <img src={academic} alt='' />
+          </div>
           <p>{t('Home.Main.WhyChoose.Choose4')}</p>
         </WhyChoose>
         <WhyChoose>
-          <div />
+          <div>
+            <img src={receipt} alt='' />
+          </div>
           <p>{t('Home.Main.WhyChoose.Choose5')}</p>
         </WhyChoose>
         <WhyChoose>
-          <div />
+          <div>
+            <img src={logo} alt='' />
+          </div>
           <p>{t('Home.Main.WhyChoose.Choose6')}</p>
         </WhyChoose>
         <WhyChoose>
-          <div />
+          <div>
+            <img src={bookmark} alt='' />
+          </div>
           <p>{t('Home.Main.WhyChoose.Choose7')}</p>
         </WhyChoose>
       </BoxWhyChoose>
