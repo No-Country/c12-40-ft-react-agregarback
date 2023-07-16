@@ -25,7 +25,7 @@ export const signIn = async (email, password) => {
       uid: userCredential.user.uid,
       email: userCredential.user.email,
       photo: userCredential.user.photoURL,
-      authetication: docSnap.data().authetication
+      auth: docSnap.data().auth
     }
 
     if (userCredential.user) {
@@ -52,19 +52,21 @@ export const signUp = async (email, password, name) => {
     await setDoc(doc(db, 'users', user.uid), {
       email,
       name,
-      authetication: false,
+      token: false,
       timestamp: serverTimestamp()
     })
 
     const docRef = doc(db, 'users', user.uid)
     const docSnap = await getDoc(docRef)
 
+    console.log(docSnap.data())
+
     const userFirebase = {
       name: user.displayName,
       uid: user.uid,
       email: user.email,
       photo: user.photoURL,
-      authetication: docSnap.data().authetication
+      auth: docSnap.data().token
     }
 
     return { success: true, userFirebase }
@@ -86,7 +88,7 @@ export const onGoogleAuth = async () => {
     let authentication = false
 
     if (docSnap.exists()) {
-      authentication = docSnap.data().authentication
+      authentication = docSnap.data().token
     } else {
       authentication = false
     }
@@ -95,7 +97,7 @@ export const onGoogleAuth = async () => {
       await setDoc(docRef, {
         name: user.displayName,
         email: user.email,
-        authentication,
+        token: authentication,
         timestamp: serverTimestamp()
       })
     }
@@ -105,7 +107,7 @@ export const onGoogleAuth = async () => {
       uid: user.uid,
       email: user.email,
       photo: user.photoURL,
-      authentication
+      auth: authentication
     }
 
     return { success: true, userFirebase }
@@ -131,7 +133,7 @@ export const onAuthenticatedAutomatic = async () => {
         uid: user.uid,
         email: user.email,
         photo: user.photoURL,
-        authetication: docSnap.data().authentication
+        auth: docSnap.data().auth
       }
       return { success: true, userFirebase }
     } else {
