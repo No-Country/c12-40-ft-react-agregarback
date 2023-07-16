@@ -15,7 +15,6 @@ import { useEffect } from 'react'
 import { autheticatedAutomatic } from './auth/store/thunk/thunk'
 import { useAppDispatch } from './common/store/config'
 import { UserTokenAuth } from './auth/layout/UserTokenAuth'
-import { Test } from './Test'
 
 function App () {
   const dispatch = useAppDispatch()
@@ -42,7 +41,6 @@ function App () {
         </Route>
         <Route path='/profile' element={<Profile />} />
         <Route path='/' element={<Home />} />
-        <Route path='/test' element={<Test />} />
       </Routes>
     </>
   )
