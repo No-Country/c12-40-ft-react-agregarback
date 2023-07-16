@@ -43,7 +43,9 @@ export const SelectedInterest = ({
   register(name)
 
   useEffect(() => {
-    setInterests(() => watch(name) ?? [])
+    const result = watch(name) ?? []
+    setInterests(() => result)
+    setValue(name, result)
   }, [])
 
   return (
