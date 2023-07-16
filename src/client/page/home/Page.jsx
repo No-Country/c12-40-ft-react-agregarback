@@ -74,6 +74,7 @@ const LayoutWhite = styled.div`
   gap: 6px;
   background: #fcfcfc;
   margin: auto;
+  border-radius: 8px;
 
   div{
     width: 90%;
@@ -156,10 +157,14 @@ const CustomButtonLang = styled(Button)`
       background-color: #FFFFFF;
       color: ${primary};
       border-radius: 100px;
+      box-shadow: none;
+      cursor: inherit;
       
       &:hover{
-        color: white;
-        background-color: ${primary};
+        color: ${primary};
+        background-color: #FFFFFF;
+        box-shadow: none;
+        cursor: inherit;
       }
     }
   `
