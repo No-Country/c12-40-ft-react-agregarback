@@ -88,7 +88,7 @@ export const onGoogleAuth = async () => {
     let authentication = false
 
     if (docSnap.exists()) {
-      authentication = docSnap.data().token
+      authentication = docSnap.data().auth
     } else {
       authentication = false
     }
