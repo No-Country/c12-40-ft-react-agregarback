@@ -10,7 +10,7 @@ export const PrivateRoute = () => {
   }
 
   if (auth === 'not-authenticated') {
-    <Navigate to='/auth/login' />
+    return <Navigate to='/auth/' />
   }
 
   return auth === 'authenticated' && <Outlet />
