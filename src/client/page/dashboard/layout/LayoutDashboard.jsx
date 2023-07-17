@@ -14,6 +14,9 @@ import home from '../img/home.svg'
 import savedMobile from '../img/saved-mobile.svg'
 import chatMobile from '../img/chat-mobile.svg'
 import { useAppSelector } from '../../../../common/store/config'
+import { useAuth } from '../../../../auth/hook/useAuth'
+
+import { primary } from '../../../../common/variables'
 
 const Layout = styled.div`
 
@@ -92,6 +95,25 @@ const Layout = styled.div`
     }
   }
 
+  .btn{
+    min-width: 150px;
+    padding: 1rem 0;
+
+    border-radius: 5px;
+    font-weight: bold;
+  }
+
+  .login{
+    border: 1px solid ${primary};
+    color: ${primary};
+  }
+
+  .signup{
+    border: 1px solid ${primary};
+    background-color: ${primary};
+    color: white;
+  }
+
   @media screen and (min-width: 768px){
     .tablet-desktop{
       display: block;
@@ -150,16 +172,13 @@ const Header = styled.header`
       justify-content:center;
       align-items: center;
       box-sizing: border-box;
-      gap: 1rem;
-      :first-child{
-        margin-right: 1rem;
-      }
+      gap: 1.5rem;
     
     }
 
     select{
       outline: none;
-      padding: 0 1rem ;
+      padding: 0 1rem 0 0;
 
       background: url(${arrow}) no-repeat;
       
@@ -175,13 +194,19 @@ const Header = styled.header`
     height: 2rem;
   }
 
-  .icons{
+  .auth-icons{
     display: flex;
     gap: 2rem;
 
     .icon{
       object-fit: contain;
     }
+  }
+
+  .no-auth{
+    display: flex;
+
+    gap: 1rem;
   }
 
 `
@@ -211,8 +236,7 @@ const menuAnimation = () => {
 
 export const LayoutDashboard = () => {
   const auth = useAppSelector(state => state.auth.user)
-
-  console.log(auth)
+  const { userLogout } = useAuth()
 
   return (
     <Layout>
@@ -238,13 +262,22 @@ export const LayoutDashboard = () => {
             </nav>
           </div>
 
-          <div className='icons'>
-            <img src={chat} className='icon' />
-            <img src={saved} className='icon' />
-            <img src={notifications} className='icon' />
-            <Divider orientation='vertical' variant='middle' className='vertical' />
-            <img src={profile} alt='Perfil' className='icon' />
-          </div>
+          {
+            auth.status === 'authenticated'
+              ? <div className='auth-icons'>
+              <button onClick={userLogout}>Logout</button>
+              <img src={chat} className='icon' />
+              <img src={saved} className='icon' />
+              <img src={notifications} className='icon' />
+              <Divider orientation='vertical' variant='middle' className='vertical' />
+              <img src={profile} alt='Perfil' className='icon' />
+                </div>
+              : <div className='no-auth'>
+              <Link to='auth/login'><button className='login btn'>Inicia sesión</button></Link>
+              <Link to='/auth/register'><button className='signup btn'>Regístrate</button></Link>
+                </div>
+          }
+
         </Header>
       </div>
 
