@@ -20,14 +20,17 @@ import { primary } from '../../../../common/variables'
 
 const Layout = styled.div`
 
-.tablet-desktop{
-  display: none;
-}
-
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 100vh;
+
+  .tablet-desktop{
+    display: none;
+    position: sticky;
+    top: 0;
+
+    z-index: 999;
+  }
 
   .menu-icon{
     z-index: 4;
@@ -114,6 +117,13 @@ const Layout = styled.div`
     color: white;
   }
 
+  .mobile{
+    position: sticky;
+    top: 0;
+
+    z-index: 999;
+  }
+
   @media screen and (min-width: 768px){
     .tablet-desktop{
       display: block;
@@ -131,9 +141,6 @@ const Layout = styled.div`
 
 const Header = styled.header`
 
-  position: fixed;
-  top: 0;
-
   z-index: 3;
 
   background-color: white ;
@@ -141,6 +148,7 @@ const Header = styled.header`
   padding: 24px 40px;
 
   width: 100%;
+  height: 85px;
 
   display: flex;
   justify-content: space-between;
@@ -209,12 +217,13 @@ const Header = styled.header`
     gap: 1rem;
   }
 
+  @media screen and (min-width: 768px){
+    height: 105px;
+  }
+
 `
 
 const Main = styled.main`
-  background-color: gray;
-
-  height: 100%;
   width: 100%;
 `
 
