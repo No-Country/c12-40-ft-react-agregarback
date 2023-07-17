@@ -5,7 +5,7 @@ import { SelectInput } from '../../../components/SelectInput'
 import { levelOfKnowledge, nativeLanguage } from '../constants/data'
 import { Typography } from '@mui/material'
 
-export const SelectNativeLanguage = ({ componentCount, register, errors }) => {
+export const SelectNativeLanguage = ({ componentCount, register, errors, watch }) => {
   return (
     <>
       {
@@ -18,15 +18,17 @@ export const SelectNativeLanguage = ({ componentCount, register, errors }) => {
         register={register}
         errors={errors}
         icon={<TranslateIcon />}
+        watch={watch}
       />
 
       <SelectInput
         label='Nivel de conocimiento'
-        name='selectorLan'
+        name='selectorKnowledge'
         items={levelOfKnowledge}
         register={register}
         errors={errors}
         icon={<EqualizerIcon />}
+        watch={watch}
       />
     </>
   )

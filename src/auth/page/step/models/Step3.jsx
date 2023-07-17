@@ -4,12 +4,12 @@ import { Button } from '@mui/material'
 import { Title } from '../../../components/Title'
 import { SelectNativeLanguage } from '../components/SelectNativeLanguage'
 
-export const Step3 = ({ register, errors }) => {
+export const Step3 = ({ register, errors, watch }) => {
   const [componentCount, setComponentCount] = useState(1)
 
   const handleClick = () => {
     if (componentCount <= 2) {
-      setComponentCount(prevCount => prevCount + 1)
+      setComponentCount((prevCount) => prevCount + 1)
     }
   }
 
@@ -21,7 +21,13 @@ export const Step3 = ({ register, errors }) => {
       />
 
       {Array.from({ length: componentCount }).map((_, index) => (
-        <SelectNativeLanguage componentCount={componentCount >= 1} key={index} register={register} errors={errors} />
+        <SelectNativeLanguage
+          componentCount={componentCount >= 1}
+          key={index}
+          register={register}
+          errors={errors}
+          watch={watch}
+        />
       ))}
 
       <Button

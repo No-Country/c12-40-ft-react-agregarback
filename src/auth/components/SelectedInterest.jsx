@@ -1,56 +1,100 @@
-import { Chip, Grid, InputAdornment, TextField, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import {
+  Chip,
+  FormControl,
+  FormHelperText,
+  Grid,
+  InputAdornment,
+  InputLabel,
+  MenuItem,
+  Select,
+  Typography
+} from '@mui/material'
+import React, { useState, useEffect } from 'react'
 
-export const SelectedInterest = ({ register, errors, icon, name, label, placeholder }) => {
-  const [value, setValue] = useState('')
+export const SelectedInterest = ({
+  register,
+  errors,
+  icon,
+  name,
+  label,
+  watch,
+  setValue,
+  items
+}) => {
+  const [chipName, setChipName] = useState('')
   const [interests, setInterests] = useState([])
 
-  const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      event.preventDefault()
-      setInterests((data) => [...data, { data: value, id: crypto.randomUUID() }])
-      setValue('')
+  const handleChangeName = (event) => {
+    if (!interests.includes(event.target.value)) {
+      setChipName(() => event.target.value)
+      setInterests((data) => [...data, { data: event.target.value, id: crypto.randomUUID() }])
+      setValue(name, interests)
     }
+    setChipName('')
   }
   const handleDelete = (deletedInterest) => {
-    const updatedInterests = interests.filter((interest) => interest.id !== deletedInterest)
+    console.log(deletedInterest)
+    const updatedInterests = interests.filter(
+      (interest) => interest.id !== deletedInterest
+    )
     setInterests(updatedInterests)
+    setValue(name, updatedInterests)
   }
+  register(name)
 
-  register(name, { value: interests })
+  useEffect(() => {
+    const result = watch(name) ?? []
+    setInterests(() => result)
+    setValue(name, result)
+  }, [])
 
   return (
     <Grid container>
       <Grid item xs={12} />
-      <TextField
-        fullWidth
-        onKeyDown={handleKeyPress}
-        id={name}
-        name={name}
-        label={label}
-        value={value}
-        placeholder={placeholder}
-        variant='outlined'
-        error={!!errors.email}
-        helperText={errors.email && 'Este campo es requerido'}
-        onChange={(event) => setValue(event.target.value)}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position='start'>
-              {icon}
-            </InputAdornment>
-          )
-        }}
-      />
+      <FormControl fullWidth error={!!errors[name]}>
+        <InputLabel color='secondary' id='demo-simple-select-label'>
+          {label}
+        </InputLabel>
+        <Select
+          labelId='demo-simple-select-label'
+          id={name}
+          name={name}
+          value={chipName}
+          label={label}
+          color='secondary'
+          onChange={handleChangeName}
+          endAdornment={
+            <InputAdornment position='start'>{icon}</InputAdornment>
+          }
+        >
+          {items?.map((item) => (
+            <MenuItem key={item.id} value={item.value.toLowerCase()}>
+              {item.title}
+            </MenuItem>
+          ))}
+        </Select>
+        {errors[name] && (
+          <FormHelperText error>Este campo es requerido</FormHelperText>
+        )}
+      </FormControl>
       <Grid item xs={12} sx={{ display: 'flex', mt: 1 }}>
         <Typography>{interests.length}</Typography>/<Typography>20</Typography>
       </Grid>
-      <Grid gap={2} item xs={12} sx={{ display: 'flex', mt: 1, flexWrap: 'wrap' }}>
-        {interests.map((i) => (
-          <Chip color='secondary' key={i.id} label={i.data} onDelete={() => handleDelete(i.id)} />
+      <Grid
+        gap={2}
+        item
+        xs={12}
+        sx={{ display: 'flex', mt: 1, flexWrap: 'wrap' }}
+      >
+        {interests.map((item) => (
+          <Chip
+            color='secondary'
+            key={item.id}
+            label={item.data}
+            onDelete={() => handleDelete(item.id)}
+          />
         ))}
       </Grid>
-
     </Grid>
   )
 }

@@ -1,8 +1,12 @@
 import { useAppDispatch } from '../../common/store/config'
-import { authenticatedLogout, registerAuthentication, registerAuthenticationGoogle } from '../store/thunk/thunk'
+import { authenticatedLogout, loginAuthentication, registerAuthentication, registerAuthenticationGoogle } from '../store/thunk/thunk'
 
 export const useAuth = () => {
   const dispatch = useAppDispatch()
+
+  const userLogin = (data) => {
+    dispatch(loginAuthentication(data))
+  }
 
   const userRegister = (data) => {
     dispatch(registerAuthentication(data))
@@ -19,6 +23,7 @@ export const useAuth = () => {
   return {
     userRegister,
     userRegisterWithGoogle,
-    userLogout
+    userLogout,
+    userLogin
   }
 }

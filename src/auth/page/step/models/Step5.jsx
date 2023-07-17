@@ -5,7 +5,7 @@ import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied'
 import { sex } from '../constants/data'
 import { SelectInput } from '../../../components/SelectInput'
 
-export const Step5 = ({ register, errors }) => {
+export const Step5 = ({ register, errors, watch }) => {
   return (
     <>
       <Title title='¿Cómo te describes?' description='Cuéntale al mundo tu historia' />
@@ -14,6 +14,7 @@ export const Step5 = ({ register, errors }) => {
         placeholder='Un ejemplo: ¡Hola! Soy Lucía, hablo español y quiero mejorar mi inglés. Conversemos así nos ayudamos a practicar con vocabulario real.'
         rows={4}
         multiline
+        value={watch('selectedDescription')}
         {...register('selectedDescription', { required: true })}
         helperText={!!errors.selectedDescription && 'Completa este campo'}
         error={!!errors.selectedDescription}
@@ -26,6 +27,7 @@ export const Step5 = ({ register, errors }) => {
         register={register}
         errors={errors}
         icon={<SentimentSatisfiedIcon />}
+        watch={watch}
       />
     </>
   )

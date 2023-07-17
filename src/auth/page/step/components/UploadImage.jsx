@@ -7,12 +7,14 @@ import { PositionRelative } from '../../../../common/style/position/PositionRela
 import { PositionAbsolute } from '../../../../common/style/position/PositionAbsolute'
 import { useDropzone } from 'react-dropzone'
 
-export const UploadImage = ({ register, errors, name, setValue }) => {
+export const UploadImage = ({ register, errors, name, setValue, watch }) => {
   const [uploadImage, setUploadImage] = useState('')
   const onDrop = (droppedFiles) => {
     if (droppedFiles && droppedFiles.length > 0) {
       const file = droppedFiles[0]
+      console.log(file)
       const url = URL.createObjectURL(file)
+      console.log(url)
       setUploadImage(url)
       setValue(name, file, { shouldValidate: true })
     }
@@ -29,9 +31,14 @@ export const UploadImage = ({ register, errors, name, setValue }) => {
     useFsAccessApi: false,
     multiple: false
   })
-
   useEffect(() => {
     register(name)
+    if (watch(name)) {
+      const drop = watch(name)
+      const url = URL.createObjectURL(drop)
+      setUploadImage(url)
+      setValue(name, drop, { shouldValidate: true })
+    }
   }, [register, name])
 
   return (

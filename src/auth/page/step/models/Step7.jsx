@@ -3,7 +3,34 @@ import { Title } from '../../../components/Title'
 import { SelectedInterest } from '../../../components/SelectedInterest'
 import ControlPointIcon from '@mui/icons-material/ControlPoint'
 
-export const Step7 = ({ register, errors }) => {
+export const Step7 = ({ register, errors, watch, setValue }) => {
+  const levelOfKnowledge = [
+    {
+      value: 'cantar',
+      title: 'Cantar',
+      id: crypto.randomUUID()
+    },
+    {
+      value: 'bailar',
+      title: 'Bailar',
+      id: crypto.randomUUID()
+    },
+    {
+      value: 'aprender',
+      title: 'Aprender',
+      id: crypto.randomUUID()
+    },
+    {
+      value: 'reir',
+      title: 'Reír',
+      id: crypto.randomUUID()
+    },
+    {
+      value: 'compartir',
+      title: 'Compartir',
+      id: crypto.randomUUID()
+    }
+  ]
   return (
     <>
       <Title
@@ -15,8 +42,10 @@ export const Step7 = ({ register, errors }) => {
         label='Interés'
         errors={errors}
         icon={<ControlPointIcon />}
-        placeholder='Ej: cantar'
         name='selectedInterest'
+        watch={watch}
+        setValue={setValue}
+        items={levelOfKnowledge}
       />
     </>
   )
