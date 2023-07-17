@@ -137,10 +137,14 @@ export const onAuthenticatedAutomatic = async () => {
       }
       return { success: true, userFirebase }
     } else {
-      throw new Error('Error authenticating user')
+      throw new Error('Error de autenticación de usuario')
     }
   } catch (error) {
-    return { error: error.message }
+    if (error.message === 'Error de autenticación de usuario') {
+      return { error: error.message }
+    } else {
+      return { success: false }
+    }
   }
 }
 
