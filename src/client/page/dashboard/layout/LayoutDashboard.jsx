@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-indent */
 import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import { styled } from 'styled-components'
@@ -12,45 +13,50 @@ import profileMobile from '../img/profile.svg'
 import home from '../img/home.svg'
 import savedMobile from '../img/saved-mobile.svg'
 import chatMobile from '../img/chat-mobile.svg'
+import { useAppSelector } from '../../../../common/store/config'
+import { useAuth } from '../../../../auth/hook/useAuth'
+
+import { primary } from '../../../../common/variables'
 
 const Layout = styled.div`
-
-.tablet-desktop{
-  display: none;
-}
 
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 100vh;
+
+  .tablet-desktop{
+    display: none;
+    position: sticky;
+    top: 0;
+
+    z-index: 999;
+  }
 
   .menu-icon{
-    z-index: 2;
+    z-index: 4;
     width: 2rem;
     height: 2rem;
   }
 
-  .active{
-      opacity: 1 !important;
-      transition: all ease-in-out 0.2s;
-    }
-
+  
   .nav-menu{
     color: black;
     position: absolute;
     top: 0;
     right: 0;
-
+    
+    z-index: -1;
+    
     min-width: 30%;
     max-width: 50%;
     height: 100vh;
-
+    
     padding: 8rem 3rem;
-
+    
     opacity: 0;
     transition: all ease-in-out 0.2s;
-
-
+    
+    
     background-color: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(5px);
     ul{
@@ -62,7 +68,26 @@ const Layout = styled.div`
     }
   }
   
+  .active{
+      opacity: 1 !important;
+      transition: all ease-in-out 0.2s;
+      z-index: 2;
+
+      position: fixed;
+      right: 0;
+    }
+
   .mobile-nav{
+
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+
+    z-index: 3;
+
+
+    background-color: white;
+
     ul{
       display: flex;
       justify-content: center;
@@ -73,8 +98,31 @@ const Layout = styled.div`
     }
   }
 
-  .icon-mobile{
-      
+  .btn{
+    min-width: 150px;
+    padding: 1rem 0;
+
+    text-align: center;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+
+  .login{
+    border: 1px solid ${primary};
+    color: ${primary};
+  }
+
+  .signup{
+    border: 1px solid ${primary};
+    background-color: ${primary};
+    color: white;
+  }
+
+  .mobile{
+    position: sticky;
+    top: 0;
+
+    z-index: 999;
   }
 
   @media screen and (min-width: 768px){
@@ -94,11 +142,14 @@ const Layout = styled.div`
 
 const Header = styled.header`
 
+  z-index: 3;
+
   background-color: white ;
 
   padding: 24px 40px;
 
   width: 100%;
+  height: 85px;
 
   display: flex;
   justify-content: space-between;
@@ -106,30 +157,6 @@ const Header = styled.header`
 
   
   color: black;
-
-  nav{
-    ul{
-      display: flex;
-
-      :first-child{
-        margin-right: 1rem;
-      }
-      
-    }
-
-    select{
-      outline: none;
-      width: 100%;
-      padding: 0 1rem;
-
-      background: url(${arrow}) no-repeat;
-      
-      background-size: 12px;
-      background-position: calc(100%);
-      background-repeat: no-repeat;
-
-    }
-  }
 
   .logo{
 
@@ -146,26 +173,61 @@ const Header = styled.header`
       max-width: 37.5px;
     }
   }
+  
+  nav{
+
+    ul{
+      display: flex;
+      justify-content:center;
+      align-items: center;
+      box-sizing: border-box;
+      gap: 1.5rem;
+    
+    }
+
+    select{
+      outline: none;
+      padding: 0 1rem 0 0;
+
+      background: url(${arrow}) no-repeat;
+      
+      background-size: 12px;
+      background-position: calc(100%);
+      background-repeat: no-repeat;
+
+    }
+  }
+
 
   .vertical{
     height: 2rem;
   }
 
-  .icons{
+  .auth-icons{
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 2rem;
 
     .icon{
       object-fit: contain;
+      height: 24px;
     }
+  }
+
+  .no-auth{
+    display: flex;
+
+    gap: 1rem;
+  }
+
+  @media screen and (min-width: 768px){
+    height: 105px;
   }
 
 `
 
 const Main = styled.main`
-  background-color: gray;
-
-  height: 100%;
   width: 100%;
 `
 
@@ -186,6 +248,9 @@ const menuAnimation = () => {
 }
 
 export const LayoutDashboard = () => {
+  const auth = useAppSelector(state => state.auth.user)
+  const { userLogout } = useAuth()
+
   return (
     <Layout>
 
@@ -210,13 +275,22 @@ export const LayoutDashboard = () => {
             </nav>
           </div>
 
-          <div className='icons'>
-            <img src={chat} className='icon' />
-            <img src={saved} className='icon' />
-            <img src={notifications} className='icon' />
-            <Divider orientation='vertical' variant='middle' className='vertical' />
-            <img src={profile} alt='Perfil' className='icon' />
-          </div>
+          {
+            auth.status === 'authenticated'
+              ? <div className='auth-icons'>
+              <button onClick={userLogout}>Logout</button>
+              <img src={chat} className='icon' />
+              <img src={saved} className='icon' />
+              <img src={notifications} className='icon' />
+              <Divider orientation='vertical' variant='middle' className='vertical' />
+              <img src={profile} alt='Perfil' className='icon' />
+                </div>
+              : <div className='no-auth'>
+              <Link to='auth/login' className='login btn'>Inicia sesión</Link>
+              <Link to='/auth/register' className='signup btn'>Regístrate</Link>
+                </div>
+          }
+
         </Header>
       </div>
 
@@ -243,18 +317,22 @@ export const LayoutDashboard = () => {
         <Outlet />
       </Main>
 
-      <nav className='mobile-nav'>
-        <ul>
-          <li><img alt='Home' src={home} className='icon-mobile' /></li>
-          <li><img alt='Profile' src={profileMobile} className='icon-mobile' /></li>
-          <li><img alt='Saved' src={savedMobile} className='icon-mobile' /></li>
-          <li>
-            <Badge badgeContent={3} color='success'>
-              <img alt='Chats' src={chatMobile} className='icon-mobile' />
-            </Badge>
-          </li>
-        </ul>
-      </nav>
+      {
+        auth.status === 'authenticated'
+          ? <nav className='mobile-nav'>
+            <ul>
+              <li><img alt='Home' src={home} className='icon-mobile' /></li>
+              <li><img alt='Profile' src={profileMobile} className='icon-mobile' /></li>
+              <li><img alt='Saved' src={savedMobile} className='icon-mobile' /></li>
+              <li>
+                <Badge badgeContent={3} color='success'>
+                  <img alt='Chats' src={chatMobile} className='icon-mobile' />
+                </Badge>
+              </li>
+            </ul>
+            </nav>
+          : ''
+      }
 
     </Layout>
   )

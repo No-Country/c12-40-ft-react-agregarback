@@ -33,14 +33,16 @@ function App () {
         <Route path='client/*' element={<PrivateRoute />}>
           <Route path='chat' element={<Chat />} />
           <Route path='dashboard/*' element={<LayoutDashboard />}>
+            <Route path='profile' element={<Profile />} />
             <Route index exact element={<Dashboard />} />
           </Route>
         </Route>
         <Route path='date' element={<UserTokenAuth />}>
           <Route path=':token' element={<Step />} />
         </Route>
-        <Route path='/profile' element={<Profile />} />
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<LayoutDashboard />}>
+          <Route index exact element={<Home />} />
+        </Route>
       </Routes>
     </>
   )
