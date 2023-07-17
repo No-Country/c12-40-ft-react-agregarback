@@ -1,8 +1,16 @@
 import React from 'react'
-import { Chip } from '@mui/material'
 
-export const LangBadge = ({ label }) => {
+import { styled } from 'styled-components'
+
+import { Chip, Avatar } from '@mui/material'
+
+const ChipStyled = styled(Chip)`
+
+border-radius: 10px !important;
+`
+
+export const LangBadge = ({ label, variante, avatar }) => {
   return (
-    <Chip label={label} />
+    <ChipStyled label={label} className={variante} avatar={<Avatar src={avatar} />} />
   )
 }

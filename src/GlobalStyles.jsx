@@ -35,6 +35,7 @@ const GlobalStyles = createGlobalStyle`
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
     vertical-align: baseline;
+    font-family: 'Nunito Sans', sans-serif;
     }
 
     /* Evitamos problemas con las imagenes */
@@ -141,9 +142,9 @@ const GlobalStyles = createGlobalStyle`
     /* opcional */
     line-height: 1.4em;
     /* opcional */
-    -webkit-hyphens: auto;
-        -ms-hyphens: auto;
-            hyphens: auto;
+    /* -webkit-hyphens: auto; */
+        /* -ms-hyphens: auto; */
+            /* hyphens: auto; */
     /* opcional */
     font-smooth: always;
     /* opcional */

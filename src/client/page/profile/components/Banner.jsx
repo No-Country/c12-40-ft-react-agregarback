@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import EditIcon from '@mui/icons-material/Edit'
 import { Divider } from '@mui/material'
 
+import { primary, primary120, secondary120 } from '../../../../common/variables'
+
 import { LangBadge } from './LangBadge'
 
 const BannerStyled = styled.header`
@@ -65,14 +67,14 @@ const BannerStyled = styled.header`
     border-radius: 10px;
     background-color: #F5F8EC;
 
-    color: #9C2272;
+    color: ${primary120};
 
     width: 32px;
     height: 32px;
 
-    box-shadow: 0px 1px 3px 0px #C32B8F;
-    -webkit-box-shadow: 0px 1px 3px 0px #C32B8F;
-    -moz-box-shadow: 0px 1px 3px 0px #C32B8F;
+    box-shadow: 0px 1px 3px 0px ${primary};
+    -webkit-box-shadow: 0px 1px 3px 0px ${primary};
+    -moz-box-shadow: 0px 1px 3px 0px ${primary};
   }
 
   .vertical{
@@ -103,6 +105,16 @@ const BannerStyled = styled.header`
     }
   }
 
+  .native{
+    background-color: #F5F8EC !important;
+    border: 1px solid ${secondary120} !important;
+  }
+
+  .foraign{
+    background-color: #F6E7F1 !important;
+    border: 1px solid ${primary120} !important;
+  }
+
   @media screen and (min-width: 1024px){
     .edit-icon{
       width: 36px;
@@ -122,24 +134,25 @@ const BannerStyled = styled.header`
 `
 
 const Banner = ({ data }) => {
-  const { name, img, native, learning } = data
   return (
     <BannerStyled>
 
       <div className='person'>
 
         <div className='person-img'>
-          <img src={img} alt={name} />
+          <img src={data?.img} alt={data?.name} />
         </div>
         <div className='person-info'>
-          {name}
+          {data?.name}
           <div className='languages'>
-            <LangBadge label={native} />
+            <LangBadge label={data?.native.lang} variante='native' avatar={data?.native.img} />
             <Divider orientation='vertical' variant='middle' className='vertical' />
             {
-              learning.map((lang, index) => {
-                return <LangBadge key={index} label={lang} />
-              })
+              data?.learning
+                ? data?.learning.map((lang, index) => {
+                  return <LangBadge key={index} avatar={lang.img} label={data && lang.lang} variante='foraign' />
+                })
+                : '...'
             }
           </div>
         </div>
