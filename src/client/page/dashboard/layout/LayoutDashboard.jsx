@@ -279,6 +279,7 @@ export const LayoutDashboard = () => {
                 <select label='lang' onChange={handleLanguageSelect}>
                   <option value='es'>ES</option>
                   <option value='en'>EN</option>
+                  <option value='pr'>PR</option>
                 </select>
               </ul>
             </nav>
