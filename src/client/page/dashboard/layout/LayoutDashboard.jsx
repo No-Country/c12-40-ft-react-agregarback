@@ -18,6 +18,8 @@ import { useAuth } from '../../../../auth/hook/useAuth'
 
 import { primary } from '../../../../common/variables'
 
+import { useTranslation } from 'react-i18next'
+
 const Layout = styled.div`
 
   display: flex;
@@ -251,6 +253,13 @@ export const LayoutDashboard = () => {
   const auth = useAppSelector(state => state.auth.user)
   const { userLogout } = useAuth()
 
+  const { i18n } = useTranslation()
+
+  const handleLanguageSelect = (e) => {
+    const selectedLanguage = e.target.value
+    i18n.changeLanguage(selectedLanguage)
+  }
+
   return (
     <Layout>
 
@@ -267,9 +276,9 @@ export const LayoutDashboard = () => {
                   return <Link key={index} to={data.path}><li>{data.name}</li></Link>
                 })
               }
-                <select label='lang'>
-                  <option value='ES'>ES</option>
-                  <option value='EN'>EN</option>
+                <select label='lang' onChange={handleLanguageSelect}>
+                  <option value='es'>ES</option>
+                  <option value='en'>EN</option>
                 </select>
               </ul>
             </nav>
