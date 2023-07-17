@@ -1,5 +1,31 @@
-import { onAuthenticatedAutomatic, onGoogleAuth, onLogout, signUp } from '../../../service/firebaseAuth'
-import { checkingCredentials, login, loginError, logout } from '../slice/sliceAuth'
+import {
+  onAuthenticatedAutomatic,
+  onGoogleAuth,
+  onLogout,
+  signIn,
+  signUp
+} from '../../../service/firebaseAuth'
+
+import {
+  checkingCredentials,
+  login,
+  loginError,
+  logout
+} from '../slice/sliceAuth'
+
+export const loginAuthentication = (data) => async (dispatch) => {
+  const { email, password } = data
+
+  dispatch(checkingCredentials())
+
+  const result = await signIn(email, password)
+
+  if (result.success) {
+    dispatch(login(result.userFirebase))
+  } else {
+    dispatch(loginError(result.error))
+  }
+}
 
 export const registerAuthentication = (data) => async (dispatch) => {
   const { email, password, name } = data
@@ -19,10 +45,8 @@ export const registerAuthenticationGoogle = () => async (dispatch) => {
   dispatch(checkingCredentials())
 
   const result = await onGoogleAuth()
-  console.log(result)
-  if (result.success) {
-    console.log(result)
 
+  if (result.success) {
     dispatch(login(result.userFirebase))
   } else {
     dispatch(loginError(result.error))
@@ -33,7 +57,7 @@ export const autheticatedAutomatic = () => async (dispatch) => {
   dispatch(checkingCredentials())
 
   const result = await onAuthenticatedAutomatic()
-  console.log(result)
+
   if (result.success) {
     dispatch(login(result.userFirebase))
   } else {
@@ -43,9 +67,6 @@ export const autheticatedAutomatic = () => async (dispatch) => {
 
 export const authenticatedLogout = () => (dispatch) => {
   dispatch(checkingCredentials())
-
   onLogout()
-
   dispatch(logout())
 }
-

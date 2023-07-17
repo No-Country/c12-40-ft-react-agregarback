@@ -35,14 +35,15 @@ export const userSlice = createSlice({
       state.loading = false
       state.errorMessage = ''
       state.error = false
-      state.token = payload.authetication
+      state.token = payload.auth
     },
     loginError: (state, { payload }) => {
       state.user = {
         ...state.user,
         displayName: '',
         photoURL: '',
-        token: ''
+        email: '',
+        uid: ''
       }
       state.status = 'not-authenticated'
       state.loading = false
@@ -54,12 +55,14 @@ export const userSlice = createSlice({
         ...state.user,
         displayName: '',
         photoURL: '',
-        token: ''
+        email: '',
+        uid: ''
       }
       state.status = 'not-authenticated'
       state.loading = false
       state.errorMessage = ''
       state.error = false
+      state.token = true
     }
   }
 })
