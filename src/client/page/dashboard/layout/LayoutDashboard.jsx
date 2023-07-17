@@ -102,6 +102,7 @@ const Layout = styled.div`
     min-width: 150px;
     padding: 1rem 0;
 
+    text-align: center;
     border-radius: 5px;
     font-weight: bold;
   }
@@ -285,8 +286,8 @@ export const LayoutDashboard = () => {
               <img src={profile} alt='Perfil' className='icon' />
                 </div>
               : <div className='no-auth'>
-              <Link to='auth/login'><button className='login btn'>Inicia sesión</button></Link>
-              <Link to='/auth/register'><button className='signup btn'>Regístrate</button></Link>
+              <Link to='auth/login' className='login btn'>Inicia sesión</Link>
+              <Link to='/auth/register' className='signup btn'>Regístrate</Link>
                 </div>
           }
 
