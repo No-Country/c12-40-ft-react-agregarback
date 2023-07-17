@@ -384,13 +384,13 @@ export const Page = () => {
         </Title>
         <BoxLang>
           <ul>
-            <CustomButtonLang variant='contained'>Español</CustomButtonLang>
-            <CustomButtonLang variant='contained'>Ingles</CustomButtonLang>
-            <CustomButtonLang variant='contained'>Frances</CustomButtonLang>
-            <CustomButtonLang variant='contained'>Portugues</CustomButtonLang>
-            <CustomButtonLang variant='contained'>Aleman</CustomButtonLang>
-            <CustomButtonLang variant='contained'>Italiano</CustomButtonLang>
-            <CustomButtonLang variant='contained'>Y muchos mas</CustomButtonLang>
+            <CustomButtonLang variant='contained'>{t('Home.Main.LangAvailable.Lang1')}</CustomButtonLang>
+            <CustomButtonLang variant='contained'>{t('Home.Main.LangAvailable.Lang2')}</CustomButtonLang>
+            <CustomButtonLang variant='contained'>{t('Home.Main.LangAvailable.Lang3')}</CustomButtonLang>
+            <CustomButtonLang variant='contained'>{t('Home.Main.LangAvailable.Lang4')}</CustomButtonLang>
+            <CustomButtonLang variant='contained'>{t('Home.Main.LangAvailable.Lang5')}</CustomButtonLang>
+            <CustomButtonLang variant='contained'>{t('Home.Main.LangAvailable.Lang6')}</CustomButtonLang>
+            <CustomButtonLang variant='contained'>{t('Home.Main.LangAvailable.Lang7')}</CustomButtonLang>
           </ul>
         </BoxLang>
       </LayoutLang>

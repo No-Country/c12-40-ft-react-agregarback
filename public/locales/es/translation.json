@@ -1,9 +1,11 @@
 {
 	"Header": {
-		"menu": "Menú",
+		"Menu": "Menú",
+		"Blog": "Blog",
 		"AboutUs": "Nosotros",
 		"SignUp": "Regístrate",
-		"LogIn": "Inicia sesión"
+		"LogIn": "Inicia sesión",
+		"LogOut": "Cerrar sesión"
 	},
 	"Home": {
 		"Header": {

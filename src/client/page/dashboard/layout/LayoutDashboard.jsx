@@ -235,11 +235,11 @@ const Main = styled.main`
 
 const data = [
   {
-    name: 'Blog',
+    name: 'Header.Blog',
     path: 'blog'
   },
   {
-    name: 'Nosotros',
+    name: 'Header.AboutUs',
     path: 'nosotros '
   }
 ]
@@ -253,12 +253,13 @@ export const LayoutDashboard = () => {
   const auth = useAppSelector(state => state.auth.user)
   const { userLogout } = useAuth()
 
+  // i18next function to translate
   const { i18n } = useTranslation()
-
   const handleLanguageSelect = (e) => {
     const selectedLanguage = e.target.value
     i18n.changeLanguage(selectedLanguage)
   }
+  const { t } = useTranslation()
 
   return (
     <Layout>
@@ -273,7 +274,7 @@ export const LayoutDashboard = () => {
               <ul>
                 {
                 data.map((data, index) => {
-                  return <Link key={index} to={data.path}><li>{data.name}</li></Link>
+                  return <Link key={index} to={data.path}><li>{t(data.name)}</li></Link>
                 })
               }
                 <select label='lang' onChange={handleLanguageSelect}>
@@ -288,7 +289,7 @@ export const LayoutDashboard = () => {
           {
             auth.status === 'authenticated'
               ? <div className='auth-icons'>
-              <button onClick={userLogout}>Logout</button>
+              <button onClick={userLogout}>{t('Header.LogOut')}</button>
               <img src={chat} className='icon' />
               <img src={saved} className='icon' />
               <img src={notifications} className='icon' />
@@ -296,8 +297,8 @@ export const LayoutDashboard = () => {
               <img src={profile} alt='Perfil' className='icon' />
                 </div>
               : <div className='no-auth'>
-              <Link to='auth/login' className='login btn'>Inicia sesión</Link>
-              <Link to='/auth/register' className='signup btn'>Regístrate</Link>
+              <Link to='auth/login' className='login btn'>{t('Header.LogIn')}</Link>
+              <Link to='/auth/register' className='signup btn'>{t('Header.SignUp')}</Link>
                 </div>
           }
 
