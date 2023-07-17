@@ -2,9 +2,14 @@ import { Container } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { ModalLogin } from '../../components/ModalLogin'
 import { useAuth } from '../../hook/useAuth'
+import { useAppSelector } from '../../../common/store/config'
+import { AlertError } from '../../../common/components/AlertError'
 
 export const Page = () => {
   const { userLogin } = useAuth()
+
+  const auth = useAppSelector(state => state.auth.user)
+
   const {
     register,
     handleSubmit,
@@ -24,6 +29,7 @@ export const Page = () => {
         event={eventSubmit}
         isValid={isValid}
       />
+      <AlertError error={auth.error} errorMessage={auth.errorMessage} />
     </Container>
   )
 }
