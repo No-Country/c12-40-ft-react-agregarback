@@ -5,7 +5,7 @@ export const AlertError = ({ error, errorMessage }) => {
   return (
     <>
       {
-        error && <Alert severity='error'>{errorMessage}</Alert>
+        error && <Alert sx={{ mt: 2 }} severity='error'>{errorMessage}</Alert>
       }
     </>
   )
