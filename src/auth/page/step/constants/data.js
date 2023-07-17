@@ -5,8 +5,8 @@ export const nativeLanguage = [
     id: crypto.randomUUID()
   },
   {
-    value: 'espanish',
-    title: 'Espanish',
+    value: 'spanish',
+    title: 'Spanish',
     id: crypto.randomUUID()
   }
 ]

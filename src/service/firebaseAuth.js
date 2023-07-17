@@ -88,7 +88,7 @@ export const onGoogleAuth = async () => {
     let authentication = false
 
     if (docSnap.exists()) {
-      authentication = docSnap.data().token
+      authentication = docSnap.data().auth
     } else {
       authentication = false
     }
@@ -137,10 +137,14 @@ export const onAuthenticatedAutomatic = async () => {
       }
       return { success: true, userFirebase }
     } else {
-      throw new Error('Error authenticating user')
+      throw new Error('Error de autenticación de usuario')
     }
   } catch (error) {
-    return { error: error.message }
+    if (error.message === 'Error de autenticación de usuario') {
+      return { error: error.message }
+    } else {
+      return { success: false }
+    }
   }
 }
 

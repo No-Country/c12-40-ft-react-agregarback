@@ -63,9 +63,23 @@ export const userSlice = createSlice({
       state.errorMessage = ''
       state.error = false
       state.token = true
+    },
+    reset: (state) => {
+      state.user = {
+        ...state.user,
+        displayName: '',
+        photoURL: '',
+        email: '',
+        uid: ''
+      }
+      state.status = 'not-authenticated'
+      state.loading = false
+      state.errorMessage = ''
+      state.error = false
+      state.token = true
     }
   }
 })
 
 // Action creators are generated for each case reducer function
-export const { checkingCredentials, login, loginError, logout, validationAuthenticated } = userSlice.actions
+export const { checkingCredentials, login, loginError, logout, validationAuthenticated, reset } = userSlice.actions

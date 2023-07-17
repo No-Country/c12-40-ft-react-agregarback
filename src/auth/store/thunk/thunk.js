@@ -10,7 +10,8 @@ import {
   checkingCredentials,
   login,
   loginError,
-  logout
+  logout,
+  reset
 } from '../slice/sliceAuth'
 
 export const loginAuthentication = (data) => async (dispatch) => {
@@ -61,7 +62,11 @@ export const autheticatedAutomatic = () => async (dispatch) => {
   if (result.success) {
     dispatch(login(result.userFirebase))
   } else {
-    dispatch(loginError(result.error))
+    if (!result.success) {
+      dispatch(reset())
+    } else {
+      dispatch(loginError(result.error))
+    }
   }
 }
 

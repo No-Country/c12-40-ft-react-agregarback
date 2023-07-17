@@ -11,8 +11,8 @@ export const Step2 = ({ register, errors, watch }) => {
       id: crypto.randomUUID()
     },
     {
-      value: 'espanish',
-      title: 'Espanish',
+      value: 'spanish',
+      title: 'Spanish',
       id: crypto.randomUUID()
     }
   ]
