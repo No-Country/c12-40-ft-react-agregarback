@@ -1,0 +1,85 @@
+{
+	"Header": {
+		"menu": "Menu",
+		"AboutUs": "Sobre Nós",
+		"SignUp": "Cadastre-se",
+		"LogIn": "Faça login"
+	},
+	"Home": {
+		"Header": {
+			"Title": "Converse com o Howdy",
+			"Subtitle": "Supere a barreira de comunicação interagindo com falantes nativos e usando nossa inteligência artificial",
+			"Button": {
+				"Login": "Faça login",
+				"Register": "Cadastre-se"
+			}
+		},
+		"Main": {
+			"WhatIs": {
+				"Title": "O que é o Howdy?",
+				"Subtitle": "A plataforma para melhorar a comunicação em outros idiomas com pessoas de todo o mundo"
+			},
+			"WhyChoose": {
+				"Title": "Por que escolher o Howdy?",
+				"Choose1": "Converse com falantes nativos",
+				"Choose2": "Traduza mensagens",
+				"Choose3": "Crie publicações",
+				"Choose4": "Receba correções e avaliações",
+				"Choose5": "Sem limite de idiomas",
+				"Choose6": "Pratique com IA",
+				"Choose7": "Salve seu conteúdo"
+			},
+			"LangAvailable": {
+				"Title": "Idiomas disponíveis"
+			},
+			"HowDoes": {
+				"Title": "Como funciona?",
+				"Step1": "1. Clique em 'Cadastre-se' e crie sua conta. Acesse a plataforma pelo seu navegador favorito e de qualquer dispositivo.",
+				"Step2": "2. Você verá pessoas que falam o idioma que você deseja aprender e que desejam ensinar o deles enquanto aprendem o seu.",
+				"Step3": "3. Você pode escolher entre eles com base em seus interesses e solicitar amizade.",
+				"Step4": "4. Complete seu perfil, caso ainda não tenha feito, e publique conteúdo. Assim como nos chats, eles poderão corrigi-lo.",
+				"Step5": "5. A qualquer momento, escolha se deseja fazer exercícios com a IA. Isso ajudará a melhorar sua escrita e expandir seu vocabulário.",
+				"Step6": "6. Confira nosso blog e encontre guias úteis para o estudo de idiomas."
+			},
+			"Opinions": "O que os usuários acham?",
+			"Guide": {
+				"Title": "Os melhores passos para aprender um idioma",
+				"More": "Leia o guia completo",
+				"Subtitle": "Guias de aprendizagem e atualizações em nosso boletim informativo",
+				"Email": "E-mail",
+				"Button": "Inscrever-se",
+				"Disclaimer": "Li e concordo com a política de privacidade e as condições de assinatura do boletim informativo"
+			}
+		}
+	},
+	"Footer": "Política de privacidade",
+	"Login": {
+		"Title": "Faça login no Howdy",
+		"Email": "E-mail",
+		"Password": "Senha",
+		"Separator": "ou",
+		"Button": {
+			"SignIn": "Faça login",
+			"Google": "Faça login com o Google",
+			"Facebook": "Faça login com o Facebook",
+			"Register": "Cadastre-se"
+		},
+		"DoYou": "Ainda não tem uma conta?"
+	},
+	"": "",
+	"Register": {
+		"Title": "Cadastre-se no Howdy",
+		"Name": "Nome completo",
+		"Email": "E-mail",
+		"Password": "Senha",
+		"Button": {
+			"Create": "Criar conta",
+			"SignIn": "Faça login"
+		},
+		"DoYou": "Já tem uma conta?",
+		"Step1": {
+			"Title": "De onde você é?",
+			"Desc": "País de origem"
+		}
+	}
+}
