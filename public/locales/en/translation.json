@@ -30,7 +30,14 @@
 				"Choose7": "Save Your Content"
 			},
 			"LangAvailable": {
-				"Title": "Available Languages"
+				"Title": "Available Languages",
+				"Lang1": "Spanish",
+				"Lang2": "English",
+				"Lang3": "French",
+				"Lang4": "Portuguese",
+				"Lang5": "German",
+				"Lang6": "Italian",
+				"Lang7": "And many more"
 			},
 			"HowDoes": {
 				"Title": "How does it work?",

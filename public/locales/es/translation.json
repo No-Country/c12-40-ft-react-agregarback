@@ -30,7 +30,14 @@
 				"Choose7": "Guarda tu contenido"
 			},
 			"LangAvailable": {
-				"Title": "Idiomas disponibles"
+				"Title": "Idiomas disponibles",
+				"Lang1": "Español",
+				"Lang2": "Ingles",
+				"Lang3": "Frances",
+				"Lang4": "Portugues",
+				"Lang5": "Aleman",
+				"Lang6": "Italiano",
+				"Lang7": "Y muchos mas"
 			},
 			"HowDoes": {
 				"Title": "¿Cómo funciona?",
