@@ -134,6 +134,15 @@ const WhyChoose = styled.div`
     width: 30px;
     height: 30px;
     background-color: ${secondary120};
+    display: grid;
+    place-items: center;
+    
+
+    img{
+      width: 16px;
+      height: 16px;
+      color: white;
+    }
   }
 `
 
