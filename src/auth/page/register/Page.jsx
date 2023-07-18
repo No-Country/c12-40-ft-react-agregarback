@@ -1,8 +1,4 @@
-import {
-  Button,
-  Container,
-  TextField
-} from '@mui/material'
+import { Container, Grid, TextField } from '@mui/material'
 
 import { InputPassword } from '../../components/InputPassword'
 import { Separator } from '../../components/Separator'
@@ -10,16 +6,24 @@ import { CloseAction } from '../../components/CloseAction'
 import { AccountDescription } from '../../components/AccountDescription'
 import { useForm } from 'react-hook-form'
 import { LogoDescription } from '../../components/LogoDescription'
+import { useAuth } from '../../hook/useAuth'
+import { useAppSelector } from '../../../common/store/config'
+import { ButtonFirebase } from '../../components/ButtonFirebase'
+import { GoogleSVG } from '../../icon/GoogleSVG'
+import { ButtonSubmit } from '../../components/ButtonSubmit'
 
 export const Page = () => {
+  const { userRegister, userRegisterWithGoogle } = useAuth()
+  const auth = useAppSelector((state) => state.auth.user)
+
   const {
     register,
     handleSubmit,
-    formState: { errors }
-  } = useForm()
+    formState: { errors, isValid }
+  } = useForm({ mode: 'all' })
 
   const eventSubmit = (data) => {
-    console.log(data)
+    userRegister(data)
   }
 
   return (
@@ -52,25 +56,19 @@ export const Page = () => {
           helperText={errors.email && 'Este campo es requerido'}
         />
         <InputPassword register={register} errors={errors} />
-        <Button
-          type='submit'
-          sx={{
-            marginTop: 5,
-            textTransform: 'none',
-            fontSize: '16px',
-            p: '13px'
-          }}
-          size='large'
-          color='secondary'
-          variant='contained'
-          fullWidth
-        >
-          Crear cuenta
-        </Button>
+        <ButtonSubmit title='Crear cuenta' isValid={isValid} status={auth.status} />
       </form>
       <Separator />
+      <Grid container spacing={2} mt={1}>
+        <ButtonFirebase
+          click={userRegisterWithGoogle}
+          title='Registrarse con Google'
+          icon={<GoogleSVG />}
+          status={auth.status}
+        />
+      </Grid>
       <AccountDescription
-        path='/login'
+        path='/auth/login'
         title='¿Ya tienes una cuenta?'
         linkName='Iniciar sesión'
       />

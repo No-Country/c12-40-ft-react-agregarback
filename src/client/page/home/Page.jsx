@@ -1,44 +1,54 @@
-import React from "react";
-import { styled } from "styled-components";
+import React, { useState } from 'react'
+import { styled } from 'styled-components'
+import { Button, Modal, Rating } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 
-const Nav = styled.nav`
-  background-color: white;
-  height: 50px;
-`;
+import {
+  neutral00,
+  neutral10,
+  primary,
+  primary120,
+  primary20,
+  primary25,
+  secondary120
+} from '../../../common/variables'
 
-const Menu = styled.ul`
-  height: inherit;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin: auto;
-  padding: 10px;
-  width: 100%;
-`;
+import { ContainerGeneral } from '../../../common/style/container/ContainerGeneral'
+
+import whatisbgm from './img/bgimg2.png'
+import whatisbgd from './img/bgimg.png'
+import chat from './img/chat-img.svg'
+import translate from './img/translate-img.svg'
+import group from './img/group-img.svg'
+import academic from './img/academic-img.svg'
+import receipt from './img/receipt-img.svg'
+import logo from './img/logo-img.svg'
+import bookmark from './img/bookmark-img.svg'
+import google from './img/google.png'
+import { Link } from 'react-router-dom'
+import { ModalLogin } from '../../../auth/components/ModalLogin'
+import { useForm } from 'react-hook-form'
+import { useAuth } from '../../../auth/hook/useAuth'
 
 const Header = styled.header`
-  background: var(
-    --degrad-titulos,
-    linear-gradient(260deg, #cae38c 0%, #a2cd37 20.5%, #c1358a 100%)
-  );
+  background: linear-gradient(to right, ${primary} 1%, ${secondary120});
   color: var(--white-opacity-100, #fff);
   display: flex;
   padding: 40px 16px;
   flex-direction: column;
   align-items: center;
   gap: 24px;
-`;
+`
 
 const H1 = styled.h1`
   color: var(--white-opacity-100, #fff);
-  font-family: Nunito Sans;
   font-size: 24px;
   font-style: normal;
+  font-family: "Nunito Sans";
   font-weight: 700;
   line-height: 32px;
   font-weight: bold;
-`;
+`
 
 const H2 = styled.h2`
   color: var(--white-opacity-100, #fff);
@@ -48,64 +58,54 @@ const H2 = styled.h2`
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
-`;
+  max-width: 450px;
+`
 
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-around;
   gap: 16px;
-`;
+`
 
-const Bold = styled.span`
-  font-weight: bold;
-`;
+const CustomButtonPri = styled(Button)`
+  && {
+    background-color: white;
+    color: ${primary};
+    border: 1px solid ${primary};
 
-const Button = styled.button`
-  display: flex;
-  cursor: pointer;
-  width:
-  height: 48px;
-  padding: 10px 16px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border-radius: 4px;
-  color: ${(props) =>
-    (props.primary && "var(--white-opacity-100, #fff)") ||
-    (props.secondary && "var(--primary-100, #c32b8f)")};
-  border: ${(props) =>
-    (props.primary && "none") ||
-    (props.secondary && "1.5px solid var(--primary-100, #c32b8f)")};
-  background: ${(props) =>
-    (props.primary && "var(--primary-100, #c32b8f)") ||
-    (props.secondary && "var(--white-opacity-100, #fff)")};
-`;
+    &:hover {
+      background-color: ${primary};
+      color: white;
+    }
+  }
+`
+const CustomButtonSec = styled(Button)`
+  && {
+    background-color: ${primary};
+
+    &:hover {
+      background-color: white;
+      color: ${primary};
+    }
+  }
+`
 
 const Container = styled.div`
-  height: 70vh;
-  width: 100vw;
-  background: gray;
+  height: 433px;
+  width: 100%;
+  background-image: url(${whatisbgm});
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 
-const Title = styled.h3`
-  font-size: 24px;
-  color: var(--neutral-100, #050505);
-  font-family: Nunito Sans;
-  font-weight: bold;
-  text-align: center;
-  padding: 10px;
-`;
-
-const Subtitle = styled.h4`
-  font-size: 18px;
-  color: var(--neutral-100, #050505);
-  font-family: Roboto;
-  text-align: center;
-`;
+  @media (min-width: 768px) {
+    background-image: url(${whatisbgd});
+  }
+`
 
 const LayoutWhite = styled.div`
   display: inline-flex;
@@ -113,181 +113,422 @@ const LayoutWhite = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  background: var(--neutral-00, #fcfcfc);
+  background: #fcfcfc;
   margin: auto;
-`;
+  border-radius: 8px;
 
-const BoxGreen = styled.div`
+  div {
+    width: 90%;
+    max-width: 450px;
+  }
+`
+
+const Title = styled.h3`
+  font-size: 24px;
+  color: #050505;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+`
+
+const Subtitle = styled.h4`
+  font-size: 18px;
+  color: #050505;
+  font-family: Roboto;
+  text-align: center;
+  overflow-wrap: break-word;
+`
+
+const BoxWhyChoose = styled.section`
   display: flex;
-  width: 80 vw;
+  width: 100%;
   padding: 24px 16px;
   justify-content: center;
   align-items: center;
-  align-content: center;
   gap: 16px;
   flex-wrap: wrap;
-  flex-direction: column;
-  background: var(--success-100, #a2cd37);
-`;
+  background: ${secondary120};
+`
 
-const Box = styled.div`
+const WhyChoose = styled.div`
   display: flex;
   width: 173px;
   padding: 8px;
   flex-direction: column;
   align-items: center;
-  align-content: center;
   gap: 8px;
   border-radius: 8px;
   background: #f5f8ec;
-  color: var(--neutral-100, #050505);
-  text-align: center;
+  color: #050505;
   font-family: Roboto;
   font-style: normal;
-  font-weight: 400;
   line-height: 24px;
-`;
+
+  div {
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    background-color: ${secondary120};
+    display: grid;
+    place-items: center;
+
+    @media (min-width: 768px) {
+      width: 70px;
+      height: 70px;
+    }
+  }
+`
+
+const IconsImg = styled.img`
+  width: 16px;
+  height: 16px;
+  filter: invert();
+
+  @media (min-width: 768px) {
+    width: 37px;
+    height: 37px;
+  }
+`
+
+const LogoImg = styled.img`
+  width: 16px;
+  height: 16px;
+
+  @media (min-width: 768px) {
+    width: 37px;
+    height: 37px;
+  }
+`
 
 const LayoutLang = styled.section`
   height: max-content;
-  width: 100vw;
-  background: var(--primary-opacity-10, #f6e7f1);
+  width: 100%;
+  background: ${primary20};
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 10px;
-`;
+`
+
+const BoxLang = styled.div`
+  display: flex;
+  padding: 24px 16px;
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+  }
+`
+const CustomButtonLang = styled(Button)`
+  && {
+    background-color: #ffffff;
+    color: ${primary};
+    border-radius: 100px;
+    box-shadow: none;
+    cursor: inherit;
+
+    &:hover {
+      color: ${primary};
+      background-color: #ffffff;
+      box-shadow: none;
+      cursor: inherit;
+    }
+  }
+`
+
+const LayoutHowDoes = styled.section`
+  height: max-content;
+  background-color: ${neutral10};
+`
+
+const BoxHowDoes = styled.div`
+  padding: 24px 0;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+`
+
+const HowDoes = styled.div`
+  flex-basis: calc(33.33% - 16px);
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  p {
+    width: 360px;
+    padding: 0 16px;
+    word-wrap: break-word;
+  }
+`
+
+const ImgHowDoes = styled.div`
+  display: grid;
+  place-items: center;
+  text-align: center;
+  width: 360px;
+  height: 200px;
+  background-color: ${primary25};
+  border-radius: 8px;
+`
+
+const LayoutReviews = styled.section`
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+  background-color: ${neutral00};
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+`
+
+const GoogleReviews = styled.div`
+  display: flex;
+  gap: 24px;
+`
+
+const StarReviews = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  p {
+    background-color: ${primary20};
+    border-radius: 40px;
+    padding: 0 10px;
+    width: 70px;
+    font-family: "Noto Sans";
+    font-weight: 700;
+    line-height: 18px;
+  }
+`
+
+const WidthLogin = styled.div`
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  border: 2px solid #000;
+  padding: 4;
+  width: 500px;
+  margin-top: 4rem;
+  height: auto;
+  background-color: white;
+  padding: 3rem;
+`
 
 export const Page = () => {
+  const { t } = useTranslation()
+
+  const { userLogin } = useAuth()
+
+  const [modal, setModal] = useState(false)
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid }
+  } = useForm({ mode: 'all' })
+
+  const eventSubmit = (data) => {
+    userLogin(data)
+  }
+
   return (
-    <>
-      <Nav>
-        <Menu style={{ color: "black" }}>
-          <div style={{ display: "flex", gap: "10px" }}>
-            <li>Logo</li>
-            <li>Howdy</li>
-          </div>
-          <li>MENÚ</li>
-        </Menu>
-      </Nav>
-
+    <ContainerGeneral>
       <Header>
-        <H1>Habla con Howdy</H1>
+        <H1>{t('Home.Header.Title')}</H1>
 
-        <H2>
-          Supera tu barrera <Bold>lingüística</Bold> comunicándote con personas
-          <Bold> nativas</Bold> y con ayuda de nuestra
-          <Bold> inteligencia artificial</Bold>
-        </H2>
+        <H2>{t('Home.Header.Subtitle')}</H2>
 
         <ButtonContainer>
-          <Button secondary>Inicia Sesión</Button>
-          <Button primary>Registrate</Button>
+          <CustomButtonPri
+            component={Link}
+            to='/auth/register'
+            variant='contained'
+          >
+            {t('Home.Header.Button.Register')}
+          </CustomButtonPri>
+          <CustomButtonSec onClick={() => setModal(true)} variant='contained'>
+            {t('Home.Header.Button.Login')}
+          </CustomButtonSec>
         </ButtonContainer>
       </Header>
-
       <Container>
         <LayoutWhite>
-          <Title>¿Que es Howdy?</Title>
-          <Subtitle>
-            La plataforma para mejorar la comunicación en otros idiomas con
-            personas de todo el mundo
-          </Subtitle>
+          <div>
+            <Title>{t('Home.Main.WhatIs.Title')}</Title>
+            <Subtitle>{t('Home.Main.WhatIs.Subtitle')}</Subtitle>
+          </div>
         </LayoutWhite>
       </Container>
-
-      <Title>¿Por qué elegir Howdy?</Title>
-
-      <BoxGreen>
-        <Box>
-          <div
-            style={{
-              borderRadius: "100%",
-              width: "30px",
-              height: "30px",
-              backgroundColor: "#a2cd37",
-            }}
-          ></div>
-          <p>Chatea con Nativos</p>
-        </Box>
-        <Box>
-          <div
-            style={{
-              borderRadius: "100%",
-              width: "30px",
-              height: "30px",
-              backgroundColor: "#a2cd37",
-            }}
-          ></div>
-          <p>Traduce los mensajes</p>
-        </Box>
-        <Box>
-          <div
-            style={{
-              borderRadius: "100%",
-              width: "30px",
-              height: "30px",
-              backgroundColor: "#a2cd37",
-            }}
-          ></div>
-          <p>Crea Publicaciones</p>{" "}
-        </Box>
-        <Box>
-          <div
-            style={{
-              borderRadius: "100%",
-              width: "30px",
-              height: "30px",
-              backgroundColor: "#a2cd37",
-            }}
-          ></div>
-          <p>Corrige y se evaluado</p>
-        </Box>
-        <Box>
-          <div
-            style={{
-              borderRadius: "100%",
-              width: "30px",
-              height: "30px",
-              backgroundColor: "#a2cd37",
-            }}
-          ></div>
-          <p>Sin límite de idiomas</p>
-        </Box>
-        <Box>
-          <div
-            style={{
-              borderRadius: "100%",
-              width: "30px",
-              height: "30px",
-              backgroundColor: "#a2cd37",
-            }}
-          ></div>
-          <p>Practica con la IA</p>
-        </Box>
-        <Box>
-          <div
-            style={{
-              borderRadius: "100%",
-              width: "30px",
-              height: "30px",
-              backgroundColor: "#a2cd37",
-            }}
-          ></div>
-          <p>Guarda tu contenido</p>
-        </Box>
-      </BoxGreen>
-
+      <Title>{t('Home.Main.WhyChoose.Title')}</Title>
+      <BoxWhyChoose>
+        <WhyChoose>
+          <div>
+            <IconsImg src={chat} alt='' />
+          </div>
+          <p>{t('Home.Main.WhyChoose.Choose1')}</p>
+        </WhyChoose>
+        <WhyChoose>
+          <div>
+            <IconsImg src={translate} alt='' />
+          </div>
+          <p>{t('Home.Main.WhyChoose.Choose2')}</p>
+        </WhyChoose>
+        <WhyChoose>
+          <div>
+            <IconsImg src={group} alt='' />
+          </div>
+          <p>{t('Home.Main.WhyChoose.Choose3')}</p>
+        </WhyChoose>
+        <WhyChoose>
+          <div>
+            <IconsImg src={academic} alt='' />
+          </div>
+          <p>{t('Home.Main.WhyChoose.Choose4')}</p>
+        </WhyChoose>
+        <WhyChoose>
+          <div>
+            <IconsImg src={receipt} alt='' />
+          </div>
+          <p>{t('Home.Main.WhyChoose.Choose5')}</p>
+        </WhyChoose>
+        <WhyChoose>
+          <div>
+            <LogoImg src={logo} alt='' />
+          </div>
+          <p>{t('Home.Main.WhyChoose.Choose6')}</p>
+        </WhyChoose>
+        <WhyChoose>
+          <div>
+            <IconsImg src={bookmark} alt='' />
+          </div>
+          <p>{t('Home.Main.WhyChoose.Choose7')}</p>
+        </WhyChoose>
+      </BoxWhyChoose>
       <LayoutLang>
         <Title
           style={{
-            borderBottom: "1px solid var(--primary-100, #c32b8f)",
-            width: "100vw",
+            borderBottom: `1px solid ${primary}`,
+            width: '100%'
           }}
         >
-          Idiomas disponibles
+          {t('Home.Main.LangAvailable.Title')}
         </Title>
+        <BoxLang>
+          <ul>
+            <CustomButtonLang variant='contained'>{t('Home.Main.LangAvailable.Lang1')}</CustomButtonLang>
+            <CustomButtonLang variant='contained'>{t('Home.Main.LangAvailable.Lang2')}</CustomButtonLang>
+            <CustomButtonLang variant='contained'>{t('Home.Main.LangAvailable.Lang3')}</CustomButtonLang>
+            <CustomButtonLang variant='contained'>{t('Home.Main.LangAvailable.Lang4')}</CustomButtonLang>
+            <CustomButtonLang variant='contained'>{t('Home.Main.LangAvailable.Lang5')}</CustomButtonLang>
+            <CustomButtonLang variant='contained'>{t('Home.Main.LangAvailable.Lang6')}</CustomButtonLang>
+            <CustomButtonLang variant='contained'>{t('Home.Main.LangAvailable.Lang7')}</CustomButtonLang>
+          </ul>
+        </BoxLang>
       </LayoutLang>
-    </>
-  );
-};
+      <LayoutHowDoes>
+        <Title
+          style={{
+            borderBottom: `1px solid ${secondary120}`,
+            width: '100%'
+          }}
+        >
+          {t('Home.Main.HowDoes.Title')}
+        </Title>
+        <BoxHowDoes>
+          <HowDoes>
+            <ImgHowDoes>
+              <CustomButtonSec
+                component={Link}
+                to='auth/register'
+                variant='contained'
+                style={{
+                  padding: '10px 16px',
+                  borderRadius: '8px'
+                }}
+              >
+                {t('Login.Button.Register')}
+              </CustomButtonSec>
+            </ImgHowDoes>
+            <p>{t('Home.Main.HowDoes.Step1')}</p>
+          </HowDoes>
+          <HowDoes>
+            <ImgHowDoes>
+              <p>Foto</p>
+            </ImgHowDoes>
+            <p>{t('Home.Main.HowDoes.Step2')}</p>
+          </HowDoes>
+          <HowDoes>
+            <ImgHowDoes>
+              <p>Foto</p>
+            </ImgHowDoes>
+            <p>{t('Home.Main.HowDoes.Step3')}</p>
+          </HowDoes>
+          <HowDoes>
+            <ImgHowDoes>
+              <p>Foto</p>
+            </ImgHowDoes>
+            <p>{t('Home.Main.HowDoes.Step4')}</p>
+          </HowDoes>
+          <HowDoes>
+            <ImgHowDoes>
+              <p>Foto</p>
+            </ImgHowDoes>
+            <p>{t('Home.Main.HowDoes.Step5')}</p>
+          </HowDoes>
+          <HowDoes>
+            <ImgHowDoes>
+              <p>Foto</p>
+            </ImgHowDoes>
+            <p>{t('Home.Main.HowDoes.Step6')}</p>
+          </HowDoes>
+        </BoxHowDoes>
+      </LayoutHowDoes>
+      <LayoutReviews>
+        <GoogleReviews>
+          <img src={google} alt='' />
+          <StarReviews>
+            <Rating
+              name='read-only'
+              sx={{ color: primary120 }}
+              value={5}
+              readOnly
+            />
+            <p>19201+</p>
+          </StarReviews>
+        </GoogleReviews>
+      </LayoutReviews>
+
+      {modal && (
+        <Modal
+          open={modal}
+          onClose={() => setModal(false)}
+          aria-labelledby='modal-modal-title'
+          aria-describedby='modal-modal-description'
+        >
+          <WidthLogin>
+            <ModalLogin
+              register={register}
+              submit={handleSubmit}
+              errors={errors}
+              event={eventSubmit}
+              isValid={isValid}
+            />
+          </WidthLogin>
+        </Modal>
+
+      )}
+    </ContainerGeneral>
+  )
+}

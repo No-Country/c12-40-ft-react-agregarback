@@ -1,42 +1,77 @@
-export const checkingAuthentication = (
-  { email, password }
-) => async (dispatch) => {
+import {
+  onAuthenticatedAutomatic,
+  onGoogleAuth,
+  onLogout,
+  signIn,
+  signUp
+} from '../../../service/firebaseAuth'
+
+import {
+  checkingCredentials,
+  login,
+  loginError,
+  logout,
+  reset
+} from '../slice/sliceAuth'
+
+export const loginAuthentication = (data) => async (dispatch) => {
+  const { email, password } = data
+
   dispatch(checkingCredentials())
 
-  const url = 'http://localhost:4000/api/user/login'
+  const result = await signIn(email, password)
 
-  try {
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        email,
-        password
-      })
-    })
-
-    if (!res.ok) {
-      const error = await res.json()
-      throw new Error(error.msg)
-    }
-    const data = await res.json()
-
-    if (!('email' in data && 'name' in data)) {
-      throw new Error('El dato recibido no es valido, intente nuevamente')
-    }
-
-    window.localStorage.setItem('token', data.token)
-    const user = {
-      displayName: data.name,
-      photoURL: data.photoURL,
-      token: data.token
-    }
-
-    dispatch(login(user))
-  } catch (error) {
-    const errorMessage = errorService(error)
-    dispatch(loginError({ message }))
+  if (result.success) {
+    dispatch(login(result.userFirebase))
+  } else {
+    dispatch(loginError(result.error))
   }
+}
+
+export const registerAuthentication = (data) => async (dispatch) => {
+  const { email, password, name } = data
+
+  dispatch(checkingCredentials())
+
+  const result = await signUp(email, password, name)
+
+  if (result.success) {
+    dispatch(login(result.userFirebase))
+  } else {
+    dispatch(loginError(result.error))
+  }
+}
+
+export const registerAuthenticationGoogle = () => async (dispatch) => {
+  dispatch(checkingCredentials())
+
+  const result = await onGoogleAuth()
+
+  if (result.success) {
+    dispatch(login(result.userFirebase))
+  } else {
+    dispatch(loginError(result.error))
+  }
+}
+
+export const autheticatedAutomatic = () => async (dispatch) => {
+  dispatch(checkingCredentials())
+
+  const result = await onAuthenticatedAutomatic()
+
+  if (result.success) {
+    dispatch(login(result.userFirebase))
+  } else {
+    if (!result.success) {
+      dispatch(reset())
+    } else {
+      dispatch(loginError(result.error))
+    }
+  }
+}
+
+export const authenticatedLogout = () => (dispatch) => {
+  dispatch(checkingCredentials())
+  onLogout()
+  dispatch(logout())
 }
