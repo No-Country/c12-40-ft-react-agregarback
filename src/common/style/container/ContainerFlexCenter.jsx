@@ -9,7 +9,7 @@ const FlexCenter = styled.div`
   gap: 1rem;
 `
 
-export const ContainerFlexCenter = ({children}) => {
+export const ContainerFlexCenter = ({ children }) => {
   return (
     <FlexCenter>
       {children}

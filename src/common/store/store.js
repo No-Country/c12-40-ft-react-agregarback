@@ -1,10 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { userSlice } from '../../auth/store/sliceAuth'
-import { languageSlice } from '../../auth/store/sliceLenguaje'
+import { combineReducers } from 'redux'
+import { authReducer } from '../../auth/store'
+
+const rootReducer = combineReducers({
+  auth: authReducer
+})
 
 export const store = configureStore({
-  reducer: {
-    auth: userSlice.reducer,
-    lan: languageSlice.reducer
-  },
+  reducer: rootReducer
 })
