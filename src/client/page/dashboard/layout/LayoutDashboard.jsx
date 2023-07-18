@@ -260,19 +260,19 @@ const data = [
 
 const dataMobile = [
   {
-    name: 'Blog',
+    name: 'Header.Blog',
     path: 'blog'
   },
   {
-    name: 'Nosotros',
+    name: 'Header.AboutUs',
     path: 'nosotros '
   },
   {
-    name: 'Regístrate',
+    name: 'Header.SignUp',
     path: 'register'
   },
   {
-    name: 'Iniciar sesión',
+    name: 'Header.LogIn',
     path: 'login'
   }
 ]
@@ -307,7 +307,7 @@ export const LayoutDashboard = () => {
                   {data.map((data, index) => {
                     return (
                       <Link key={index} to={data.path}>
-                        <li>{data.name}</li>
+                        <li>{t(data.name)}</li>
                       </Link>
                     )
                   })}
