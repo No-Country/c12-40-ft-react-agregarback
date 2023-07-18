@@ -19,11 +19,11 @@ import { useAppSelector } from '../../../../common/store/config'
 import { useAuth } from '../../../../auth/hook/useAuth'
 
 import { primary } from '../../../../common/variables'
-import { ContainerGeneral } from '../../../../common/style/container/ContainerGeneral'
 
 const Layout = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   .tablet-desktop {
     display: none;
@@ -31,6 +31,8 @@ const Layout = styled.div`
     top: 0;
 
     z-index: 999;
+    width: 100%;
+    max-width: 1400px;
   }
 
   .menu-icon {
@@ -283,7 +285,7 @@ export const LayoutDashboard = () => {
 
   return (
     <Layout>
-      <ContainerGeneral>
+
         <div className='tablet-desktop'>
           <Header>
             <div className='logo'>
@@ -369,7 +371,6 @@ export const LayoutDashboard = () => {
             </ul>
           </nav>
         </div>
-      </ContainerGeneral>
 
       {auth.status === 'authenticated'
         ? (
