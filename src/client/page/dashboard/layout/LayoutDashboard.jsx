@@ -346,8 +346,6 @@ export const LayoutDashboard = () => {
               <div className='no-auth'>
                 <Link to='/auth/login' className='login btn'>{t('Header.LogIn')}</Link>
                 <Link to='/auth/register' className='signup btn'>{t('Header.SignUp')}</Link>
-                  Regístrate
-                </Link>
               </div>
                 )}
           </Header>
