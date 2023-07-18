@@ -374,7 +374,7 @@ export const LayoutDashboard = () => {
               {dataMobile.map((data, index) => {
                 return (
                   <Link key={index} to={data.path}>
-                    <li>{data.name}</li>
+                    <li>{t(data.name)}</li>
                     <Divider className='divider' role='presentation' variant='fullWidth' />
                   </Link>
                 )
