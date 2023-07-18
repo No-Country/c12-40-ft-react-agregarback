@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, Navigate } from 'react-router-dom'
 
 import { Page as Login } from './auth/page/login/Page'
 import { Page as Register } from './auth/page/register/Page'
@@ -29,20 +29,23 @@ function App () {
         <Route path='auth/*' element={<PublicRouter />}>
           <Route path='register' element={<Register />} />
           <Route path='login' element={<Login />} />
+          <Route path='' exact element={<LayoutDashboard />}>
+            <Route index exact element={<Home />} />
+          </Route>
+          <Route path='*' element={<Navigate to='auth/' />} />
         </Route>
-        <Route path='client/*' element={<PrivateRoute />}>
+        <Route path='client/*' exact element={<PrivateRoute />}>
           <Route path='chat' element={<Chat />} />
           <Route path='dashboard/*' element={<LayoutDashboard />}>
             <Route path='profile' element={<Profile />} />
             <Route index exact element={<Dashboard />} />
           </Route>
+          <Route path='*' element={<Navigate to='client/dashboard' />} />
         </Route>
         <Route path='date' element={<UserTokenAuth />}>
           <Route path=':token' element={<Step />} />
         </Route>
-        <Route path='/' element={<LayoutDashboard />}>
-          <Route index exact element={<Home />} />
-        </Route>
+        <Route path='*' element={<Navigate to='auth/' />} />
       </Routes>
     </>
   )
