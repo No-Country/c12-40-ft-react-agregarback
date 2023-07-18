@@ -48,7 +48,6 @@ const Layout = styled.div`
     z-index: -1;
 
     min-width: 30%;
-    max-width: 50%;
     height: 100vh;
 
     padding: 8rem 3rem;
@@ -56,14 +55,34 @@ const Layout = styled.div`
     opacity: 0;
     transition: all ease-in-out 0.2s;
 
-    background-color: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(5px);
+    background-color: #ffffff;
     ul {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: flex-end;
-      gap: 2rem;
+      align-items: flex-start;
+
+      width: 100%;
+
+      a{
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+
+      li{
+        width: 100%;
+        margin-bottom: 1rem;
+        select{
+          padding: 0 1rem 0 0;
+          background: url(${arrow}) no-repeat;
+
+          background-size: 12px;
+          background-position: calc(100%);
+          background-repeat: no-repeat;
+
+          margin-bottom: 1rem;
+        }
+      }
     }
   }
 
@@ -120,6 +139,10 @@ const Layout = styled.div`
     top: 0;
 
     z-index: 999;
+  }
+
+  .divider{
+    background-color: #ff00a8;
   }
 
   @media screen and (min-width: 768px) {
@@ -230,6 +253,25 @@ const data = [
   }
 ]
 
+const dataMobile = [
+  {
+    name: 'Blog',
+    path: 'blog'
+  },
+  {
+    name: 'Nosotros',
+    path: 'nosotros '
+  },
+  {
+    name: 'Regístrate',
+    path: 'register'
+  },
+  {
+    name: 'Iniciar sesión',
+    path: 'login'
+  }
+]
+
 const menuAnimation = () => {
   const menu = document.querySelector('.nav-menu')
   menu.classList.toggle('active')
@@ -309,10 +351,18 @@ export const LayoutDashboard = () => {
           </Header>
           <nav className='nav-menu'>
             <ul>
-              {data.map((data, index) => {
+              <li>
+                <select label='lang-mobile'>
+                      <option value='ES'>ES</option>
+                      <option value='EN'>EN</option>
+                </select>
+                <Divider className='divider' role='presentation' variant='fullWidth' />
+              </li>
+              {dataMobile.map((data, index) => {
                 return (
                   <Link key={index} to={data.path}>
                     <li>{data.name}</li>
+                    <Divider className='divider' role='presentation' variant='fullWidth' />
                   </Link>
                 )
               })}
