@@ -20,6 +20,8 @@ import { useAuth } from '../../../../auth/hook/useAuth'
 
 import { primary } from '../../../../common/variables'
 
+import { useTranslation } from 'react-i18next'
+
 const Layout = styled.div`
   display: flex;
   flex-direction: column;
@@ -247,11 +249,11 @@ const Main = styled.main`
 
 const data = [
   {
-    name: 'Blog',
+    name: 'Header.Blog',
     path: 'blog'
   },
   {
-    name: 'Nosotros',
+    name: 'Header.AboutUs',
     path: 'nosotros '
   }
 ]
@@ -284,9 +286,16 @@ export const LayoutDashboard = () => {
   const auth = useAppSelector((state) => state.auth.user)
   const { userLogout } = useAuth()
 
+  // i18next function to translate
+  const { i18n } = useTranslation()
+  const handleLanguageSelect = (e) => {
+    const selectedLanguage = e.target.value
+    i18n.changeLanguage(selectedLanguage)
+  }
+  const { t } = useTranslation()
+
   return (
     <Layout>
-
         <div className='tablet-desktop'>
           <Header>
             <div className='logo'>
@@ -302,9 +311,10 @@ export const LayoutDashboard = () => {
                       </Link>
                     )
                   })}
-                  <select label='lang'>
-                    <option value='ES'>ES</option>
-                    <option value='EN'>EN</option>
+                  <select label='lang' onChange={handleLanguageSelect}>
+                    <option value='es'>ES</option>
+                    <option value='en'>EN</option>
+                    <option value='pr'>PR</option>
                   </select>
                 </ul>
               </nav>
@@ -334,10 +344,8 @@ export const LayoutDashboard = () => {
                 )
               : (
               <div className='no-auth'>
-                <Link to='/auth/login' className='login btn'>
-                  Inicia sesión
-                </Link>
-                <Link to='/auth/register' className='signup btn'>
+                <Link to='/auth/login' className='login btn'>{t('Header.LogIn')}</Link>
+                <Link to='/auth/register' className='signup btn'>{t('Header.SignUp')}</Link>
                   Regístrate
                 </Link>
               </div>
@@ -355,9 +363,10 @@ export const LayoutDashboard = () => {
           <nav className='nav-menu'>
             <ul>
               <li>
-                <select label='lang-mobile'>
-                      <option value='ES'>ES</option>
-                      <option value='EN'>EN</option>
+                <select label='lang-mobile' onChange={handleLanguageSelect}>
+                      <option value='es'>ES</option>
+                      <option value='en'>EN</option>
+                      <option value='pr'>PR</option>
                 </select>
                 <Divider className='divider' role='presentation' variant='fullWidth' />
               </li>

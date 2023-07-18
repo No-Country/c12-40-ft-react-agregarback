@@ -1,9 +1,16 @@
 {
+	"Header": {
+		"menu": "Menu",
+		"Blog": "Blog",
+		"AboutUs": "About Us",
+		"SignUp": "Sign Up",
+		"LogIn": "Log In",
+		"LogOut": "Log Out"
+	},
 	"Home": {
-		"Nav": {},
 		"Header": {
-			"Title": "Talk to Howdy",
-			"Subtitle": "Overcome your communication barrier by interacting with native speakers and leveraging our artificial intelligence",
+			"Title": "Talk with Howdy",
+			"Subtitle": "Overcome your communication barrier by interacting with native speakers and using our artificial intelligence",
 			"Button": {
 				"Login": "Log In",
 				"Register": "Sign Up"
@@ -12,39 +19,65 @@
 		"Main": {
 			"WhatIs": {
 				"Title": "What is Howdy?",
-				"Subtitle": "The platform to improve communication in other languages with people from around the world"
+				"Subtitle": "The platform to improve communication in other languages with people from all over the world"
 			},
 			"WhyChoose": {
-				"Title": "Why Choose Howdy?",
-				"Choose1": "Chat with Natives",
+				"Title": "Why choose Howdy?",
+				"Choose1": "Chat with Native Speakers",
 				"Choose2": "Translate Messages",
 				"Choose3": "Create Posts",
 				"Choose4": "Get Corrected and Evaluated",
-				"Choose5": "No Language Limitations",
+				"Choose5": "No Language Limit",
 				"Choose6": "Practice with AI",
 				"Choose7": "Save Your Content"
 			},
 			"LangAvailable": {
-				"Title": "Available Languages"
+				"Title": "Available Languages",
+				"Lang1": "Spanish",
+				"Lang2": "English",
+				"Lang3": "French",
+				"Lang4": "Portuguese",
+				"Lang5": "German",
+				"Lang6": "Italian",
+				"Lang7": "And many more"
+			},
+			"HowDoes": {
+				"Title": "How does it work?",
+				"Step1": "1. Click on 'Sign Up' and create your account. Accessible from your favorite browser and any device.",
+				"Step2": "2. You will see people who speak the language you want to learn and who want to teach theirs while learning yours.",
+				"Step3": "3. You can choose from them based on your interests and request friendship.",
+				"Step4": "4. Complete your profile if you haven't already and upload posts. Just like in chats, they can correct you.",
+				"Step5": "5. At any time, choose whether to do exercises with AI. It will help you improve your writing and expand your vocabulary.",
+				"Step6": "6. Check out our blog and find useful guides for language learning."
+			},
+			"Opinions": "What do users think?",
+			"Guide": {
+				"Title": "The Best Steps to Learn a Language",
+				"More": "Read the complete guide",
+				"Subtitle": "Learning guides and updates in our newsletter",
+				"Email": "Email",
+				"Button": "Subscribe",
+				"Disclaimer": "I have read and agree to the privacy policy and subscription conditions for the newsletter"
 			}
 		}
 	},
+	"Footer": "Privacy Policy",
 	"Login": {
-		"Title": "Log In with Howdy",
+		"Title": "Log in with Howdy",
 		"Email": "Email",
 		"Password": "Password",
 		"Separator": "or",
 		"Button": {
 			"SignIn": "Log In",
-			"Google": "Sign in with Google",
-			"Facebook": "Sign in with Facebook",
+			"Google": "Log in with Google",
+			"Facebook": "Log in with Facebook",
 			"Register": "Sign Up"
 		},
 		"DoYou": "Don't have an account yet?"
 	},
 	"": "",
 	"Register": {
-		"Title": "Sign Up for Howdy",
+		"Title": "Sign up on Howdy",
 		"Name": "Full Name",
 		"Email": "Email",
 		"Password": "Password",
@@ -52,6 +85,10 @@
 			"Create": "Create Account",
 			"SignIn": "Log In"
 		},
-		"DoYou": "Already have an account?"
+		"DoYou": "Already have an account?",
+		"Step1": {
+			"Title": "Where are you from?",
+			"Desc": "Country of Origin"
+		}
 	}
 }
