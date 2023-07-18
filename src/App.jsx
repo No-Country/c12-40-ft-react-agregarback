@@ -38,7 +38,7 @@ function App () {
         <Route path='client/*' exact element={<PrivateRoute />}>
           <Route path='chat' element={<Chat />} />
           <Route path='dashboard/*' element={<LayoutDashboard />}>
-            <Route path='profile' element={<Profile />} />
+            <Route path='profile/:id' element={<Profile />} />
             <Route index exact element={<Dashboard />} />
           </Route>
           <Route path='*' element={<Navigate to='client/dashboard' />} />

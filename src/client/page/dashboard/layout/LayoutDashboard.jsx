@@ -339,7 +339,10 @@ export const LayoutDashboard = () => {
                   variant='middle'
                   className='vertical'
                 />
-                <Avatar alt='perfil' src={auth.user.photo ? auth.user.photo : profile} />
+
+                <Button to={`/client/dashboard/profile/${auth.user.uid}`} component={Link}>
+                  <Avatar alt='perfil' src={auth.user.photo ? auth.user.photo : profile} />
+                </Button>
               </div>
                 )
               : (

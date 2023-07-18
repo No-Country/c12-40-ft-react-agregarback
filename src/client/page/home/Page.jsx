@@ -314,9 +314,9 @@ const StarReviews = styled.div`
 
 const WidthLogin = styled.div`
   position: absolute;
-  top: 50%;
+  top: 2rem;
   left: 50%;
-  transform: translate(-50%, -90%);
+  transform: translate(-50%, 0%);
   border: 2px solid #000;
   padding: 4;
   width: 500px;
