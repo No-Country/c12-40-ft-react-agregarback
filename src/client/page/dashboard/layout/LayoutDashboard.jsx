@@ -289,7 +289,7 @@ export const LayoutDashboard = () => {
                 )
               : (
               <div className='no-auth'>
-                <Link to='auth/login' className='login btn'>
+                <Link to='/auth/login' className='login btn'>
                   Inicia sesión
                 </Link>
                 <Link to='/auth/register' className='signup btn'>

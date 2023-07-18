@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { styled } from 'styled-components'
-import { Button, Rating } from '@mui/material'
+import { Button, Modal, Rating } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 
-import { neutral00, neutral10, primary, primary120, primary20, primary25, secondary120 } from '../../../common/variables'
+import {
+  neutral00,
+  neutral10,
+  primary,
+  primary120,
+  primary20,
+  primary25,
+  secondary120
+} from '../../../common/variables'
 
 import { ContainerGeneral } from '../../../common/style/container/ContainerGeneral'
 
@@ -18,6 +26,9 @@ import logo from './img/logo-img.svg'
 import bookmark from './img/bookmark-img.svg'
 import google from './img/google.png'
 import { Link } from 'react-router-dom'
+import { ModalLogin } from '../../../auth/components/ModalLogin'
+import { useForm } from 'react-hook-form'
+import { useAuth } from '../../../auth/hook/useAuth'
 
 const Header = styled.header`
   background: linear-gradient(to right, ${primary} 1%, ${secondary120});
@@ -33,7 +44,7 @@ const H1 = styled.h1`
   color: var(--white-opacity-100, #fff);
   font-size: 24px;
   font-style: normal;
-  font-family: 'Nunito Sans';
+  font-family: "Nunito Sans";
   font-weight: 700;
   line-height: 32px;
   font-weight: bold;
@@ -64,7 +75,7 @@ const CustomButtonPri = styled(Button)`
 
     &:hover {
       background-color: ${primary};
-      color: white
+      color: white;
     }
   }
 `
@@ -92,7 +103,7 @@ const Container = styled.div`
   background-size: cover;
 
   @media (min-width: 768px) {
-    background-image: url(${whatisbgd})
+    background-image: url(${whatisbgd});
   }
 `
 
@@ -106,7 +117,7 @@ const LayoutWhite = styled.div`
   margin: auto;
   border-radius: 8px;
 
-  div{
+  div {
     width: 90%;
     max-width: 450px;
   }
@@ -153,7 +164,7 @@ const WhyChoose = styled.div`
   font-style: normal;
   line-height: 24px;
 
-  div{
+  div {
     border-radius: 100%;
     width: 30px;
     height: 30px;
@@ -203,30 +214,30 @@ const LayoutLang = styled.section`
 const BoxLang = styled.div`
   display: flex;
   padding: 24px 16px;
-  
-  ul{
+
+  ul {
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
     justify-content: center;
   }
-  `
+`
 const CustomButtonLang = styled(Button)`
-    && {
-      background-color: #FFFFFF;
+  && {
+    background-color: #ffffff;
+    color: ${primary};
+    border-radius: 100px;
+    box-shadow: none;
+    cursor: inherit;
+
+    &:hover {
       color: ${primary};
-      border-radius: 100px;
+      background-color: #ffffff;
       box-shadow: none;
       cursor: inherit;
-      
-      &:hover{
-        color: ${primary};
-        background-color: #FFFFFF;
-        box-shadow: none;
-        cursor: inherit;
-      }
     }
-  `
+  }
+`
 
 const LayoutHowDoes = styled.section`
   height: max-content;
@@ -250,7 +261,7 @@ const HowDoes = styled.div`
   align-items: center;
   gap: 16px;
 
-  p{
+  p {
     width: 360px;
     padding: 0 16px;
     word-wrap: break-word;
@@ -272,7 +283,7 @@ const LayoutReviews = styled.section`
   justify-content: center;
   padding: 40px;
   background-color: ${neutral00};
-  
+
   img {
     width: 100%;
     height: auto;
@@ -295,36 +306,68 @@ const StarReviews = styled.div`
     border-radius: 40px;
     padding: 0 10px;
     width: 70px;
-    font-family: 'Noto Sans';
+    font-family: "Noto Sans";
     font-weight: 700;
     line-height: 18px;
   }
 `
 
+const WidthLogin = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -90%);
+  border: 2px solid #000;
+  padding: 4;
+  width: 500px;
+  margin-top: 4rem;
+  height: auto;
+  background-color: white;
+  padding: 3rem;
+`
+
 export const Page = () => {
   const { t } = useTranslation()
+
+  const { userLogin } = useAuth()
+
+  const [modal, setModal] = useState(false)
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid }
+  } = useForm({ mode: 'all' })
+
+  const eventSubmit = (data) => {
+    userLogin(data)
+  }
 
   return (
     <ContainerGeneral>
       <Header>
         <H1>{t('Home.Header.Title')}</H1>
 
-        <H2>
-          {t('Home.Header.Subtitle')}
-        </H2>
+        <H2>{t('Home.Header.Subtitle')}</H2>
 
         <ButtonContainer>
-          <CustomButtonPri component={Link} to='auth/register' variant='contained'>{t('Home.Header.Button.Register')}</CustomButtonPri>
-          <CustomButtonSec component={Link} to='auth/login' variant='contained'>{t('Home.Header.Button.Login')}</CustomButtonSec>
+          <CustomButtonPri
+            component={Link}
+            to='/auth/register'
+            variant='contained'
+          >
+            {t('Home.Header.Button.Register')}
+          </CustomButtonPri>
+          <CustomButtonSec onClick={() => setModal(true)} variant='contained'>
+            {t('Home.Header.Button.Login')}
+          </CustomButtonSec>
         </ButtonContainer>
       </Header>
       <Container>
         <LayoutWhite>
           <div>
             <Title>{t('Home.Main.WhatIs.Title')}</Title>
-            <Subtitle>
-              {t('Home.Main.WhatIs.Subtitle')}
-            </Subtitle>
+            <Subtitle>{t('Home.Main.WhatIs.Subtitle')}</Subtitle>
           </div>
         </LayoutWhite>
       </Container>
@@ -390,15 +433,18 @@ export const Page = () => {
             <CustomButtonLang variant='contained'>Portugues</CustomButtonLang>
             <CustomButtonLang variant='contained'>Aleman</CustomButtonLang>
             <CustomButtonLang variant='contained'>Italiano</CustomButtonLang>
-            <CustomButtonLang variant='contained'>Y muchos mas</CustomButtonLang>
+            <CustomButtonLang variant='contained'>
+              Y muchos mas
+            </CustomButtonLang>
           </ul>
         </BoxLang>
       </LayoutLang>
       <LayoutHowDoes>
-        <Title style={{
-          borderBottom: `1px solid ${secondary120}`,
-          width: '100%'
-        }}
+        <Title
+          style={{
+            borderBottom: `1px solid ${secondary120}`,
+            width: '100%'
+          }}
         >
           {t('Home.Main.HowDoes.Title')}
         </Title>
@@ -406,8 +452,10 @@ export const Page = () => {
           <HowDoes>
             <ImgHowDoes>
               <CustomButtonSec
-                component={Link} to='auth/register'
-                variant='contained' style={{
+                component={Link}
+                to='auth/register'
+                variant='contained'
+                style={{
                   padding: '10px 16px',
                   borderRadius: '8px'
                 }}
@@ -415,49 +463,37 @@ export const Page = () => {
                 {t('Login.Button.Register')}
               </CustomButtonSec>
             </ImgHowDoes>
-            <p>
-              {t('Home.Main.HowDoes.Step1')}
-            </p>
+            <p>{t('Home.Main.HowDoes.Step1')}</p>
           </HowDoes>
           <HowDoes>
             <ImgHowDoes>
               <p>Foto</p>
             </ImgHowDoes>
-            <p>
-              {t('Home.Main.HowDoes.Step2')}
-            </p>
+            <p>{t('Home.Main.HowDoes.Step2')}</p>
           </HowDoes>
           <HowDoes>
             <ImgHowDoes>
               <p>Foto</p>
             </ImgHowDoes>
-            <p>
-              {t('Home.Main.HowDoes.Step3')}
-            </p>
+            <p>{t('Home.Main.HowDoes.Step3')}</p>
           </HowDoes>
           <HowDoes>
             <ImgHowDoes>
               <p>Foto</p>
             </ImgHowDoes>
-            <p>
-              {t('Home.Main.HowDoes.Step4')}
-            </p>
+            <p>{t('Home.Main.HowDoes.Step4')}</p>
           </HowDoes>
           <HowDoes>
             <ImgHowDoes>
               <p>Foto</p>
             </ImgHowDoes>
-            <p>
-              {t('Home.Main.HowDoes.Step5')}
-            </p>
+            <p>{t('Home.Main.HowDoes.Step5')}</p>
           </HowDoes>
           <HowDoes>
             <ImgHowDoes>
               <p>Foto</p>
             </ImgHowDoes>
-            <p>
-              {t('Home.Main.HowDoes.Step6')}
-            </p>
+            <p>{t('Home.Main.HowDoes.Step6')}</p>
           </HowDoes>
         </BoxHowDoes>
       </LayoutHowDoes>
@@ -465,11 +501,36 @@ export const Page = () => {
         <GoogleReviews>
           <img src={google} alt='' />
           <StarReviews>
-            <Rating name='read-only' sx={{ color: primary120 }} value={5} readOnly />
+            <Rating
+              name='read-only'
+              sx={{ color: primary120 }}
+              value={5}
+              readOnly
+            />
             <p>19201+</p>
           </StarReviews>
         </GoogleReviews>
       </LayoutReviews>
+
+      {modal && (
+        <Modal
+          open={modal}
+          onClose={() => setModal(false)}
+          aria-labelledby='modal-modal-title'
+          aria-describedby='modal-modal-description'
+        >
+          <WidthLogin>
+            <ModalLogin
+              register={register}
+              submit={handleSubmit}
+              errors={errors}
+              event={eventSubmit}
+              isValid={isValid}
+            />
+          </WidthLogin>
+        </Modal>
+
+      )}
     </ContainerGeneral>
   )
 }
