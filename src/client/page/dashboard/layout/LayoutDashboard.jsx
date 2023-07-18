@@ -51,7 +51,7 @@ const Layout = styled.div`
 
     z-index: -1;
 
-    min-width: 30%;
+    min-width: 100vw;
     height: 100vh;
 
     padding: 8rem 3rem;
