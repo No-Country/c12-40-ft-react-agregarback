@@ -5,7 +5,7 @@ const DesciptionStyled = styled.section`
 
   background-color: white;
 
-  padding: 0 2rem 1rem 2rem;
+  padding: 1rem 0.5rem;
 
   width: 100%;
 
@@ -38,7 +38,7 @@ export const Page = ({ data }) => {
       <div>
         <h2>Descripción</h2>
         <p>
-          {showMore ? data?.selectedDescription : `${data?.selectedDescription.substring(0, 130)}... `}
+          {showMore ? data?.selectedDescription : `${data?.selectedDescription.substring(0, 120)}... `}
           <span className='btn' onClick={() => setShowMore(!showMore)}>{showMore ? 'Ver menos' : 'Ver más'}</span>
         </p>
       </div>

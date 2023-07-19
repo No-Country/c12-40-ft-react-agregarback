@@ -147,7 +147,7 @@ const Banner = ({ data }) => {
           <img src={auth.user.photo ? auth.user.photo : profile} alt={data?.name} />
         </div>
         <div className='person-info'>
-          {data?.name}
+          {auth.user.name ? auth.user.name : 'John Doe'}
           <div className='languages'>
             <LangBadge label={data?.selectorLan} variante='native' /* avatar={data?.native.img} */ />
             <Divider orientation='vertical' variant='middle' className='vertical' />

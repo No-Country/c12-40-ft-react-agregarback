@@ -7,6 +7,8 @@ import { Page as Description } from './components/Description'
 import { Page as Interests } from './components/Interests'
 import { useParams } from 'react-router-dom'
 import { db } from '../../../service/firebase'
+import UploadPost from '../dashboard/models/UploadPost'
+import { ContainerGeneral } from '../../../common/style/container/ContainerGeneral'
 
 export const Page = () => {
   const [data, setData] = useState(null)
@@ -37,12 +39,13 @@ export const Page = () => {
   }, [])
 
   return (
-    <>
+    <ContainerGeneral>
       <Banner data={data} />
       {
         desktop ? <DescriptionMobile data={data} /> : <Description data={data} />
       }
       <Interests data={data} />
-    </>
+      <UploadPost />
+    </ContainerGeneral>
   )
 }

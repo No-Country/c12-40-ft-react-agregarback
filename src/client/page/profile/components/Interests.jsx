@@ -6,7 +6,7 @@ const InterestsStyled = styled.section`
 
     background-color: white;
 
-    padding: 0 2rem 1rem 2rem;
+    padding: 1rem 0.5rem;
 
     width: 100%;
 
@@ -45,7 +45,6 @@ const InterestsStyled = styled.section`
 `
 
 export const Page = ({ data }) => {
-  console.log(data)
   return (
     <InterestsStyled>
       <div className='interest'>
