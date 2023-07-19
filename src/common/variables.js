@@ -9,6 +9,7 @@ export const neutral = '#FCFCFC'
 export const primary10 = '#F6E7F1'
 export const primary20 = '#F6E7F1'
 export const primary25 = '#EEC8E1'
+export const primary80 = '#CE55A5'
 export const primary120 = '#9C2272'
 // secondaries
 export const secondary120 = '#A2CD37'
