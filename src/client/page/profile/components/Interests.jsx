@@ -45,14 +45,15 @@ const InterestsStyled = styled.section`
 `
 
 export const Page = ({ data }) => {
+  console.log(data)
   return (
     <InterestsStyled>
       <div className='interest'>
         <h2>Intereses</h2>
         <div className='badges-div'>
           {
-            data?.interests.map((interest, index) => {
-              return <Chip key={index} label={interest} className='interest-badge' />
+            data?.selectedInterest.map((interest, index) => {
+              return <Chip key={index} label={interest[0]} className='interest-badge' />
             })
           }
         </div>

@@ -20,7 +20,7 @@ export const Page = () => {
 
   useEffect(() => {
     const handleGetData = async () => {
-      const docRef = doc(db, 'users', id)
+      const docRef = doc(db, 'profile', id)
       const docSnap = await getDoc(docRef)
       return docSnap.data()
     }
