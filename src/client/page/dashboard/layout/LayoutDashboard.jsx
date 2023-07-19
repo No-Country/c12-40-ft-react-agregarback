@@ -226,6 +226,11 @@ const Header = styled.header`
     justify-content: center;
     gap: 2rem;
 
+    Link {
+      width: 24px;
+      height: 24px;
+    }
+
     .icon {
       object-fit: contain;
       height: 24px;
@@ -331,7 +336,7 @@ export const LayoutDashboard = () => {
                 >
                     <LogoutIcon />
                 </Button>
-                <Link to='/client/dashboard/chat'><img src={chat} className='icon' /></Link>
+                <Link to='/client/chat'><img src={chat} className='icon' /></Link>
                 <img src={saved} className='icon' />
                 <img src={notifications} className='icon' />
                 <Divider
