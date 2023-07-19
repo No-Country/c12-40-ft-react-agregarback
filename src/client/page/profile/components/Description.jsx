@@ -28,7 +28,7 @@ export const Page = ({ data }) => {
       <div>
         <h2>Descripción</h2>
         <p>
-          {data?.description}
+          {data?.selectedDescription}
         </p>
       </div>
     </DesciptionStyled>

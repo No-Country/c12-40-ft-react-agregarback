@@ -38,7 +38,7 @@ export const Page = ({ data }) => {
       <div>
         <h2>Descripción</h2>
         <p>
-          {showMore ? data?.description : `${data?.description.substring(0, 130)}... `}
+          {showMore ? data?.selectedDescription : `${data?.selectedDescription.substring(0, 130)}... `}
           <span className='btn' onClick={() => setShowMore(!showMore)}>{showMore ? 'Ver menos' : 'Ver más'}</span>
         </p>
       </div>
