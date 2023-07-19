@@ -14,4 +14,6 @@ export const primary120 = '#9C2272'
 // secondaries
 export const secondary120 = '#A2CD37'
 // neutral
+export const neutral5 = 'F5F5F5'
 export const neutral10 = '#F5F8EC'
+export const neutral70 = '#484848'

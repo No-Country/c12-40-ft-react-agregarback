@@ -9,6 +9,7 @@ const InputsSect = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+  border-top: 1px solid gray;
 
   input{
     width: 100%;
@@ -28,8 +29,7 @@ const Send = styled.div`
   padding: 1px;
   display: flex;
   text-align: center;
-
-
+  
   button{
     display: flex;
     align-items: center;

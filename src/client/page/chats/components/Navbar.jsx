@@ -5,11 +5,9 @@ import { primary120 } from '../../../../common/variables'
 const NavbarContainer = styled.div`
   display: flex;
   align-items: center;
-  background-color: gray;
   height: 50px;
   padding: 10px;
   justify-content: space-between;
-  color: #ddddf7;
 
   .user {
     display: flex;
@@ -17,12 +15,13 @@ const NavbarContainer = styled.div`
     gap: 10px;
 
     span {
-      width: 25px;
-      height: 25px;
+      width: 30px;
+      height: 30px;
       background-color: ${primary120};
       display: grid;
       place-content: center;
       border-radius: 50%;
+      color: white;
     }
   }
 `
@@ -30,7 +29,7 @@ const NavbarContainer = styled.div`
 const Navbar = () => {
   return (
     <NavbarContainer>
-      <span>Chat</span>
+      <span>Chats</span>
       <div className='user'>
         <span>+</span>
       </div>

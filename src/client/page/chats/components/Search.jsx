@@ -2,21 +2,31 @@ import React from 'react'
 
 import { styled } from 'styled-components'
 
+import SearchIcon from '@mui/icons-material/Search'
+import { primary10, primary80 } from '../../../../common/variables'
+
 const SearchContainer = styled.div`
-  border: 1px solid wheat;
   
   .searchForm {
-    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px;
+    margin: 4px;
+    border-radius: 100px;
+    background-color: ${primary10};
 
     input {
-      background-color: transparent;
       border: none;
-      color: white;
       outline: none;
+      width: 100%;
+      padding-left: 16px;
 
-      &::placeholder{
-        color: lightgray;
-      }
+      &::placeholder{}
+    }
+
+    span {
+      color: ${primary80};
     }
   }
 `
@@ -27,15 +37,9 @@ const Search = () => {
       <div className='searchForm'>
         <input
           type='text'
-          placeholder='Encuentra un usuario'
+          placeholder='Search'
         />
-        <div className='userChat'>
-          <img src='' alt='' />
-          <div className='userChatInfo'>
-            <span>hola</span>
-          </div>
-        </div>
-        <button>Search</button>
+        <span><SearchIcon /></span>
       </div>
     </SearchContainer>
   )
