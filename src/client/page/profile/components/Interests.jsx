@@ -53,7 +53,7 @@ export const Page = ({ data }) => {
         <div className='badges-div'>
           {
             data?.selectedInterest.map((interest, index) => {
-              return <Chip key={index} label={interest[0]} className='interest-badge' />
+              return <Chip key={index} label={interest.data} className='interest-badge' />
             })
           }
         </div>
