@@ -331,7 +331,7 @@ export const LayoutDashboard = () => {
                 >
                     <LogoutIcon />
                 </Button>
-                <img src={chat} className='icon' />
+                <Link to='/client/dashboard/chat'><img src={chat} className='icon' /></Link>
                 <img src={saved} className='icon' />
                 <img src={notifications} className='icon' />
                 <Divider
