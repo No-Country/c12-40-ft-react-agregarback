@@ -18,7 +18,7 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import { useAppSelector } from '../../../../common/store/config'
 import { useAuth } from '../../../../auth/hook/useAuth'
 
-import { primary } from '../../../../common/variables'
+import { primary, secondary } from '../../../../common/variables'
 
 import { useTranslation } from 'react-i18next'
 
@@ -150,6 +150,10 @@ const Layout = styled.div`
     background-color: #ff00a8;
   }
 
+  .avatar{
+    border: 2px solid linear-gradient(180deg, ${primary} 50%, 0deg, ${secondary} 50%);
+  }
+
   @media screen and (min-width: 768px) {
     .tablet-desktop {
       display: block;
@@ -230,6 +234,12 @@ const Header = styled.header`
       object-fit: contain;
       width: 30px;
       height: 24px;
+      transition: all ease-in-out 0.1s;
+
+      &:hover{
+        filter: brightness(0) saturate(100%) invert(62%) sepia(87%) saturate(326%) hue-rotate(36deg) brightness(101%) contrast(95%);
+        transition: all ease-in-out 0.1s;
+      }
     }
   }
 
@@ -344,7 +354,7 @@ export const LayoutDashboard = () => {
                 />
 
                 <Button to={`/client/dashboard/profile/${auth.user.uid}`} component={Link}>
-                  <Avatar alt='perfil' src={auth.user.photo ? auth.user.photo : profile} />
+                  <Avatar alt='perfil' src={auth.user.photo ? auth.user.photo : profile} className='avatar' />
                 </Button>
               </div>
                 )
