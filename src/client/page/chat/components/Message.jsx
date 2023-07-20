@@ -1,3 +1,4 @@
+import { Avatar } from '@mui/material'
 import React from 'react'
 import { styled } from 'styled-components'
 
@@ -51,11 +52,11 @@ const Message = (prop) => {
   return (
     <MessageSect className={prop.classname}>
       <MessageInfo>
-        <img src='https://cdn3.iconfinder.com/data/icons/avatars-9/145/Avatar_Cat-1024.png' alt='' />
+        <Avatar src={prop.photo} />
         <span>just now</span>
       </MessageInfo>
       <MessageContent>
-        <p>hello</p>
+        <p>{prop.message}</p>
         {/* <img src="https://cdn3.iconfinder.com/data/icons/avatars-9/145/Avatar_Penguin-512.png" alt="" /> */}
       </MessageContent>
     </MessageSect>

@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form'
 import { FadeIn } from '../../../common/style/fade/fade-in.style'
 import { Step1, Step2, Step3, Step4, Step5, Step6, Step7 } from './models'
 import { Link } from 'react-router-dom'
-import { doc, setDoc } from 'firebase/firestore'
+import { doc, setDoc, updateDoc } from 'firebase/firestore'
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage'
 import { db, auth } from '../../../service/firebase'
 import { useAppDispatch, useAppSelector } from '../../../common/store/config'
@@ -52,27 +52,30 @@ export const Page = () => {
       try {
         setLoading(() => true)
         const file = data.selectedImageProfile
+        const filename = `${user.user.uid}-${file.name}-${crypto.randomUUID()}`
+        const storageRef = ref(storage, `images/${filename}`)
+        await uploadBytes(storageRef, file)
+        const downloadURL = await getDownloadURL(storageRef)
+
         if (file) {
-          const filename = `${user.user.uid}-${file.name}-${crypto.randomUUID()}`
-          const storageRef = ref(storage, `images/${filename}`)
-          await uploadBytes(storageRef, file)
-          const downloadURL = await getDownloadURL(storageRef)
           await updateProfile(auth.currentUser, {
-            photo: downloadURL
+            photoURL: downloadURL
           })
         } else {
           await updateProfile(auth.currentUser, {
-            photo: 'https://i.ibb.co/LzH1xPp/6f57760966a796644b8cfb0fbc449843.png'
+            photoURL: 'https://i.ibb.co/LzH1xPp/6f57760966a796644b8cfb0fbc449843.png'
           })
         }
 
         delete data.selectedImageProfile
 
         await setDoc(doc(db, 'profile', user.user.uid), {
-          ...data
+          ...data,
+          photo: downloadURL
         })
 
-        await setDoc(doc(db, 'users', user.user.uid), {
+        const userRef = doc(db, 'users', user.user.uid)
+        await updateDoc(userRef, {
           auth: true
         })
 

@@ -1,5 +1,10 @@
+import { Button } from '@mui/material'
 import React from 'react'
+import { useForm } from 'react-hook-form'
 import { styled } from 'styled-components'
+import { useAppSelector } from '../../../../common/store/config'
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
+import { db } from '../../../../service/firebase'
 
 const InputsSect = styled.div`
   height: 50px;
@@ -45,14 +50,44 @@ const Send = styled.div`
   }
 `
 
-const Inputs = () => {
+const Inputs = ({ roomId }) => {
+  const uid = useAppSelector(state => state.auth.user.user.uid)
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { isValid }
+  } = useForm({ mode: 'all' })
+
+  const eventSubmit = async (data) => {
+    try {
+      const messageData = {
+        ...data,
+        idRoom: roomId,
+        idUser: uid,
+        timestamp: serverTimestamp()
+      }
+
+      await addDoc(collection(db, 'messages'), messageData)
+
+      reset()
+    } catch (error) {
+      console.error('Error al agregar el mensaje:', error)
+    }
+
+    reset()
+  }
+
   return (
-    <InputsSect>
-      <input type='text' placeholder='Escribe aqui...' />
-      <Send>
-        <button>Send</button>
-      </Send>
-    </InputsSect>
+    <form onSubmit={handleSubmit(eventSubmit)}>
+      <InputsSect>
+
+        <input type='text' name='message' {...register('message', { required: true })} placeholder='Escribe aqui...' />
+        <Send>
+          <Button disabled={!isValid} type='submit'>Send</Button>
+        </Send>
+      </InputsSect>
+    </form>
   )
 }
 

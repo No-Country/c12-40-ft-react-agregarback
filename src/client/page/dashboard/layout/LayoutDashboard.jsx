@@ -300,8 +300,10 @@ export const LayoutDashboard = () => {
         <div className='tablet-desktop'>
           <Header>
             <div className='logo'>
-              <img alt='Howdy' src='/howdy-logo.svg' />
-              <h2>Howdy</h2>
+              <Button to='/client/dashboard' component={Link}>
+                <img alt='Howdy' src='/howdy-logo.svg' />
+                <h2 style={{ color: 'black', marginLeft: 3 }}>Howdy</h2>
+              </Button>
 
               <nav>
                 <ul>
