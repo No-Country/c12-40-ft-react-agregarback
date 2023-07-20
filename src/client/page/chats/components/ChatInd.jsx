@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { styled } from 'styled-components'
 import { primary, secondary120 } from '../../../../common/variables'
-import howdy from '../img/24.png'
+import { db } from '../../../../service/firebase'
+import { doc, getDoc } from 'firebase/firestore'
+import { Avatar, Button } from '@mui/material'
+import { Link } from 'react-router-dom'
 
-const ChatIndContainer = styled.div`
+const ChatIndContainer = styled(Button)`
     padding: 10px;
     display: flex;
     align-items: center;
@@ -86,18 +89,35 @@ const ChatIndContainer = styled.div`
     }
 `
 
-export const ChatInd = () => {
+export const ChatInd = ({ id, name, roomId }) => {
+  const [profile, setProfile] = useState(null)
+  useEffect(() => {
+    const profileUser = async () => {
+      const docRef = doc(db, 'profile', id)
+      const docSnap = await getDoc(docRef)
+
+      if (docSnap.exists()) {
+        setProfile(docSnap.data())
+      } else {
+        // docSnap.data() will be undefined in this case
+        console.log('No such document!')
+      }
+    }
+
+    profileUser()
+  }, [])
+
   return (
-    <ChatIndContainer>
+    <ChatIndContainer color='secondary' to={`${roomId}`} component={Link}>
       <div className='userImg'>
-        <img src={howdy} alt='' />
+        <Avatar src={profile?.photo ? profile?.photo : null} />
         <span className='greenNoti' />
         <span className='whiteNoti' />
       </div>
       <div className='chatInfo'>
         <div className='userChatInfo'>
-          <span>Nombre de usuario</span>
-          <p>El mensajito del usuario</p>
+          <span>{name}</span>
+          <p>Ultimo mensaje</p>
         </div>
         <div className='timenoti'>
           <span>1 min</span>
