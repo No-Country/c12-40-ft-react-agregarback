@@ -18,7 +18,7 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import { useAppSelector } from '../../../../common/store/config'
 import { useAuth } from '../../../../auth/hook/useAuth'
 
-import { primary, secondary } from '../../../../common/variables'
+import { primary } from '../../../../common/variables'
 
 import { useTranslation } from 'react-i18next'
 
@@ -51,7 +51,7 @@ const Layout = styled.div`
 
     z-index: -1;
 
-    min-width: 100vw;
+    min-width: 50vw;
     height: 100vh;
 
     padding: 8rem 3rem;
@@ -104,7 +104,7 @@ const Layout = styled.div`
     width: 100%;
     bottom: 0;
 
-    z-index: 3;
+    z-index: 100;
 
     background-color: white;
 
@@ -143,16 +143,14 @@ const Layout = styled.div`
     top: 0;
     width: 100%;
 
-    z-index: 999;
+    z-index: 99;
   }
 
   .divider{
     background-color: #ff00a8;
   }
 
-  .avatar{
-    border: 2px solid linear-gradient(180deg, ${primary} 50%, 0deg, ${secondary} 50%);
-  }
+
 
   @media screen and (min-width: 768px) {
     .tablet-desktop {
@@ -277,16 +275,17 @@ const dataMobile = [
   {
     name: 'Header.AboutUs',
     path: 'nosotros '
-  },
-  {
-    name: 'Header.SignUp',
-    path: 'register'
-  },
-  {
-    name: 'Header.LogIn',
-    path: 'login'
   }
 ]
+
+/* {
+  name: 'Header.SignUp',
+  path: 'register'
+},
+{
+  name: 'Header.LogIn',
+  path: 'login'
+} */
 
 const menuAnimation = () => {
   const menu = document.querySelector('.nav-menu')
@@ -342,7 +341,7 @@ export const LayoutDashboard = () => {
                   onClick={userLogout}
                   sx={{ py: 1.5 }}
                 >
-                    <LogoutIcon />
+                <LogoutIcon />
                 </Button>
                 <Link to='chats/asdasda'><img src={chat} className='icon' /></Link>
                 <img src={saved} className='icon' />
@@ -354,7 +353,7 @@ export const LayoutDashboard = () => {
                 />
 
                 <Button to={`/client/dashboard/profile/${auth.user.uid}`} component={Link}>
-                  <Avatar alt='perfil' src={auth.user.photo ? auth.user.photo : profile} className='avatar' />
+                  <Avatar alt='perfil' src={auth.user.photo ? auth.user.photo : profile} />
                 </Button>
               </div>
                 )
@@ -392,6 +391,38 @@ export const LayoutDashboard = () => {
                   </Link>
                 )
               })}
+              {
+                auth.status === 'authenticated'
+                  ? (
+                    <>
+                      <Link to={`profile/${auth.user.id}`}>
+                        <li>{t('Perfil')}</li>
+                        <Divider className='divider' role='presentation' variant='fullWidth' />
+                      </Link>
+                      <Button
+                        variant='contained'
+                        color='secondary'
+                        onClick={userLogout}
+                        sx={{ py: 1.5 }}
+                      >
+                        <LogoutIcon />
+                      </Button>
+
+                    </>
+                    )
+                  : (
+                      <>
+                        <Link to='/auth/login'>
+                          <li>{t('Header.LogIn')}</li>
+                          <Divider className='divider' role='presentation' variant='fullWidth' />
+                        </Link>
+                        <Link to='/auth/register'>
+                          <li>{t('Header.SignUp')}</li>
+                          <Divider className='divider' role='presentation' variant='fullWidth' />
+                        </Link>
+                      </>
+                    )
+              }
             </ul>
           </nav>
         </div>
