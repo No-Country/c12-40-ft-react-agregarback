@@ -15,7 +15,7 @@ import PanoramaIcon from '@mui/icons-material/Panorama'
 import VideoCameraBackIcon from '@mui/icons-material/VideoCameraBack'
 import CloseIcon from '@mui/icons-material/Close'
 import { useForm } from 'react-hook-form'
-import { collection, doc, setDoc } from 'firebase/firestore'
+import { collection, doc, serverTimestamp, setDoc } from 'firebase/firestore'
 import { db } from '../../../../service/firebase'
 
 const style = {
@@ -51,7 +51,8 @@ export const ModalPost = ({ open, close, setModal }) => {
         name: user.user.name,
         idUSer: user.user.uid,
         lanNative: 'spanish',
-        lanLearning: 'english'
+        lanLearning: 'english',
+        timestamp: serverTimestamp()
       })
 
       console.log('Comentario enviado a Firebase')
@@ -106,7 +107,7 @@ export const ModalPost = ({ open, close, setModal }) => {
               helperText={errors.selectComment && 'Este campo es requerido'}
             />
           </Grid>
-          <Grid container xs={12} my={2}>
+          <Grid container my={2}>
             <Grid item xs={1}>
               <IconButton>
                 <PanoramaIcon fontSize='large' />
