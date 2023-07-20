@@ -8,6 +8,7 @@ import howdy from '../chats/img/24.png'
 import dotsVertical from '../chats/img/dotsVertical.png'
 import { neutral10 } from '../../../common/variables'
 import Inputs from './components/Inputs'
+import { useParams } from 'react-router-dom'
 
 const ChatContainer = styled.div`
     flex: 3;
@@ -77,6 +78,8 @@ const ChatContainer = styled.div`
 `
 
 export const Page = () => {
+  const { chat } = useParams()
+
   return (
     <ChatContainer>
       <div className='navbar'>
@@ -88,7 +91,7 @@ export const Page = () => {
           </div>
 
           <div className='userName'>
-            <span>Sol Panzetta</span>
+            <span>Gimena</span>
           </div>
         </div>
         <div className='navMenu'>
@@ -96,8 +99,8 @@ export const Page = () => {
         </div>
 
       </div>
-      <Messages />
-      <Inputs />
+      <Messages roomId={chat} />
+      <Inputs roomId={chat} />
     </ChatContainer>
   )
 }
