@@ -8,9 +8,11 @@ import { PublicComment } from './models/PublicComment'
 import { ModalPost } from './components/ModalPost'
 import { collection, onSnapshot, query, where } from 'firebase/firestore'
 import { db } from '../../../service/firebase'
+import { useAppSelector } from '../../../common/store/config'
 
 export const Page = () => {
-  // const uid = useAppSelector(state => state.auth.user.user.uid)
+  const user = useAppSelector(state => state.auth.user)
+  console.log(user)
 
   const [modal, setModal] = useState(false)
   const [post, setPost] = useState(null)
@@ -23,11 +25,13 @@ export const Page = () => {
     onSnapshot(q, (querySnapshot) => {
       const comments = []
       querySnapshot.forEach((doc) => {
-        comments.push(doc.data())
+        const commentData = doc.data()
+        const commentWithId = { id: doc.id, ...commentData }
+        comments.push(commentWithId)
       })
       setPost(() => comments)
     })
-  }, [post])
+  }, [])
 
   const handleCloseModal = () => {
     setModal(false)
@@ -38,9 +42,9 @@ export const Page = () => {
       <SearchContained />
       <PublicComment setModal={setModal} />
       <TitleSeparator>Personas que podrían interesarte</TitleSeparator>
-      {post.map((e) => (
+      {post?.map((e) => (
         <Post
-          key={e?.idUser}
+          key={e?.id}
           name={e?.name}
           description={e?.selectComment}
           photo={e?.photo}
