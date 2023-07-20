@@ -1,72 +1,103 @@
-// Esta es la pagina de chat, aqui se mostrara el chat y se podra enviar mensajes
+import React from 'react'
 
-import React, { } from 'react'
-import Sidebar from './components/Sidebar'
 import { styled } from 'styled-components'
+
 import Messages from './components/Messages'
+
+import howdy from '../chats/img/24.png'
+import dotsVertical from '../chats/img/dotsVertical.png'
+import { neutral10 } from '../../../common/variables'
 import Inputs from './components/Inputs'
-// import { ChatContext } from './context/ChatContext'
 
-const Main = styled.div`
-  background-color: #F6E7F1;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
+const ChatContainer = styled.div`
+    flex: 3;
+    border-radius: 0 8px 8px 0;
 
-const Container = styled.div`
-  border: 1px solid white;
-  border-radius: 10px;
-  width: 65%;
-  height: 80%;
-  display: flex;
-  overflow: hidden;
-`
+    .navbar {
+        height: 64px;
+        background-color: ${neutral10};
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 10px;
 
-const ChatSect = styled.section`
-  flex: 2;
-  background-color: lightblue;
-  color: black;
-`
+        .user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
 
-const ChatInfo = styled.div`
-  height: 50px;
-  background-color: #FAFBFF;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px;
+            .userImg {
+                position: relative;
+                padding: 10px 0;
+                height: 100%;
 
-  span {
-    color: black;
-  }
-`
+                img {
+                    position: relative;
+                    height: 100%;
+                    border-radius: 50%;
+                    object-fit: contain;
+                }
 
-const ChatIcons = styled.div`
-  
+                .whiteNote {
+                    position: absolute;
+                    left: calc(50% - 5px);
+                    bottom: 10px;
+                    width: 10px;
+                    height: 10px;
+                    padding: 1px;
+                    background-color: white;
+                    border-radius: 50%;
+                }
+                .greenNoti {
+                    position: absolute;
+                    left: calc(50% - 2.5px);
+                    bottom: 7px;
+                    width: 6px;
+                    height: 6px;
+                    padding: 1px;
+                    background-color: greenyellow;
+                    border-radius: 50%;
+                }
+            }
+        }
+
+        .navMenu {
+            width: 25px;
+            height: 25px;
+            padding: 3px;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 3px 3px 10px -5px black;
+            cursor: pointer;
+        }
+        
+    }
+
+    
 `
 
 export const Page = () => {
-  // const { data } = useContext(ChatContext)
   return (
-    <Main>
-      <Container>
-        <Sidebar />
-        <ChatSect>
-          <ChatInfo>
-            {/* <span>{data.user?.displayName}</span> */}
-            <span>Julio</span>
-            <ChatIcons>
-              <img src='' alt='' />
-              <img src='' alt='' />
-              <img src='' alt='' />
-            </ChatIcons>
-          </ChatInfo>
-          <Messages />
-          <Inputs />
-        </ChatSect>
-      </Container>
-    </Main>
+    <ChatContainer>
+      <div className='navbar'>
+        <div className='user'>
+          <div className='userImg'>
+            <img src={howdy} alt='' />
+            <span className='greenNoti' />
+            <span className='whiteNoti' />
+          </div>
+
+          <div className='userName'>
+            <span>Sol Panzetta</span>
+          </div>
+        </div>
+        <div className='navMenu'>
+          <img src={dotsVertical} alt='' />
+        </div>
+
+      </div>
+      <Messages />
+      <Inputs />
+    </ChatContainer>
   )
 }

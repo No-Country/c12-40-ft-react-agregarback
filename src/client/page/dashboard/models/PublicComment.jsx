@@ -1,32 +1,45 @@
-import React from 'react'
-import styled from 'styled-components'
-import { HeaderPost } from '../components/post/HeaderPost'
-import { DescriptionPost } from '../components/post/DescriptionPost'
-import { ImagePost } from '../components/post/ImagePost'
-import { CommentPost } from '../components/post/CommentPost'
-import { ReactionPost } from '../components/post/ReactionPost'
-import { Button, Divider } from '@mui/material'
+import { Avatar, Box, Button } from '@mui/material'
+import { useAppSelector } from '../../../../common/store/config'
 
-const Post = styled.section`
-  width: 100%;
-  border: 1px solid #b4d65e;
-  border-radius: 0.5rem;
-  padding: 2rem 2rem 1rem 2rem;
-  font-weight: bold;
-`
-export const PublicComment = () => {
+export const PublicComment = ({ setModal }) => {
+  const user = useAppSelector((state) => state.auth.user)
+
+  const handleClick = () => {
+    setModal(true)
+  }
+
   return (
-    <Post>
-      <HeaderPost />
-      <Divider sx={{ my: 1 }} />
-      <DescriptionPost />
-      <Button sx={{ fontWeight: 'bold' }} color='secondary'>
-        Ver traducción
+    <Box
+      sx={{
+        border: '1px solid #B4D65E',
+        p: 2,
+        width: '100%',
+        fontWeight: 'bold',
+        borderRadius: '.5rem',
+        display: 'flex',
+        gap: 2
+      }}
+    >
+      <Avatar
+        src={user?.user?.photo ? user?.user?.photo : ''}
+        alt={user?.user?.name}
+      />
+      <Button
+        fullWidth
+        sx={{
+          backgroundColor: '#4b4a4a24',
+          textTransform: 'none',
+          color: '#0000006c',
+          fontWeight: 'bold',
+          borderRadius: 5,
+          justifyContent: 'start',
+          padding: '0 2rem',
+          fontSize: '1rem'
+        }}
+        onClick={handleClick}
+      >
+        Crear publicación
       </Button>
-      <ImagePost />
-      <CommentPost />
-      <Divider sx={{ my: 1 }} />
-      <ReactionPost />
-    </Post>
+    </Box>
   )
 }

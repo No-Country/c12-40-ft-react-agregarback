@@ -228,6 +228,7 @@ const Header = styled.header`
 
     .icon {
       object-fit: contain;
+      width: 30px;
       height: 24px;
     }
   }
@@ -331,7 +332,7 @@ export const LayoutDashboard = () => {
                 >
                     <LogoutIcon />
                 </Button>
-                <img src={chat} className='icon' />
+                <Link to='chats/asdasda'><img src={chat} className='icon' /></Link>
                 <img src={saved} className='icon' />
                 <img src={notifications} className='icon' />
                 <Divider

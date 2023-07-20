@@ -4,7 +4,7 @@ import { Button, Modal, Rating } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 
 import {
-  neutral00,
+  neutral,
   neutral10,
   primary,
   primary120,
@@ -282,7 +282,7 @@ const LayoutReviews = styled.section`
   display: flex;
   justify-content: center;
   padding: 40px;
-  background-color: ${neutral00};
+  background-color: ${neutral};
 
   img {
     width: 100%;

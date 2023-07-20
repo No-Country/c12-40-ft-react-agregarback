@@ -6,7 +6,7 @@ const InterestsStyled = styled.section`
 
     background-color: white;
 
-    padding: 0 2rem 1rem 2rem;
+    padding: 1rem 0.5rem;
 
     width: 100%;
 
@@ -51,8 +51,8 @@ export const Page = ({ data }) => {
         <h2>Intereses</h2>
         <div className='badges-div'>
           {
-            data?.interests.map((interest, index) => {
-              return <Chip key={index} label={interest} className='interest-badge' />
+            data?.selectedInterest.map((interest, index) => {
+              return <Chip key={index} label={interest.data} className='interest-badge' />
             })
           }
         </div>
