@@ -47,9 +47,9 @@ const MessageContent = styled.div`
   }
 `
 
-const Message = () => {
+const Message = (prop) => {
   return (
-    <MessageSect className=''>
+    <MessageSect className={prop.classname}>
       <MessageInfo>
         <img src='https://cdn3.iconfinder.com/data/icons/avatars-9/145/Avatar_Cat-1024.png' alt='' />
         <span>just now</span>

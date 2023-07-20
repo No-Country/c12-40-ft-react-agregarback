@@ -1,47 +1,30 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Message from './Message'
 import { styled } from 'styled-components'
 
-// import { ChatContext } from '../context/ChatContext'
-// import { db } from '../../../../service/firebase'
-// import { doc, onSnapshot } from 'firebase/firestore'
-
-
-const MessagesSect = styled.div`
+const MessagesContainer = styled.div`
     background-color: white;
     padding: 10px;
-    height: calc(100% - 100px);
-    overflow-y: scroll;
+    height: 70vh;
+    overflow-y: auto;
 `
 
 const Messages = () => {
-  const [messages] = useState([])
-  // const { data } = useContext(ChatContext)
-
-  // useEffect(() => {
-  //   const unSub = onSnapshot(doc(db, 'chats', data.chatId), (doc) => {
-  //     doc.exists() && setMessages(doc.data().messages)
-  //   })
-
-  //   return () => {
-  //     unSub()
-  //   }
-  // }, [data.chatId])
-
-  console.log(messages)
-
   return (
-    <MessagesSect>
-      {messages.map((m) => (
-        <Message message={m} key={m.id} />
-      ))}
+    <MessagesContainer>
+      <Message classname='owner' />
       <Message />
       <Message />
       <Message />
+      <Message classname='owner' />
+      <Message classname='owner' />
       <Message />
       <Message />
+      <Message classname='owner' />
+      <Message classname='owner' />
       <Message />
-    </MessagesSect>
+      <Message classname='owner' />
+    </MessagesContainer>
   )
 }
 
