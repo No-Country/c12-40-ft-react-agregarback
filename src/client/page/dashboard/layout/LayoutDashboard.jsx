@@ -343,8 +343,8 @@ export const LayoutDashboard = () => {
                 >
                 <LogoutIcon />
                 </Button>
-                <Link to='chats/asdasda'><img src={chat} className='icon' /></Link>
-                <img src={saved} className='icon' />
+                <Link to='chats'><img src={chat} className='icon' /></Link>
+                <Link to='saved'><img src={saved} className='icon' /></Link>
                 <img src={notifications} className='icon' />
                 <Divider
                   orientation='vertical'
@@ -432,18 +432,26 @@ export const LayoutDashboard = () => {
         <nav className='mobile-nav'>
           <ul>
             <li>
-              <img alt='Home' src={home} className='icon-mobile' />
+              <Link to='/'>
+                <img alt='Home' src={home} className='icon-mobile' />
+              </Link>
             </li>
             <li>
+            <Link to={`profile/${auth.user.id}`}>
               <img alt='Profile' src={profileMobile} className='icon-mobile' />
+            </Link>
             </li>
             <li>
+            <Link to='saved'>
               <img alt='Saved' src={savedMobile} className='icon-mobile' />
+            </Link>
             </li>
             <li>
+            <Link to='chats'>
               <Badge badgeContent={3} color='success'>
                 <img alt='Chats' src={chatMobile} className='icon-mobile' />
               </Badge>
+            </Link>
             </li>
           </ul>
         </nav>
