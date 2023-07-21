@@ -7,7 +7,6 @@ import MenuIcon from '@mui/icons-material/Menu'
 import chat from '../img/chat-icon.svg'
 import saved from '../img/saved-icon.svg'
 import notifications from '../img/notifications-icon.svg'
-import profile from '../img/profile-icon.svg'
 import arrow from '../img/arrow.svg'
 import profileMobile from '../img/profile.svg'
 import home from '../img/home.svg'
@@ -256,7 +255,7 @@ const Main = styled.main`
   width: 100%;
 `
 
-const data = [
+const datos = [
   {
     name: 'Header.Blog',
     path: 'blog'
@@ -316,7 +315,7 @@ export const LayoutDashboard = () => {
 
               <nav>
                 <ul>
-                  {data.map((data, index) => {
+                  {datos.map((data, index) => {
                     return (
                       <Link key={index} to={data.path}>
                         <li>{t(data.name)}</li>
@@ -352,8 +351,8 @@ export const LayoutDashboard = () => {
                   className='vertical'
                 />
 
-                <Button to={`/client/dashboard/profile/${auth.user.uid}`} component={Link}>
-                  <Avatar alt='perfil' src={auth.user.photo ? auth.user.photo : profile} />
+                <Button to={`/client/dashboard/profile/${auth?.user.uid}`} component={Link}>
+                  <Avatar alt='perfil' src={auth?.user.photo} />
                 </Button>
               </div>
                 )
