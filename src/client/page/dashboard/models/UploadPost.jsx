@@ -11,7 +11,7 @@ import add from './img/add.svg'
 const UploadPostStyled = styled.section`
 
 
-  padding: 1rem 0.5rem;
+  width: 100%;
 
   .container{
       padding: 1.5rem;
@@ -26,7 +26,7 @@ const UploadPostStyled = styled.section`
 
       gap: 1rem;
 
-      input{
+      button{
         display: flex;
         padding: 0.25rem 0.25rem 0.25rem 1rem;
         align-items: center;
@@ -74,14 +74,14 @@ const data = [
   }
 ]
 
-const UploadPost = () => {
+const UploadPost = ({ click }) => {
   const auth = useAppSelector((state) => state.auth.user)
   return (
     <UploadPostStyled>
       <div className='container'>
         <div className='input-div'>
           <Avatar src={auth.user.photo ? auth.user.photo : ''} />
-          <input placeholder='Subir una publicación' />
+          <button onClick={click}>Subir publicación</button>
         </div>
         <Divider className='divider-post' />
         <div className='btn-div'>
