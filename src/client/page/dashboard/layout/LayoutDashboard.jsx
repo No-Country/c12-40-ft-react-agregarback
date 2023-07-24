@@ -7,7 +7,6 @@ import MenuIcon from '@mui/icons-material/Menu'
 import chat from '../img/chat-icon.svg'
 import saved from '../img/saved-icon.svg'
 import notifications from '../img/notifications-icon.svg'
-import profile from '../img/profile-icon.svg'
 import arrow from '../img/arrow.svg'
 import profileMobile from '../img/profile.svg'
 import home from '../img/home.svg'
@@ -18,7 +17,7 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import { useAppSelector } from '../../../../common/store/config'
 import { useAuth } from '../../../../auth/hook/useAuth'
 
-import { primary } from '../../../../common/variables'
+import { primary, primary120 } from '../../../../common/variables'
 
 import { useTranslation } from 'react-i18next'
 
@@ -49,15 +48,16 @@ const Layout = styled.div`
     top: 0;
     right: 0;
 
-    z-index: -1;
+    z-index: 0;
 
-    min-width: 100vw;
+    min-width: 50vw;
     height: 100vh;
 
     padding: 8rem 3rem;
 
     opacity: 0;
-    transition: all ease-in-out 0.2s;
+    transition: all ease-in-out 1s;
+    display: none;
 
     background-color: #ffffff;
     ul {
@@ -92,11 +92,12 @@ const Layout = styled.div`
 
   .active {
     opacity: 1 !important;
-    transition: all ease-in-out 0.2s;
     z-index: 2;
-
+    display: block;
+    
     position: fixed;
     right: 0;
+    transition: all ease-in-out 1s;
   }
 
   .mobile-nav {
@@ -104,7 +105,7 @@ const Layout = styled.div`
     width: 100%;
     bottom: 0;
 
-    z-index: 3;
+    z-index: 100;
 
     background-color: white;
 
@@ -115,7 +116,23 @@ const Layout = styled.div`
 
       padding: 1rem 2rem;
       gap: 3rem;
+      
     }
+  }
+
+  .icon-mobile{
+    width: 25px;
+  }
+
+  .active-item{
+    filter: invert(100%);
+  }
+  
+  .active-bg{
+    background-color: ${primary120};
+    border-radius: 28px;
+    padding: 0.4rem 1.5rem;
+    text-align: center;
   }
 
   .btn {
@@ -143,12 +160,14 @@ const Layout = styled.div`
     top: 0;
     width: 100%;
 
-    z-index: 999;
+    z-index: 99;
   }
 
   .divider{
     background-color: #ff00a8;
   }
+
+
 
   @media screen and (min-width: 768px) {
     .tablet-desktop {
@@ -230,6 +249,12 @@ const Header = styled.header`
       object-fit: contain;
       width: 30px;
       height: 24px;
+      transition: all ease-in-out 0.1s;
+
+      &:hover{
+        filter: brightness(0) saturate(100%) invert(62%) sepia(87%) saturate(326%) hue-rotate(36deg) brightness(101%) contrast(95%);
+        transition: all ease-in-out 0.1s;
+      }
     }
   }
 
@@ -248,7 +273,7 @@ const Main = styled.main`
   width: 100%;
 `
 
-const data = [
+const datos = [
   {
     name: 'Header.Blog',
     path: 'blog'
@@ -267,20 +292,27 @@ const dataMobile = [
   {
     name: 'Header.AboutUs',
     path: 'nosotros '
-  },
-  {
-    name: 'Header.SignUp',
-    path: 'register'
-  },
-  {
-    name: 'Header.LogIn',
-    path: 'login'
   }
 ]
 
 const menuAnimation = () => {
   const menu = document.querySelector('.nav-menu')
   menu.classList.toggle('active')
+}
+
+const selectedItem = (e) => {
+  const icon = e.target
+  const li = icon.closest('li')
+
+  const imgs = document.querySelectorAll('.mobile-nav-ul .icon-mobile')
+  const list = document.querySelectorAll('.mobile-nav-ul li')
+
+  for (let index = 0; index < imgs.length; index++) {
+    imgs[index].classList.remove('active-item')
+    list[index].classList.remove('active-bg')
+  }
+  icon.classList.add('active-item')
+  li.classList.add('active-bg')
 }
 
 export const LayoutDashboard = () => {
@@ -307,7 +339,7 @@ export const LayoutDashboard = () => {
 
               <nav>
                 <ul>
-                  {data.map((data, index) => {
+                  {datos.map((data, index) => {
                     return (
                       <Link key={index} to={data.path}>
                         <li>{t(data.name)}</li>
@@ -332,10 +364,10 @@ export const LayoutDashboard = () => {
                   onClick={userLogout}
                   sx={{ py: 1.5 }}
                 >
-                    <LogoutIcon />
+                <LogoutIcon />
                 </Button>
                 <Link to='chats'><img src={chat} className='icon' /></Link>
-                <img src={saved} className='icon' />
+                <Link to='saved'><img src={saved} className='icon' /></Link>
                 <img src={notifications} className='icon' />
                 <Divider
                   orientation='vertical'
@@ -343,8 +375,8 @@ export const LayoutDashboard = () => {
                   className='vertical'
                 />
 
-                <Button to={`/client/dashboard/profile/${auth.user.uid}`} component={Link}>
-                  <Avatar alt='perfil' src={auth.user.photo ? auth.user.photo : profile} />
+                <Button to={`/client/dashboard/profile/${auth?.user.uid}`} component={Link}>
+                  <Avatar alt='perfil' src={auth?.user.photo} />
                 </Button>
               </div>
                 )
@@ -382,6 +414,38 @@ export const LayoutDashboard = () => {
                   </Link>
                 )
               })}
+              {
+                auth.status === 'authenticated'
+                  ? (
+                    <>
+                      <Link to={`/client/dashboard/profile/${auth?.user.uid}`}>
+                        <li>{t('Perfil')}</li>
+                        <Divider className='divider' role='presentation' variant='fullWidth' />
+                      </Link>
+                      <Button
+                        variant='contained'
+                        color='secondary'
+                        onClick={userLogout}
+                        sx={{ py: 1.5 }}
+                      >
+                        <LogoutIcon />
+                      </Button>
+
+                    </>
+                    )
+                  : (
+                      <>
+                        <Link to='/auth/login'>
+                          <li>{t('Header.LogIn')}</li>
+                          <Divider className='divider' role='presentation' variant='fullWidth' />
+                        </Link>
+                        <Link to='/auth/register'>
+                          <li>{t('Header.SignUp')}</li>
+                          <Divider className='divider' role='presentation' variant='fullWidth' />
+                        </Link>
+                      </>
+                    )
+              }
             </ul>
           </nav>
         </div>
@@ -389,20 +453,28 @@ export const LayoutDashboard = () => {
       {auth.status === 'authenticated'
         ? (
         <nav className='mobile-nav'>
-          <ul>
+          <ul className='mobile-nav-ul'>
             <li>
-              <img alt='Home' src={home} className='icon-mobile' />
+              <Link to='/' onClick={(e) => selectedItem(e)}>
+                <img alt='Home' src={home} className='icon-mobile' />
+              </Link>
             </li>
             <li>
+            <Link to={`/client/dashboard/profile/${auth?.user.uid}`} onClick={(e) => selectedItem(e)}>
               <img alt='Profile' src={profileMobile} className='icon-mobile' />
+            </Link>
             </li>
             <li>
+            <Link to='saved' onClick={(e) => selectedItem(e)}>
               <img alt='Saved' src={savedMobile} className='icon-mobile' />
+            </Link>
             </li>
             <li>
-              <Badge badgeContent={3} color='success'>
+            <Link to='chats'>
+              <Badge badgeContent={3} color='success' onClick={(e) => selectedItem(e)}>
                 <img alt='Chats' src={chatMobile} className='icon-mobile' />
               </Badge>
+            </Link>
             </li>
           </ul>
         </nav>
