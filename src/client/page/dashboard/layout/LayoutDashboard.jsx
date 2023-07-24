@@ -17,7 +17,7 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import { useAppSelector } from '../../../../common/store/config'
 import { useAuth } from '../../../../auth/hook/useAuth'
 
-import { primary } from '../../../../common/variables'
+import { primary, primary120 } from '../../../../common/variables'
 
 import { useTranslation } from 'react-i18next'
 
@@ -114,7 +114,23 @@ const Layout = styled.div`
 
       padding: 1rem 2rem;
       gap: 3rem;
+      
     }
+  }
+
+  .icon-mobile{
+    width: 25px;
+  }
+
+  .active-item{
+    filter: invert(100%);
+  }
+  
+  .active-bg{
+    background-color: ${primary120};
+    border-radius: 28px;
+    padding: 0.4rem 1.5rem;
+    text-align: center;
   }
 
   .btn {
@@ -277,18 +293,24 @@ const dataMobile = [
   }
 ]
 
-/* {
-  name: 'Header.SignUp',
-  path: 'register'
-},
-{
-  name: 'Header.LogIn',
-  path: 'login'
-} */
-
 const menuAnimation = () => {
   const menu = document.querySelector('.nav-menu')
   menu.classList.toggle('active')
+}
+
+const selectedItem = (e) => {
+  const icon = e.target
+  const li = icon.closest('li')
+
+  const imgs = document.querySelectorAll('.mobile-nav-ul .icon-mobile')
+  const list = document.querySelectorAll('.mobile-nav-ul li')
+
+  for (let index = 0; index < imgs.length; index++) {
+    imgs[index].classList.remove('active-item')
+    list[index].classList.remove('active-bg')
+  }
+  icon.classList.add('active-item')
+  li.classList.add('active-bg')
 }
 
 export const LayoutDashboard = () => {
@@ -429,25 +451,25 @@ export const LayoutDashboard = () => {
       {auth.status === 'authenticated'
         ? (
         <nav className='mobile-nav'>
-          <ul>
+          <ul className='mobile-nav-ul'>
             <li>
-              <Link to='/'>
+              <Link to='/' onClick={(e) => selectedItem(e)}>
                 <img alt='Home' src={home} className='icon-mobile' />
               </Link>
             </li>
             <li>
-            <Link to={`/client/dashboard/profile/${auth?.user.uid}`}>
+            <Link to={`/client/dashboard/profile/${auth?.user.uid}`} onClick={(e) => selectedItem(e)}>
               <img alt='Profile' src={profileMobile} className='icon-mobile' />
             </Link>
             </li>
             <li>
-            <Link to='saved'>
+            <Link to='saved' onClick={(e) => selectedItem(e)}>
               <img alt='Saved' src={savedMobile} className='icon-mobile' />
             </Link>
             </li>
             <li>
             <Link to='chats'>
-              <Badge badgeContent={3} color='success'>
+              <Badge badgeContent={3} color='success' onClick={(e) => selectedItem(e)}>
                 <img alt='Chats' src={chatMobile} className='icon-mobile' />
               </Badge>
             </Link>
