@@ -48,7 +48,7 @@ const Layout = styled.div`
     top: 0;
     right: 0;
 
-    z-index: -1;
+    z-index: 0;
 
     min-width: 50vw;
     height: 100vh;
@@ -56,7 +56,8 @@ const Layout = styled.div`
     padding: 8rem 3rem;
 
     opacity: 0;
-    transition: all ease-in-out 0.2s;
+    transition: all ease-in-out 1s;
+    display: none;
 
     background-color: #ffffff;
     ul {
@@ -91,11 +92,12 @@ const Layout = styled.div`
 
   .active {
     opacity: 1 !important;
-    transition: all ease-in-out 0.2s;
     z-index: 2;
-
+    display: block;
+    
     position: fixed;
     right: 0;
+    transition: all ease-in-out 1s;
   }
 
   .mobile-nav {
