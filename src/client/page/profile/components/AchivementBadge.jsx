@@ -1,30 +1,33 @@
 import React from 'react'
-import { Chip, Avatar } from '@mui/material'
 import { styled } from 'styled-components'
 
-const AchivementBadgeStyled = styled(Chip)`
-  border: 1px solid #79747E !important;
-  background-color: #F5F5F5 !important;
+const AchivementBadgeStyled = styled.div`
 
-  padding: 1.2rem 0.5rem !important;
-  gap: 0.5rem !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #79747E ;
+  background-color: #F5F5F5 ;
 
-  border-radius: 6.25rem !important;
+  padding: 0.5rem 1rem;
+  gap: 0.5rem ;
 
-  .avatar{
-    
-      width: fit-content !important;
-      height: fit-content !important;
-      border-radius: 0;
+  border-radius: 6.25rem ;
+
+  img{
+    width: 1.125rem;
   }
 
   span{
-    font-size: 1rem !important;
+    font-size: 1rem ;
   }
 `
 
 export default function AchivementBadge ({ img, label }) {
   return (
-    <AchivementBadgeStyled label={label} avatar={<Avatar src={img} className='avatar' />} />
+    <AchivementBadgeStyled>
+      <img src={img} alt='icon' />
+      <span>{label}</span>
+    </AchivementBadgeStyled>
   )
 }
