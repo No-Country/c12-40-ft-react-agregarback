@@ -60,6 +60,10 @@ const data = [
     label: '0 correcciones'
   },
   {
+    img: friends,
+    label: '0 amigos'
+  },
+  {
     img: ai,
     label: 'Usó Howdy AI'
   },

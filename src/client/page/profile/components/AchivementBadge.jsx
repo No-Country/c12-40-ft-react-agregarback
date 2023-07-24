@@ -12,9 +12,10 @@ const AchivementBadgeStyled = styled(Chip)`
   border-radius: 6.25rem !important;
 
   .avatar{
-    width: 1.125rem !important;
-    height: 1.125rem !important;
-
+    
+      width: fit-content !important;
+      height: fit-content !important;
+      border-radius: 0;
   }
 
   span{
