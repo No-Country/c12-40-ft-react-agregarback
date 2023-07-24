@@ -3,7 +3,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { styled } from 'styled-components'
 import { useAppSelector } from '../../../../common/store/config'
-import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
+import { Timestamp, arrayUnion, doc, serverTimestamp, updateDoc } from 'firebase/firestore'
 import { db } from '../../../../service/firebase'
 
 const InputsSect = styled.div`
@@ -52,6 +52,8 @@ const Send = styled.div`
 
 const Inputs = ({ roomId }) => {
   const uid = useAppSelector(state => state.auth.user.user.uid)
+  const uidFriend = useAppSelector(state => state.client.chat.friend.uid)
+
   const {
     register,
     handleSubmit,
@@ -61,21 +63,32 @@ const Inputs = ({ roomId }) => {
 
   const eventSubmit = async (data) => {
     try {
-      const messageData = {
-        ...data,
-        idRoom: roomId,
-        idUser: uid,
-        timestamp: serverTimestamp()
-      }
+      await updateDoc(doc(db, 'chats', roomId), {
+        messages: arrayUnion({
+          id: crypto.randomUUID(),
+          text: data.message,
+          senderId: uid,
+          date: Timestamp.now()
+        })
+      })
+      await updateDoc(doc(db, 'userChats', uid), {
+        [roomId + '.lastMessage']: {
+          text: data.message
+        },
+        [roomId + '.date']: serverTimestamp()
+      })
 
-      await addDoc(collection(db, 'messages'), messageData)
+      await updateDoc(doc(db, 'userChats', uidFriend), {
+        [roomId + '.lastMessage']: {
+          text: data.message
+        },
+        [roomId + '.date']: serverTimestamp()
+      })
 
       reset()
     } catch (error) {
       console.error('Error al agregar el mensaje:', error)
     }
-
-    reset()
   }
 
   return (

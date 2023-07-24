@@ -4,17 +4,20 @@ import EqualizerIcon from '@mui/icons-material/Equalizer'
 import { SelectInput } from '../../../components/SelectInput'
 import { levelOfKnowledge, nativeLanguage } from '../constants/data'
 import { Typography } from '@mui/material'
+import { SelectLan } from '../../../components/SelectLan'
 
 export const SelectNativeLanguage = ({ componentCount, register, errors, watch }) => {
+  const data = watch('selectorLan').value
+
   return (
     <>
       {
         componentCount && <Typography>Idioma seleccionado</Typography>
       }
-      <SelectInput
+      <SelectLan
         label='Idioma'
         name='selectorLanguage'
-        items={nativeLanguage}
+        items={nativeLanguage?.filter(lan => lan.value !== data)}
         register={register}
         errors={errors}
         icon={<TranslateIcon />}

@@ -2,11 +2,13 @@ export const nativeLanguage = [
   {
     value: 'english',
     title: 'English',
+    photo: 'https://flagcdn.com/gb.svg',
     id: crypto.randomUUID()
   },
   {
     value: 'spanish',
     title: 'Spanish',
+    photo: 'https://flagcdn.com/es.svg',
     id: crypto.randomUUID()
   }
 ]

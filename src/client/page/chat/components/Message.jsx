@@ -1,6 +1,7 @@
 import { Avatar } from '@mui/material'
 import React from 'react'
 import { styled } from 'styled-components'
+import { useAppSelector } from '../../../../common/store/config'
 
 const MessageSect = styled.div`
   display: flex;
@@ -48,16 +49,18 @@ const MessageContent = styled.div`
   }
 `
 
-const Message = (prop) => {
+const Message = ({ message }) => {
+  const userFriend = useAppSelector(state => state.client.chat.friend)
+  const userOwner = useAppSelector(state => state.auth.user.user)
+
   return (
-    <MessageSect className={prop.classname}>
+    <MessageSect className={message.senderId === userOwner.uid ? 'owner' : ''}>
       <MessageInfo>
-        <Avatar src={prop.photo} />
+        <Avatar src={message.senderId === userOwner.uid ? userOwner.photo : userFriend.photo} />
         <span>just now</span>
       </MessageInfo>
       <MessageContent>
-        <p>{prop.message}</p>
-        {/* <img src="https://cdn3.iconfinder.com/data/icons/avatars-9/145/Avatar_Penguin-512.png" alt="" /> */}
+        <p>{message.text}</p>
       </MessageContent>
     </MessageSect>
   )

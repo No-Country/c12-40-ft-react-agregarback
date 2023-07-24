@@ -1,30 +1,18 @@
 import React from 'react'
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline'
-import { SelectInput } from '../../../components/SelectInput'
 import { Title } from '../../../components/Title'
+import { SelectLan } from '../../../components/SelectLan'
+import { nativeLanguage } from '../constants/data'
 
 export const Step2 = ({ register, errors, watch }) => {
-  const data = [
-    {
-      value: 'english',
-      title: 'English',
-      id: crypto.randomUUID()
-    },
-    {
-      value: 'spanish',
-      title: 'Spanish',
-      id: crypto.randomUUID()
-    }
-  ]
-
   return (
     <>
       <Title title='Idioma nativo' description='Es el idioma oficial de tu país de nacimiento' />
 
-      <SelectInput
+      <SelectLan
         label='Idioma nativo'
         name='selectorLan'
-        items={data}
+        items={nativeLanguage}
         register={register}
         errors={errors}
         icon={<ChatBubbleOutlineIcon />}

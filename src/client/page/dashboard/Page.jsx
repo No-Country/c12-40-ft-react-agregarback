@@ -8,12 +8,8 @@ import { PublicComment } from './models/PublicComment'
 import { ModalPost } from './components/ModalPost'
 import { collection, onSnapshot, query, where } from 'firebase/firestore'
 import { db } from '../../../service/firebase'
-import { useAppSelector } from '../../../common/store/config'
 
 export const Page = () => {
-  const user = useAppSelector(state => state.auth.user)
-  console.log(user)
-
   const [modal, setModal] = useState(false)
   const [post, setPost] = useState(null)
 
@@ -48,6 +44,7 @@ export const Page = () => {
           name={e?.name}
           description={e?.selectComment}
           photo={e?.photo}
+          idUser={e?.idUSer}
         />
       ))}
       <ModalPost setModal={setModal} open={modal} close={handleCloseModal} />
