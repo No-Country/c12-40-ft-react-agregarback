@@ -28,6 +28,8 @@ export const signIn = async (email, password) => {
       auth: docSnap.data().auth
     }
 
+    await setDoc(doc(db, 'userChats', userCredential.user.uid), {})
+
     if (userCredential.user) {
       return { success: true, userFirebase }
     }
@@ -59,8 +61,6 @@ export const signUp = async (email, password, name) => {
     const docRef = doc(db, 'users', user.uid)
     const docSnap = await getDoc(docRef)
 
-    console.log(docSnap.data())
-
     const userFirebase = {
       name: user.displayName,
       uid: user.uid,
@@ -68,6 +68,8 @@ export const signUp = async (email, password, name) => {
       photo: user.photoURL,
       auth: docSnap.data().token
     }
+
+    await setDoc(doc(db, 'userChats', user.uid), {})
 
     return { success: true, userFirebase }
   } catch (error) {
@@ -80,7 +82,6 @@ export const onGoogleAuth = async () => {
     const provider = new GoogleAuthProvider()
     const result = await signInWithPopup(auth, provider)
     const user = result.user
-    console.log(user)
 
     const docRef = doc(db, 'users', user.uid)
     const docSnap = await getDoc(docRef)
@@ -109,6 +110,8 @@ export const onGoogleAuth = async () => {
       photo: user.photoURL,
       auth: authentication
     }
+
+    await setDoc(doc(db, 'userChats', user.uid), {})
 
     return { success: true, userFirebase }
   } catch (error) {
