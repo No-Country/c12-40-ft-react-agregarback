@@ -3,9 +3,10 @@ import React from 'react'
 import Sidebar from './components/Sidebar'
 
 import { ContainerGeneral } from '../../../common/style/container/ContainerGeneral'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useParams } from 'react-router-dom'
 import { styled } from 'styled-components'
 import { neutral } from '../../../common/variables'
+import { Typography } from '@mui/material'
 
 const ChatsContainer = styled.div`
   display: flex;
@@ -14,11 +15,12 @@ const ChatsContainer = styled.div`
 `
 
 export const Page = () => {
+  const { chat } = useParams()
   return (
     <ContainerGeneral>
       <ChatsContainer>
         <Sidebar />
-        <Outlet />
+        {chat ? <Outlet /> : <Typography variant='h3' p={2}>Chatear con amigos</Typography>}
       </ChatsContainer>
     </ContainerGeneral>
   )

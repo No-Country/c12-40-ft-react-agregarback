@@ -11,7 +11,7 @@ import { doc, setDoc, updateDoc } from 'firebase/firestore'
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage'
 import { db, auth } from '../../../service/firebase'
 import { useAppDispatch, useAppSelector } from '../../../common/store/config'
-import { validationAuthenticated } from '../../store/slice/sliceAuth'
+import { updatePhoto, validationAuthenticated } from '../../store/slice/sliceAuth'
 import { updateProfile } from 'firebase/auth'
 
 export const Page = () => {
@@ -51,13 +51,14 @@ export const Page = () => {
 
       try {
         setLoading(() => true)
-        const file = data.selectedImageProfile
-        const filename = `${user.user.uid}-${file.name}-${crypto.randomUUID()}`
-        const storageRef = ref(storage, `images/${filename}`)
-        await uploadBytes(storageRef, file)
-        const downloadURL = await getDownloadURL(storageRef)
+        let downloadURL
+        const file = data.selectedImageProfile ?? null
 
         if (file) {
+          const filename = `${user.user.uid}-${file.name}-${crypto.randomUUID()}`
+          const storageRef = ref(storage, `images/${filename}`)
+          await uploadBytes(storageRef, file)
+          downloadURL = await getDownloadURL(storageRef)
           await updateProfile(auth.currentUser, {
             photoURL: downloadURL
           })
@@ -65,20 +66,23 @@ export const Page = () => {
           await updateProfile(auth.currentUser, {
             photoURL: 'https://i.ibb.co/LzH1xPp/6f57760966a796644b8cfb0fbc449843.png'
           })
+          downloadURL = 'https://i.ibb.co/LzH1xPp/6f57760966a796644b8cfb0fbc449843.png'
         }
 
         delete data.selectedImageProfile
+        delete data.token
 
         await setDoc(doc(db, 'profile', user.user.uid), {
-          ...data,
-          photo: downloadURL
+          ...data
         })
 
         const userRef = doc(db, 'users', user.user.uid)
         await updateDoc(userRef, {
-          auth: true
+          auth: true,
+          photo: downloadURL
         })
 
+        dispatch(updatePhoto(downloadURL))
         dispatch(validationAuthenticated())
       } catch (error) {
         console.error('Error al guardar el archivo en Firebase Storage o actualizar los documentos:', error)

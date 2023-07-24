@@ -14,10 +14,10 @@ const PublicComment = styled.section`
   padding: 2rem 2rem 1rem 2rem;
   font-weight: bold;
 `
-export const Post = ({ name, description, photo }) => {
+export const Post = ({ name, description, photo, idUser }) => {
   return (
     <PublicComment>
-      <HeaderPost name={name} photo={photo} />
+      <HeaderPost name={name} photo={photo} idUser={idUser} />
       <Divider sx={{ my: 1 }} />
       <DescriptionPost description={description} />
       <Button sx={{ fontWeight: 'bold' }} color='secondary'>

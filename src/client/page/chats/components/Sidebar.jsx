@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { styled } from 'styled-components'
 
 import Navbar from './Navbar'
@@ -7,7 +5,8 @@ import Search from './Search'
 import ChatBar from './ChatBar'
 
 const SidebarContainer = styled.div`
-  flex: 1;
+  width: 350px;
+  padding: 1rem;
 `
 
 const Sidebar = () => {
