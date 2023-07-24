@@ -454,9 +454,9 @@ export const LayoutDashboard = () => {
         ? (
         <nav className='mobile-nav'>
           <ul className='mobile-nav-ul'>
-            <li>
+            <li className='active-bg'>
               <Link to='/' onClick={(e) => selectedItem(e)}>
-                <img alt='Home' src={home} className='icon-mobile' />
+                <img alt='Home' src={home} className='icon-mobile active-item' />
               </Link>
             </li>
             <li>
