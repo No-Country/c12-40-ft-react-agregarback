@@ -53,12 +53,12 @@ export const Page = () => {
         setLoading(() => true)
         let downloadURL
         const file = data.selectedImageProfile ?? null
-        const filename = `${user.user.uid}-${file.name}-${crypto.randomUUID()}`
-        const storageRef = ref(storage, `images/${filename}`)
-        await uploadBytes(storageRef, file)
-        downloadURL = await getDownloadURL(storageRef)
 
-        if (downloadURL) {
+        if (file) {
+          const filename = `${user.user.uid}-${file.name}-${crypto.randomUUID()}`
+          const storageRef = ref(storage, `images/${filename}`)
+          await uploadBytes(storageRef, file)
+          downloadURL = await getDownloadURL(storageRef)
           await updateProfile(auth.currentUser, {
             photoURL: downloadURL
           })
