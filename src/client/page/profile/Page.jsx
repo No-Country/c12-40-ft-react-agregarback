@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom'
 import { db } from '../../../service/firebase'
 import UploadPost from '../dashboard/models/UploadPost'
 import { ContainerGeneral } from '../../../common/style/container/ContainerGeneral'
+import { Achivements } from './components/Achivements'
 
 export const Page = () => {
   const [data, setData] = useState(null)
@@ -46,6 +47,7 @@ export const Page = () => {
       }
       <Interests data={data} />
       <UploadPost />
+      <Achivements />
     </ContainerGeneral>
   )
 }
