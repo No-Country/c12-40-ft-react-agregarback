@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { styled } from 'styled-components'
 
 import Messages from './components/Messages'
 
-import howdy from '../chats/img/24.png'
 import dotsVertical from '../chats/img/dotsVertical.png'
 import { neutral10 } from '../../../common/variables'
 import Inputs from './components/Inputs'
 import { useParams } from 'react-router-dom'
+import { doc, onSnapshot } from 'firebase/firestore'
+import { db } from '../../../service/firebase'
+import { useAppSelector } from '../../../common/store/config'
+import { Avatar } from '@mui/material'
 
 const ChatContainer = styled.div`
     flex: 3;
@@ -71,27 +74,36 @@ const ChatContainer = styled.div`
             box-shadow: 3px 3px 10px -5px black;
             cursor: pointer;
         }
-        
     }
-
-    
 `
 
 export const Page = () => {
   const { chat } = useParams()
+  const [messages, setMessages] = useState([])
+  const userFriend = useAppSelector(state => state.client.chat.friend)
+
+  useEffect(() => {
+    const unsub = onSnapshot(doc(db, 'chats', chat), (doc) => {
+      doc.exists() && setMessages(doc.data().messages)
+    })
+
+    return () => {
+      unsub()
+    }
+  }, [chat])
 
   return (
     <ChatContainer>
       <div className='navbar'>
         <div className='user'>
           <div className='userImg'>
-            <img src={howdy} alt='' />
+            <Avatar src={userFriend.photo} alt={userFriend.name} />
             <span className='greenNoti' />
             <span className='whiteNoti' />
           </div>
 
           <div className='userName'>
-            <span>Gimena</span>
+            <span>{userFriend.name}</span>
           </div>
         </div>
         <div className='navMenu'>
@@ -99,7 +111,7 @@ export const Page = () => {
         </div>
 
       </div>
-      <Messages roomId={chat} />
+      <Messages messages={messages} />
       <Inputs roomId={chat} />
     </ChatContainer>
   )

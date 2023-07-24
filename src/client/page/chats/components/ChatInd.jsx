@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
 import { styled } from 'styled-components'
-import { primary, secondary120 } from '../../../../common/variables'
-import { db } from '../../../../service/firebase'
-import { doc, getDoc } from 'firebase/firestore'
+import { secondary120 } from '../../../../common/variables'
 import { Avatar, Button } from '@mui/material'
 import { Link } from 'react-router-dom'
+import { useAppDispatch } from '../../../../common/store/config'
+import { userFriendSelect } from '../../../store/slice/sliceChat'
 
 const ChatIndContainer = styled(Button)`
     padding: 10px;
@@ -14,8 +13,7 @@ const ChatIndContainer = styled(Button)`
     cursor: pointer;
 
     &:hover {
-        background-color: ${primary};  
-        color: white;
+        background-color: #83838334!important;
         border-radius: 8px;
     }
 
@@ -89,39 +87,24 @@ const ChatIndContainer = styled(Button)`
     }
 `
 
-export const ChatInd = ({ id, name, roomId }) => {
-  const [profile, setProfile] = useState(null)
-  useEffect(() => {
-    const profileUser = async () => {
-      const docRef = doc(db, 'profile', id)
-      const docSnap = await getDoc(docRef)
+export const ChatInd = ({ data }) => {
+  const dispatch = useAppDispatch()
 
-      if (docSnap.exists()) {
-        setProfile(docSnap.data())
-      } else {
-        // docSnap.data() will be undefined in this case
-        console.log('No such document!')
-      }
-    }
-
-    profileUser()
-  }, [])
+  const handleClick = (user) => {
+    dispatch(userFriendSelect(user))
+  }
 
   return (
-    <ChatIndContainer color='secondary' to={`${roomId}`} component={Link}>
+    <ChatIndContainer color='secondary' to={`${data[0]}`} onClick={() => handleClick(data[1].userInfo)} component={Link}>
       <div className='userImg'>
-        <Avatar src={profile?.photo ? profile?.photo : null} />
+        <Avatar src={data[1].userInfo.photoURL ? data[1].userInfo.photoURL : null} />
         <span className='greenNoti' />
         <span className='whiteNoti' />
       </div>
       <div className='chatInfo'>
         <div className='userChatInfo'>
-          <span>{name}</span>
-          <p>Ultimo mensaje</p>
-        </div>
-        <div className='timenoti'>
-          <span>1 min</span>
-          <span>2</span>
+          <span>{data[1].userInfo.displayName ? data[1].userInfo.displayName : null}</span>
+          <p>{data[1].lastMessage?.text}</p>
         </div>
       </div>
 
