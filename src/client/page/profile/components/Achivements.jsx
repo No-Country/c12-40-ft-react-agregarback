@@ -20,6 +20,8 @@ const AchivementsStyled = styled.section`
 
     width: 100%;
 
+    margin-bottom: 100px;
+
     .outer-div{
         border: 0.25px solid #A2CD37;
         border-radius: 5px;
@@ -32,13 +34,24 @@ const AchivementsStyled = styled.section`
 
 `
 
+const data = [
+  {
+    img: usage,
+    label: '15 días de uso'
+  }
+]
+
 export const Achivements = () => {
   return (
-    <AchivementsStyled>
+    <AchivementsStyled data={data}>
       <div className='outer-div'>
         <h2>Logros</h2>
         <div>
-          <AchivementBadge />
+          {
+            data.map((data, i) => {
+              return <AchivementBadge key={i} label={data?.label} img={data?.img} />
+            })
+          }
         </div>
       </div>
     </AchivementsStyled>
