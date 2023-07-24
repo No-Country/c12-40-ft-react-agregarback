@@ -394,7 +394,7 @@ export const LayoutDashboard = () => {
                 auth.status === 'authenticated'
                   ? (
                     <>
-                      <Link to={`profile/${auth.user.id}`}>
+                      <Link to={`/client/dashboard/profile/${auth?.user.uid}`}>
                         <li>{t('Perfil')}</li>
                         <Divider className='divider' role='presentation' variant='fullWidth' />
                       </Link>
@@ -436,7 +436,7 @@ export const LayoutDashboard = () => {
               </Link>
             </li>
             <li>
-            <Link to={`profile/${auth.user.id}`}>
+            <Link to={`/client/dashboard/profile/${auth?.user.uid}`}>
               <img alt='Profile' src={profileMobile} className='icon-mobile' />
             </Link>
             </li>
