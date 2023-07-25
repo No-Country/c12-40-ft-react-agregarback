@@ -16,11 +16,11 @@ const AchivementsStyled = styled.section`
 
     background-color: white;
 
-    padding: 1rem 0rem;
+    padding: 1rem;
 
     width: 100%;
 
-    margin-bottom: 100px;
+    scroll-margin-bottom: 100px;
 
     
     .outer-div{

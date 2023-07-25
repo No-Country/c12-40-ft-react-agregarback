@@ -6,7 +6,7 @@ const InterestsStyled = styled.section`
 
     background-color: white;
 
-    padding: 1rem 0;
+    padding: 1rem;
 
     width: 100%;
 

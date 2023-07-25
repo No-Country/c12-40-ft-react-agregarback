@@ -10,7 +10,7 @@ import add from './img/add.svg'
 
 const UploadPostStyled = styled.section`
 
-
+  padding: 1rem;
   width: 100%;
 
   .container{

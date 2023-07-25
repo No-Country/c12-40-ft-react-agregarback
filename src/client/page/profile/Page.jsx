@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { doc, getDoc } from 'firebase/firestore'
+import { styled } from 'styled-components'
 
 import Banner from './components/Banner'
 import { Page as DescriptionMobile } from './components/DescriptionMobile'
@@ -10,6 +11,13 @@ import { db } from '../../../service/firebase'
 import UploadPost from '../dashboard/models/UploadPost'
 import { ContainerGeneral } from '../../../common/style/container/ContainerGeneral'
 import { Achivements } from './components/Achivements'
+
+const ContainerStyled = styled(ContainerGeneral)`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  margin-bottom: 100px;
+`
 
 export const Page = () => {
   const [data, setData] = useState(null)
@@ -40,14 +48,14 @@ export const Page = () => {
   }, [])
 
   return (
-    <ContainerGeneral>
+    <ContainerStyled>
       <Banner data={data} />
       {
         desktop ? <DescriptionMobile data={data} /> : <Description data={data} />
       }
       <Interests data={data} />
-      <UploadPost />
       <Achivements info={data} />
-    </ContainerGeneral>
+      <UploadPost />
+    </ContainerStyled>
   )
 }
