@@ -16,10 +16,8 @@ import {
 } from 'firebase/firestore'
 import { db } from '../../../../service/firebase'
 import {
-  useAppDispatch,
   useAppSelector
 } from '../../../../common/store/config'
-import { addFriend } from '../../../store/slice/sliceFriend'
 
 const NavbarContainer = styled.div`
   display: flex;
@@ -41,11 +39,9 @@ const style = {
 
 const Navbar = () => {
   const [modal, setModal] = useState(false)
+  const [friends, setFriends] = useState([])
 
   const user = useAppSelector((state) => state.auth.user.user)
-  const friend = useAppSelector((state) => state.client.friend)
-
-  const dispatch = useAppDispatch()
 
   const handleClick = async () => {
     try {
@@ -53,10 +49,13 @@ const Navbar = () => {
         collection(db, 'friendRequests'),
         and(
           where('status', '==', 'accepted'),
+          where('chat', '==', false),
           or(where('sender', '==', user.uid), where('receiver', '==', user.uid))
         )
       )
       const querySnapshot = await getDocs(q)
+
+      const tempFriends = {}
 
       for (const userUid of querySnapshot.docs) {
         const senderUid = userUid.data().sender
@@ -67,11 +66,13 @@ const Navbar = () => {
         const docSnap = await getDoc(docRef)
 
         if (docSnap.exists()) {
-          dispatch(addFriend({ id: docSnap.id, ...docSnap.data() }))
+          tempFriends[docSnap.id] = { ...docSnap.data(), id: docSnap.id }
         } else {
-          console.log('No such document!')
+          console.log('No such document for user:', friendUid)
         }
       }
+
+      setFriends(Object.values(tempFriends))
     } catch (error) {
       console.error('Error al consultar las solicitudes de amistad:', error)
       return []
@@ -102,6 +103,9 @@ const Navbar = () => {
           },
           [combineID + '.date']: serverTimestamp()
         })
+        await updateDoc(doc(db, 'friendRequests', combineID), {
+          chat: true
+        })
       }
       setModal(false)
     } catch (error) {
@@ -125,7 +129,8 @@ const Navbar = () => {
       >
         <Box sx={style}>
           <Typography variant='h4' mb={2}>Amigos</Typography>
-          {friend?.friend?.map((f) => (
+          {friends?.length === 0 && <Typography>No tienes chats pendientes</Typography>}
+          {friends?.map((f) => (
             <Box
               key={f.email}
               sx={{
