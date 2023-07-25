@@ -28,8 +28,6 @@ export const signIn = async (email, password) => {
       auth: docSnap.data().auth
     }
 
-    await setDoc(doc(db, 'userChats', userCredential.user.uid), {})
-
     if (userCredential.user) {
       return { success: true, userFirebase }
     }
@@ -68,8 +66,6 @@ export const signUp = async (email, password, name) => {
       photo: user.photoURL,
       auth: docSnap.data().token
     }
-
-    await setDoc(doc(db, 'userChats', user.uid), {})
 
     return { success: true, userFirebase }
   } catch (error) {
@@ -110,8 +106,6 @@ export const onGoogleAuth = async () => {
       photo: user.photoURL,
       auth: authentication
     }
-
-    await setDoc(doc(db, 'userChats', user.uid), {})
 
     return { success: true, userFirebase }
   } catch (error) {

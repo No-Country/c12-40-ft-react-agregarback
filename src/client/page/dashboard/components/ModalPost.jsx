@@ -15,7 +15,7 @@ import PanoramaIcon from '@mui/icons-material/Panorama'
 import VideoCameraBackIcon from '@mui/icons-material/VideoCameraBack'
 import CloseIcon from '@mui/icons-material/Close'
 import { useForm } from 'react-hook-form'
-import { collection, doc, serverTimestamp, setDoc } from 'firebase/firestore'
+import { collection, doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore'
 import { db } from '../../../../service/firebase'
 
 const style = {
@@ -44,14 +44,29 @@ export const ModalPost = ({ open, close, setModal }) => {
   const eventSubmit = async (data) => {
     try {
       const newDocRef = doc(collection(db, 'comment'))
+      const docRef = doc(db, 'profile', user.user.uid)
+      const docSnap = await getDoc(docRef)
+
+      const lan = {
+        native: '',
+        learning: ''
+      }
+
+      if (docSnap.exists()) {
+        lan.native = docSnap.data().selectorLan.value
+        lan.learning = docSnap.data().selectorLanguage.value
+      } else {
+        // docSnap.data() will be undefined in this case
+        console.log('No such document!')
+      }
 
       await setDoc(newDocRef, {
         ...data,
         photo: user.user.photo,
         name: user.user.name,
         idUSer: user.user.uid,
-        lanNative: 'spanish',
-        lanLearning: 'english',
+        lanNative: lan.native,
+        lanLearning: lan.learning,
         timestamp: serverTimestamp()
       })
 

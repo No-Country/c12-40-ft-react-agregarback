@@ -52,6 +52,7 @@ export const ButtonAddFriend = ({ idUser, currentUserUid }) => {
         sender: currentUserUid,
         receiver: friendId,
         status: 'pending',
+        chat: false,
         createdAt: serverTimestamp()
       })
       setIsRequestPending({ value: 'pending', title: 'Solicitud enviada' })
@@ -59,28 +60,6 @@ export const ButtonAddFriend = ({ idUser, currentUserUid }) => {
       console.error('Error al enviar la solicitud de amistad:', error)
     }
   }
-
-  const handleConfirmRequestFriend = async (friendId) => {
-    try {
-      const friendRequestsRef = doc(
-        db,
-        'friendRequests',
-        combineID
-      )
-      await setDoc(friendRequestsRef, { status: 'accepted', acceptedBy: currentUserUid }, { merge: true })
-
-      const friendsRef = collection(db, 'friends')
-      await setDoc(friendsRef, {
-        [currentUserUid]: true,
-        [friendId]: true
-      })
-
-      setIsRequestPending('friend')
-    } catch (error) {
-      console.error('Error al aceptar la solicitud de amistad:', error)
-    }
-  }
-
   return (
     <>
       <Button
