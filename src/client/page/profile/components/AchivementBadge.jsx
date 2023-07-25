@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { styled } from 'styled-components'
 
 const AchivementBadgeStyled = styled.div`
@@ -19,10 +19,10 @@ const AchivementBadgeStyled = styled.div`
   .border::before{
     content: "";
     position: absolute;
-    top: -5px; /* Ajusta el valor negativo para que el degradado se muestre en el borde */
-    left: -5px; /* Ajusta el valor negativo para que el degradado se muestre en el borde */
-    right: -5px; /* Ajusta el valor negativo para que el degradado se muestre en el borde */
-    bottom: -5px; /* Ajusta el valor negativo para que el degradado se muestre en el borde */
+    top: -5px; 
+    left: -5px; 
+    right: -5px;
+    bottom: -5px;
     z-index: 1;
     background-image: linear-gradient(to bottom right, #79747E, #79747E);
   }
@@ -67,9 +67,17 @@ const AchivementBadgeStyled = styled.div`
 `
 
 export default function AchivementBadge ({ img, label, num }) {
+  const [earned, setEarned] = useState(false)
+
+  useEffect(() => {
+    if (num > 0) {
+      setEarned(true)
+    }
+  }, [num])
+
   return (
     <AchivementBadgeStyled>
-      <div className='border'>
+      <div className={earned === true ? 'border earned' : 'border'}>
         <div className='badge-div'>
           <img src={img} alt='icon' />
           <span>{num + ' ' + label}</span>
