@@ -23,11 +23,8 @@ const AchivementBadgeStyled = styled.div`
     left: -5px; /* Ajusta el valor negativo para que el degradado se muestre en el borde */
     right: -5px; /* Ajusta el valor negativo para que el degradado se muestre en el borde */
     bottom: -5px; /* Ajusta el valor negativo para que el degradado se muestre en el borde */
-
-    background-color: #C1358A;
-    background-image: linear-gradient(to bottom right, #C1358A, #A2CD37); /* Aquí puedes ajustar los colores del gradiente */
     z-index: 1;
-
+    background-image: linear-gradient(to bottom right, #79747E, #79747E);
   }
   
   .badge-div{
@@ -43,7 +40,7 @@ const AchivementBadgeStyled = styled.div`
       position: relative;
       z-index: 2;
       width: 100%;
-      height: 90%;
+      height: 92%;
       border-radius: inherit;
         
 
@@ -60,14 +57,19 @@ const AchivementBadgeStyled = styled.div`
   .earned{
     color: #517C1A;
     font-weight: bold;
-      }
+    }
+
+  .earned:before{
+    background-color: #C1358A;
+    background-image: linear-gradient(to bottom right, #C1358A, #A2CD37);
+    }
 
 `
 
 export default function AchivementBadge ({ img, label, num }) {
   return (
     <AchivementBadgeStyled>
-      <div className='border earned'>
+      <div className='border'>
         <div className='badge-div'>
           <img src={img} alt='icon' />
           <span>{num + ' ' + label}</span>
