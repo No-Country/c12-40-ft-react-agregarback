@@ -36,12 +36,13 @@ const AchivementBadgeStyled = styled.div`
       align-items: center;
       background-color: #F5F5F5 ;
       
-      padding: 0.5rem 1rem;
+      margin: 0.15rem;
+      padding: 0 1rem ;
       gap: 0.5rem ;
 
       position: relative;
       z-index: 2;
-      width: 97%;
+      width: 100%;
       height: 90%;
       border-radius: inherit;
         
