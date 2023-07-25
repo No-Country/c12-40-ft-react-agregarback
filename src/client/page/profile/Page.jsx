@@ -22,6 +22,8 @@ const ContainerStyled = styled(ContainerGeneral)`
       grid-template-columns: 0.75fr 1.5fr 0.75fr;
       grid-template-rows: auto;
       gap: 1rem;
+
+      padding: 0 1rem;
     }
     }
 `
