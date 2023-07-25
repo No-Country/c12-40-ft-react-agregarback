@@ -14,7 +14,7 @@ const PublicComment = styled.section`
   padding: 2rem 2rem 1rem 2rem;
   font-weight: bold;
 `
-export const Post = ({ name, description, photo, idUser }) => {
+export const Post = ({ name, description, photo, idUser, idPost }) => {
   return (
     <PublicComment>
       <HeaderPost name={name} photo={photo} idUser={idUser} />
@@ -24,7 +24,7 @@ export const Post = ({ name, description, photo, idUser }) => {
         Ver traducción
       </Button>
       <ImagePost />
-      <CommentPost />
+      <CommentPost idPost={idPost} />
       <Divider sx={{ my: 1 }} />
       <ReactionPost />
     </PublicComment>

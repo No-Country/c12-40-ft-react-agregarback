@@ -17,7 +17,7 @@ export const chatSlice = createSlice({
   initialState,
   reducers: {
     userFriendSelect: (state, action) => {
-      state.friend.name = action.payload.displayName
+      state.friend.name = action.payload.name
       state.friend.photo = action.payload.photoURL
       state.friend.uid = action.payload.uid
     },

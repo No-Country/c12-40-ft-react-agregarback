@@ -82,6 +82,8 @@ export const Page = () => {
           photo: downloadURL
         })
 
+        await setDoc(doc(db, 'userChats', user.user.uid), {})
+
         dispatch(updatePhoto(downloadURL))
         dispatch(validationAuthenticated())
       } catch (error) {

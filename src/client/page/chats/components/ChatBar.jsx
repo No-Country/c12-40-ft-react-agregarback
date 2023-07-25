@@ -30,7 +30,7 @@ const Chat = () => {
       }
     }
     user.uid && getChats()
-  }, [user.uid])
+  }, [user.uid, db])
 
   return (
     <UserChatContainer>
