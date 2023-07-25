@@ -2,13 +2,13 @@ import React from 'react'
 import { styled } from 'styled-components'
 import AchivementBadge from './AchivementBadge'
 
-import ai from '../img/AI.svg'
+/* import ai from '../img/AI.svg' */
 import chat from '../img/chat.svg'
 import corrections from '../img/corrections.svg'
 import friends from '../img/friends.svg'
 import posts from '../img/posts.svg'
-import rate from '../img/rate.svg'
-import recommend from '../img/recommend.svg'
+/* import rate from '../img/rate.svg'
+import recommend from '../img/recommend.svg' */
 import trad from '../img/trad.svg'
 import usage from '../img/usage.svg'
 
@@ -68,26 +68,26 @@ export const Achivements = ({ info }) => {
       label: 'amigos',
       num: info?.friends
     },
-    {
+    /* {
       img: ai,
       label: 'Usó Howdy AI',
       num: ''
-    },
+    }, */
     {
       img: posts,
       label: 'Publicaciones',
       num: info?.posts
     },
-    {
+    /* {
       img: rate,
       label: 'Calificó amigos',
       num: ''
-    },
-    {
+    }, */
+    /* {
       img: recommend,
       label: 'Recomendó Howdy',
       num: ''
-    },
+    }, */
     {
       img: trad,
       label: 'traducciones',
