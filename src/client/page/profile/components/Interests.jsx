@@ -37,6 +37,9 @@ const InterestsStyled = styled.section`
       }
 
       @media screen and (min-width: 768px){
+
+        padding: 1rem 0;
+        
         .badges-div{
           overflow: hidden;
           flex-wrap: wrap;

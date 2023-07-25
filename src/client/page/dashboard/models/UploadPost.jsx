@@ -53,6 +53,10 @@ const UploadPostStyled = styled.section`
 
       gap: 2rem;
     }
+    
+    @media screen and (min-width: 768px){
+      padding: 1rem 0;
+    }
 
 `
 

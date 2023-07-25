@@ -48,6 +48,10 @@ const AchivementsStyled = styled.section`
         margin-bottom: 1.5rem;
     }
 
+    @media screen and (min-width: 768px){
+      padding: 1rem 0;
+    }
+
 `
 
 export const Achivements = ({ info }) => {

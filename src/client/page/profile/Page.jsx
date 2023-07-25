@@ -17,6 +17,15 @@ const ContainerStyled = styled(ContainerGeneral)`
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   margin-bottom: 100px;
+
+  @media screen and (min-width: 768px){
+    .grid-container{
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto;
+      gap: 1rem;
+    }
+    }
 `
 
 export const Page = () => {
@@ -49,13 +58,22 @@ export const Page = () => {
 
   return (
     <ContainerStyled>
-      <Banner data={data} />
-      {
-        desktop ? <DescriptionMobile data={data} /> : <Description data={data} />
-      }
-      <Interests data={data} />
-      <Achivements info={data} />
-      <UploadPost />
+      <Banner data={data} className='banner' />
+
+      <div className='grid-container'>
+        <div>
+          {
+          desktop ? <DescriptionMobile data={data} /> : <Description data={data} />
+        }
+          <Interests data={data} />
+        </div>
+        <div>
+          <UploadPost />
+        </div>
+        <div>
+          <Achivements info={data} />
+        </div>
+      </div>
     </ContainerStyled>
   )
 }
