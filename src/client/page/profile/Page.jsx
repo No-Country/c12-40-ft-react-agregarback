@@ -47,7 +47,7 @@ export const Page = () => {
       }
       <Interests data={data} />
       <UploadPost />
-      <Achivements />
+      <Achivements info={data} />
     </ContainerGeneral>
   )
 }

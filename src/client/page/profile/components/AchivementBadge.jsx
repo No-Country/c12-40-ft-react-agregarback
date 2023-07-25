@@ -64,13 +64,13 @@ const AchivementBadgeStyled = styled.div`
 
 `
 
-export default function AchivementBadge ({ img, label }) {
+export default function AchivementBadge ({ img, label, num }) {
   return (
     <AchivementBadgeStyled>
       <div className='border earned'>
         <div className='badge-div'>
           <img src={img} alt='icon' />
-          <span>{label}</span>
+          <span>{num + ' ' + label}</span>
         </div>
       </div>
     </AchivementBadgeStyled>

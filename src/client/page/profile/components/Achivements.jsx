@@ -50,54 +50,63 @@ const AchivementsStyled = styled.section`
 
 `
 
-const data = [
-  {
-    img: usage,
-    label: '15 días de uso'
-  },
-  {
-    img: corrections,
-    label: '0 correcciones'
-  },
-  {
-    img: friends,
-    label: '0 amigos'
-  },
-  {
-    img: ai,
-    label: 'Usó Howdy AI'
-  },
-  {
-    img: posts,
-    label: '0 Publicaciones'
-  },
-  {
-    img: rate,
-    label: 'Calificó amigos'
-  },
-  {
-    img: recommend,
-    label: 'Recomendó Howdy'
-  },
-  {
-    img: trad,
-    label: '0 traducciones'
-  },
-  {
-    img: chat,
-    label: '0 conversaciones'
-  }
-]
-
-export const Achivements = () => {
+export const Achivements = ({ info }) => {
+  console.log(info)
+  const data = [
+    {
+      img: usage,
+      label: 'días de uso',
+      num: info?.days
+    },
+    {
+      img: corrections,
+      label: 'correcciones',
+      num: info?.corrections
+    },
+    {
+      img: friends,
+      label: 'amigos',
+      num: info?.friends
+    },
+    {
+      img: ai,
+      label: 'Usó Howdy AI',
+      num: ''
+    },
+    {
+      img: posts,
+      label: 'Publicaciones',
+      num: info?.posts
+    },
+    {
+      img: rate,
+      label: 'Calificó amigos',
+      num: ''
+    },
+    {
+      img: recommend,
+      label: 'Recomendó Howdy',
+      num: ''
+    },
+    {
+      img: trad,
+      label: 'traducciones',
+      num: info?.translates
+    },
+    {
+      img: chat,
+      label: 'conversaciones',
+      num: info?.chats_num
+    }
+  ]
   return (
     <AchivementsStyled data={data}>
       <div className='outer-div'>
         <h2>Logros</h2>
         <div className='achivements-list'>
           {
-            data.map((data, i) => {
-              return <AchivementBadge key={i} label={data?.label} img={data?.img} />
+            data.map((datos, i) => {
+              return <AchivementBadge key={i} label={datos?.label} img={datos?.img} info={info} num={datos?.num} />
             })
           }
         </div>
