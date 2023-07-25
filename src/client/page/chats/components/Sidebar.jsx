@@ -5,8 +5,9 @@ import Search from './Search'
 import ChatBar from './ChatBar'
 
 const SidebarContainer = styled.div`
-  width: 350px;
+  width: 450px;
   padding: 1rem;
+  border-right: 1px solid #0000003e;
 `
 
 const Sidebar = () => {
