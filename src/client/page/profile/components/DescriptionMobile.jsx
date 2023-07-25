@@ -5,7 +5,7 @@ const DesciptionStyled = styled.section`
 
   background-color: white;
 
-  padding: 1rem 0.5rem;
+  padding: 1rem;
 
   width: 100%;
 
