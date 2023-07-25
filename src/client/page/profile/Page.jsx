@@ -8,20 +8,18 @@ import { Page as Description } from './components/Description'
 import { Page as Interests } from './components/Interests'
 import { useParams } from 'react-router-dom'
 import { db } from '../../../service/firebase'
-import UploadPost from '../dashboard/models/UploadPost'
+import { PublicComment } from '../dashboard/models/PublicComment'
 import { ContainerGeneral } from '../../../common/style/container/ContainerGeneral'
 import { Achivements } from './components/Achivements'
 
+import { ModalPost } from '../dashboard/components/ModalPost'
+
 const ContainerStyled = styled(ContainerGeneral)`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  margin-bottom: 100px;
 
   @media screen and (min-width: 768px){
     .grid-container{
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 0.75fr 1.5fr 0.75fr;
       grid-template-rows: auto;
       gap: 1rem;
     }
@@ -31,6 +29,7 @@ const ContainerStyled = styled(ContainerGeneral)`
 export const Page = () => {
   const [data, setData] = useState(null)
   const [desktop, setDesktop] = useState(window.innerWidth < 768)
+  const [modal, setModal] = useState(false)
 
   const updateDesktop = () => {
     setDesktop(window.innerWidth < 768)
@@ -56,6 +55,10 @@ export const Page = () => {
     return () => window.removeEventListener('resize', updateDesktop)
   }, [])
 
+  const handleCloseModal = () => {
+    setModal(false)
+  }
+
   return (
     <ContainerStyled>
       <Banner data={data} className='banner' />
@@ -68,12 +71,13 @@ export const Page = () => {
           <Interests data={data} />
         </div>
         <div>
-          <UploadPost />
+          <PublicComment setModal={setModal} />
         </div>
         <div>
           <Achivements info={data} />
         </div>
       </div>
+      <ModalPost setModal={setModal} open={modal} close={handleCloseModal} />
     </ContainerStyled>
   )
 }
