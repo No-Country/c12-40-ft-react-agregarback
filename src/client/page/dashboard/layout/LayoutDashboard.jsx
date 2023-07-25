@@ -1,8 +1,9 @@
+import { useState } from 'react'
+
 /* eslint-disable react/jsx-indent */
-import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import { styled } from 'styled-components'
-import { Divider, Badge, Avatar, Button } from '@mui/material'
+import { Divider, Badge, Avatar, Button, IconButton } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import chat from '../img/chat-icon.svg'
 import saved from '../img/saved-icon.svg'
@@ -20,6 +21,7 @@ import { useAuth } from '../../../../auth/hook/useAuth'
 import { primary, primary120 } from '../../../../common/variables'
 
 import { useTranslation } from 'react-i18next'
+import { ModalLayaout } from '../models/ModalLayaout'
 
 const Layout = styled.div`
   display: flex;
@@ -318,6 +320,8 @@ const selectedItem = (e) => {
 export const LayoutDashboard = () => {
   const auth = useAppSelector((state) => state.auth.user)
   const { userLogout } = useAuth()
+  const [modal, setModal] = useState(false)
+  const [notification, setNotification] = useState(0)
 
   // i18next function to translate
   const { i18n } = useTranslation()
@@ -326,6 +330,10 @@ export const LayoutDashboard = () => {
     i18n.changeLanguage(selectedLanguage)
   }
   const { t } = useTranslation()
+
+  const handleCloseModal = () => {
+    setModal(false)
+  }
 
   return (
     <Layout>
@@ -368,7 +376,11 @@ export const LayoutDashboard = () => {
                 </Button>
                 <Link to='chats'><img src={chat} className='icon' /></Link>
                 <Link to='saved'><img src={saved} className='icon' /></Link>
-                <img src={notifications} className='icon' />
+                <IconButton onClick={() => setModal(true)}>
+                <Badge badgeContent={notification} color='primary'>
+                 <img src={notifications} className='icon' />
+                </Badge>
+                </IconButton>
                 <Divider
                   orientation='vertical'
                   variant='middle'
@@ -486,6 +498,7 @@ export const LayoutDashboard = () => {
       <Main>
         <Outlet />
       </Main>
+      <ModalLayaout open={modal} setModal={setModal} close={handleCloseModal} setNotification={setNotification} />
     </Layout>
   )
 }
