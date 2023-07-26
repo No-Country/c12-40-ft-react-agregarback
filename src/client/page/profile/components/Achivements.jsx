@@ -36,7 +36,6 @@ const AchivementsStyled = styled.section`
     .achivements-list{
       display: flex;
       flex-wrap: wrap;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
 
@@ -50,6 +49,10 @@ const AchivementsStyled = styled.section`
 
     @media screen and (min-width: 768px){
       padding: 1rem 0;
+
+      .achivements-list{
+        flex-direction: column;
+      }
     }
 
 `

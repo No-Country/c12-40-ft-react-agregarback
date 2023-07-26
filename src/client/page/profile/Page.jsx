@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-closing-tag-location */
 import React, { useEffect, useState } from 'react'
 import { doc, getDoc } from 'firebase/firestore'
 import { styled } from 'styled-components'
@@ -16,6 +17,7 @@ import { ModalPost } from '../dashboard/components/ModalPost'
 
 const ContainerStyled = styled(ContainerGeneral)`
 
+  margin-bottom: 6rem;
   @media screen and (min-width: 768px){
     .grid-container{
       display: grid;
@@ -62,13 +64,52 @@ export const Page = () => {
   }
 
   return (
-    <ContainerStyled>
+    <>
+
+      {
+      desktop === true
+        ? (<ContainerStyled>
+          <Banner data={data} className='banner' />
+
+          <DescriptionMobile data={data} />
+          <Interests data={data} />
+
+          <Achivements info={data} />
+
+          <PublicComment setModal={setModal} />
+
+          <ModalPost setModal={setModal} open={modal} close={handleCloseModal} />
+        </ContainerStyled>)
+        : (<ContainerStyled>
+          <Banner data={data} className='banner' />
+          <div className='grid-container'>
+            <div>
+              <Description data={data} />
+              <Interests data={data} />
+            </div>
+            <div>
+              <PublicComment setModal={setModal} />
+            </div>
+            <div>
+              <Achivements info={data} />
+            </div>
+          </div>
+          <ModalPost setModal={setModal} open={modal} close={handleCloseModal} />
+        </ContainerStyled>)
+
+    }
+    </>
+
+  )
+}
+
+/*     <ContainerStyled>
       <Banner data={data} className='banner' />
 
       <div className='grid-container'>
         <div>
           {
-          desktop ? <DescriptionMobile data={data} /> : <Description data={data} />
+          desktop ? (<DescriptionMobile data={data} />) : <Description data={data} />
         }
           <Interests data={data} />
         </div>
@@ -82,4 +123,4 @@ export const Page = () => {
       <ModalPost setModal={setModal} open={modal} close={handleCloseModal} />
     </ContainerStyled>
   )
-}
+} */
