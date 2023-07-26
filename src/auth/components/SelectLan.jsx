@@ -7,6 +7,7 @@ import {
   Select
 } from '@mui/material'
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export const SelectLan = ({
   label,
@@ -17,6 +18,8 @@ export const SelectLan = ({
   icon,
   watch
 }) => {
+  const { t } = useTranslation()
+
   const [adorn, setAdorn] = useState(false)
 
   const handleFocus = () => {
@@ -53,7 +56,7 @@ export const SelectLan = ({
         ))}
       </Select>
       {errors[name] && (
-        <FormHelperText error>Este campo es requerido</FormHelperText>
+        <FormHelperText error>{t('Error.ErrorReq')}</FormHelperText>
       )}
     </FormControl>
   )
