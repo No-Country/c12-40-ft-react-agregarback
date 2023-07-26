@@ -9,4 +9,5 @@ export const ContainedPost = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 2rem;
+  padding: 1rem;
 `

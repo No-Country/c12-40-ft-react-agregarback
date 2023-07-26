@@ -20,7 +20,7 @@ export const ReactionPost = () => {
           color: 'black'
         }}
       >
-        <PlayCircleFilledWhiteOutlinedIcon fontSize='large' />
+        {/* <PlayCircleFilledWhiteOutlinedIcon fontSize='large' />
         <Typography>Escuchar</Typography>
       </Button>
       <Button
@@ -33,7 +33,7 @@ export const ReactionPost = () => {
           textTransform: 'none',
           color: 'black'
         }}
-      >
+      > */}
         <FavoriteBorderOutlinedIcon fontSize='large' />
         <Typography>Reaccionar</Typography>
       </Button>
