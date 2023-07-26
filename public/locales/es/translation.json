@@ -98,12 +98,13 @@
 		"Password": "Contraseña",
 		"Separator": "o",
 		"Button": {
-			"SignIn": "Inicia Sesión",
+			"SignIn": "Iniciar Sesión",
 			"Google": "Iniciar sesión con Google",
 			"Facebook": "Iniciar sesión con Facebook",
 			"Register": "Registrarse"
 		},
-		"DoYou": "¿No tienes cuenta aún?"
+		"DoYou": "¿No tienes cuenta aún?",
+		"ErrorReq": "Este campo es requerido"
 	},
 	"Register": {
 		"Title": "Registrate en Howdy",
