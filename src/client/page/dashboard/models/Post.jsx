@@ -6,6 +6,7 @@ import { ImagePost } from '../components/post/ImagePost'
 import { CommentPost } from '../components/post/CommentPost'
 import { ReactionPost } from '../components/post/ReactionPost'
 import { Button, Divider } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 
 const PublicComment = styled.section`
   width: 100%;
@@ -15,13 +16,15 @@ const PublicComment = styled.section`
   font-weight: bold;
 `
 export const Post = ({ name, description, photo, idUser, idPost }) => {
+  const { t } = useTranslation()
+
   return (
     <PublicComment>
       <HeaderPost name={name} photo={photo} idUser={idUser} />
       <Divider sx={{ my: 1 }} />
       <DescriptionPost description={description} />
       <Button sx={{ fontWeight: 'bold' }} color='secondary'>
-        Ver traducción
+        {t('HomeLog.Post.Modal.ViewTrans')}
       </Button>
       <ImagePost />
       <CommentPost idPost={idPost} />
