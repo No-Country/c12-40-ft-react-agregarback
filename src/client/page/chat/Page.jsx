@@ -16,6 +16,7 @@ import { Avatar } from '@mui/material'
 const ChatContainer = styled.div`
     flex: 3;
     border-radius: 0 8px 8px 0;
+    overflow: hidden;
 
     .navbar {
         height: 64px;
