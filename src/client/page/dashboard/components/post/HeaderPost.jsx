@@ -3,8 +3,8 @@ import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded'
 
 import styled from '@emotion/styled'
 
-import { useAppSelector } from '../../../../../common/store/config'
-import { ButtonAddFriend } from './ButtonAddFriend'
+/* import { useAppSelector } from '../../../../../common/store/config'
+import { ButtonAddFriend } from './ButtonAddFriend' */
 import { LangBadgePost } from './LangBadgePost'
 import { useEffect, useState } from 'react'
 
@@ -12,7 +12,7 @@ import { doc, getDoc } from 'firebase/firestore'
 import { db } from '../../../../../service/firebase'
 
 export const HeaderPost = ({ name, photo, idUser }) => {
-  const currentUserUid = useAppSelector((state) => state.auth.user.user.uid)
+  /* const currentUserUid = useAppSelector((state) => state.auth.user.user.uid) */
 
   const GridStyled = styled(Grid)`
 
