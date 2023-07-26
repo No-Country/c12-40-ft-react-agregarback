@@ -57,8 +57,8 @@ export const Page = () => {
   return (
     <ContainedPost>
       <SearchContained />
-      <PublicComment setModal={setModal} />
       <TitleSeparator>Personas que podrían interesarte</TitleSeparator>
+      <PublicComment setModal={setModal} />
       {post?.map((e) => (
         <Post
           key={e?.id}
