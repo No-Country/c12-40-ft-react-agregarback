@@ -88,10 +88,8 @@
 			}
 		}
 	},
-	"Profile": {
-
-	},
-	"Footer":"Política de privacidad",
+	"Profile": {},
+	"Footer": "Política de privacidad",
 	"Login": {
 		"Title": "Logueate con Howdy",
 		"Email": "Correo Electronico",
@@ -103,8 +101,7 @@
 			"Facebook": "Iniciar sesión con Facebook",
 			"Register": "Registrarse"
 		},
-		"DoYou": "¿No tienes cuenta aún?",
-		"ErrorReq": "Este campo es requerido"
+		"DoYou": "¿No tienes cuenta aún?"
 	},
 	"Register": {
 		"Title": "Registrate en Howdy",
@@ -116,9 +113,29 @@
 			"SignIn": "Iniciar sesión"
 		},
 		"DoYou": "¿Ya tienes una cuenta?",
-		"Step1": {
-			"Title": "¿De dónde eres?",
-			"Desc": "País de origen"
+		"Steps": {
+			"Button": {
+				"Send": "Enviar",
+				"Next": "Siguiente"
+			},
+			"Step1": {
+				"Title": "¿De dónde eres?",
+				"Desc": "País de origen",
+				"Label": "País"
+			},
+			"Step2": {
+				"Title": "Idioma nativo",
+				"Desc": "Es el idioma oficial de tu país de nacimiento",
+				"Label": "Idioma nativo"
+			}
 		}
+	},
+	"Language": {
+		"English": "Ingles",
+		"Spanish": "Español"
+	},
+	"Error": {
+		"ErrorReq": "Este campo es requerido"
 	}
+
 }

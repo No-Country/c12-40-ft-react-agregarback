@@ -34,7 +34,7 @@ export const ModalLogin = ({ register, submit, errors, event, isValid }) => {
           autoComplete='current-password'
           error={!!errors.email}
           {...register('email', { required: true })}
-          helperText={errors.email && t('Login.ErrorReq')}
+          helperText={errors.email && t('Error.ErrorReq')}
         />
         <InputPassword register={register} errors={errors} />
         <ButtonSubmit title={t('Login.Button.SignIn')} isValid={isValid} status={auth.status} />
