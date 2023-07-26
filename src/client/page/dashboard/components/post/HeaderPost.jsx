@@ -1,30 +1,47 @@
 import { Avatar, Box, Button, Grid, Typography } from '@mui/material'
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded'
 
+import styled from '@emotion/styled'
+
 import { useAppSelector } from '../../../../../common/store/config'
 import { ButtonAddFriend } from './ButtonAddFriend'
 
 export const HeaderPost = ({ name, photo, idUser }) => {
   const currentUserUid = useAppSelector((state) => state.auth.user.user.uid)
 
+  const GridStyled = styled(Grid)`
+
+  font-family: 'Nunito Sans', sans-serif;
+
+  .profile-name{
+    font-weight: bold;
+    font-size: 0.875rem;
+  }
+
+  .post-info{
+    color: 484848;
+    font-weight: 500;
+  }
+`
+
   return (
     <Grid container>
-      <Grid item xs={11}>
+      <GridStyled item xs={11}>
         <Box sx={{ display: 'flex', gap: 1 }}>
           <Avatar src={photo || null} />
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
-            <Typography variant='body1'>{name}</Typography>
+            <h2 className='profile-name'>{name}</h2>
             {/* Insert flags */}
-            <Typography variant='body2'>1 hora • Editado</Typography>
-            {idUser !== currentUserUid && (
+            <h3 className='post-info'>1 hora • Editado</h3>
+            {/* {idUser !== currentUserUid && (
               <ButtonAddFriend
                 idUser={idUser}
                 currentUserUid={currentUserUid}
               />
-            )}
+            )} Esto debe ir en el perfil */}
           </Box>
         </Box>
-      </Grid>
+      </GridStyled>
       <Grid item xs={1}>
         <Button sx={{ color: 'black' }}>
           <MoreHorizRoundedIcon />
