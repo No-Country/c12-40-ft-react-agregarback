@@ -1,9 +1,13 @@
-import { Button } from '@mui/material'
-import React from 'react'
+import { Box, Button, CircularProgress } from '@mui/material'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { styled } from 'styled-components'
 import { useAppSelector } from '../../../../common/store/config'
+import AttachFileIcon from '@mui/icons-material/AttachFile'
+import SendIcon from '@mui/icons-material/Send'
+
 import { Timestamp, arrayUnion, doc, serverTimestamp, updateDoc } from 'firebase/firestore'
+import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage'
 import { db } from '../../../../service/firebase'
 
 const InputsSect = styled.div`
@@ -29,48 +33,52 @@ const InputsSect = styled.div`
   }
 `
 
-const Send = styled.div`
-  height: 100%;
-  padding: 1px;
-  display: flex;
-  text-align: center;
-  
-  button{
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    padding: 10px 15px;
-    background-color: #DA7FBB;
-    border-radius: 5px;
-
-    &:hover{
-      background-color: #CE55A5;
-      
-    }
-  }
-`
-
 const Inputs = ({ roomId }) => {
   const uid = useAppSelector(state => state.auth.user.user.uid)
   const uidFriend = useAppSelector(state => state.client.chat.friend.uid)
+  const [selectedFile, setSelectedFile] = useState(null)
+  const [loading, setLoading] = useState(false)
 
   const {
     register,
     handleSubmit,
     reset,
-    formState: { isValid }
+    setValue
   } = useForm({ mode: 'all' })
 
   const eventSubmit = async (data) => {
+    const storage = getStorage()
+    setLoading(true)
+
     try {
-      await updateDoc(doc(db, 'chats', roomId), {
-        messages: arrayUnion({
-          id: crypto.randomUUID(),
-          text: data.message,
-          senderId: uid,
-          date: Timestamp.now()
+      if (selectedFile) {
+        const filename = `${uid}-${selectedFile.name}-${crypto.randomUUID()}`
+        const storageRef = ref(storage, `images/${filename}`)
+        await uploadBytes(storageRef, selectedFile)
+        const downloadURL = await getDownloadURL(storageRef)
+
+        await updateDoc(doc(db, 'chats', roomId), {
+          messages: arrayUnion({
+            id: crypto.randomUUID(),
+            text: data.message,
+            senderId: uid,
+            date: Timestamp.now(),
+            img: downloadURL
+          })
         })
-      })
+      } else {
+        if (data.message !== '') {
+          await updateDoc(doc(db, 'chats', roomId), {
+            messages: arrayUnion({
+              id: crypto.randomUUID(),
+              text: data.message,
+              senderId: uid,
+              date: Timestamp.now()
+            })
+          })
+        }
+      }
+
       await updateDoc(doc(db, 'userChats', uid), {
         [roomId + '.lastMessage']: {
           text: data.message
@@ -85,20 +93,66 @@ const Inputs = ({ roomId }) => {
         [roomId + '.date']: serverTimestamp()
       })
 
+      setSelectedFile(null)
       reset()
     } catch (error) {
       console.error('Error al agregar el mensaje:', error)
+    } finally {
+      setLoading(false)
     }
+  }
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0]
+    setSelectedFile(file)
+    setValue('file', file)
   }
 
   return (
     <form onSubmit={handleSubmit(eventSubmit)}>
       <InputsSect>
+        <div style={{ marginBottom: '10px' }}>
+          {selectedFile && (
+            <div>
+              <p>Imagen seleccionada:</p>
+              <img
+                src={URL.createObjectURL(selectedFile)}
+                alt='Vista previa'
+                style={{ width: '100px', height: '100px', objectFit: 'cover' }}
+              />
+            </div>
+          )}
+        </div>
 
-        <input type='text' name='message' {...register('message', { required: true })} placeholder='Escribe aqui...' />
-        <Send>
-          <Button disabled={!isValid} type='submit'>Send</Button>
-        </Send>
+        <input
+          maxLength={200}
+          type='text'
+          name='message'
+          {...register('message')}
+          placeholder='Escribe aqui...'
+        />
+        <Box sx={{ display: 'flex' }}>
+          <input
+            type='file'
+            style={{ display: 'none' }}
+            id='file'
+            onChange={handleFileChange}
+            name='file'
+          />
+          <label htmlFor='file' style={{ cursor: 'pointer' }}>
+            <AttachFileIcon />
+          </label>
+        </Box>
+        <Button
+          disabled={loading}
+          variant='contained'
+          color='secondary'
+          type='submit'
+        >
+          {
+            loading ? <CircularProgress size={24} color='secondary' /> : <SendIcon />
+          }
+        </Button>
       </InputsSect>
     </form>
   )
