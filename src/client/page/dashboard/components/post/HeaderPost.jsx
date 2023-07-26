@@ -1,10 +1,15 @@
-import { Avatar, Box, Button, Grid, Typography } from '@mui/material'
+import { Avatar, Box, Button, Grid, Divider } from '@mui/material'
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded'
 
 import styled from '@emotion/styled'
 
 import { useAppSelector } from '../../../../../common/store/config'
 import { ButtonAddFriend } from './ButtonAddFriend'
+import { LangBadgePost } from './LangBadgePost'
+import { useEffect, useState } from 'react'
+
+import { doc, getDoc } from 'firebase/firestore'
+import { db } from '../../../../../service/firebase'
 
 export const HeaderPost = ({ name, photo, idUser }) => {
   const currentUserUid = useAppSelector((state) => state.auth.user.user.uid)
@@ -22,7 +27,40 @@ export const HeaderPost = ({ name, photo, idUser }) => {
     color: 484848;
     font-weight: 500;
   }
+
+  .flags{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    .divider-flags{
+      margin: 0 0.27rem;
+    }
+  }
+
+  .learn{
+        background-color: #F6E7F1;
+        border-color: #9C2272;
+    }
 `
+  const [data, setData] = useState()
+
+  useEffect(() => {
+    const handleGetData = async () => {
+      const docRef = doc(db, 'profile', idUser)
+      const docSnap = await getDoc(docRef)
+      return docSnap.data()
+    }
+
+    const fetchData = async () => {
+      const data = await handleGetData()
+      setData(data)
+    }
+
+    fetchData()
+  }, [])
+
+  console.log(data)
 
   return (
     <Grid container>
@@ -31,7 +69,15 @@ export const HeaderPost = ({ name, photo, idUser }) => {
           <Avatar src={photo || null} />
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
             <h2 className='profile-name'>{name}</h2>
-            {/* Insert flags */}
+            <div className='flags'>
+              <LangBadgePost img={data?.selectorLan.photo} />
+              <Divider orientation='vertical' variant='middle' className='divider-flags' />
+              {/* {
+                data?.selectorLanguage.map((lang, i) => {
+                  return <LangBadgePost img={lang?.photo} variant='learn' />
+                })
+              } Esto funcionará cuando selectorLanguage sea un array */}
+            </div>
             <h3 className='post-info'>1 hora • Editado</h3>
             {/* {idUser !== currentUserUid && (
               <ButtonAddFriend
