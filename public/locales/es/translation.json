@@ -7,6 +7,33 @@
 		"LogIn": "Inicia sesión",
 		"LogOut": "Cerrar sesión"
 	},
+	"HomeLog": {
+		"Search": "Buscar...",
+		"Upload": {
+			"Post": "Subir Publicacion",
+			"Pic": "Foto",
+			"Vid": "Video",
+			"Aud": "Audio"
+		},
+		"Post": {
+			"Interest": "Personas que podrian interesarte",
+			"Modal": {
+				"TimeEdit": "hora • Editado",
+				"Friend": "Amigo",
+				"Pending": "Solicitud enviada",
+				"NotFriend": "Agregar Amigo",
+				"ViewMore": "ver mas",
+				"ViewTrans": "Ver traduccion",
+				"Comment": "Comentarios"
+			},
+			"React": {
+				"Listen": "Escuchar",
+				"Like": "Reaccionar",
+				"Comment": "Comentar"
+			},
+			"Send": "Enviar"
+		}
+	},
 	"Home": {
 		"Header": {
 			"Title": "Habla con Howdy",
@@ -61,6 +88,9 @@
 			}
 		}
 	},
+	"Profile": {
+
+	},
 	"Footer":"Política de privacidad",
 	"Login": {
 		"Title": "Logueate con Howdy",
@@ -75,7 +105,6 @@
 		},
 		"DoYou": "¿No tienes cuenta aún?"
 	},
-	"": "",
 	"Register": {
 		"Title": "Registrate en Howdy",
 		"Name": "Nombre Completo",
