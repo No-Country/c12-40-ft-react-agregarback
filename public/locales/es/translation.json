@@ -127,15 +127,27 @@
 				"Title": "Idioma nativo",
 				"Desc": "Es el idioma oficial de tu país de nacimiento",
 				"Label": "Idioma nativo"
+			},
+			"Language": {
+				"English": "Ingles",
+				"Spanish": "Español"
+			},
+			"Level": {
+				"Beginner": "Principiante",
+				"Elementary": "Elemental",
+				"Intermediate": "Intermedio",
+				"Advanced": "Avanzado",
+				"Proficient": "Profesional"
+			},
+			"Sex": {
+				"He": "El",
+				"She": "Ella",
+				"They": "Elle",
+				"Not": "Prefiero no contestar"
 			}
 		}
-	},
-	"Language": {
-		"English": "Ingles",
-		"Spanish": "Español"
 	},
 	"Error": {
 		"ErrorReq": "Este campo es requerido"
 	}
-
 }
