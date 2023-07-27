@@ -60,8 +60,9 @@ export const Page = () => {
   return (
     <ContainedPost>
       <SearchContained />
-      <PublicComment setModal={setModal} />
       <TitleSeparator>{t('HomeLog.Post.Interest')}</TitleSeparator>
+      <PublicComment setModal={setModal} />
+
       {post?.map((e) => (
         <Post
           key={e?.id}

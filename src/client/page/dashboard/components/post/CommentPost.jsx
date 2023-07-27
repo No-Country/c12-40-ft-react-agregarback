@@ -1,9 +1,46 @@
-import { Box, Button, Grid, Typography } from '@mui/material'
-import React, { useState } from 'react'
-import FavoriteIcon from '@mui/icons-material/Favorite'
+import { Box, Grid, Divider } from '@mui/material'
+import React, { useEffect, useState } from 'react'
 import { CommentUser } from './CommentUser'
 import { CommentRecentUser } from './CommentRecentUser'
+
+import likes from '../../img/likes-post.svg'
+
+import { styled } from 'styled-components'
+import { ReactionPost } from './ReactionPost'
 import { useTranslation } from 'react-i18next'
+
+const GridStyled = styled(Grid)`
+
+  width: 100%;
+
+  .likes-comments{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .likes-div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    color: #737373;
+    font-weight: 500;
+  }
+  
+  .post-comment{
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 1rem;
+    letter-spacing: 0.03125rem;
+
+    color: #737373;
+    margin: 1rem 0 0.75rem 0;
+    cursor: pointer;
+  }
+`
 
 export const CommentPost = ({ idPost }) => {
   const { t } = useTranslation()
@@ -15,29 +52,35 @@ export const CommentPost = ({ idPost }) => {
     setComment(!comment)
   }
 
+  useEffect(() => {
+    setComments(comments)
+  }, [comments])
+
   return (
-    <Grid container mt={1} sx={{ alignItems: 'center' }}>
-      <Grid item xs={6}>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-          <FavoriteIcon fontSize='small' />
-          <Typography variant='body2'>10</Typography>
-        </Box>
-      </Grid>
-      <Grid item xs={6}>
+    <GridStyled container mt={1} sx={{ alignItems: 'center' }}>
+      <div className='likes-comments'>
+        <div className='likes-div'>
+          <img src={likes} alt='likes icon' />
+          <p>10</p>
+        </div>
+
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'end', gap: 0.5 }}>
-          <Button onClick={handleComment} sx={{ textTransform: 'none', color: 'black' }}>
-            <Typography variant='body2'>{comments.length} {t('HomeLog.Post.Modal.Comment')}</Typography>
-          </Button>
+
+          <p className='post-comment' onClick={handleComment}>{comments.length} {t('HomeLog.Post.Modal.Comment')}</p>
+
         </Box>
-      </Grid>
+      </div>
+      <Divider style={{ width: '100%', margin: '0.5rem 0 1rem 0' }} />
+      <ReactionPost />
+      <CommentUser idPost={idPost} setComment={setComment} />
+
       {
         comment && (
           <>
-            <CommentUser idPost={idPost} setComment={setComment} />
             <CommentRecentUser comments={comments} setComments={setComments} idPost={idPost} />
           </>
         )
       }
-    </Grid>
+    </GridStyled>
   )
 }

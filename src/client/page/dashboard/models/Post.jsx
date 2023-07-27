@@ -4,8 +4,7 @@ import { HeaderPost } from '../components/post/HeaderPost'
 import { DescriptionPost } from '../components/post/DescriptionPost'
 import { ImagePost } from '../components/post/ImagePost'
 import { CommentPost } from '../components/post/CommentPost'
-import { ReactionPost } from '../components/post/ReactionPost'
-import { Button, Divider } from '@mui/material'
+import { Divider } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 
 const PublicComment = styled.section`
@@ -14,6 +13,13 @@ const PublicComment = styled.section`
   border-radius: 0.5rem;
   padding: 2rem 2rem 1rem 2rem;
   font-weight: bold;
+
+  button{
+    color: #C32B8F;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
 `
 export const Post = ({ name, description, photo, idUser, idPost }) => {
   const { t } = useTranslation()
@@ -23,13 +29,12 @@ export const Post = ({ name, description, photo, idUser, idPost }) => {
       <HeaderPost name={name} photo={photo} idUser={idUser} />
       <Divider sx={{ my: 1 }} />
       <DescriptionPost description={description} />
-      <Button sx={{ fontWeight: 'bold' }} color='secondary'>
+      <button>
         {t('HomeLog.Post.Modal.ViewTrans')}
-      </Button>
+      </button>
       <ImagePost />
       <CommentPost idPost={idPost} />
-      <Divider sx={{ my: 1 }} />
-      <ReactionPost />
+
     </PublicComment>
   )
 }
