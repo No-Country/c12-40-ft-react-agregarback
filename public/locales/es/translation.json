@@ -99,14 +99,14 @@
 			"ShowLess": "Ver menos"
 		},
 		"Interest": "Intereses",
-		"Archivements": {
+		"Achievements": {
 			"Title": "Logros",
-			"Archivement1": "días de uso",
-			"Archivement2": "correcciones",
-			"Archivement3": "amigos",
-			"Archivement4": "publicaciones",
-			"Archivement5": "traducciones",
-			"Archivement6": "conversaciones"
+			"Achievement1": "días de uso",
+			"Achievement2": "correcciones",
+			"Achievement3": "amigos",
+			"Achievement4": "publicaciones",
+			"Achievement5": "traducciones",
+			"Achievement6": "conversaciones"
 		}
 	},
 	"Chat": {
