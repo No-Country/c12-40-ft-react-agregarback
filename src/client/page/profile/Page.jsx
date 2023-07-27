@@ -81,7 +81,7 @@ export const Page = () => {
           <ModalPost setModal={setModal} open={modal} close={handleCloseModal} />
         </ContainerStyled>)
         : (<ContainerStyled>
-          <Banner data={data} className='banner' />
+          <Banner data={data} id={id} className='banner' />
           <div className='grid-container'>
             <div>
               <Description data={data} />
