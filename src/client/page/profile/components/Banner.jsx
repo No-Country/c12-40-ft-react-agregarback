@@ -11,7 +11,7 @@ import { LangBadge } from './LangBadge'
 import { useTranslation } from 'react-i18next'
 
 import { db } from '../../../../service/firebase'
-import { getDoc, doc } from 'firebase/firestore'
+import { getDoc, doc, query, collection, where, getDocs } from 'firebase/firestore'
 
 const BannerStyled = styled.header`
 
@@ -141,6 +141,7 @@ const BannerStyled = styled.header`
 
 const Banner = ({ data, id }) => {
   const [user, setUser] = useState(null)
+  const [friends, setFriends] = useState([])
 
   useEffect(() => {
     const handleGetData = async () => {
@@ -149,20 +150,32 @@ const Banner = ({ data, id }) => {
       return docSnap.data()
     }
 
+    const handleFriends = async () => {
+      const q = query(collection(db, 'friendRequests'), where('sender', '==', auth.user.uid), where('receiver', '==', id))
+      const querySnapshot = await getDocs(q)
+      const f = []
+      querySnapshot.forEach((doc) =>
+        f.push(doc.data())
+      )
+      return f
+    }
+
     const fetchData = async () => {
       const user = await handleGetData()
+      const friendReq = await handleFriends()
       setUser(user)
+      setFriends(friendReq)
     }
 
     fetchData()
+    handleFriends()
   }, [])
+
+  console.log(friends)
 
   const { t } = useTranslation()
 
   const auth = useAppSelector((state) => state.auth.user)
-
-  console.log(auth)
-  console.log(user)
 
   return (
     <BannerStyled>
@@ -186,8 +199,8 @@ const Banner = ({ data, id }) => {
         auth.user.uid == id
           ? <div>
             <EditIcon className='edit-icon' />
-          </div>
-          : 'Perfil ajeno'
+            </div>
+          : (friends[0]?.status === 'accepted' ? <button>Chatear</button> : <button>Agregar</button>)
       }
 
     </BannerStyled>
