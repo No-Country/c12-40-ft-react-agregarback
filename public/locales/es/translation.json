@@ -109,7 +109,11 @@
 		"Friends": "Amigos",
 		"NotFriends": "No tienes chats pendientes",
 		"Search": "Buscar...",
-		"Button": "Chatear"
+		"Button": "Chatear",
+		"NotChat": {
+			"Title": "Chatear con amigos",
+			"Subtitle": "Envía y recibe mensajes a través de Howdy.  Respetando a la comunidad."
+		}
 	},
 	"Footer": "Política de privacidad",
 	"Login": {
