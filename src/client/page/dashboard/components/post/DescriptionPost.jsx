@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
 import { styled } from 'styled-components'
+import { useTranslation } from 'react-i18next'
 
 const Paragraph = styled.p`
     font-size: 0.875rem;
@@ -20,11 +21,12 @@ const Paragraph = styled.p`
 
 export const DescriptionPost = ({ description }) => {
   const [showMore, setShowMore] = useState(false)
+  const { t } = useTranslation()
 
   return (
     <Paragraph>
       {description.length < 100 ? setShowMore(false) : showMore ? description : `${description.substring(0, 100)}... `}
-      <span onClick={() => setShowMore(!showMore)}>{showMore ? (' ...ver menos') : ' ...ver más'}</span>
+      <span onClick={() => setShowMore(!showMore)}>{showMore ? (' ...ver menos') : {t('HomeLog.Post.Modal.ViewMore')}}</span>
     </Paragraph>
   )
 }

@@ -11,8 +11,11 @@ import {
   where
 } from 'firebase/firestore'
 import { Button } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 
 export const ButtonAddFriend = ({ idUser, currentUserUid }) => {
+  const { t } = useTranslation()
+
   const [isRequestPending, setIsRequestPending] = useState({ value: null, title: null })
   const combineID = currentUserUid > idUser ? currentUserUid + idUser : idUser + currentUserUid
 
@@ -30,12 +33,12 @@ export const ButtonAddFriend = ({ idUser, currentUserUid }) => {
         const querySnapshot = await getDocs(q)
 
         if (!querySnapshot.empty) {
-          setIsRequestPending({ value: 'friend', title: 'Amigo' })
+          setIsRequestPending({ value: 'friend', title: t('HomeLog.Post.Modal.Friend') })
         } else {
-          setIsRequestPending({ value: 'pending', title: 'Solicitud enviada' })
+          setIsRequestPending({ value: 'pending', title: t('HomeLog.Post.Modal.Pending') })
         }
       } else {
-        setIsRequestPending({ value: 'not_friend', title: 'Agregar amigo' })
+        setIsRequestPending({ value: 'not_friend', title: t('HomeLog.Post.Modal.NotFriend') })
       }
     }
     checkFriendRequest()
@@ -55,7 +58,7 @@ export const ButtonAddFriend = ({ idUser, currentUserUid }) => {
         chat: false,
         createdAt: serverTimestamp()
       })
-      setIsRequestPending({ value: 'pending', title: 'Solicitud enviada' })
+      setIsRequestPending({ value: 'pending', title: t('HomeLog.Post.Modal.NotFriend') })
     } catch (error) {
       console.error('Error al enviar la solicitud de amistad:', error)
     }

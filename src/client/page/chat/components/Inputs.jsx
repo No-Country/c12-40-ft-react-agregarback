@@ -1,14 +1,17 @@
 import { Box, Button, CircularProgress } from '@mui/material'
 import React, { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { styled } from 'styled-components'
 import { useAppSelector } from '../../../../common/store/config'
 import AttachFileIcon from '@mui/icons-material/AttachFile'
 import SendIcon from '@mui/icons-material/Send'
 
-import { Timestamp, arrayUnion, doc, serverTimestamp, updateDoc } from 'firebase/firestore'
+import { Timestamp, arrayUnion, collection, doc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore'
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage'
 import { db } from '../../../../service/firebase'
+
+import { AudioRecorder } from './AudioRecorder'
+import { useTranslation } from 'react-i18next'
 
 const InputsSect = styled.div`
   height: 50px;
@@ -34,15 +37,17 @@ const InputsSect = styled.div`
 `
 
 const Inputs = ({ roomId }) => {
+  const { t } = useTranslation()
+
   const uid = useAppSelector(state => state.auth.user.user.uid)
   const uidFriend = useAppSelector(state => state.client.chat.friend.uid)
   const [selectedFile, setSelectedFile] = useState(null)
   const [loading, setLoading] = useState(false)
 
   const {
-    register,
     handleSubmit,
     reset,
+    control,
     setValue
   } = useForm({ mode: 'all' })
 
@@ -81,24 +86,33 @@ const Inputs = ({ roomId }) => {
 
       await updateDoc(doc(db, 'userChats', uid), {
         [roomId + '.lastMessage']: {
-          text: data.message
+          text: data.message,
+          uid
         },
         [roomId + '.date']: serverTimestamp()
       })
 
       await updateDoc(doc(db, 'userChats', uidFriend), {
         [roomId + '.lastMessage']: {
-          text: data.message
+          text: data.message,
+          uid
         },
         [roomId + '.date']: serverTimestamp()
       })
 
       setSelectedFile(null)
-      reset()
     } catch (error) {
       console.error('Error al agregar el mensaje:', error)
     } finally {
+      const writingCollectionRef = collection(db, 'writingCollection')
+      const docRef = doc(writingCollectionRef, roomId)
+      setDoc(docRef, {
+        writing: false,
+        uid: ''
+      })
+
       setLoading(false)
+      reset()
     }
   }
 
@@ -108,13 +122,24 @@ const Inputs = ({ roomId }) => {
     setValue('file', file)
   }
 
+  const handleInputChange = (e) => {
+    const msg = e.target.value
+    setValue('message', msg)
+    const writingCollectionRef = collection(db, 'writingCollection')
+    const docRef = doc(writingCollectionRef, roomId)
+    setDoc(docRef, {
+      writing: msg.length > 2,
+      uid
+    })
+  }
+
   return (
     <form onSubmit={handleSubmit(eventSubmit)}>
       <InputsSect>
         <div style={{ marginBottom: '10px' }}>
           {selectedFile && (
             <div>
-              <p>Imagen seleccionada:</p>
+              <p>{t('Chat.Inputs.Img')}</p>
               <img
                 src={URL.createObjectURL(selectedFile)}
                 alt='Vista previa'
@@ -124,13 +149,25 @@ const Inputs = ({ roomId }) => {
           )}
         </div>
 
-        <input
-          maxLength={200}
-          type='text'
+        <Controller
+          control={control}
+          rules={{
+            required: true
+          }}
+          defaultValue=''
+          render={({ field: { onChange, onBlur, value } }) => (
+            <input
+              maxLength={200}
+              type='text'
+              onChange={handleInputChange}
+              placeholder={t('Chat.Inputs.Placeholder')}
+              value={value}
+            />
+          )}
           name='message'
-          {...register('message')}
-          placeholder='Escribe aqui...'
         />
+        <AudioRecorder roomId={roomId} uid={uid} uidFriend={uidFriend} />
+
         <Box sx={{ display: 'flex' }}>
           <input
             type='file'
@@ -139,7 +176,7 @@ const Inputs = ({ roomId }) => {
             onChange={handleFileChange}
             name='file'
           />
-          <label htmlFor='file' style={{ cursor: 'pointer' }}>
+          <label htmlFor='file' style={{ cursor: 'pointer', margin: 0, padding: 0, height: '21px' }}>
             <AttachFileIcon />
           </label>
         </Box>

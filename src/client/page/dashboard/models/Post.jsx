@@ -5,6 +5,7 @@ import { DescriptionPost } from '../components/post/DescriptionPost'
 import { ImagePost } from '../components/post/ImagePost'
 import { CommentPost } from '../components/post/CommentPost'
 import { Divider } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 
 const PublicComment = styled.section`
   width: 100%;
@@ -21,13 +22,15 @@ const PublicComment = styled.section`
   }
 `
 export const Post = ({ name, description, photo, idUser, idPost }) => {
+  const { t } = useTranslation()
+
   return (
     <PublicComment>
       <HeaderPost name={name} photo={photo} idUser={idUser} />
       <Divider sx={{ my: 1 }} />
       <DescriptionPost description={description} />
       <button>
-        Ver traducción {/* Traducir */}
+        {t('HomeLog.Post.Modal.ViewTrans')}
       </button>
       <ImagePost />
       <CommentPost idPost={idPost} />

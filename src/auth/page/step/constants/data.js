@@ -1,13 +1,13 @@
 export const nativeLanguage = [
   {
     value: 'english',
-    title: 'English',
+    title: 'Register.Steps.Language.English',
     photo: 'https://flagcdn.com/gb.svg',
     id: crypto.randomUUID()
   },
   {
     value: 'spanish',
-    title: 'Spanish',
+    title: 'Register.Steps.Language.Spanish',
     photo: 'https://flagcdn.com/es.svg',
     id: crypto.randomUUID()
   }
@@ -16,27 +16,27 @@ export const nativeLanguage = [
 export const levelOfKnowledge = [
   {
     value: 'principiante',
-    title: 'Principiante',
+    title: 'Register.Steps.Level.Beginner',
     id: crypto.randomUUID()
   },
   {
     value: 'elemental',
-    title: 'Elemental',
+    title: 'Register.Steps.Level.Elementary',
     id: crypto.randomUUID()
   },
   {
     value: 'intermedio',
-    title: 'Intermedio',
+    title: 'Register.Steps.Level.Intermediate',
     id: crypto.randomUUID()
   },
   {
     value: 'avanzado',
-    title: 'Avanzado',
+    title: 'Register.Steps.Level.Advanced',
     id: crypto.randomUUID()
   },
   {
     value: 'excelente',
-    title: 'Excelente',
+    title: 'Register.Steps.Level.Excellent',
     id: crypto.randomUUID()
   }
 ]
@@ -44,22 +44,22 @@ export const levelOfKnowledge = [
 export const sex = [
   {
     value: 'el',
-    title: 'Él',
+    title: 'Register.Steps.Sex.He',
     id: crypto.randomUUID()
   },
   {
     value: 'ella',
-    title: 'Ella',
+    title: 'Register.Steps.Sex.She',
     id: crypto.randomUUID()
   },
   {
     value: 'elle',
-    title: 'Elle',
+    title: 'Register.Steps.Sex.They',
     id: crypto.randomUUID()
   },
   {
     value: 'not-selected',
-    title: 'Prefiero no contestar',
+    title: 'Register.Steps.Sex.Not',
     id: crypto.randomUUID()
   }
 ]
