@@ -3,6 +3,41 @@ import React, { useState } from 'react'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import { CommentUser } from './CommentUser'
 import { CommentRecentUser } from './CommentRecentUser'
+import likes from '../../img/likes-post.svg'
+
+import { styled } from 'styled-components'
+
+const GridStyled = styled(Grid)`
+
+  width: 100%;
+
+  .likes-comments{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .likes-div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    color: #737373;
+    font-weight: 500;
+  }
+  
+  .post-comment{
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 1rem;
+    letter-spacing: 0.03125rem;
+
+    color: #737373;
+    margin: 1rem 0 0.75rem 0;
+  }
+`
 
 export const CommentPost = ({ idPost }) => {
   const [comment, setComment] = useState(false)
@@ -13,20 +48,20 @@ export const CommentPost = ({ idPost }) => {
   }
 
   return (
-    <Grid container mt={1} sx={{ alignItems: 'center' }}>
-      <Grid item xs={6}>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-          <FavoriteIcon fontSize='small' />
-          <Typography variant='body2'>10</Typography>
-        </Box>
-      </Grid>
-      <Grid item xs={6}>
+    <GridStyled container mt={1} sx={{ alignItems: 'center' }}>
+      <div className='likes-comments'>
+        <div className='likes-div'>
+          <img src={likes} alt='likes icon' />
+          <p>10</p>
+        </div>
+
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'end', gap: 0.5 }}>
-          <Button onClick={handleComment} sx={{ textTransform: 'none', color: 'black' }}>
-            <Typography variant='body2'>{comments.length} Comentarios</Typography>
-          </Button>
+
+          <p className='post-comment'>{comments.length} Comentarios</p>
+
         </Box>
-      </Grid>
+      </div>
+
       {
         comment && (
           <>
@@ -35,6 +70,6 @@ export const CommentPost = ({ idPost }) => {
           </>
         )
       }
-    </Grid>
+    </GridStyled>
   )
 }
