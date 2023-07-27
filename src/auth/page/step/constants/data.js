@@ -44,22 +44,22 @@ export const levelOfKnowledge = [
 export const sex = [
   {
     value: 'el',
-    title: 'Register.Sex.He',
+    title: 'Register.Steps.Sex.He',
     id: crypto.randomUUID()
   },
   {
     value: 'ella',
-    title: 'Register.Sex.She',
+    title: 'Register.Steps.Sex.She',
     id: crypto.randomUUID()
   },
   {
     value: 'elle',
-    title: 'Register.Sex.They',
+    title: 'Register.Steps.Sex.They',
     id: crypto.randomUUID()
   },
   {
     value: 'not-selected',
-    title: 'Register.Sex.Not',
+    title: 'Register.Steps.Sex.Not',
     id: crypto.randomUUID()
   }
 ]
