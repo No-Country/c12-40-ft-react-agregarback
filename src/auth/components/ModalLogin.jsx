@@ -10,19 +10,22 @@ import { useAuth } from '../hook/useAuth'
 import { GoogleSVG } from '../icon/GoogleSVG'
 import { useAppSelector } from '../../common/store/config'
 import { ButtonSubmit } from './ButtonSubmit'
+import { useTranslation } from 'react-i18next'
 
 export const ModalLogin = ({ register, submit, errors, event, isValid }) => {
+  const { t } = useTranslation()
+
   const auth = useAppSelector((state) => state.auth.user)
   const { userRegisterWithGoogle } = useAuth()
 
   return (
     <>
       <CloseAction />
-      <LogoDescription title='Logueate en Lowdy' />
+      <LogoDescription title={t('Login.Title')} />
       <form onSubmit={submit(event)}>
         <TextField
           id='email'
-          label='Correo electrónico'
+          label={t('Login.Email')}
           variant='standard'
           type='email'
           margin='normal'
@@ -31,24 +34,24 @@ export const ModalLogin = ({ register, submit, errors, event, isValid }) => {
           autoComplete='current-password'
           error={!!errors.email}
           {...register('email', { required: true })}
-          helperText={errors.email && 'Este campo es requerido'}
+          helperText={errors.email && t('Error.ErrorReq')}
         />
         <InputPassword register={register} errors={errors} />
-        <ButtonSubmit title='Iniciar sesión' isValid={isValid} status={auth.status} />
+        <ButtonSubmit title={t('Login.Button.SignIn')} isValid={isValid} status={auth.status} />
       </form>
       <Separator />
       <Grid container spacing={2} mt={1}>
         <ButtonFirebase
           click={userRegisterWithGoogle}
-          title='Ingresar con Google'
+          title={t('Login.Button.Google')}
           icon={<GoogleSVG />}
           status={auth.status}
         />
       </Grid>
       <AccountDescription
         path='/auth/register'
-        title='¿No tienes cuenta aún?'
-        linkName='Registrarse'
+        title={t('Login.DoYou')}
+        linkName={t('Login.Button.Register')}
       />
     </>
   )

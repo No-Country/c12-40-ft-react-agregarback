@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { db } from '../../../../service/firebase'
 import { useAppSelector } from '../../../../common/store/config'
 import { FriendRequest } from '../components/modal/FriendRequest'
+import { useTranslation } from 'react-i18next'
 
 const style = {
   position: 'absolute',
@@ -17,6 +18,8 @@ const style = {
 }
 
 export const ModalLayaout = ({ open, close, setNotification, setModal }) => {
+  const { t } = useTranslation()
+
   const user = useAppSelector(state => state.auth.user.user)
   const [requestFriend, setRequestFriend] = useState([])
 
@@ -85,13 +88,13 @@ export const ModalLayaout = ({ open, close, setNotification, setModal }) => {
     >
       <Box sx={style}>
         <Typography id='modal-modal-title' variant='h6' component='h2' mb={4}>
-          Solicitudes de amistad
+          {t('Header.Notif.Title')}
         </Typography>
         <Stack spacing={2}>
           {
             requestFriend?.length
               ? <FriendRequest setModal={setModal} requestFriend={requestFriend} />
-              : <Typography>No hay peticiones de amigos todavia</Typography>
+              : <Typography>{t('Header.Notif.Empty')}</Typography>
           }
         </Stack>
       </Box>
