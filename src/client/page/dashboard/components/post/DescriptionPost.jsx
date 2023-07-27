@@ -25,7 +25,7 @@ export const DescriptionPost = ({ description }) => {
 
   return (
     <Paragraph>
-      {description.length < 100 ? setShowMore(false) : showMore ? description : `${description.substring(0, 100)}... `}
+      {description.length < 100 ? description : showMore ? description : `${description.substring(0, 100)}... `}
       <span onClick={() => setShowMore(!showMore)}>{showMore ? (' ...ver menos') : {t('HomeLog.Post.Modal.ViewMore')}}</span>
     </Paragraph>
   )
