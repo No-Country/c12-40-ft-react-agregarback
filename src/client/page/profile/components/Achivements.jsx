@@ -62,17 +62,17 @@ export const Achivements = ({ info }) => {
   const data = [
     {
       img: usage,
-      label: 'Profile.Archivements.Archivement1',
+      label: 'Profile.Achievements.Achievement1',
       num: info?.days
     },
     {
       img: corrections,
-      label: 'Profile.Archivements.Archivement2',
+      label: 'Profile.Achievements.Achievement2',
       num: info?.corrections
     },
     {
       img: friends,
-      label: 'Profile.Archivements.Archivement3',
+      label: 'Profile.Achievements.Achievement3',
       num: info?.friends
     },
     /* {
@@ -82,7 +82,7 @@ export const Achivements = ({ info }) => {
     }, */
     {
       img: posts,
-      label: 'Profile.Archivements.Archivement4',
+      label: 'Profile.Achievements.Achievement4',
       num: info?.posts
     },
     /* {
@@ -97,19 +97,19 @@ export const Achivements = ({ info }) => {
     }, */
     {
       img: trad,
-      label: 'Profile.Archivements.Archivement5',
+      label: 'Profile.Achievements.Achievement5',
       num: info?.translates
     },
     {
       img: chat,
-      label: 'Profile.Archivements.Archivement6',
+      label: 'Profile.Achievements.Achievement6',
       num: info?.chats_num
     }
   ]
   return (
     <AchivementsStyled data={data}>
       <div className='outer-div'>
-        <h2>{t('Profile.Archivements.Title')}</h2>
+        <h2>{t('Profile.Achievements.Title')}</h2>
         <div className='achivements-list'>
           {
             data.map((datos, i) => {
