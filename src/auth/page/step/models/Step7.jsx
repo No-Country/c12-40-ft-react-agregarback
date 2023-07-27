@@ -2,44 +2,47 @@ import React from 'react'
 import { Title } from '../../../components/Title'
 import { SelectedInterest } from '../../../components/SelectedInterest'
 import ControlPointIcon from '@mui/icons-material/ControlPoint'
+import { useTranslation } from 'react-i18next'
 
 export const Step7 = ({ register, errors, watch, setValue }) => {
+  const { t } = useTranslation()
+
   const levelOfKnowledge = [
     {
       value: 'cantar',
-      title: 'Cantar',
+      title: 'Register.Steps.Step7.Interest.Interest1',
       id: crypto.randomUUID()
     },
     {
       value: 'bailar',
-      title: 'Bailar',
+      title: 'Register.Steps.Step7.Interest.Interest2',
       id: crypto.randomUUID()
     },
     {
       value: 'aprender',
-      title: 'Aprender',
+      title: 'Register.Steps.Step7.Interest.Interest3',
       id: crypto.randomUUID()
     },
     {
       value: 'reir',
-      title: 'Reír',
+      title: 'Register.Steps.Step7.Interest.Interest4',
       id: crypto.randomUUID()
     },
     {
       value: 'compartir',
-      title: 'Compartir',
+      title: 'Register.Steps.Step7.Interest.Interest5',
       id: crypto.randomUUID()
     }
   ]
   return (
     <>
       <Title
-        title='Tus intereses'
-        description='Paso opcional y puedes completarlo más tarde'
+        title={t('Register.Steps.Step7.Title')}
+        description={t('Register.Steps.Step7.Desc')}
       />
       <SelectedInterest
         register={register}
-        label='Interés'
+        label={t('Register.Steps.Step7.Interest.Label')}
         errors={errors}
         icon={<ControlPointIcon />}
         name='selectedInterest'

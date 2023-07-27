@@ -1,21 +1,22 @@
-import React from 'react'
 import { styled } from 'styled-components'
+
 import Navbar from './Navbar'
 import Search from './Search'
-import Chats from './Chats'
+import ChatBar from './ChatBar'
 
-const Aside = styled.div`
-  flex: 1;
-  background-color: #C32B8F;
+const SidebarContainer = styled.div`
+  width: 380px;
+  padding: 1rem;
+  border-right: 1px solid #0000003e;
 `
 
 const Sidebar = () => {
   return (
-    <Aside>
+    <SidebarContainer>
       <Navbar />
       <Search />
-      <Chats />
-    </Aside>
+      <ChatBar />
+    </SidebarContainer>
   )
 }
 

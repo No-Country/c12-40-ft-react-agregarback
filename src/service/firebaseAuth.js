@@ -7,7 +7,7 @@ import {
   updateProfile
 } from 'firebase/auth'
 import { auth, db } from './firebase'
-import { doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore'
+import { doc, getDoc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore'
 
 export const signIn = async (email, password) => {
   try {
@@ -20,15 +20,20 @@ export const signIn = async (email, password) => {
     const docRef = doc(db, 'users', userCredential.user.uid)
     const docSnap = await getDoc(docRef)
 
-    const userFirebase = {
-      name: userCredential.user.displayName,
-      uid: userCredential.user.uid,
-      email: userCredential.user.email,
-      photo: userCredential.user.photoURL,
-      auth: docSnap.data().auth
-    }
+    const userRef = doc(db, 'online', userCredential?.user?.uid)
+    await setDoc(userRef, {
+      online: true
+    })
 
     if (userCredential.user) {
+      const userFirebase = {
+        name: userCredential?.user.displayName,
+        uid: userCredential?.user.uid,
+        email: userCredential?.user.email,
+        photo: userCredential?.user.photoURL,
+        auth: docSnap.data()?.auth
+      }
+
       return { success: true, userFirebase }
     }
   } catch (error) {
@@ -59,8 +64,6 @@ export const signUp = async (email, password, name) => {
     const docRef = doc(db, 'users', user.uid)
     const docSnap = await getDoc(docRef)
 
-    console.log(docSnap.data())
-
     const userFirebase = {
       name: user.displayName,
       uid: user.uid,
@@ -80,7 +83,6 @@ export const onGoogleAuth = async () => {
     const provider = new GoogleAuthProvider()
     const result = await signInWithPopup(auth, provider)
     const user = result.user
-    console.log(user)
 
     const docRef = doc(db, 'users', user.uid)
     const docSnap = await getDoc(docRef)
@@ -89,6 +91,10 @@ export const onGoogleAuth = async () => {
 
     if (docSnap.exists()) {
       authentication = docSnap.data().auth
+      const userRef = doc(db, 'online', user.uid)
+      await setDoc(userRef, {
+        online: true
+      })
     } else {
       authentication = false
     }
@@ -127,6 +133,11 @@ export const onAuthenticatedAutomatic = async () => {
     const docRef = doc(db, 'users', user.uid)
     const docSnap = await getDoc(docRef)
 
+    const userRef = doc(db, 'online', user.uid)
+    await setDoc(userRef, {
+      online: true
+    })
+
     if (user) {
       const userFirebase = {
         name: user.displayName,
@@ -148,6 +159,11 @@ export const onAuthenticatedAutomatic = async () => {
   }
 }
 
-export const onLogout = () => {
+export const onLogout = async (id) => {
+  const userRef = doc(db, 'online', id)
+  await updateDoc(userRef, {
+    online: false
+  })
+
   auth.signOut()
 }

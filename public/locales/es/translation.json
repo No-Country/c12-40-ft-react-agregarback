@@ -5,7 +5,38 @@
 		"AboutUs": "Nosotros",
 		"SignUp": "Regístrate",
 		"LogIn": "Inicia sesión",
-		"LogOut": "Cerrar sesión"
+		"LogOut": "Cerrar sesión",
+		"Notif": {
+			"Title": "Solicitudes de amistad",
+			"Empty": "No hay peticiones de amigos todavia"
+		}
+	},
+	"HomeLog": {
+		"Search": "Buscar...",
+		"Upload": {
+			"Post": "Subir Publicacion",
+			"Pic": "Foto",
+			"Vid": "Video",
+			"Aud": "Audio"
+		},
+		"Post": {
+			"Interest": "Personas que podrian interesarte",
+			"Modal": {
+				"TimeEdit": "hora • Editado",
+				"Friend": "Amigo",
+				"Pending": "Solicitud enviada",
+				"NotFriend": "Agregar Amigo",
+				"ViewMore": "ver mas",
+				"ViewTrans": "Ver traduccion",
+				"Comment": "Comentarios"
+			},
+			"React": {
+				"Listen": "Escuchar",
+				"Like": "Reaccionar",
+				"Comment": "Comentar"
+			},
+			"Send": "Enviar"
+		}
 	},
 	"Home": {
 		"Header": {
@@ -61,21 +92,51 @@
 			}
 		}
 	},
-	"Footer":"Política de privacidad",
+	"Profile": {
+		"Desc": {
+			"Title": "Descripción",
+			"ShowMore": "Ver más",
+			"ShowLess": "Ver menos"
+		},
+		"Interest": "Intereses",
+		"Archivements": {
+			"Title": "Logros",
+			"Archivement1": "días de uso",
+			"Archivement2": "correcciones",
+			"Archivement3": "amigos",
+			"Archivement4": "publicaciones",
+			"Archivement5": "traducciones",
+			"Archivement6": "conversaciones"
+		}
+	},
+	"Chat": {
+		"Friends": "Amigos",
+		"NotFriends": "No tienes chats pendientes",
+		"Search": "Buscar...",
+		"Button": "Chatear",
+		"NotChat": {
+			"Title": "Chatear con amigos",
+			"Subtitle": "Envía y recibe mensajes a través de Howdy.  Respetando a la comunidad."
+		},
+		"Inputs": {
+			"Img": "Imagen seleccionada:",
+			"Placeholder": "Escribe aqui..."
+		}
+	},
+	"Footer": "Política de privacidad",
 	"Login": {
 		"Title": "Logueate con Howdy",
 		"Email": "Correo Electronico",
 		"Password": "Contraseña",
 		"Separator": "o",
 		"Button": {
-			"SignIn": "Inicia Sesión",
+			"SignIn": "Iniciar Sesión",
 			"Google": "Iniciar sesión con Google",
 			"Facebook": "Iniciar sesión con Facebook",
 			"Register": "Registrarse"
 		},
 		"DoYou": "¿No tienes cuenta aún?"
 	},
-	"": "",
 	"Register": {
 		"Title": "Registrate en Howdy",
 		"Name": "Nombre Completo",
@@ -86,9 +147,80 @@
 			"SignIn": "Iniciar sesión"
 		},
 		"DoYou": "¿Ya tienes una cuenta?",
-		"Step1": {
-			"Title": "¿De dónde eres?",
-			"Desc": "País de origen"
+		"Steps": {
+			"Button": {
+				"Send": "Enviar",
+				"Next": "Siguiente"
+			},
+			"Step1": {
+				"Title": "¿De dónde eres?",
+				"Desc": "País de origen",
+				"Label": "País"
+			},
+			"Step2": {
+				"Title": "Idioma nativo",
+				"Desc": "Es el idioma oficial de tu país de nacimiento",
+				"Label": "Idioma nativo"
+			},
+			"Step3": {
+				"Title": "Idioma nativo",
+				"Desc": "Elige el idioma que quieres aprender",
+				"SubTitle": "Idioma seleccionado",
+				"LanLabel": "Idioma",
+				"LvlLabel": "Nivel de conocimiento",
+				"Button": "Agregar otro"
+			},
+			"Step4": {
+				"Title": "¿Cuándo naciste?",
+				"Label": "Día de cumpleaños",
+				"Button": "Agregar otro"
+			},
+			"Step5": {
+				"Title1": "¿Cómo te describes?",
+				"Desc1": "Cuéntale al mundo tu historia",
+				"Label1": "Presentate",
+				"Placeholder1": "Un ejemplo: ¡Hola! Soy Lucía, hablo español y quiero mejorar mi inglés. Conversemos así nos ayudamos a practicar con vocabulario real.",
+				"Title2": "¿Qué pronombre prefieres?",
+				"Desc2": "*Opcional",
+				"Label2": "Pronombre"
+			},
+			"Step6": {
+				"Title": "Tu imagen de perfil",
+				"Desc": "Paso opcional, puedes completarlo más tarde"
+			},
+			"Step7": {
+				"Title": "Tus intereses",
+				"Desc": "Paso opcional y puedes completarlo más tarde",
+				"Interest": {
+					"Label": "Interes",
+					"Interest1": "Cantar",
+					"Interest2": "Bailar",
+					"Interest3": "Aprender",
+					"Interest4": "Reír",
+					"Interest5": "Compartir"
+				}
+			},
+			"Language": {
+				"English": "Ingles",
+				"Spanish": "Español"
+			},
+			"Level": {
+				"Beginner": "Principiante",
+				"Elementary": "Elemental",
+				"Intermediate": "Intermedio",
+				"Advanced": "Avanzado",
+				"Excellent": "Excelente"
+			},
+			"Sex": {
+				"He": "El",
+				"She": "Ella",
+				"They": "Elle",
+				"Not": "Prefiero no contestar"
+			}
 		}
+	},
+	"Error": {
+		"ErrorReq": "Este campo es requerido",
+		"ErrorComp": "Completa este campo"
 	}
 }

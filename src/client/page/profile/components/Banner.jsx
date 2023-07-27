@@ -2,10 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import EditIcon from '@mui/icons-material/Edit'
 import { Divider } from '@mui/material'
+import { useAppSelector } from '../../../../common/store/config'
 
 import { primary, primary120, secondary120 } from '../../../../common/variables'
+import profile from '../../dashboard/img/profile.svg'
 
 import { LangBadge } from './LangBadge'
+import { useTranslation } from 'react-i18next'
 
 const BannerStyled = styled.header`
 
@@ -134,26 +137,30 @@ const BannerStyled = styled.header`
 `
 
 const Banner = ({ data }) => {
+  const { t } = useTranslation()
+
+  const auth = useAppSelector((state) => state.auth.user)
+
   return (
     <BannerStyled>
 
       <div className='person'>
 
         <div className='person-img'>
-          <img src={data?.img} alt={data?.name} />
+          <img src={auth.user.photo ? auth.user.photo : profile} alt={data?.name} />
         </div>
         <div className='person-info'>
-          {data?.name}
+          {auth.user.name ? auth.user.name : 'John Doe'}
           <div className='languages'>
-            <LangBadge label={data?.native.lang} variante='native' avatar={data?.native.img} />
+            <LangBadge label={t(data?.selectorLan.title)} variante='native' avatar={data?.selectorLan.photo} />
             <Divider orientation='vertical' variant='middle' className='vertical' />
-            {
-              data?.learning
-                ? data?.learning.map((lang, index) => {
-                  return <LangBadge key={index} avatar={lang.img} label={data && lang.lang} variante='foraign' />
+            {/* {
+              data?.selectorLanguage
+                ? data?.selectorLanguage.map((lang, index) => {
+                  return <LangBadge key={index} label={data && lang.title} variante='foraign' />
                 })
                 : '...'
-            }
+            } */}
           </div>
         </div>
       </div>

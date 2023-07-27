@@ -1,5 +1,6 @@
 import { Autocomplete, Box, FormControl, FormHelperText, TextField } from '@mui/material'
 import React, { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export const AutoCompleteInput = ({
   label,
@@ -12,6 +13,8 @@ export const AutoCompleteInput = ({
   setValue,
   watch
 }) => {
+  const { t } = useTranslation()
+
   const [adorn, setAdorn] = useState(false)
   const [country, setCountry] = useState(null)
 
@@ -65,7 +68,7 @@ export const AutoCompleteInput = ({
         )}
       />
       {errors[name] && (
-        <FormHelperText error>Este campo es requerido</FormHelperText>
+        <FormHelperText error>{t('Error.ErrorReq')}</FormHelperText>
       )}
     </FormControl>
   )
