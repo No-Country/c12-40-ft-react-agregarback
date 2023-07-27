@@ -72,11 +72,7 @@ export const HeaderPost = ({ name, photo, idUser }) => {
             <div className='flags'>
               <LangBadgePost img={data?.selectorLan.photo} />
               <Divider orientation='vertical' variant='middle' className='divider-flags' />
-              {/* {
-                data?.selectorLanguage.map((lang, i) => {
-                  return <LangBadgePost img={lang?.photo} variant='learn' />
-                })
-              } Esto funcionará cuando selectorLanguage sea un array */}
+              <LangBadgePost img={data?.selectorLanguage.photo} variant='learn' />
             </div>
             <h3 className='post-info'>1 hora • Editado</h3>
             {/* {idUser !== currentUserUid && (
