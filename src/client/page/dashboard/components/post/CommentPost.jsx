@@ -8,6 +8,8 @@ import likes from '../../img/likes-post.svg'
 import { styled } from 'styled-components'
 import { ReactionPost } from './ReactionPost'
 import { useTranslation } from 'react-i18next'
+import { collection, onSnapshot, orderBy, query, where } from 'firebase/firestore'
+import { db } from '../../../../../service/firebase'
 
 const GridStyled = styled(Grid)`
 
@@ -53,8 +55,23 @@ export const CommentPost = ({ idPost }) => {
   }
 
   useEffect(() => {
-    setComments(comments)
-  }, [comments])
+    const q = query(
+      collection(db, 'comments'),
+      where('idPost', '==', idPost),
+      orderBy('createdAt', 'desc')
+    )
+
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const data = []
+      querySnapshot.forEach((doc) => {
+        data.push({ id: doc.id, ...doc.data() })
+      })
+
+      setComments(data)
+    })
+
+    return () => unsubscribe()
+  }, [])
 
   return (
     <GridStyled container mt={1} sx={{ alignItems: 'center' }}>
@@ -77,7 +94,7 @@ export const CommentPost = ({ idPost }) => {
       {
         comment && (
           <>
-            <CommentRecentUser comments={comments} setComments={setComments} idPost={idPost} />
+            <CommentRecentUser comments={comments} />
           </>
         )
       }
