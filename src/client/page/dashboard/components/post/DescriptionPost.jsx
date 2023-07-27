@@ -9,10 +9,12 @@ const Paragraph = styled.p`
     flex-direction: column;
     width: 100%;
 
-    .btn{
-      display: inline-block;
+    span{
+      display: inline;
       align-self: flex-end;
       cursor: pointer;
+      color: #C32B8F;
+      margin: 0.5rem 0;
     }
 `
 
@@ -22,7 +24,7 @@ export const DescriptionPost = ({ description }) => {
   return (
     <Paragraph>
       {description.length < 100 ? setShowMore(false) : showMore ? description : `${description.substring(0, 100)}... `}
-      <span className='btn' onClick={() => setShowMore(!showMore)}>{showMore ? ' ...ver menos' : ' ...ver más'}</span>
+      <span onClick={() => setShowMore(!showMore)}>{showMore ? (' ...ver menos') : ' ...ver más'}</span>
     </Paragraph>
   )
 }
