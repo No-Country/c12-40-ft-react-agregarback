@@ -136,6 +136,20 @@
 				"LvlLabel": "Nivel de conocimiento",
 				"Button": "Agregar otro"
 			},
+			"Step4": {
+				"Title": "¿Cuándo naciste?",
+				"Label": "Día de cumpleaños",
+				"Button": "Agregar otro"
+			},
+			"Step5": {
+				"Title1": "¿Cómo te describes?",
+				"Desc1": "Cuéntale al mundo tu historia",
+				"Label1": "Presentate",
+				"Placeholder1": "Un ejemplo: ¡Hola! Soy Lucía, hablo español y quiero mejorar mi inglés. Conversemos así nos ayudamos a practicar con vocabulario real.",
+				"Title2": "¿Qué pronombre prefieres?",
+				"Desc2": "*Opcional",
+				"Label2": "Pronombre"
+			},
 			"Language": {
 				"English": "Ingles",
 				"Spanish": "Español"
@@ -156,6 +170,7 @@
 		}
 	},
 	"Error": {
-		"ErrorReq": "Este campo es requerido"
+		"ErrorReq": "Este campo es requerido",
+		"ErrorComp": "Completa este campo"
 	}
 }
