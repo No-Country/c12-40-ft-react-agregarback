@@ -42,7 +42,7 @@ export const Page = ({ data }) => {
         <h2>{t('Profile.Desc.Title')}</h2>
         <p>
           {showMore ? data?.selectedDescription : `${data?.selectedDescription.substring(0, 120)}... `}
-          <span className='btn' onClick={() => setShowMore(!showMore)}>{showMore ? t('Profile.ShowLess') : t('Profile.ShowMore')}</span>
+          <span className='btn' onClick={() => setShowMore(!showMore)}>{showMore ? t('Profile.Desc.ShowLess') : t('Profile.Desc.ShowMore')}</span>
         </p>
       </div>
     </DesciptionStyled>
