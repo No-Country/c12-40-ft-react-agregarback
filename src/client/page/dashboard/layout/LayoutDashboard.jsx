@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 /* eslint-disable react/jsx-indent */
 import { Link, Outlet } from 'react-router-dom'
@@ -325,8 +325,16 @@ export const LayoutDashboard = () => {
 
   // i18next function to translate
   const { i18n } = useTranslation()
+  const [selectedLanguage, setSelectedLanguage] = useState('')
+
+  useEffect(() => {
+    // Obtiene el idioma actualmente seleccionado de i18next y actualiza el estado.
+    setSelectedLanguage(i18n.language)
+  }, [i18n.language])
+
   const handleLanguageSelect = (e) => {
     const selectedLanguage = e.target.value
+    setSelectedLanguage(selectedLanguage)
     i18n.changeLanguage(selectedLanguage)
   }
   const { t } = useTranslation()
@@ -358,7 +366,7 @@ export const LayoutDashboard = () => {
                       </Link>
                     )
                   })}
-                  <select label='lang' onChange={handleLanguageSelect}>
+                  <select label='lang' value={selectedLanguage} onChange={handleLanguageSelect}>
                     <option value='es'>ES</option>
                     <option value='en'>EN</option>
                     <option value='pr'>PR</option>
