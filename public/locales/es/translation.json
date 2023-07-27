@@ -113,6 +113,10 @@
 		"NotChat": {
 			"Title": "Chatear con amigos",
 			"Subtitle": "Envía y recibe mensajes a través de Howdy.  Respetando a la comunidad."
+		},
+		"Inputs": {
+			"Img": "Imagen seleccionada:",
+			"Placeholder": "Escribe un mensaje..."
 		}
 	},
 	"Footer": "Política de privacidad",
