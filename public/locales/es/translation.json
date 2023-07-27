@@ -150,6 +150,22 @@
 				"Desc2": "*Opcional",
 				"Label2": "Pronombre"
 			},
+			"Step6": {
+				"Title": "Tu imagen de perfil",
+				"Desc": "Paso opcional, puedes completarlo más tarde"	
+			},
+			"Step7": {
+				"Title": "Tus intereses",
+				"Desc": "Paso opcional y puedes completarlo más tarde",
+				"Interest": {
+					"Label": "Interes",
+					"Interest1": "Cantar",
+					"Interest2": "Bailar",
+					"Interest3": "Aprender",
+					"Interest4": "Reír",
+					"Interest5": "Compartir"
+				}
+			},
 			"Language": {
 				"English": "Ingles",
 				"Spanish": "Español"
