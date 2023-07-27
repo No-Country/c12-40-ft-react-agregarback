@@ -6,7 +6,7 @@ import { TitleSeparator } from './components/TitleSeparator'
 import { Post } from './models/Post'
 import { PublicComment } from './models/PublicComment'
 import { ModalPost } from './components/ModalPost'
-import { collection, doc, getDoc, onSnapshot, query, where } from 'firebase/firestore'
+import { collection, doc, getDoc, onSnapshot, or, query, where } from 'firebase/firestore'
 import { db } from '../../../service/firebase'
 import { useAppSelector } from '../../../common/store/config'
 
@@ -31,7 +31,7 @@ export const Page = () => {
 
         const q = query(
           collection(db, 'comment'),
-          where('lanLearning', '==', lan.learning)
+          or(where('lanNative', '==', lan.learning), where('lanLearning', '==', lan.learning))
         )
         onSnapshot(q, (querySnapshot) => {
           const comments = []
