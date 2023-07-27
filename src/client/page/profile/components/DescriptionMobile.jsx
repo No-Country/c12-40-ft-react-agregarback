@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 const DesciptionStyled = styled.section`
@@ -31,15 +32,17 @@ const DesciptionStyled = styled.section`
 `
 
 export const Page = ({ data }) => {
+  const { t } = useTranslation()
+
   const [showMore, setShowMore] = useState(false)
 
   return (
     <DesciptionStyled>
       <div>
-        <h2>Descripción</h2>
+        <h2>{t('Profile.Desc.Title')}</h2>
         <p>
           {showMore ? data?.selectedDescription : `${data?.selectedDescription.substring(0, 120)}... `}
-          <span className='btn' onClick={() => setShowMore(!showMore)}>{showMore ? 'Ver menos' : 'Ver más'}</span>
+          <span className='btn' onClick={() => setShowMore(!showMore)}>{showMore ? t('Profile.ShowLess') : t('Profile.ShowMore')}</span>
         </p>
       </div>
     </DesciptionStyled>

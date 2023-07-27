@@ -89,7 +89,12 @@
 		}
 	},
 	"Profile": {
-		"DescTitle": "Descripción"
+		"Desc": {
+			"Title": "Descripción",
+			"ShowMore": "Ver más",
+			"ShowLess": "Ver menos"
+		},
+		"Interest": ""
 	},
 	"Footer": "Política de privacidad",
 	"Login": {
@@ -154,7 +159,7 @@
 			},
 			"Step6": {
 				"Title": "Tu imagen de perfil",
-				"Desc": "Paso opcional, puedes completarlo más tarde"	
+				"Desc": "Paso opcional, puedes completarlo más tarde"
 			},
 			"Step7": {
 				"Title": "Tus intereses",

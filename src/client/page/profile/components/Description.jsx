@@ -29,7 +29,7 @@ export const Page = ({ data }) => {
   return (
     <DesciptionStyled>
       <div>
-        <h2>{t('Profile.DescTitle')}</h2>
+        <h2>{t('Profile.Desc.Title')}</h2>
         <p>
           {data?.selectedDescription}
         </p>
