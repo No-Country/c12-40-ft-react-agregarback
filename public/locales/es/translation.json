@@ -108,7 +108,8 @@
 	"Chat": {
 		"Friends": "Amigos",
 		"NotFriends": "No tienes chats pendientes",
-		"Search": "Buscar..."
+		"Search": "Buscar...",
+		"Button": "Chatear"
 	},
 	"Footer": "Política de privacidad",
 	"Login": {

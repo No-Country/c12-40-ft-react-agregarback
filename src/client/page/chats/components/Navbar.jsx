@@ -150,7 +150,7 @@ const Navbar = () => {
                 <Avatar src={f.photo} alt={f.name} />
                 <Typography p={2}>{f.name}</Typography>
               </Box>
-              <Button onClick={() => handleChat(f, user)} color='secondary'>Chatear</Button>
+              <Button onClick={() => handleChat(f, user)} color='secondary'>{t('Chat.Button')}</Button>
             </Box>
           ))}
         </Box>
