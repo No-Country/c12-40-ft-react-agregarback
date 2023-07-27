@@ -132,7 +132,7 @@ const Inputs = ({ roomId }) => {
           type='text'
           name='message'
           {...register('message')}
-          placeholder='Escribe aqui...'
+          placeholder={t('Chat.Inputs.Placeholder')}
         />
         <Box sx={{ display: 'flex' }}>
           <input

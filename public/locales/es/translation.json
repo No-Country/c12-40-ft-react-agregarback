@@ -5,7 +5,11 @@
 		"AboutUs": "Nosotros",
 		"SignUp": "Regístrate",
 		"LogIn": "Inicia sesión",
-		"LogOut": "Cerrar sesión"
+		"LogOut": "Cerrar sesión",
+		"Notif": {
+			"Title": "Solicitudes de amistad",
+			"Empty": "No hay peticiones de amigos todavia"
+		}
 	},
 	"HomeLog": {
 		"Search": "Buscar...",
@@ -116,7 +120,7 @@
 		},
 		"Inputs": {
 			"Img": "Imagen seleccionada:",
-			"Placeholder": "Escribe un mensaje..."
+			"Placeholder": "Escribe aqui..."
 		}
 	},
 	"Footer": "Política de privacidad",
