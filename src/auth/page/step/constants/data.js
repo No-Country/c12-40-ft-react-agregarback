@@ -16,27 +16,27 @@ export const nativeLanguage = [
 export const levelOfKnowledge = [
   {
     value: 'principiante',
-    title: 'Principiante',
+    title: 'Register.Steps.Level.Beginner',
     id: crypto.randomUUID()
   },
   {
     value: 'elemental',
-    title: 'Elemental',
+    title: 'Register.Steps.Level.Elementary',
     id: crypto.randomUUID()
   },
   {
     value: 'intermedio',
-    title: 'Intermedio',
+    title: 'Register.Steps.Level.Intermediate',
     id: crypto.randomUUID()
   },
   {
     value: 'avanzado',
-    title: 'Avanzado',
+    title: 'Register.Steps.Level.Advanced',
     id: crypto.randomUUID()
   },
   {
     value: 'excelente',
-    title: 'Excelente',
+    title: 'Register.Steps.Level.Excellent',
     id: crypto.randomUUID()
   }
 ]

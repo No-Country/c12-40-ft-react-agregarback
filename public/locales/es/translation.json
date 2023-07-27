@@ -128,6 +128,14 @@
 				"Desc": "Es el idioma oficial de tu país de nacimiento",
 				"Label": "Idioma nativo"
 			},
+			"Step3": {
+				"Title": "Idioma nativo",
+				"Desc": "Elige el idioma que quieres aprender",
+				"SubTitle": "Idioma seleccionado",
+				"LanLabel": "Idioma",
+				"LvlLabel": "Nivel de conocimiento",
+				"Button": "Agregar otro"
+			},
 			"Language": {
 				"English": "Ingles",
 				"Spanish": "Español"
@@ -137,7 +145,7 @@
 				"Elementary": "Elemental",
 				"Intermediate": "Intermedio",
 				"Advanced": "Avanzado",
-				"Proficient": "Profesional"
+				"Excellent": "Excelente"
 			},
 			"Sex": {
 				"He": "El",
