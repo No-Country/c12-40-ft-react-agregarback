@@ -10,4 +10,5 @@ export const ContainedPost = styled.div`
   align-items: center;
   gap: 2rem;
   padding: 1rem;
+  margin-bottom: 100px;
 `
