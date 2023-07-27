@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { styled } from 'styled-components'
-import { Avatar, Box, Button, Modal, Typography } from '@mui/material'
+import { Avatar, Box, Button, IconButton, Modal, Typography } from '@mui/material'
+import AddIcon from '@mui/icons-material/Add'
 import {
   and,
   collection,
@@ -16,10 +17,9 @@ import {
 } from 'firebase/firestore'
 import { db } from '../../../../service/firebase'
 import {
-  useAppDispatch,
   useAppSelector
 } from '../../../../common/store/config'
-import { addFriend } from '../../../store/slice/sliceFriend'
+import { useTranslation } from 'react-i18next'
 
 const NavbarContainer = styled.div`
   display: flex;
@@ -40,12 +40,11 @@ const style = {
 }
 
 const Navbar = () => {
+  const { t } = useTranslation()
   const [modal, setModal] = useState(false)
+  const [friends, setFriends] = useState([])
 
   const user = useAppSelector((state) => state.auth.user.user)
-  const friend = useAppSelector((state) => state.client.friend)
-
-  const dispatch = useAppDispatch()
 
   const handleClick = async () => {
     try {
@@ -53,10 +52,13 @@ const Navbar = () => {
         collection(db, 'friendRequests'),
         and(
           where('status', '==', 'accepted'),
+          where('chat', '==', false),
           or(where('sender', '==', user.uid), where('receiver', '==', user.uid))
         )
       )
       const querySnapshot = await getDocs(q)
+
+      const tempFriends = {}
 
       for (const userUid of querySnapshot.docs) {
         const senderUid = userUid.data().sender
@@ -67,11 +69,13 @@ const Navbar = () => {
         const docSnap = await getDoc(docRef)
 
         if (docSnap.exists()) {
-          dispatch(addFriend({ id: docSnap.id, ...docSnap.data() }))
+          tempFriends[docSnap.id] = { ...docSnap.data(), id: docSnap.id }
         } else {
-          console.log('No such document!')
+          console.log('No such document for user:', friendUid)
         }
       }
+
+      setFriends(Object.values(tempFriends))
     } catch (error) {
       console.error('Error al consultar las solicitudes de amistad:', error)
       return []
@@ -102,6 +106,9 @@ const Navbar = () => {
           },
           [combineID + '.date']: serverTimestamp()
         })
+        await updateDoc(doc(db, 'friendRequests', combineID), {
+          chat: true
+        })
       }
       setModal(false)
     } catch (error) {
@@ -111,11 +118,15 @@ const Navbar = () => {
 
   return (
     <NavbarContainer>
-      <span>Chats</span>
+      <Typography variant='h5' component='h2'>Chats</Typography>
       <div className='user'>
-        <Button variant='contained' onClick={handleClick}>
-          +
-        </Button>
+        <IconButton
+          size='small'
+          onClick={handleClick}
+          sx={{ backgroundColor: '#C32B8F', ':hover': { backgroundColor: '#e40c98df' } }}
+        >
+          <AddIcon fontSize='small' sx={{ color: '#fcfcfc' }} />
+        </IconButton>
       </div>
       <Modal
         open={modal}
@@ -124,8 +135,9 @@ const Navbar = () => {
         aria-describedby='modal-modal-description'
       >
         <Box sx={style}>
-          <Typography variant='h4' mb={2}>Amigos</Typography>
-          {friend?.friend?.map((f) => (
+          <Typography variant='h4' mb={2}>{t('Chat.Friends')}</Typography>
+          {friends?.length === 0 && <Typography>{t('Chat.NotFriends')}</Typography>}
+          {friends?.map((f) => (
             <Box
               key={f.email}
               sx={{
@@ -143,7 +155,7 @@ const Navbar = () => {
                 <Avatar src={f.photo} alt={f.name} />
                 <Typography p={2}>{f.name}</Typography>
               </Box>
-              <Button onClick={() => handleChat(f, user)} color='secondary'>Chatear</Button>
+              <Button onClick={() => handleChat(f, user)} color='secondary'>{t('Chat.Button')}</Button>
             </Box>
           ))}
         </Box>

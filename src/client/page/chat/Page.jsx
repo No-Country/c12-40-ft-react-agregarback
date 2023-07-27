@@ -12,10 +12,12 @@ import { doc, onSnapshot } from 'firebase/firestore'
 import { db } from '../../../service/firebase'
 import { useAppSelector } from '../../../common/store/config'
 import { Avatar } from '@mui/material'
+import { Spinner } from './style/Spinner.style'
 
 const ChatContainer = styled.div`
     flex: 3;
     border-radius: 0 8px 8px 0;
+    overflow: hidden;
 
     .navbar {
         height: 64px;
@@ -80,7 +82,14 @@ const ChatContainer = styled.div`
 export const Page = () => {
   const { chat } = useParams()
   const [messages, setMessages] = useState([])
+  const [writing, setWriting] = useState({
+    user: '',
+    writing: false,
+    uid: '',
+    room: ''
+  })
   const userFriend = useAppSelector(state => state.client.chat.friend)
+  const owner = useAppSelector(state => state.auth.user.user)
 
   useEffect(() => {
     const unsub = onSnapshot(doc(db, 'chats', chat), (doc) => {
@@ -98,12 +107,23 @@ export const Page = () => {
         <div className='user'>
           <div className='userImg'>
             <Avatar src={userFriend.photo} alt={userFriend.name} />
-            <span className='greenNoti' />
-            <span className='whiteNoti' />
           </div>
 
           <div className='userName'>
             <span>{userFriend.name}</span>
+            {
+              owner.uid !== writing.uid &&
+              writing.uid !== '' &&
+              writing.room === chat
+                ? (
+                  <Spinner class='spinner'>
+                    <div class='bounce1' />
+                    <div class='bounce2' />
+                    <div class='bounce3' />
+                  </Spinner>
+                  )
+                : ''
+            }
           </div>
         </div>
         <div className='navMenu'>
@@ -111,7 +131,13 @@ export const Page = () => {
         </div>
 
       </div>
-      <Messages messages={messages} />
+      <Messages
+        messages={messages}
+        roomId={chat}
+        setWriting={setWriting}
+        writing={writing}
+      />
+
       <Inputs roomId={chat} />
     </ChatContainer>
   )

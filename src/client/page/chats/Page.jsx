@@ -6,7 +6,7 @@ import { ContainerGeneral } from '../../../common/style/container/ContainerGener
 import { Outlet, useParams } from 'react-router-dom'
 import { styled } from 'styled-components'
 import { neutral } from '../../../common/variables'
-import { Typography } from '@mui/material'
+import { NotChatYet } from './components/NotChatYet'
 
 const ChatsContainer = styled.div`
   display: flex;
@@ -20,7 +20,7 @@ export const Page = () => {
     <ContainerGeneral>
       <ChatsContainer>
         <Sidebar />
-        {chat ? <Outlet /> : <Typography variant='h3' p={2}>Chatear con amigos</Typography>}
+        {chat ? <Outlet /> : <NotChatYet />}
       </ChatsContainer>
     </ContainerGeneral>
   )

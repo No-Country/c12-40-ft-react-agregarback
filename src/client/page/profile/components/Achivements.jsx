@@ -11,6 +11,7 @@ import posts from '../img/posts.svg'
 import recommend from '../img/recommend.svg' */
 import trad from '../img/trad.svg'
 import usage from '../img/usage.svg'
+import { useTranslation } from 'react-i18next'
 
 const AchivementsStyled = styled.section`
 
@@ -58,21 +59,23 @@ const AchivementsStyled = styled.section`
 `
 
 export const Achivements = ({ info }) => {
+  const { t } = useTranslation()
+
   console.log(info)
   const data = [
     {
       img: usage,
-      label: 'días de uso',
+      label: 'Profile.Archivements.Archivement1',
       num: info?.days
     },
     {
       img: corrections,
-      label: 'correcciones',
+      label: 'Profile.Archivements.Archivement2',
       num: info?.corrections
     },
     {
       img: friends,
-      label: 'amigos',
+      label: 'Profile.Archivements.Archivement3',
       num: info?.friends
     },
     /* {
@@ -82,7 +85,7 @@ export const Achivements = ({ info }) => {
     }, */
     {
       img: posts,
-      label: 'Publicaciones',
+      label: 'Profile.Archivements.Archivement4',
       num: info?.posts
     },
     /* {
@@ -97,23 +100,23 @@ export const Achivements = ({ info }) => {
     }, */
     {
       img: trad,
-      label: 'traducciones',
+      label: 'Profile.Archivements.Archivement5',
       num: info?.translates
     },
     {
       img: chat,
-      label: 'conversaciones',
+      label: 'Profile.Archivements.Archivement6',
       num: info?.chats_num
     }
   ]
   return (
     <AchivementsStyled data={data}>
       <div className='outer-div'>
-        <h2>Logros</h2>
+        <h2>{t('Profile.Archivements.Title')}</h2>
         <div className='achivements-list'>
           {
             data.map((datos, i) => {
-              return <AchivementBadge key={i} label={datos?.label} img={datos?.img} info={info} num={datos?.num} />
+              return <AchivementBadge key={i} label={t(datos?.label)} img={datos?.img} info={info} num={datos?.num} />
             })
           }
         </div>

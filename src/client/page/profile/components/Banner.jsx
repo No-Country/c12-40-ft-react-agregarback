@@ -8,6 +8,7 @@ import { primary, primary120, secondary120 } from '../../../../common/variables'
 import profile from '../../dashboard/img/profile.svg'
 
 import { LangBadge } from './LangBadge'
+import { useTranslation } from 'react-i18next'
 
 const BannerStyled = styled.header`
 
@@ -136,6 +137,8 @@ const BannerStyled = styled.header`
 `
 
 const Banner = ({ data }) => {
+  const { t } = useTranslation()
+
   const auth = useAppSelector((state) => state.auth.user)
   console.log(data)
 
@@ -150,7 +153,7 @@ const Banner = ({ data }) => {
         <div className='person-info'>
           {auth.user.name ? auth.user.name : 'John Doe'}
           <div className='languages'>
-            <LangBadge label={data?.selectorLan.title} variante='native' avatar={data?.selectorLan.photo} />
+            <LangBadge label={t(data?.selectorLan.title)} variante='native' avatar={data?.selectorLan.photo} />
             <Divider orientation='vertical' variant='middle' className='vertical' />
             <LangBadge label={data?.selectorLanguage.title} variante='native' avatar={data?.selectorLanguage.photo} />
           </div>

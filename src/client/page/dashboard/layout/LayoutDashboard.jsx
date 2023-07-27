@@ -1,8 +1,9 @@
+import { useEffect, useState } from 'react'
+
 /* eslint-disable react/jsx-indent */
-import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import { styled } from 'styled-components'
-import { Divider, Badge, Avatar, Button } from '@mui/material'
+import { Divider, Badge, Avatar, Button, IconButton } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import chat from '../img/chat-icon.svg'
 import saved from '../img/saved-icon.svg'
@@ -20,6 +21,7 @@ import { useAuth } from '../../../../auth/hook/useAuth'
 import { primary, primary120 } from '../../../../common/variables'
 
 import { useTranslation } from 'react-i18next'
+import { ModalLayaout } from '../models/ModalLayaout'
 
 const Layout = styled.div`
   display: flex;
@@ -318,14 +320,32 @@ const selectedItem = (e) => {
 export const LayoutDashboard = () => {
   const auth = useAppSelector((state) => state.auth.user)
   const { userLogout } = useAuth()
+  const [modal, setModal] = useState(false)
+  const [notification, setNotification] = useState(0)
 
   // i18next function to translate
   const { i18n } = useTranslation()
+  const [selectedLanguage, setSelectedLanguage] = useState('')
+
+  useEffect(() => {
+    // Obtiene el idioma actualmente seleccionado de i18next y actualiza el estado.
+    setSelectedLanguage(i18n.language)
+  }, [i18n.language])
+
   const handleLanguageSelect = (e) => {
     const selectedLanguage = e.target.value
+    setSelectedLanguage(selectedLanguage)
     i18n.changeLanguage(selectedLanguage)
   }
   const { t } = useTranslation()
+
+  const handleCloseModal = () => {
+    setModal(false)
+  }
+
+  const handleClick = () => {
+    userLogout(auth.user.uid)
+  }
 
   return (
     <Layout>
@@ -346,7 +366,7 @@ export const LayoutDashboard = () => {
                       </Link>
                     )
                   })}
-                  <select label='lang' onChange={handleLanguageSelect}>
+                  <select label='lang' value={selectedLanguage} onChange={handleLanguageSelect}>
                     <option value='es'>ES</option>
                     <option value='en'>EN</option>
                     <option value='pr'>PR</option>
@@ -361,14 +381,18 @@ export const LayoutDashboard = () => {
                 <Button
                   variant='contained'
                   color='secondary'
-                  onClick={userLogout}
+                  onClick={handleClick}
                   sx={{ py: 1.5 }}
                 >
                 <LogoutIcon />
                 </Button>
                 <Link to='chats'><img src={chat} className='icon' /></Link>
                 <Link to='saved'><img src={saved} className='icon' /></Link>
-                <img src={notifications} className='icon' />
+                <IconButton onClick={() => setModal(true)}>
+                <Badge badgeContent={notification} color='primary'>
+                 <img src={notifications} className='icon' />
+                </Badge>
+                </IconButton>
                 <Divider
                   orientation='vertical'
                   variant='middle'
@@ -423,9 +447,10 @@ export const LayoutDashboard = () => {
                         <Divider className='divider' role='presentation' variant='fullWidth' />
                       </Link>
                       <Button
+                        type='button'
                         variant='contained'
                         color='secondary'
-                        onClick={userLogout}
+                        onClick={handleClick}
                         sx={{ py: 1.5 }}
                       >
                         <LogoutIcon />
@@ -486,6 +511,7 @@ export const LayoutDashboard = () => {
       <Main>
         <Outlet />
       </Main>
+      <ModalLayaout open={modal} setModal={setModal} close={handleCloseModal} setNotification={setNotification} />
     </Layout>
   )
 }

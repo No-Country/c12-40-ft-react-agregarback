@@ -5,17 +5,20 @@ import { SelectInput } from '../../../components/SelectInput'
 import { levelOfKnowledge, nativeLanguage } from '../constants/data'
 import { Typography } from '@mui/material'
 import { SelectLan } from '../../../components/SelectLan'
+import { useTranslation } from 'react-i18next'
 
 export const SelectNativeLanguage = ({ componentCount, register, errors, watch }) => {
+  const { t } = useTranslation()
+
   const data = watch('selectorLan').value
 
   return (
     <>
       {
-        componentCount && <Typography>Idioma seleccionado</Typography>
+        componentCount && <Typography>{t('Register.Steps.Step3.SubTitle')}</Typography>
       }
       <SelectLan
-        label='Idioma'
+        label={t('Register.Steps.Step3.LanLabel')}
         name='selectorLanguage'
         items={nativeLanguage?.filter(lan => lan.value !== data)}
         register={register}
@@ -25,7 +28,7 @@ export const SelectNativeLanguage = ({ componentCount, register, errors, watch }
       />
 
       <SelectInput
-        label='Nivel de conocimiento'
+        label={t('Register.Steps.Step3.LvlLabel')}
         name='selectorKnowledge'
         items={levelOfKnowledge}
         register={register}

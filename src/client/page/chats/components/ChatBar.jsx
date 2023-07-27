@@ -12,8 +12,24 @@ const UserChatContainer = styled.div`
   gap: 16px;
   padding: 16px 0;
   height: 70vh;
-
+  width: 100%;
+  overflow-x: hidden;
   overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #c2e9fb;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #c70e7a;
+    border-radius: 4px;
+  }
+
+  scrollbar-color: #59a3cc #c2e9fb;
 `
 
 const Chat = () => {
@@ -30,7 +46,7 @@ const Chat = () => {
       }
     }
     user.uid && getChats()
-  }, [user.uid])
+  }, [user.uid, db])
 
   return (
     <UserChatContainer>

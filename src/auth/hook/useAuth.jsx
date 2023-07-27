@@ -16,8 +16,8 @@ export const useAuth = () => {
     dispatch(registerAuthenticationGoogle())
   }
 
-  const userLogout = () => {
-    dispatch(authenticatedLogout())
+  const userLogout = (id) => {
+    dispatch(authenticatedLogout(id))
   }
 
   return {
