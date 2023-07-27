@@ -1,5 +1,5 @@
 import { Box, Grid, Divider } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { CommentUser } from './CommentUser'
 import { CommentRecentUser } from './CommentRecentUser'
 import likes from '../../img/likes-post.svg'
@@ -36,6 +36,7 @@ const GridStyled = styled(Grid)`
 
     color: #737373;
     margin: 1rem 0 0.75rem 0;
+    cursor: pointer;
   }
 `
 
@@ -46,6 +47,10 @@ export const CommentPost = ({ idPost }) => {
   const handleComment = () => {
     setComment(!comment)
   }
+
+  useEffect(() => {
+    setComments(comments)
+  }, [comments])
 
   return (
     <GridStyled container mt={1} sx={{ alignItems: 'center' }}>

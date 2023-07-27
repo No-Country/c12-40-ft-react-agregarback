@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react'
 
 import { doc, getDoc } from 'firebase/firestore'
 import { db } from '../../../../../service/firebase'
+import { Link } from 'react-router-dom'
 
 export const HeaderPost = ({ name, photo, idUser }) => {
   /* const currentUserUid = useAppSelector((state) => state.auth.user.user.uid) */
@@ -66,9 +67,13 @@ export const HeaderPost = ({ name, photo, idUser }) => {
     <Grid container>
       <GridStyled item xs={11}>
         <Box sx={{ display: 'flex', gap: 1 }}>
-          <Avatar src={photo || null} />
+          <Link to={`/client/dashboard/profile/${idUser}`}>
+            <Avatar src={photo || null} />
+          </Link>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
-            <h2 className='profile-name'>{name}</h2>
+            <Link to={`/client/dashboard/profile/${idUser}`}>
+              <h2 className='profile-name'>{name}</h2>
+            </Link>
             <div className='flags'>
               <LangBadgePost img={data?.selectorLan.photo} />
               <Divider orientation='vertical' variant='middle' className='divider-flags' />
