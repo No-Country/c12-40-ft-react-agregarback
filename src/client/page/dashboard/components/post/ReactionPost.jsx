@@ -7,7 +7,7 @@ import CommentOutlinedIcon from '@mui/icons-material/CommentOutlined'
 export const ReactionPost = () => {
   return (
     <Box
-      sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 2 }}
+      sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 2, width: '100%' }}
     >
       <Button
         sx={{

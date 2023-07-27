@@ -4,7 +4,6 @@ import { HeaderPost } from '../components/post/HeaderPost'
 import { DescriptionPost } from '../components/post/DescriptionPost'
 import { ImagePost } from '../components/post/ImagePost'
 import { CommentPost } from '../components/post/CommentPost'
-import { ReactionPost } from '../components/post/ReactionPost'
 import { Divider } from '@mui/material'
 
 const PublicComment = styled.section`
@@ -32,8 +31,7 @@ export const Post = ({ name, description, photo, idUser, idPost }) => {
       </button>
       <ImagePost />
       <CommentPost idPost={idPost} />
-      <Divider sx={{ my: 1 }} />
-      <ReactionPost />
+
     </PublicComment>
   )
 }

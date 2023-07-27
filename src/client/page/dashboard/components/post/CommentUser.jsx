@@ -1,9 +1,16 @@
-import { Button, Grid, TextField } from '@mui/material'
+import { TextField } from '@mui/material'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { db } from '../../../../../service/firebase'
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
 import { useAppSelector } from '../../../../../common/store/config'
+
+import { styled } from 'styled-components'
+const FormStyled = styled.form`
+  .comment-input{
+    border-radius: 100% !important;
+  }
+`
 
 export const CommentUser = ({ idPost, setComment }) => {
   const user = useAppSelector(state => state.auth.user.user)
@@ -30,22 +37,20 @@ export const CommentUser = ({ idPost, setComment }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onHandle)} style={{ width: '100%' }}>
-      <Grid container spacing={2}>
-        <Grid item xs={9}>
-          <TextField
-            fullWidth
-            name='comment'
-            {...register('comment', { required: true })}
-            id='outlined-basic'
-            label='Comment'
-            variant='outlined'
-          />
-        </Grid>
-        <Grid item xs={3}>
-          <Button type='submit' disabled={isValid} variant='contained'>Enviar</Button>
-        </Grid>
-      </Grid>
-    </form>
+    <FormStyled onSubmit={handleSubmit(onHandle)} style={{ width: '100%' }}>
+
+      <TextField
+        fullWidth
+        name='comment'
+        {...register('comment', { required: true })}
+        id='outlined-basic'
+        variant='outlined'
+        multiline
+        placeholder='Añadir un comentario'
+        className='comment-input'
+      />
+      <button type='submit' disabled={isValid} variant='contained'>Enviar</button>
+
+    </FormStyled>
   )
 }

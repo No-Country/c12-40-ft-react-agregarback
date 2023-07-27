@@ -1,10 +1,11 @@
-import { Box, Grid } from '@mui/material'
+import { Box, Grid, Divider } from '@mui/material'
 import React, { useState } from 'react'
 import { CommentUser } from './CommentUser'
 import { CommentRecentUser } from './CommentRecentUser'
 import likes from '../../img/likes-post.svg'
 
 import { styled } from 'styled-components'
+import { ReactionPost } from './ReactionPost'
 
 const GridStyled = styled(Grid)`
 
@@ -42,6 +43,10 @@ export const CommentPost = ({ idPost }) => {
   const [comment, setComment] = useState(false)
   const [comments, setComments] = useState([])
 
+  const handleComment = () => {
+    setComment(!comment)
+  }
+
   return (
     <GridStyled container mt={1} sx={{ alignItems: 'center' }}>
       <div className='likes-comments'>
@@ -52,15 +57,17 @@ export const CommentPost = ({ idPost }) => {
 
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'end', gap: 0.5 }}>
 
-          <p className='post-comment'>{comments.length} Comentarios</p>
+          <p className='post-comment' onClick={handleComment}>{comments.length} Comentarios</p>
 
         </Box>
       </div>
+      <Divider style={{ width: '100%', margin: '0.5rem 0 1rem 0' }} />
+      <ReactionPost />
+      <CommentUser idPost={idPost} setComment={setComment} />
 
       {
         comment && (
           <>
-            <CommentUser idPost={idPost} setComment={setComment} />
             <CommentRecentUser comments={comments} setComments={setComments} idPost={idPost} />
           </>
         )
