@@ -1,4 +1,4 @@
-import { InputBase, Paper, TextField } from '@mui/material'
+import { InputBase, Paper } from '@mui/material'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { db } from '../../../../../service/firebase'
@@ -55,7 +55,7 @@ export const CommentUser = ({ idPost, setComment }) => {
   }
 
   return (
-    <FormStyled component='form' onSubmit={handleSubmit(onHandle)} style={{ display: 'flex', alignItems: 'center', width: '100%', borderRadius: '28px', padding: '0.25rem 1rem' }} elevation={0} variant='outlined'>
+    <FormStyled component='form' onSubmit={handleSubmit(onHandle)} style={{ display: 'flex', alignItems: 'center', width: '100%', borderRadius: '28px', padding: '0.25rem 1rem', gap: '0.5rem' }} elevation={0} variant='outlined'>
 
       <InputBase
         fullWidth
