@@ -83,6 +83,9 @@ export const Page = () => {
         })
 
         await setDoc(doc(db, 'userChats', user.user.uid), {})
+        await setDoc(doc(db, 'online', user.user.uid), {
+          online: true
+        })
 
         dispatch(updatePhoto(downloadURL))
         dispatch(validationAuthenticated())
