@@ -4,6 +4,7 @@ import { styled } from 'styled-components'
 
 import SearchIcon from '@mui/icons-material/Search'
 import { primary10, primary80 } from '../../../../common/variables'
+import { useTranslation } from 'react-i18next'
 
 const SearchContainer = styled.div`
   
@@ -32,12 +33,14 @@ const SearchContainer = styled.div`
 `
 
 const Search = () => {
+  const { t } = useTranslation()
+
   return (
     <SearchContainer>
       <div className='searchForm'>
         <input
           type='text'
-          placeholder='Search'
+          placeholder={t('Chat.Search')}
         />
         <span><SearchIcon /></span>
       </div>

@@ -105,6 +105,11 @@
 			"Archivement6": "conversaciones"
 		}
 	},
+	"Chat": {
+		"Friends": "Amigos",
+		"NotFriends": "No tienes chats pendientes",
+		"Search": "Buscar..."
+	},
 	"Footer": "Política de privacidad",
 	"Login": {
 		"Title": "Logueate con Howdy",
