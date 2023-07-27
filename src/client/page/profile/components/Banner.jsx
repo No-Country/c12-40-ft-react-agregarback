@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import EditIcon from '@mui/icons-material/Edit'
 import { Divider } from '@mui/material'
@@ -9,6 +9,9 @@ import profile from '../../dashboard/img/profile.svg'
 
 import { LangBadge } from './LangBadge'
 import { useTranslation } from 'react-i18next'
+
+import { db } from '../../../../service/firebase'
+import { getDoc, doc } from 'firebase/firestore'
 
 const BannerStyled = styled.header`
 
@@ -136,11 +139,29 @@ const BannerStyled = styled.header`
   }
 `
 
-const Banner = ({ data }) => {
+const Banner = ({ data, id }) => {
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    const handleGetData = async () => {
+      const docRef = doc(db, 'users', id)
+      const docSnap = await getDoc(docRef)
+      return docSnap.data()
+    }
+
+    const fetchData = async () => {
+      const user = await handleGetData()
+      setUser(user)
+    }
+
+    fetchData()
+  }, [])
+
+  console.log(user)
+
   const { t } = useTranslation()
 
   const auth = useAppSelector((state) => state.auth.user)
-  console.log(data)
 
   return (
     <BannerStyled>
@@ -148,10 +169,10 @@ const Banner = ({ data }) => {
       <div className='person'>
 
         <div className='person-img'>
-          <img src={auth.user.photo ? auth.user.photo : profile} alt={data?.name} />
+          <img src={user?.photo ? user?.photo : profile} alt={user?.name} />
         </div>
         <div className='person-info'>
-          {auth.user.name ? auth.user.name : 'John Doe'}
+          {user?.name ? user?.name : 'John Doe'}
           <div className='languages'>
             <LangBadge label={t(data?.selectorLan.title)} variante='native' avatar={data?.selectorLan.photo} />
             <Divider orientation='vertical' variant='middle' className='vertical' />

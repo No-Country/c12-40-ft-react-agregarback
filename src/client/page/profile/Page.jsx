@@ -69,7 +69,7 @@ export const Page = () => {
       {
       desktop === true
         ? (<ContainerStyled>
-          <Banner data={data} className='banner' />
+          <Banner data={data} id={id} className='banner' />
 
           <DescriptionMobile data={data} />
           <Interests data={data} />

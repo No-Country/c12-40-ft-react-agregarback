@@ -61,7 +61,6 @@ const AchivementsStyled = styled.section`
 export const Achivements = ({ info }) => {
   const { t } = useTranslation()
 
-  console.log(info)
   const data = [
     {
       img: usage,
