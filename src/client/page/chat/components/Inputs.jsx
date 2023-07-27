@@ -13,7 +13,6 @@ import { db } from '../../../../service/firebase'
 import { AudioRecorder } from './AudioRecorder'
 import { useTranslation } from 'react-i18next'
 
-
 const InputsSect = styled.div`
   height: 50px;
   background-color: white;
@@ -161,12 +160,11 @@ const Inputs = ({ roomId }) => {
               maxLength={200}
               type='text'
               onChange={handleInputChange}
-              placeholder='Escribe aqui...'
+              placeholder={t('Chat.Inputs.Placeholder')}
               value={value}
             />
           )}
           name='message'
-          placeholder={t('Chat.Inputs.Placeholder')}
         />
         <AudioRecorder roomId={roomId} uid={uid} uidFriend={uidFriend} />
 
