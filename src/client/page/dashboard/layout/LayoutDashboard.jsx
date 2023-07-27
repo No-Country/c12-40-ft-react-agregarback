@@ -1,13 +1,13 @@
+import { useEffect, useState } from 'react'
+
 /* eslint-disable react/jsx-indent */
-import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import { styled } from 'styled-components'
-import { Divider, Badge, Avatar, Button } from '@mui/material'
+import { Divider, Badge, Avatar, Button, IconButton } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import chat from '../img/chat-icon.svg'
 import saved from '../img/saved-icon.svg'
 import notifications from '../img/notifications-icon.svg'
-import profile from '../img/profile-icon.svg'
 import arrow from '../img/arrow.svg'
 import profileMobile from '../img/profile.svg'
 import home from '../img/home.svg'
@@ -18,9 +18,10 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import { useAppSelector } from '../../../../common/store/config'
 import { useAuth } from '../../../../auth/hook/useAuth'
 
-import { primary } from '../../../../common/variables'
+import { primary, primary120 } from '../../../../common/variables'
 
 import { useTranslation } from 'react-i18next'
+import { ModalLayaout } from '../models/ModalLayaout'
 
 const Layout = styled.div`
   display: flex;
@@ -49,15 +50,16 @@ const Layout = styled.div`
     top: 0;
     right: 0;
 
-    z-index: -1;
+    z-index: 0;
 
-    min-width: 100vw;
+    min-width: 50vw;
     height: 100vh;
 
     padding: 8rem 3rem;
 
     opacity: 0;
-    transition: all ease-in-out 0.2s;
+    transition: all ease-in-out 1s;
+    display: none;
 
     background-color: #ffffff;
     ul {
@@ -92,11 +94,12 @@ const Layout = styled.div`
 
   .active {
     opacity: 1 !important;
-    transition: all ease-in-out 0.2s;
     z-index: 2;
-
+    display: block;
+    
     position: fixed;
     right: 0;
+    transition: all ease-in-out 1s;
   }
 
   .mobile-nav {
@@ -104,7 +107,7 @@ const Layout = styled.div`
     width: 100%;
     bottom: 0;
 
-    z-index: 3;
+    z-index: 100;
 
     background-color: white;
 
@@ -115,7 +118,23 @@ const Layout = styled.div`
 
       padding: 1rem 2rem;
       gap: 3rem;
+      
     }
+  }
+
+  .icon-mobile{
+    width: 25px;
+  }
+
+  .active-item{
+    filter: invert(100%);
+  }
+  
+  .active-bg{
+    background-color: ${primary120};
+    border-radius: 28px;
+    padding: 0.4rem 1.5rem;
+    text-align: center;
   }
 
   .btn {
@@ -143,12 +162,14 @@ const Layout = styled.div`
     top: 0;
     width: 100%;
 
-    z-index: 999;
+    z-index: 99;
   }
 
   .divider{
     background-color: #ff00a8;
   }
+
+
 
   @media screen and (min-width: 768px) {
     .tablet-desktop {
@@ -228,7 +249,14 @@ const Header = styled.header`
 
     .icon {
       object-fit: contain;
+      width: 30px;
       height: 24px;
+      transition: all ease-in-out 0.1s;
+
+      &:hover{
+        filter: brightness(0) saturate(100%) invert(62%) sepia(87%) saturate(326%) hue-rotate(36deg) brightness(101%) contrast(95%);
+        transition: all ease-in-out 0.1s;
+      }
     }
   }
 
@@ -247,7 +275,7 @@ const Main = styled.main`
   width: 100%;
 `
 
-const data = [
+const datos = [
   {
     name: 'Header.Blog',
     path: 'blog'
@@ -266,14 +294,6 @@ const dataMobile = [
   {
     name: 'Header.AboutUs',
     path: 'nosotros '
-  },
-  {
-    name: 'Header.SignUp',
-    path: 'register'
-  },
-  {
-    name: 'Header.LogIn',
-    path: 'login'
   }
 ]
 
@@ -282,36 +302,71 @@ const menuAnimation = () => {
   menu.classList.toggle('active')
 }
 
+const selectedItem = (e) => {
+  const icon = e.target
+  const li = icon.closest('li')
+
+  const imgs = document.querySelectorAll('.mobile-nav-ul .icon-mobile')
+  const list = document.querySelectorAll('.mobile-nav-ul li')
+
+  for (let index = 0; index < imgs.length; index++) {
+    imgs[index].classList.remove('active-item')
+    list[index].classList.remove('active-bg')
+  }
+  icon.classList.add('active-item')
+  li.classList.add('active-bg')
+}
+
 export const LayoutDashboard = () => {
   const auth = useAppSelector((state) => state.auth.user)
   const { userLogout } = useAuth()
+  const [modal, setModal] = useState(false)
+  const [notification, setNotification] = useState(0)
 
   // i18next function to translate
   const { i18n } = useTranslation()
+  const [selectedLanguage, setSelectedLanguage] = useState('')
+
+  useEffect(() => {
+    // Obtiene el idioma actualmente seleccionado de i18next y actualiza el estado.
+    setSelectedLanguage(i18n.language)
+  }, [i18n.language])
+
   const handleLanguageSelect = (e) => {
     const selectedLanguage = e.target.value
+    setSelectedLanguage(selectedLanguage)
     i18n.changeLanguage(selectedLanguage)
   }
   const { t } = useTranslation()
+
+  const handleCloseModal = () => {
+    setModal(false)
+  }
+
+  const handleClick = () => {
+    userLogout(auth.user.uid)
+  }
 
   return (
     <Layout>
         <div className='tablet-desktop'>
           <Header>
             <div className='logo'>
-              <img alt='Howdy' src='/howdy-logo.svg' />
-              <h2>Howdy</h2>
+              <Button to='/client/dashboard' component={Link}>
+                <img alt='Howdy' src='/howdy-logo.svg' />
+                <h2 style={{ color: 'black', marginLeft: 3 }}>Howdy</h2>
+              </Button>
 
               <nav>
                 <ul>
-                  {data.map((data, index) => {
+                  {datos.map((data, index) => {
                     return (
                       <Link key={index} to={data.path}>
                         <li>{t(data.name)}</li>
                       </Link>
                     )
                   })}
-                  <select label='lang' onChange={handleLanguageSelect}>
+                  <select label='lang' value={selectedLanguage} onChange={handleLanguageSelect}>
                     <option value='es'>ES</option>
                     <option value='en'>EN</option>
                     <option value='pr'>PR</option>
@@ -326,22 +381,26 @@ export const LayoutDashboard = () => {
                 <Button
                   variant='contained'
                   color='secondary'
-                  onClick={userLogout}
+                  onClick={handleClick}
                   sx={{ py: 1.5 }}
                 >
-                    <LogoutIcon />
+                <LogoutIcon />
                 </Button>
-                <img src={chat} className='icon' />
-                <img src={saved} className='icon' />
-                <img src={notifications} className='icon' />
+                <Link to='chats'><img src={chat} className='icon' /></Link>
+                <Link to='saved'><img src={saved} className='icon' /></Link>
+                <IconButton onClick={() => setModal(true)}>
+                <Badge badgeContent={notification} color='primary'>
+                 <img src={notifications} className='icon' />
+                </Badge>
+                </IconButton>
                 <Divider
                   orientation='vertical'
                   variant='middle'
                   className='vertical'
                 />
 
-                <Button to={`/client/dashboard/profile/${auth.user.uid}`} component={Link}>
-                  <Avatar alt='perfil' src={auth.user.photo ? auth.user.photo : profile} />
+                <Button to={`/client/dashboard/profile/${auth?.user.uid}`} component={Link}>
+                  <Avatar alt='perfil' src={auth?.user.photo} />
                 </Button>
               </div>
                 )
@@ -379,6 +438,39 @@ export const LayoutDashboard = () => {
                   </Link>
                 )
               })}
+              {
+                auth.status === 'authenticated'
+                  ? (
+                    <>
+                      <Link to={`/client/dashboard/profile/${auth?.user.uid}`}>
+                        <li>{t('Perfil')}</li>
+                        <Divider className='divider' role='presentation' variant='fullWidth' />
+                      </Link>
+                      <Button
+                        type='button'
+                        variant='contained'
+                        color='secondary'
+                        onClick={handleClick}
+                        sx={{ py: 1.5 }}
+                      >
+                        <LogoutIcon />
+                      </Button>
+
+                    </>
+                    )
+                  : (
+                      <>
+                        <Link to='/auth/login'>
+                          <li>{t('Header.LogIn')}</li>
+                          <Divider className='divider' role='presentation' variant='fullWidth' />
+                        </Link>
+                        <Link to='/auth/register'>
+                          <li>{t('Header.SignUp')}</li>
+                          <Divider className='divider' role='presentation' variant='fullWidth' />
+                        </Link>
+                      </>
+                    )
+              }
             </ul>
           </nav>
         </div>
@@ -386,20 +478,28 @@ export const LayoutDashboard = () => {
       {auth.status === 'authenticated'
         ? (
         <nav className='mobile-nav'>
-          <ul>
-            <li>
-              <img alt='Home' src={home} className='icon-mobile' />
+          <ul className='mobile-nav-ul'>
+            <li className='active-bg'>
+              <Link to='/' onClick={(e) => selectedItem(e)}>
+                <img alt='Home' src={home} className='icon-mobile active-item' />
+              </Link>
             </li>
             <li>
+            <Link to={`/client/dashboard/profile/${auth?.user.uid}`} onClick={(e) => selectedItem(e)}>
               <img alt='Profile' src={profileMobile} className='icon-mobile' />
+            </Link>
             </li>
             <li>
+            <Link to='saved' onClick={(e) => selectedItem(e)}>
               <img alt='Saved' src={savedMobile} className='icon-mobile' />
+            </Link>
             </li>
             <li>
-              <Badge badgeContent={3} color='success'>
+            <Link to='chats'>
+              <Badge badgeContent={3} color='success' onClick={(e) => selectedItem(e)}>
                 <img alt='Chats' src={chatMobile} className='icon-mobile' />
               </Badge>
+            </Link>
             </li>
           </ul>
         </nav>
@@ -411,6 +511,7 @@ export const LayoutDashboard = () => {
       <Main>
         <Outlet />
       </Main>
+      <ModalLayaout open={modal} setModal={setModal} close={handleCloseModal} setNotification={setNotification} />
     </Layout>
   )
 }

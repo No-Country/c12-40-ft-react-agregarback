@@ -2,8 +2,11 @@ import { styled, alpha, InputBase } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 export const SearchContained = () => {
+  const { t } = useTranslation()
+
   const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: '2rem',
@@ -46,13 +49,14 @@ export const SearchContained = () => {
       }
     }
   }))
+
   return (
     <Search>
       <SearchIconWrapper>
         <SearchIcon />
       </SearchIconWrapper>
       <StyledInputBase
-        placeholder='Search…'
+        placeholder={t('HomeLog.Search')}
         inputProps={{ 'aria-label': 'search' }}
       />
     </Search>

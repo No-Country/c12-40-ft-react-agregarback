@@ -1,13 +1,16 @@
 import { Box, Button, Typography } from '@mui/material'
 import React from 'react'
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined'
-import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFilledWhiteOutlined'
+/* import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFilledWhiteOutlined' */
 import CommentOutlinedIcon from '@mui/icons-material/CommentOutlined'
+import { useTranslation } from 'react-i18next'
 
 export const ReactionPost = () => {
+  const { t } = useTranslation()
+
   return (
     <Box
-      sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 2 }}
+      sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 2, width: '100%' }}
     >
       <Button
         sx={{
@@ -20,8 +23,8 @@ export const ReactionPost = () => {
           color: 'black'
         }}
       >
-        <PlayCircleFilledWhiteOutlinedIcon fontSize='large' />
-        <Typography>Escuchar</Typography>
+        {/* <PlayCircleFilledWhiteOutlinedIcon fontSize='large' />
+        <Typography>{t('HomeLog.Post.React.Listen')}</Typography>
       </Button>
       <Button
         sx={{
@@ -33,9 +36,9 @@ export const ReactionPost = () => {
           textTransform: 'none',
           color: 'black'
         }}
-      >
+      > */}
         <FavoriteBorderOutlinedIcon fontSize='large' />
-        <Typography>Reaccionar</Typography>
+        <Typography>{t('HomeLog.Post.React.Like')}</Typography>
       </Button>
       <Button
         sx={{
@@ -49,7 +52,7 @@ export const ReactionPost = () => {
         }}
       >
         <CommentOutlinedIcon fontSize='large' />
-        <Typography>Comentar</Typography>
+        <Typography>{t('HomeLog.Post.React.Comment')}</Typography>
       </Button>
     </Box>
   )

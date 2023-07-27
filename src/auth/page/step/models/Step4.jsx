@@ -5,8 +5,11 @@ import dayjs from 'dayjs'
 import { Title } from '../../../components/Title'
 import { useState, useEffect } from 'react'
 import { TextField } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 
 export const Step4 = ({ register, errors, watch, setValue }) => {
+  const { t } = useTranslation()
+
   const [dateUser, setDateUser] = useState(null)
 
   const validateDate = (date) => {
@@ -25,10 +28,10 @@ export const Step4 = ({ register, errors, watch, setValue }) => {
 
   return (
     <>
-      <Title title='¿Cuándo naciste?' description='' />
+      <Title title={t('Register.Steps.Step4.Title')} description='' />
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DatePicker
-          label='Día de cumpleaños'
+          label={t('Register.Steps.Step4.Label')}
           value={dateUser ?? null}
           onChange={(date) => {
             setDateUser(date)

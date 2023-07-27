@@ -77,9 +77,15 @@ export const userSlice = createSlice({
       state.errorMessage = ''
       state.error = false
       state.token = true
+    },
+    updatePhoto: (state, action) => {
+      state.user = {
+        ...state.user,
+        photo: action.payload
+      }
     }
   }
 })
 
 // Action creators are generated for each case reducer function
-export const { checkingCredentials, login, loginError, logout, validationAuthenticated, reset } = userSlice.actions
+export const { checkingCredentials, login, loginError, logout, validationAuthenticated, reset, updatePhoto } = userSlice.actions

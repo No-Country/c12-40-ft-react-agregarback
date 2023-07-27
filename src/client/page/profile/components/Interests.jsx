@@ -1,19 +1,20 @@
 import React from 'react'
 import { Chip } from '@mui/material'
 import { styled } from 'styled-components'
+import { useTranslation } from 'react-i18next'
 
 const InterestsStyled = styled.section`
 
     background-color: white;
 
-    padding: 0 2rem 1rem 2rem;
+    padding: 1rem;
 
     width: 100%;
 
     .interest{
         border: 0.25px solid #A2CD37;
         border-radius: 5px;
-        padding: 0.5rem;
+        padding: 1rem;
 
         h2{
           font-weight: bold;
@@ -37,6 +38,9 @@ const InterestsStyled = styled.section`
       }
 
       @media screen and (min-width: 768px){
+
+        padding: 1rem 0;
+        
         .badges-div{
           overflow: hidden;
           flex-wrap: wrap;
@@ -45,14 +49,16 @@ const InterestsStyled = styled.section`
 `
 
 export const Page = ({ data }) => {
+  const { t } = useTranslation()
+
   return (
     <InterestsStyled>
       <div className='interest'>
-        <h2>Intereses</h2>
+        <h2>{t('Profile.Interest')}</h2>
         <div className='badges-div'>
           {
-            data?.interests.map((interest, index) => {
-              return <Chip key={index} label={interest} className='interest-badge' />
+            data?.selectedInterest.map((interest, index) => {
+              return <Chip key={index} label={interest.data} className='interest-badge' />
             })
           }
         </div>
