@@ -94,7 +94,16 @@
 			"ShowMore": "Ver más",
 			"ShowLess": "Ver menos"
 		},
-		"Interest": "Intereses"
+		"Interest": "Intereses",
+		"Archivements": {
+			"Title": "Logros",
+			"Archivement1": "días de uso",
+			"Archivement2": "correcciones",
+			"Archivement3": "amigos",
+			"Archivement4": "publicaciones",
+			"Archivement5": "traducciones",
+			"Archivement6": "conversaciones"
+		}
 	},
 	"Footer": "Política de privacidad",
 	"Login": {
