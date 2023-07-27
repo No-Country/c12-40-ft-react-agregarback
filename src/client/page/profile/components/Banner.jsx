@@ -137,6 +137,7 @@ const BannerStyled = styled.header`
 
 const Banner = ({ data }) => {
   const auth = useAppSelector((state) => state.auth.user)
+  console.log(data)
 
   return (
     <BannerStyled>
@@ -151,7 +152,7 @@ const Banner = ({ data }) => {
           <div className='languages'>
             <LangBadge label={data?.selectorLan.title} variante='native' avatar={data?.selectorLan.photo} />
             <Divider orientation='vertical' variant='middle' className='vertical' />
-            <LangBadge label={data?.selectorLan.title} variante='native' avatar={data?.selectorLan.photo} />
+            <LangBadge label={data?.selectorLanguage.title} variante='native' avatar={data?.selectorLanguage.photo} />
           </div>
         </div>
       </div>
