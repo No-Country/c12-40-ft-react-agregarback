@@ -3,8 +3,11 @@ import { Button } from '@mui/material'
 
 import { Title } from '../../../components/Title'
 import { SelectNativeLanguage } from '../components/SelectNativeLanguage'
+import { useTranslation } from 'react-i18next'
 
 export const Step3 = ({ register, errors, watch }) => {
+  const { t } = useTranslation()
+
   const [componentCount, setComponentCount] = useState(1)
 
   const handleClick = () => {
@@ -16,8 +19,8 @@ export const Step3 = ({ register, errors, watch }) => {
   return (
     <>
       <Title
-        title='Idioma nativo'
-        description='Es el idioma oficial de tu país de nacimiento'
+        title={t('Register.Steps.Step3.Title')}
+        description={t('Register.Steps.Step3.Desc')}
       />
 
       {Array.from({ length: componentCount }).map((_, index) => (
@@ -37,7 +40,7 @@ export const Step3 = ({ register, errors, watch }) => {
         variant='text'
         onClick={handleClick}
       >
-        Agregar otro
+        {t('Register.Steps.Step3.Button')}
       </Button>
     </>
   )

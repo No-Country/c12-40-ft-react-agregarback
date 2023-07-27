@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import { db } from '../../../../../service/firebase'
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
 import { useAppSelector } from '../../../../../common/store/config'
+import { useTranslation } from 'react-i18next'
 
 import addPic from '../../img/add-pic.svg'
 import SendIcon from '@mui/icons-material/Send'
@@ -31,6 +32,8 @@ const FormStyled = styled(Paper)`
 `
 
 export const CommentUser = ({ idPost, setComment }) => {
+  const { t } = useTranslation()
+
   const user = useAppSelector(state => state.auth.user.user)
   const {
     register,
@@ -64,7 +67,7 @@ export const CommentUser = ({ idPost, setComment }) => {
         id='outlined-basic'
         variant='outlined'
         multiline
-        placeholder='Añadir un comentario'
+        placeholder={t('HomeLog.Post.React.Comment')}
         className='comment-input'
         style={{ padding: '0.25rem 0', width: '100%' }}
       />

@@ -93,7 +93,8 @@ const Message = ({ message }) => {
             <img src={message.img} alt='' />
           </Box>
         )}
-        <Typography mb={1}>{message.text}</Typography>
+        {message.audio && <audio controls src={message.audio} />}
+        {message.text !== '' && <Typography mb={1}>{message.text}</Typography>}
       </MessageContent>
     </MessageSect>
   )

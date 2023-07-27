@@ -1,6 +1,7 @@
 import { Avatar, Box, Button, Grid, Divider } from '@mui/material'
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded'
 
+
 import styled from '@emotion/styled'
 
 /* import { useAppSelector } from '../../../../../common/store/config'
@@ -11,6 +12,9 @@ import { useEffect, useState } from 'react'
 import { doc, getDoc } from 'firebase/firestore'
 import { db } from '../../../../../service/firebase'
 import { Link } from 'react-router-dom'
+
+import { useTranslation } from 'react-i18next'
+
 
 export const HeaderPost = ({ name, photo, idUser }) => {
   /* const currentUserUid = useAppSelector((state) => state.auth.user.user.uid) */
@@ -63,6 +67,8 @@ export const HeaderPost = ({ name, photo, idUser }) => {
 
   console.log(data)
 
+  const { t } = useTranslation()
+
   return (
     <Grid container>
       <GridStyled item xs={11}>
@@ -79,7 +85,7 @@ export const HeaderPost = ({ name, photo, idUser }) => {
               <Divider orientation='vertical' variant='middle' className='divider-flags' />
               <LangBadgePost img={data?.selectorLanguage.photo} variant='learn' />
             </div>
-            <h3 className='post-info'>1 hora • Editado</h3>
+            <h3 className='post-info'>1 {t('HomeLog.Post.Modal.TimeEdit')}</h3>
             {/* {idUser !== currentUserUid && (
               <ButtonAddFriend
                 idUser={idUser}

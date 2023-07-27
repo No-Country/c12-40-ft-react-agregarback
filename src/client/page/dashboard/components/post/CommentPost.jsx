@@ -2,10 +2,12 @@ import { Box, Grid, Divider } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { CommentUser } from './CommentUser'
 import { CommentRecentUser } from './CommentRecentUser'
+
 import likes from '../../img/likes-post.svg'
 
 import { styled } from 'styled-components'
 import { ReactionPost } from './ReactionPost'
+import { useTranslation } from 'react-i18next'
 
 const GridStyled = styled(Grid)`
 
@@ -41,6 +43,8 @@ const GridStyled = styled(Grid)`
 `
 
 export const CommentPost = ({ idPost }) => {
+  const { t } = useTranslation()
+
   const [comment, setComment] = useState(false)
   const [comments, setComments] = useState([])
 
@@ -62,7 +66,7 @@ export const CommentPost = ({ idPost }) => {
 
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'end', gap: 0.5 }}>
 
-          <p className='post-comment' onClick={handleComment}>{comments.length} Comentarios</p>
+          <p className='post-comment' onClick={handleComment}>{comments.length} {t('HomeLog.Post.Modal.Comment')}</p>
 
         </Box>
       </div>
