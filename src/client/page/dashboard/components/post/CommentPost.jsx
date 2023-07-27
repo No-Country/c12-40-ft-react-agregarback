@@ -1,6 +1,5 @@
-import { Box, Button, Grid, Typography } from '@mui/material'
+import { Box, Grid } from '@mui/material'
 import React, { useState } from 'react'
-import FavoriteIcon from '@mui/icons-material/Favorite'
 import { CommentUser } from './CommentUser'
 import { CommentRecentUser } from './CommentRecentUser'
 import likes from '../../img/likes-post.svg'
@@ -42,10 +41,6 @@ const GridStyled = styled(Grid)`
 export const CommentPost = ({ idPost }) => {
   const [comment, setComment] = useState(false)
   const [comments, setComments] = useState([])
-
-  const handleComment = () => {
-    setComment(!comment)
-  }
 
   return (
     <GridStyled container mt={1} sx={{ alignItems: 'center' }}>
