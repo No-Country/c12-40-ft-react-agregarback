@@ -13,7 +13,7 @@ const DesciptionStyled = styled.section`
     div{
         border: 0.25px solid #A2CD37;
         border-radius: 5px;
-        padding: 0.5rem;
+        padding: 1rem;
 
     h2{
         font-weight: bold;
