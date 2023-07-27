@@ -335,6 +335,10 @@ export const LayoutDashboard = () => {
     setModal(false)
   }
 
+  const handleClick = () => {
+    userLogout(auth.user.uid)
+  }
+
   return (
     <Layout>
         <div className='tablet-desktop'>
@@ -369,7 +373,7 @@ export const LayoutDashboard = () => {
                 <Button
                   variant='contained'
                   color='secondary'
-                  onClick={userLogout}
+                  onClick={handleClick}
                   sx={{ py: 1.5 }}
                 >
                 <LogoutIcon />
@@ -435,9 +439,10 @@ export const LayoutDashboard = () => {
                         <Divider className='divider' role='presentation' variant='fullWidth' />
                       </Link>
                       <Button
+                        type='button'
                         variant='contained'
                         color='secondary'
-                        onClick={userLogout}
+                        onClick={handleClick}
                         sx={{ py: 1.5 }}
                       >
                         <LogoutIcon />

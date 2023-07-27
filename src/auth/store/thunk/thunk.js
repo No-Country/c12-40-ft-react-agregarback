@@ -70,8 +70,8 @@ export const autheticatedAutomatic = () => async (dispatch) => {
   }
 }
 
-export const authenticatedLogout = () => (dispatch) => {
+export const authenticatedLogout = (id) => (dispatch) => {
   dispatch(checkingCredentials())
-  onLogout()
+  onLogout(id)
   dispatch(logout())
 }

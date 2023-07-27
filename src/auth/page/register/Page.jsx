@@ -42,8 +42,8 @@ export const Page = () => {
           fullWidth
           color='secondary'
           {...register('name', { required: true })}
-          error={!!errors.email}
-          helperText={errors.email && t('Error.ErrorReq')}
+          error={!!errors.name}
+          helperText={errors.name && 'Este campo es requerido'}
         />
         <TextField
           id='email'

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { styled } from 'styled-components'
-import { Avatar, Box, Button, Modal, Typography } from '@mui/material'
+import { Avatar, Box, Button, IconButton, Modal, Typography } from '@mui/material'
+import AddIcon from '@mui/icons-material/Add'
 import {
   and,
   collection,
@@ -117,11 +118,15 @@ const Navbar = () => {
 
   return (
     <NavbarContainer>
-      <span>Chats</span>
+      <Typography variant='h5' component='h2'>Chats</Typography>
       <div className='user'>
-        <Button variant='contained' onClick={handleClick}>
-          +
-        </Button>
+        <IconButton
+          size='small'
+          onClick={handleClick}
+          sx={{ backgroundColor: '#C32B8F', ':hover': { backgroundColor: '#e40c98df' } }}
+        >
+          <AddIcon fontSize='small' sx={{ color: '#fcfcfc' }} />
+        </IconButton>
       </div>
       <Modal
         open={modal}
