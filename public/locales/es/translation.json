@@ -88,7 +88,9 @@
 			}
 		}
 	},
-	"Profile": {},
+	"Profile": {
+		"DescTitle": "Descripción"
+	},
 	"Footer": "Política de privacidad",
 	"Login": {
 		"Title": "Logueate con Howdy",

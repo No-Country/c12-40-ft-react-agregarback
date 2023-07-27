@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 const DesciptionStyled = styled.section`
@@ -23,10 +24,12 @@ const DesciptionStyled = styled.section`
 `
 
 export const Page = ({ data }) => {
+  const { t } = useTranslation()
+
   return (
     <DesciptionStyled>
       <div>
-        <h2>Descripción</h2>
+        <h2>{t('Profile.DescTitle')}</h2>
         <p>
           {data?.selectedDescription}
         </p>
