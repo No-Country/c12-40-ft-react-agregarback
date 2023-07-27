@@ -9,8 +9,11 @@ import { ModalPost } from './components/ModalPost'
 import { collection, doc, getDoc, onSnapshot, or, query, where } from 'firebase/firestore'
 import { db } from '../../../service/firebase'
 import { useAppSelector } from '../../../common/store/config'
+import { useTranslation } from 'react-i18next'
 
 export const Page = () => {
+  const { t } = useTranslation()
+
   const user = useAppSelector(state => state.auth.user.user)
   const [modal, setModal] = useState(false)
   const [post, setPost] = useState(null)
@@ -58,7 +61,7 @@ export const Page = () => {
     <ContainedPost>
       <SearchContained />
       <PublicComment setModal={setModal} />
-      <TitleSeparator>Personas que podrían interesarte</TitleSeparator>
+      <TitleSeparator>{t('HomeLog.Post.Interest')}</TitleSeparator>
       {post?.map((e) => (
         <Post
           key={e?.id}

@@ -19,6 +19,7 @@ import { db } from '../../../../service/firebase'
 import {
   useAppSelector
 } from '../../../../common/store/config'
+import { useTranslation } from 'react-i18next'
 
 const NavbarContainer = styled.div`
   display: flex;
@@ -39,6 +40,7 @@ const style = {
 }
 
 const Navbar = () => {
+  const { t } = useTranslation()
   const [modal, setModal] = useState(false)
   const [friends, setFriends] = useState([])
 
@@ -133,8 +135,8 @@ const Navbar = () => {
         aria-describedby='modal-modal-description'
       >
         <Box sx={style}>
-          <Typography variant='h4' mb={2}>Amigos</Typography>
-          {friends?.length === 0 && <Typography>No tienes chats pendientes</Typography>}
+          <Typography variant='h4' mb={2}>{t('Chat.Friends')}</Typography>
+          {friends?.length === 0 && <Typography>{t('Chat.NotFriends')}</Typography>}
           {friends?.map((f) => (
             <Box
               key={f.email}
@@ -153,7 +155,7 @@ const Navbar = () => {
                 <Avatar src={f.photo} alt={f.name} />
                 <Typography p={2}>{f.name}</Typography>
               </Box>
-              <Button onClick={() => handleChat(f, user)} color='secondary'>Chatear</Button>
+              <Button onClick={() => handleChat(f, user)} color='secondary'>{t('Chat.Button')}</Button>
             </Box>
           ))}
         </Box>

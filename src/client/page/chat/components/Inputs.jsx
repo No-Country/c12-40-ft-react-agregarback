@@ -9,7 +9,10 @@ import SendIcon from '@mui/icons-material/Send'
 import { Timestamp, arrayUnion, collection, doc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore'
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage'
 import { db } from '../../../../service/firebase'
+
 import { AudioRecorder } from './AudioRecorder'
+import { useTranslation } from 'react-i18next'
+
 
 const InputsSect = styled.div`
   height: 50px;
@@ -35,6 +38,8 @@ const InputsSect = styled.div`
 `
 
 const Inputs = ({ roomId }) => {
+  const { t } = useTranslation()
+
   const uid = useAppSelector(state => state.auth.user.user.uid)
   const uidFriend = useAppSelector(state => state.client.chat.friend.uid)
   const [selectedFile, setSelectedFile] = useState(null)
@@ -135,7 +140,7 @@ const Inputs = ({ roomId }) => {
         <div style={{ marginBottom: '10px' }}>
           {selectedFile && (
             <div>
-              <p>Imagen seleccionada:</p>
+              <p>{t('Chat.Inputs.Img')}</p>
               <img
                 src={URL.createObjectURL(selectedFile)}
                 alt='Vista previa'
@@ -161,6 +166,7 @@ const Inputs = ({ roomId }) => {
             />
           )}
           name='message'
+          placeholder={t('Chat.Inputs.Placeholder')}
         />
         <AudioRecorder roomId={roomId} uid={uid} uidFriend={uidFriend} />
 

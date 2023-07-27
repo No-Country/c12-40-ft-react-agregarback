@@ -10,6 +10,7 @@ import {
   Typography
 } from '@mui/material'
 import React, { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export const SelectedInterest = ({
   register,
@@ -21,6 +22,8 @@ export const SelectedInterest = ({
   setValue,
   items
 }) => {
+  const { t } = useTranslation()
+
   const [chipName, setChipName] = useState('')
   const [interests, setInterests] = useState([])
 
@@ -69,7 +72,7 @@ export const SelectedInterest = ({
         >
           {items?.map((item) => (
             <MenuItem key={item.id} value={item.value.toLowerCase()}>
-              {item.title}
+              {t(item.title)}
             </MenuItem>
           ))}
         </Select>

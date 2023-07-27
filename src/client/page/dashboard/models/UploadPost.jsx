@@ -7,6 +7,7 @@ import foto from './img/foto.svg'
 import video from './img/video.svg'
 import audio from './img/audio.svg'
 import add from './img/add.svg'
+import { useTranslation } from 'react-i18next'
 
 const UploadPostStyled = styled.section`
 
@@ -62,36 +63,38 @@ const UploadPostStyled = styled.section`
 
 const data = [
   {
-    label: 'Foto',
+    label: 'Pic',
     onClick: '',
     icon: foto
   },
   {
-    label: 'Video',
+    label: 'Vid',
     onClick: '',
     icon: video
   },
   {
-    label: 'Audio',
+    label: 'Aud',
     onClick: '',
     icon: audio
   }
 ]
 
 const UploadPost = ({ click }) => {
+  const { t } = useTranslation()
+
   const auth = useAppSelector((state) => state.auth.user)
   return (
     <UploadPostStyled>
       <div className='container'>
         <div className='input-div'>
           <Avatar src={auth.user.photo ? auth.user.photo : ''} />
-          <button onClick={click}>Subir publicación</button>
+          <button onClick={click}>{t('HomeLog.Upload.Post')}</button>
         </div>
         <Divider className='divider-post' />
         <div className='btn-div'>
           {
             data.map((btn, i) => {
-              return <PostButton key={i} click={btn?.onClick} icon={btn?.icon} label={btn?.label} />
+              return <PostButton key={i} click={btn?.onClick} icon={btn?.icon} label={t(`HomeLog.Upload.${btn?.label}`)} />
             })
           }
         </div>

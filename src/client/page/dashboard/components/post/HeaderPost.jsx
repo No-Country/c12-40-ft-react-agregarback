@@ -3,9 +3,12 @@ import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded'
 
 import { useAppSelector } from '../../../../../common/store/config'
 import { ButtonAddFriend } from './ButtonAddFriend'
+import { useTranslation } from 'react-i18next'
 
 export const HeaderPost = ({ name, photo, idUser }) => {
   const currentUserUid = useAppSelector((state) => state.auth.user.user.uid)
+
+  const { t } = useTranslation()
 
   return (
     <Grid container>
@@ -15,7 +18,7 @@ export const HeaderPost = ({ name, photo, idUser }) => {
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
             <Typography variant='body1'>{name}</Typography>
             {/* Insert flags */}
-            <Typography variant='body2'>1 hora • Editado</Typography>
+            <Typography variant='body2'>1 {t('HomeLog.Post.Modal.TimeEdit')}</Typography>
             {idUser !== currentUserUid && (
               <ButtonAddFriend
                 idUser={idUser}

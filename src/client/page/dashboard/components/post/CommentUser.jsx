@@ -4,8 +4,11 @@ import { useForm } from 'react-hook-form'
 import { db } from '../../../../../service/firebase'
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
 import { useAppSelector } from '../../../../../common/store/config'
+import { useTranslation } from 'react-i18next'
 
 export const CommentUser = ({ idPost, setComment }) => {
+  const { t } = useTranslation()
+
   const user = useAppSelector(state => state.auth.user.user)
   const {
     register,
@@ -38,12 +41,12 @@ export const CommentUser = ({ idPost, setComment }) => {
             name='comment'
             {...register('comment', { required: true })}
             id='outlined-basic'
-            label='Comment'
+            label={t('HomeLog.Post.React.Comment')}
             variant='outlined'
           />
         </Grid>
         <Grid item xs={3}>
-          <Button type='submit' disabled={isValid} variant='contained'>Enviar</Button>
+          <Button type='submit' disabled={isValid} variant='contained'>{t('HomeLog.Post.Send')}</Button>
         </Grid>
       </Grid>
     </form>

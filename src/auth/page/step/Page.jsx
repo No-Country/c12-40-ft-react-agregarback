@@ -13,8 +13,11 @@ import { db, auth } from '../../../service/firebase'
 import { useAppDispatch, useAppSelector } from '../../../common/store/config'
 import { updatePhoto, validationAuthenticated } from '../../store/slice/sliceAuth'
 import { updateProfile } from 'firebase/auth'
+import { useTranslation } from 'react-i18next'
 
 export const Page = () => {
+  const { t } = useTranslation()
+
   const user = useAppSelector(state => state.auth.user)
 
   const dispatch = useAppDispatch()
@@ -153,7 +156,7 @@ export const Page = () => {
               <CircularProgress size={24} color='secondary' />
               )
             : (
-              <div>{step === components.length - 1 ? 'Enviar' : 'Siguiente'}</div>
+              <div>{step === components.length - 1 ? t('Register.Steps.Button.Send') : t('Register.Steps.Button.Next')}</div>
               )}
         </Button>
       </form>
