@@ -51,7 +51,7 @@ export const SelectLan = ({
       >
         {items.map((item) => (
           <MenuItem key={item.id} value={item}>
-            {item.title}
+            {t(item.title)}
           </MenuItem>
         ))}
       </Select>
