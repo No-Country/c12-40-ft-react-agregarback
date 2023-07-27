@@ -157,11 +157,12 @@ const Banner = ({ data, id }) => {
     fetchData()
   }, [])
 
-  console.log(user)
-
   const { t } = useTranslation()
 
   const auth = useAppSelector((state) => state.auth.user)
+
+  console.log(auth)
+  console.log(user)
 
   return (
     <BannerStyled>
@@ -181,9 +182,14 @@ const Banner = ({ data, id }) => {
         </div>
       </div>
 
-      <div>
-        <EditIcon className='edit-icon' />
-      </div>
+      {
+        auth.user.uid == id
+          ? <div>
+            <EditIcon className='edit-icon' />
+          </div>
+          : 'Perfil ajeno'
+      }
+
     </BannerStyled>
   )
 }
