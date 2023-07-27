@@ -38,12 +38,10 @@ export const Page = ({ data }) => {
       <div>
         <h2>Descripción</h2>
         <p>
-          {data?.selectedDescription.length < 110 ? setShowMore(false) : showMore ? data?.selectedDescription : `${data?.selectedDescription.substring(0, 110)}... `}
+          {data?.selectedDescription.length < 110 ? data?.selectedDescription : showMore ? data?.selectedDescription : `${data?.selectedDescription.substring(0, 110)}... `}
         </p>
-        <span className='btn' onClick={() => setShowMore(!showMore)}>{showMore ? 'Ver menos' : 'Ver más'}</span>
+        <span className='btn' onClick={() => setShowMore(!showMore)}>{data?.selectedDescription.length < 110 ? '' : showMore ? 'Ver menos' : 'Ver más'}</span>
       </div>
     </DesciptionStyled>
   )
 }
-
-/* {showMore ? data?.selectedDescription : `${data?.selectedDescription.substring(0, 120)}... `} */

@@ -151,13 +151,7 @@ const Banner = ({ data }) => {
           <div className='languages'>
             <LangBadge label={data?.selectorLan.title} variante='native' avatar={data?.selectorLan.photo} />
             <Divider orientation='vertical' variant='middle' className='vertical' />
-            {/* {
-              data?.selectorLanguage
-                ? data?.selectorLanguage.map((lang, index) => {
-                  return <LangBadge key={index} label={data && lang.title} variante='foraign' />
-                })
-                : '...'
-            } */}
+            <LangBadge label={data?.selectorLan.title} variante='native' avatar={data?.selectorLan.photo} />
           </div>
         </div>
       </div>
