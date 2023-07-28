@@ -29,6 +29,11 @@ import { Link } from 'react-router-dom'
 import { ModalLogin } from '../../../auth/components/ModalLogin'
 import { useForm } from 'react-hook-form'
 import { useAuth } from '../../../auth/hook/useAuth'
+import Paso1 from '../../../assets/paso1.png'
+import Paso2 from '../../../assets/paso2.png'
+import Paso3 from '../../../assets/paso3.png'
+import Paso4 from '../../../assets/paso4.png'
+import Paso5 from '../../../assets/paso5.png'
 
 const Header = styled.header`
   background: linear-gradient(to right, ${primary} 1%, ${secondary120});
@@ -467,31 +472,31 @@ export const Page = () => {
           </HowDoes>
           <HowDoes>
             <ImgHowDoes>
-              <p>Foto</p>
+              <img src={Paso1} alt='' />
             </ImgHowDoes>
             <p>{t('Home.Main.HowDoes.Step2')}</p>
           </HowDoes>
           <HowDoes>
             <ImgHowDoes>
-              <p>Foto</p>
+              <img src={Paso2} alt='' />
             </ImgHowDoes>
             <p>{t('Home.Main.HowDoes.Step3')}</p>
           </HowDoes>
           <HowDoes>
             <ImgHowDoes>
-              <p>Foto</p>
+              <img src={Paso3} alt='' />
             </ImgHowDoes>
             <p>{t('Home.Main.HowDoes.Step4')}</p>
           </HowDoes>
           <HowDoes>
             <ImgHowDoes>
-              <p>Foto</p>
+              <img src={Paso4} alt='' />
             </ImgHowDoes>
             <p>{t('Home.Main.HowDoes.Step5')}</p>
           </HowDoes>
           <HowDoes>
             <ImgHowDoes>
-              <p>Foto</p>
+              <img src={Paso5} alt='' />
             </ImgHowDoes>
             <p>{t('Home.Main.HowDoes.Step6')}</p>
           </HowDoes>
