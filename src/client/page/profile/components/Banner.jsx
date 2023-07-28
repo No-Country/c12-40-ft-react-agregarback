@@ -13,6 +13,8 @@ import { useTranslation } from 'react-i18next'
 
 import { db } from '../../../../service/firebase'
 import { getDoc, doc, query, collection, where, getDocs } from 'firebase/firestore'
+import { ButtonAddFriend } from '../../dashboard/components/post/ButtonAddFriend'
+import { Pending } from '@mui/icons-material'
 
 const BannerStyled = styled.header`
 
@@ -129,6 +131,7 @@ const BannerStyled = styled.header`
     box-shadow: 0px 1px 3px 0px rgba(195, 43, 143, 0.30), 0px 4px 8px 0px rgba(195, 43, 143, 0.15);
     color: white;
     transition: all ease-in-out 0.1s;
+    cursor: pointer;
 
     img{
       filter: brightness(0) saturate(100%) invert(100%);
@@ -143,11 +146,15 @@ const BannerStyled = styled.header`
   }
   .pending{
     text-align: center;
-    padding: 0.90625rem 1rem;
+    padding: 0.5rem 1rem;
     background-color: gray;
     color: rgba(0, 0, 0, 0.4);
     font-weight: bold;
     border-radius: 0.25rem;
+
+    p{
+      display: inline;
+    }
   }
 
   @media screen and (min-width: 1024px){
@@ -228,8 +235,8 @@ const Banner = ({ data, id }) => {
         auth.user.uid == id
           ? <div>
             <EditIcon className='edit-icon' />
-          </div>
-          : (friends[0]?.status === 'accepted' ? <button className='interact'><img src={chat} /></button> : (friends[0]?.status === 'pending' ? <div className='pending'>Solicitud pendiente</div> : <button className='interact'>Agregar</button>))
+            </div>
+          : (friends[0]?.status === 'accepted' ? <button className='interact'><img src={chat} /></button> : (friends[0]?.status === 'pending' ? <Pending /> : <ButtonAddFriend idUser={id} currentUserUid={auth.user.uid} />))
       }
 
     </BannerStyled>

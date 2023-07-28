@@ -65,12 +65,13 @@ export const ButtonAddFriend = ({ idUser, currentUserUid }) => {
   }
   return (
     <>
-      <Button
+      <btn
         disabled={isRequestPending?.value === 'friend' || isRequestPending?.value === 'pending'}
         onClick={() => handleAddFriend(idUser)}
+        className='interact'
       >
         {isRequestPending?.title}
-      </Button>
+      </btn>
 
     </>
   )
