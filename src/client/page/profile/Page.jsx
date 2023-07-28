@@ -59,7 +59,7 @@ export const Page = () => {
 
     window.addEventListener('resize', updateDesktop)
     return () => window.removeEventListener('resize', updateDesktop)
-  }, [])
+  }, [id])
 
   const handleCloseModal = () => {
     setModal(false)

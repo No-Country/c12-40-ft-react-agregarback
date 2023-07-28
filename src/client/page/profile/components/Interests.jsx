@@ -51,18 +51,22 @@ const InterestsStyled = styled.section`
 export const Page = ({ data }) => {
   const { t } = useTranslation()
 
-  return (
-    <InterestsStyled>
-      <div className='interest'>
-        <h2>{t('Profile.Interest')}</h2>
-        <div className='badges-div'>
-          {
-            data?.selectedInterest.map((interest, index) => {
-              return <Chip key={index} label={interest.data} className='interest-badge' />
-            })
-          }
+  if (data?.selectedInterest.length > 0) {
+    return (
+      <InterestsStyled>
+        <div className='interest'>
+          <h2>{t('Profile.Interest')}</h2>
+          <div className='badges-div'>
+            {
+          data?.selectedInterest.map((interest, index) => {
+            return <Chip key={index} label={interest.data} className='interest-badge' />
+          })
+        }
+          </div>
         </div>
-      </div>
-    </InterestsStyled>
-  )
+      </InterestsStyled>
+    )
+  } else {
+    <></>
+  }
 }
