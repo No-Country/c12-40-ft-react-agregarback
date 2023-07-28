@@ -8,7 +8,7 @@ const initialState = {
     email: ''
   },
   loading: false,
-  status: 'not-authenticated',
+  status: '',
   error: false,
   errorMessage: '',
   token: true

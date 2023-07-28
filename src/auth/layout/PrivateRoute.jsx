@@ -4,7 +4,7 @@ import { useAppSelector } from '../../common/store/config'
 
 export const PrivateRoute = () => {
   const auth = useAppSelector((state) => state.auth.user.status)
-
+  console.log(auth)
   if (auth === 'checking') {
     return <CircularProgress size={24} color='secondary' />
   }

@@ -36,7 +36,6 @@ export const SelectedInterest = ({
     setChipName('')
   }
   const handleDelete = (deletedInterest) => {
-    console.log(deletedInterest)
     const updatedInterests = interests.filter(
       (interest) => interest.id !== deletedInterest
     )
