@@ -37,7 +37,6 @@ const AchivementsStyled = styled.section`
     .achivements-list{
       display: flex;
       flex-wrap: wrap;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
 
@@ -51,6 +50,10 @@ const AchivementsStyled = styled.section`
 
     @media screen and (min-width: 768px){
       padding: 1rem 0;
+
+      .achivements-list{
+        flex-direction: column;
+      }
     }
 
 `
@@ -58,7 +61,6 @@ const AchivementsStyled = styled.section`
 export const Achivements = ({ info }) => {
   const { t } = useTranslation()
 
-  console.log(info)
   const data = [
     {
       img: usage,

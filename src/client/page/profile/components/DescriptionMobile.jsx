@@ -26,7 +26,7 @@ const DesciptionStyled = styled.section`
     text-decoration: underline;
     cursor: pointer;
 
-    display: inline-block;
+    display: inline;
   }
 
 `
@@ -41,8 +41,8 @@ export const Page = ({ data }) => {
       <div>
         <h2>{t('Profile.Desc.Title')}</h2>
         <p>
-          {showMore ? data?.selectedDescription : `${data?.selectedDescription.substring(0, 120)}... `}
-          <span className='btn' onClick={() => setShowMore(!showMore)}>{showMore ? t('Profile.Desc.ShowLess') : t('Profile.Desc.ShowMore')}</span>
+          {data?.selectedDescription.length < 110 ? data?.selectedDescription : showMore ? data?.selectedDescription + ' ' : `${data?.selectedDescription.substring(0, 110)}... `}
+          <span className='btn' onClick={() => setShowMore(!showMore)}>{data?.selectedDescription.length < 110 ? '' : showMore ? t('Profile.Desc.ShowLess') : t('Profile.Desc.ShowMore')}</span>
         </p>
       </div>
     </DesciptionStyled>
