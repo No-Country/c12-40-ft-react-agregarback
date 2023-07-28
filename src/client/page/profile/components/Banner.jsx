@@ -4,8 +4,9 @@ import EditIcon from '@mui/icons-material/Edit'
 import { Divider } from '@mui/material'
 import { useAppSelector } from '../../../../common/store/config'
 
-import { primary, primary120, secondary120 } from '../../../../common/variables'
+import { primary, primary120, secondary, secondary120 } from '../../../../common/variables'
 import profile from '../../dashboard/img/profile.svg'
+import chat from '../img/chat.svg'
 
 import { LangBadge } from './LangBadge'
 import { useTranslation } from 'react-i18next'
@@ -121,6 +122,34 @@ const BannerStyled = styled.header`
     border: 1px solid ${primary120} !important;
   }
 
+  .interact{
+    padding: 0.90625rem 1rem;
+    border-radius: 0.25rem;
+    background: ${primary};
+    box-shadow: 0px 1px 3px 0px rgba(195, 43, 143, 0.30), 0px 4px 8px 0px rgba(195, 43, 143, 0.15);
+    color: white;
+    transition: all ease-in-out 0.1s;
+
+    img{
+      filter: brightness(0) saturate(100%) invert(100%);
+    }
+  
+    &:hover{
+      background-color: ${secondary120};
+      transition: all ease-in-out 0.1s;
+      box-shadow: 0px 1px 3px 0px ${secondary}, 0px 4px 8px 0px ${secondary120};
+    }
+
+  }
+  .pending{
+    text-align: center;
+    padding: 0.90625rem 1rem;
+    background-color: gray;
+    color: rgba(0, 0, 0, 0.4);
+    font-weight: bold;
+    border-radius: 0.25rem;
+  }
+
   @media screen and (min-width: 1024px){
     .edit-icon{
       width: 36px;
@@ -199,8 +228,8 @@ const Banner = ({ data, id }) => {
         auth.user.uid == id
           ? <div>
             <EditIcon className='edit-icon' />
-            </div>
-          : (friends[0]?.status === 'accepted' ? <button>Chatear</button> : <button>Agregar</button>)
+          </div>
+          : (friends[0]?.status === 'accepted' ? <button className='interact'><img src={chat} /></button> : (friends[0]?.status === 'pending' ? <div className='pending'>Solicitud pendiente</div> : <button className='interact'>Agregar</button>))
       }
 
     </BannerStyled>
