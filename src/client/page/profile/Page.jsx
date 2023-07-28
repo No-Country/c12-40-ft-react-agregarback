@@ -80,8 +80,6 @@ export const Page = () => {
     setModal(false)
   }
 
-  console.log(post)
-
   return (
     <>
 

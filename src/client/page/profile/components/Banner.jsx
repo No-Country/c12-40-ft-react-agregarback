@@ -217,6 +217,8 @@ const Banner = ({ data, id }) => {
 
   const auth = useAppSelector((state) => state.auth.user)
 
+  console.log(friends)
+
   return (
     <BannerStyled>
 
@@ -236,7 +238,7 @@ const Banner = ({ data, id }) => {
       </div>
 
       {
-        auth.user.uid == id
+        auth.user.uid === id
           ? <div>
             <EditIcon className='edit-icon' />
             </div>
