@@ -76,8 +76,6 @@ export const Achivements = ({ auth }) => {
     fetchData()
   }, [])
 
-  console.log(achivement)
-
   const data = [
     {
       img: usage,

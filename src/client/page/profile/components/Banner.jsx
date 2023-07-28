@@ -193,7 +193,7 @@ const Banner = ({ data, id }) => {
     }
 
     const handleFriends = async () => {
-      const q = query(collection(db, 'friendRequests'), where('sender', '==', auth.user.uid), where('receiver', '==', id))
+      const q = query(collection(db, 'friendRequests'), (where('sender', '==', auth.user.uid), where('receiver', '==', id) || where('sender', '==', id), where('receiver', '==', auth.user.uid)))
       const querySnapshot = await getDocs(q)
       const f = []
       querySnapshot.forEach((doc) =>
@@ -217,7 +217,7 @@ const Banner = ({ data, id }) => {
 
   const auth = useAppSelector((state) => state.auth.user)
 
-  console.log(data)
+  console.log(friends)
 
   return (
     <BannerStyled>
