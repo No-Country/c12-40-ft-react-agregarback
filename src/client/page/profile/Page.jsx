@@ -19,6 +19,8 @@ import { Post } from '../dashboard/models/Post'
 
 const ContainerStyled = styled(ContainerGeneral)`
 
+  padding: 1rem;
+
   margin-bottom: 6rem;
   @media screen and (min-width: 768px){
     .grid-container{
@@ -91,7 +93,7 @@ export const Page = () => {
           <DescriptionMobile data={data} />
           <Interests data={data} />
 
-          <Achivements info={data} />
+          <Achivements auth={auth} />
 
           {auth.user.uid === id
             ? <PublicComment setModal={setModal} />
@@ -132,7 +134,7 @@ export const Page = () => {
               ))}
             </div>
             <div>
-              <Achivements info={data} />
+              <Achivements auth={auth} />
             </div>
           </div>
           <ModalPost setModal={setModal} open={modal} close={handleCloseModal} />
