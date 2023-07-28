@@ -230,7 +230,7 @@ const Banner = ({ data, id }) => {
           <div className='languages'>
             <LangBadge label={t(data?.selectorLan.title)} variante='native' avatar={data?.selectorLan.photo} />
             <Divider orientation='vertical' variant='middle' className='vertical' />
-            <LangBadge label={data?.selectorLanguage.title} variante='native' avatar={data?.selectorLanguage.photo} />
+            <LangBadge label={data?.selectorLanguage.title} variante='foraign' avatar={data?.selectorLanguage.photo} />
           </div>
         </div>
       </div>
