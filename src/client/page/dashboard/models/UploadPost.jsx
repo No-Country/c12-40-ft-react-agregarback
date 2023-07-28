@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next'
 
 const UploadPostStyled = styled.section`
 
-  padding: 1rem;
+  padding: 1rem 0;
   width: 100%;
 
   .container{
