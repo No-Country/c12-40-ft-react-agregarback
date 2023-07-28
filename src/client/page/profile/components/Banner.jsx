@@ -211,7 +211,7 @@ const Banner = ({ data, id }) => {
 
     fetchData()
     handleFriends()
-  }, [])
+  }, [id])
 
   const { t } = useTranslation()
 
