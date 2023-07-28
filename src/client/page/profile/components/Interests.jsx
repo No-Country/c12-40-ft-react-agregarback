@@ -7,8 +7,7 @@ const InterestsStyled = styled.section`
 
     background-color: white;
 
-    padding: 1rem;
-
+    padding: 1rem 0;
     width: 100%;
 
     .interest{
@@ -38,8 +37,6 @@ const InterestsStyled = styled.section`
       }
 
       @media screen and (min-width: 768px){
-
-        padding: 1rem 0;
         
         .badges-div{
           overflow: hidden;
@@ -51,18 +48,22 @@ const InterestsStyled = styled.section`
 export const Page = ({ data }) => {
   const { t } = useTranslation()
 
-  return (
-    <InterestsStyled>
-      <div className='interest'>
-        <h2>{t('Profile.Interest')}</h2>
-        <div className='badges-div'>
-          {
-            data?.selectedInterest.map((interest, index) => {
-              return <Chip key={index} label={interest.data} className='interest-badge' />
-            })
-          }
+  if (data?.selectedInterest.length > 0) {
+    return (
+      <InterestsStyled>
+        <div className='interest'>
+          <h2>{t('Profile.Interest')}</h2>
+          <div className='badges-div'>
+            {
+          data?.selectedInterest.map((interest, index) => {
+            return <Chip key={index} label={interest.data} className='interest-badge' />
+          })
+        }
+          </div>
         </div>
-      </div>
-    </InterestsStyled>
-  )
+      </InterestsStyled>
+    )
+  } else {
+    <></>
+  }
 }

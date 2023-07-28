@@ -10,8 +10,8 @@ import {
   setDoc,
   where
 } from 'firebase/firestore'
-import { Button } from '@mui/material'
 import { useTranslation } from 'react-i18next'
+import { PersonAddAlt1 } from '@mui/icons-material'
 
 export const ButtonAddFriend = ({ idUser, currentUserUid }) => {
   const { t } = useTranslation()
@@ -65,12 +65,13 @@ export const ButtonAddFriend = ({ idUser, currentUserUid }) => {
   }
   return (
     <>
-      <Button
+      <btn
         disabled={isRequestPending?.value === 'friend' || isRequestPending?.value === 'pending'}
         onClick={() => handleAddFriend(idUser)}
+        className='interact'
       >
-        {isRequestPending?.title}
-      </Button>
+        <PersonAddAlt1 />
+      </btn>
 
     </>
   )

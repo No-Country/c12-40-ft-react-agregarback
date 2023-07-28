@@ -9,15 +9,14 @@ export const SearchContained = () => {
 
   const Search = styled('div')(({ theme }) => ({
     position: 'relative',
-    borderRadius: '2rem',
+    borderRadius: '0.5rem',
     backgroundColor: alpha(theme.palette.common.black, 0.15),
     '&:hover': {
       backgroundColor: alpha(theme.palette.common.black, 0.25)
     },
     marginLeft: 0,
-    width: '391px!important',
+    width: '100%!important',
     [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(1),
       width: 'auto'
     }
   }))
@@ -35,14 +34,14 @@ export const SearchContained = () => {
   const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'inherit',
     height: '42px',
-    width: '351px!important',
+    width: '100%!important',
     '& .MuiInputBase-input': {
       padding: theme.spacing(1, 1, 1, 0),
       paddingLeft: `calc(1em + ${theme.spacing(4)})`,
       transition: theme.transitions.create('width'),
-      width: '391px!important',
+      width: '100%!important',
       [theme.breakpoints.up('sm')]: {
-        width: '351px',
+        width: '100%',
         '&:focus': {
           width: '351px'
         }

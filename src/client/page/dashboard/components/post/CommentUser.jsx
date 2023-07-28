@@ -53,7 +53,6 @@ export const CommentUser = ({ idPost, setComment }) => {
       photo: user.photo,
       createdAt: serverTimestamp()
     })
-    console.log('comentario enviado')
     reset()
   }
 

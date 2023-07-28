@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { styled } from 'styled-components'
 import AchivementBadge from './AchivementBadge'
 
@@ -12,12 +12,12 @@ import recommend from '../img/recommend.svg' */
 import trad from '../img/trad.svg'
 import usage from '../img/usage.svg'
 import { useTranslation } from 'react-i18next'
+import { doc, getDoc } from 'firebase/firestore'
+import { db } from '../../../../service/firebase'
 
 const AchivementsStyled = styled.section`
 
     background-color: white;
-
-    padding: 1rem;
 
     width: 100%;
 
@@ -37,7 +37,6 @@ const AchivementsStyled = styled.section`
     .achivements-list{
       display: flex;
       flex-wrap: wrap;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
 
@@ -51,29 +50,47 @@ const AchivementsStyled = styled.section`
 
     @media screen and (min-width: 768px){
       padding: 1rem 0;
+
+      .achivements-list{
+        flex-direction: column;
+      }
     }
 
 `
 
-export const Achivements = ({ info }) => {
+export const Achivements = ({ auth }) => {
   const { t } = useTranslation()
 
-  console.log(info)
+  const [achivement, setAchivement] = useState(null)
+
+  useEffect(() => {
+    const handleAchivements = async () => {
+      const docRef = doc(db, 'achievments', auth.user.uid)
+      const docSnap = await getDoc(docRef)
+      return docSnap.data()
+    }
+    const fetchData = async () => {
+      const achivements = await handleAchivements()
+      setAchivement(achivements)
+    }
+    fetchData()
+  }, [])
+
   const data = [
     {
       img: usage,
       label: 'Profile.Achievements.Achievement1',
-      num: info?.days
+      num: achivement?.days ?? 0
     },
     {
       img: corrections,
       label: 'Profile.Achievements.Achievement2',
-      num: info?.corrections
+      num: achivement?.corrections ?? 0
     },
     {
       img: friends,
       label: 'Profile.Achievements.Achievement3',
-      num: info?.friends
+      num: achivement?.friends ?? 0
     },
     /* {
       img: ai,
@@ -83,7 +100,7 @@ export const Achivements = ({ info }) => {
     {
       img: posts,
       label: 'Profile.Achievements.Achievement4',
-      num: info?.posts
+      num: achivement?.posts ?? 0
     },
     /* {
       img: rate,
@@ -98,12 +115,12 @@ export const Achivements = ({ info }) => {
     {
       img: trad,
       label: 'Profile.Achievements.Achievement5',
-      num: info?.translates
+      num: achivement?.translates ?? 0
     },
     {
       img: chat,
       label: 'Profile.Achievements.Achievement6',
-      num: info?.chats_num
+      num: achivement?.chats ?? 0
     }
   ]
   return (
@@ -113,7 +130,7 @@ export const Achivements = ({ info }) => {
         <div className='achivements-list'>
           {
             data.map((datos, i) => {
-              return <AchivementBadge key={i} label={t(datos?.label)} img={datos?.img} info={info} num={datos?.num} />
+              return <AchivementBadge key={i} label={t(datos?.label)} img={datos?.img} info={data} num={datos?.num} />
             })
           }
         </div>
