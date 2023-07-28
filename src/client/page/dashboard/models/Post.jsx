@@ -24,6 +24,8 @@ const PublicComment = styled.section`
 export const Post = ({ name, description, photo, idUser, idPost }) => {
   const { t } = useTranslation()
 
+  console.log(idPost)
+
   return (
     <PublicComment>
       <HeaderPost name={name} photo={photo} idUser={idUser} />

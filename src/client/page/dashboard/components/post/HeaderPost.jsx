@@ -63,8 +63,6 @@ export const HeaderPost = ({ name, photo, idUser }) => {
     fetchData()
   }, [])
 
-  console.log(data)
-
   const { t } = useTranslation()
 
   return (
@@ -83,7 +81,7 @@ export const HeaderPost = ({ name, photo, idUser }) => {
               <Divider orientation='vertical' variant='middle' className='divider-flags' />
               <LangBadgePost img={data?.selectorLanguage.photo} variant='learn' />
             </div>
-            <h3 className='post-info'>1 {t('HomeLog.Post.Modal.TimeEdit')}</h3>
+            {/* <h3 className='post-info'>1 {t('HomeLog.Post.Modal.TimeEdit')}</h3> */}
             {/* {idUser !== currentUserUid && (
               <ButtonAddFriend
                 idUser={idUser}
