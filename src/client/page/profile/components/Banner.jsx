@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next'
 import { db } from '../../../../service/firebase'
 import { getDoc, doc, query, collection, where, getDocs } from 'firebase/firestore'
 import { ButtonAddFriend } from '../../dashboard/components/post/ButtonAddFriend'
-import { Pending, PersonAddAlt1 } from '@mui/icons-material'
+import { PersonAddAlt1 } from '@mui/icons-material'
 import { Link } from 'react-router-dom'
 
 const BannerStyled = styled.header`
@@ -213,12 +213,9 @@ const Banner = ({ data, id }) => {
     handleFriends()
   }, [])
 
-  console.log(friends)
-
   const { t } = useTranslation()
 
   const auth = useAppSelector((state) => state.auth.user)
-  console.log(id)
 
   return (
     <BannerStyled>
@@ -242,7 +239,7 @@ const Banner = ({ data, id }) => {
         auth.user.uid == id
           ? <div>
             <EditIcon className='edit-icon' />
-            </div>
+          </div>
           : (friends[0]?.status === 'accepted' ? <Link to={`/client/dashboard/chats/${id}${auth.user.uid}`} className='interact'><img src={chat} /></Link> : (friends[0]?.status === 'pending' ? <div className='pending'><PersonAddAlt1 /></div> : <ButtonAddFriend idUser={id} currentUserUid={auth.user.uid} />))
       }
 
