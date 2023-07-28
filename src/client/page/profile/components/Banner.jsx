@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next'
 import { db } from '../../../../service/firebase'
 import { getDoc, doc, query, collection, where, getDocs } from 'firebase/firestore'
 import { ButtonAddFriend } from '../../dashboard/components/post/ButtonAddFriend'
-import { Pending } from '@mui/icons-material'
+import { Pending, PersonAddAlt1 } from '@mui/icons-material'
 
 const BannerStyled = styled.header`
 
@@ -125,6 +125,9 @@ const BannerStyled = styled.header`
   }
 
   .interact{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 0.90625rem 1rem;
     border-radius: 0.25rem;
     background: ${primary};
@@ -146,15 +149,17 @@ const BannerStyled = styled.header`
   }
   .pending{
     text-align: center;
-    padding: 0.5rem 1rem;
+    padding: 0.90625rem 1rem;
     background-color: gray;
-    color: rgba(0, 0, 0, 0.4);
-    font-weight: bold;
     border-radius: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    p{
-      display: inline;
+    svg{
+      filter: brightness(0) saturate(100%) opacity(50%);
     }
+
   }
 
   @media screen and (min-width: 1024px){
@@ -236,7 +241,7 @@ const Banner = ({ data, id }) => {
           ? <div>
             <EditIcon className='edit-icon' />
             </div>
-          : (friends[0]?.status === 'accepted' ? <button className='interact'><img src={chat} /></button> : (friends[0]?.status === 'pending' ? <Pending /> : <ButtonAddFriend idUser={id} currentUserUid={auth.user.uid} />))
+          : (friends[0]?.status === 'accepted' ? <button className='interact'><img src={chat} /></button> : (friends[0]?.status === 'pending' ? <div className='pending'><PersonAddAlt1 /></div> : <ButtonAddFriend idUser={id} currentUserUid={auth.user.uid} />))
       }
 
     </BannerStyled>
