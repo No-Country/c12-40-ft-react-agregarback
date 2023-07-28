@@ -1,7 +1,6 @@
 import { Avatar, Box, Button, Grid, Divider } from '@mui/material'
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded'
 
-
 import styled from '@emotion/styled'
 
 /* import { useAppSelector } from '../../../../../common/store/config'
@@ -14,7 +13,6 @@ import { db } from '../../../../../service/firebase'
 import { Link } from 'react-router-dom'
 
 import { useTranslation } from 'react-i18next'
-
 
 export const HeaderPost = ({ name, photo, idUser }) => {
   /* const currentUserUid = useAppSelector((state) => state.auth.user.user.uid) */
