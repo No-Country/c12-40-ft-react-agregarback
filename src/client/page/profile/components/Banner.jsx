@@ -15,6 +15,7 @@ import { db } from '../../../../service/firebase'
 import { getDoc, doc, query, collection, where, getDocs } from 'firebase/firestore'
 import { ButtonAddFriend } from '../../dashboard/components/post/ButtonAddFriend'
 import { Pending, PersonAddAlt1 } from '@mui/icons-material'
+import { Link } from 'react-router-dom'
 
 const BannerStyled = styled.header`
 
@@ -217,6 +218,7 @@ const Banner = ({ data, id }) => {
   const { t } = useTranslation()
 
   const auth = useAppSelector((state) => state.auth.user)
+  console.log(id)
 
   return (
     <BannerStyled>
@@ -240,8 +242,8 @@ const Banner = ({ data, id }) => {
         auth.user.uid == id
           ? <div>
             <EditIcon className='edit-icon' />
-            </div>
-          : (friends[0]?.status === 'accepted' ? <button className='interact'><img src={chat} /></button> : (friends[0]?.status === 'pending' ? <div className='pending'><PersonAddAlt1 /></div> : <ButtonAddFriend idUser={id} currentUserUid={auth.user.uid} />))
+          </div>
+          : (friends[0]?.status === 'accepted' ? <Link to={`/client/dashboard/chats/${id}`} className='interact'><img src={chat} /></Link> : (friends[0]?.status === 'pending' ? <div className='pending'><PersonAddAlt1 /></div> : <ButtonAddFriend idUser={id} currentUserUid={auth.user.uid} />))
       }
 
     </BannerStyled>
