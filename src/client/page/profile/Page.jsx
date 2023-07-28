@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-closing-tag-location */
 import React, { useEffect, useState } from 'react'
-import { doc, getDoc } from 'firebase/firestore'
+import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore'
 import { styled } from 'styled-components'
 
 import Banner from './components/Banner'
@@ -14,6 +14,8 @@ import { ContainerGeneral } from '../../../common/style/container/ContainerGener
 import { Achivements } from './components/Achivements'
 
 import { ModalPost } from '../dashboard/components/ModalPost'
+import { useAppSelector } from '../../../common/store/config'
+import { Post } from '../dashboard/models/Post'
 
 const ContainerStyled = styled(ContainerGeneral)`
 
@@ -34,7 +36,9 @@ export const Page = () => {
   const [data, setData] = useState(null)
   const [desktop, setDesktop] = useState(window.innerWidth < 768)
   const [modal, setModal] = useState(false)
+  const [post, setPost] = useState([])
 
+  const auth = useAppSelector((state) => state.auth.user)
   const updateDesktop = () => {
     setDesktop(window.innerWidth < 768)
   }
@@ -48,16 +52,29 @@ export const Page = () => {
       return docSnap.data()
     }
 
+    const handlePosts = async () => {
+      const q = query(collection(db, 'comment'), where('idUSer', '==', id))
+      const querySnapShot = await getDocs(q)
+      const posts = []
+      querySnapShot.forEach((doc) => {
+        const postData = doc.data()
+        const postId = { id: doc.id, ...postData }
+        posts.push(postId)
+      })
+      setPost(posts)
+    }
+
     const fetchData = async () => {
       const data = await handleGetData()
       setData(data)
     }
 
+    handlePosts()
     fetchData()
 
     window.addEventListener('resize', updateDesktop)
     return () => window.removeEventListener('resize', updateDesktop)
-  }, [])
+  }, [id])
 
   const handleCloseModal = () => {
     setModal(false)
@@ -76,7 +93,19 @@ export const Page = () => {
 
           <Achivements info={data} />
 
-          <PublicComment setModal={setModal} />
+          {auth.user.uid === id
+            ? <PublicComment setModal={setModal} />
+            : <></>}
+          {post?.map((e, i) => (
+            <Post
+              key={i}
+              name={e?.name}
+              photo={e?.photo}
+              idUser={e?.idUSer}
+              description={e?.selectComment}
+              idPost={e?.id}
+            />
+          ))}
 
           <ModalPost setModal={setModal} open={modal} close={handleCloseModal} />
         </ContainerStyled>)
@@ -88,7 +117,19 @@ export const Page = () => {
               <Interests data={data} />
             </div>
             <div>
-              <PublicComment setModal={setModal} />
+              {auth.user.uid === id
+                ? <PublicComment setModal={setModal} />
+                : <></>}
+              {post?.map((e, i) => (
+                <Post
+                  key={i}
+                  name={e?.name}
+                  photo={e?.photo}
+                  idUser={e?.idUSer}
+                  description={e?.selectComment}
+                  idPost={e?.id}
+                />
+              ))}
             </div>
             <div>
               <Achivements info={data} />
@@ -102,25 +143,3 @@ export const Page = () => {
 
   )
 }
-
-/*     <ContainerStyled>
-      <Banner data={data} className='banner' />
-
-      <div className='grid-container'>
-        <div>
-          {
-          desktop ? (<DescriptionMobile data={data} />) : <Description data={data} />
-        }
-          <Interests data={data} />
-        </div>
-        <div>
-          <PublicComment setModal={setModal} />
-        </div>
-        <div>
-          <Achivements info={data} />
-        </div>
-      </div>
-      <ModalPost setModal={setModal} open={modal} close={handleCloseModal} />
-    </ContainerStyled>
-  )
-} */

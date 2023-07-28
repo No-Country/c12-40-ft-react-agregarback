@@ -14,7 +14,8 @@ import { useTranslation } from 'react-i18next'
 import { db } from '../../../../service/firebase'
 import { getDoc, doc, query, collection, where, getDocs } from 'firebase/firestore'
 import { ButtonAddFriend } from '../../dashboard/components/post/ButtonAddFriend'
-import { Pending } from '@mui/icons-material'
+import { PersonAddAlt1 } from '@mui/icons-material'
+import { Link } from 'react-router-dom'
 
 const BannerStyled = styled.header`
 
@@ -125,6 +126,9 @@ const BannerStyled = styled.header`
   }
 
   .interact{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 0.90625rem 1rem;
     border-radius: 0.25rem;
     background: ${primary};
@@ -146,15 +150,17 @@ const BannerStyled = styled.header`
   }
   .pending{
     text-align: center;
-    padding: 0.5rem 1rem;
+    padding: 0.90625rem 1rem;
     background-color: gray;
-    color: rgba(0, 0, 0, 0.4);
-    font-weight: bold;
     border-radius: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    p{
-      display: inline;
+    svg{
+      filter: brightness(0) saturate(100%) opacity(50%);
     }
+
   }
 
   @media screen and (min-width: 1024px){
@@ -205,13 +211,13 @@ const Banner = ({ data, id }) => {
 
     fetchData()
     handleFriends()
-  }, [])
-
-  console.log(friends)
+  }, [id])
 
   const { t } = useTranslation()
 
   const auth = useAppSelector((state) => state.auth.user)
+
+  console.log(friends)
 
   return (
     <BannerStyled>
@@ -226,17 +232,17 @@ const Banner = ({ data, id }) => {
           <div className='languages'>
             <LangBadge label={t(data?.selectorLan.title)} variante='native' avatar={data?.selectorLan.photo} />
             <Divider orientation='vertical' variant='middle' className='vertical' />
-            <LangBadge label={data?.selectorLanguage.title} variante='native' avatar={data?.selectorLanguage.photo} />
+            <LangBadge label={data?.selectorLanguage.title} variante='foraign' avatar={data?.selectorLanguage.photo} />
           </div>
         </div>
       </div>
 
       {
-        auth.user.uid == id
+        auth.user.uid === id
           ? <div>
             <EditIcon className='edit-icon' />
             </div>
-          : (friends[0]?.status === 'accepted' ? <button className='interact'><img src={chat} /></button> : (friends[0]?.status === 'pending' ? <Pending /> : <ButtonAddFriend idUser={id} currentUserUid={auth.user.uid} />))
+          : (friends[0]?.status === 'accepted' ? <Link to={`/client/dashboard/chats/${id}${auth.user.uid}`} className='interact'><img src={chat} /></Link> : (friends[0]?.status === 'pending' ? <div className='pending'><PersonAddAlt1 /></div> : <ButtonAddFriend idUser={id} currentUserUid={auth.user.uid} />))
       }
 
     </BannerStyled>

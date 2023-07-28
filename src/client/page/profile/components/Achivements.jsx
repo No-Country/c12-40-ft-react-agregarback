@@ -65,17 +65,17 @@ export const Achivements = ({ info }) => {
     {
       img: usage,
       label: 'Profile.Achievements.Achievement1',
-      num: info?.days
+      num: info?.days ?? 0
     },
     {
       img: corrections,
       label: 'Profile.Achievements.Achievement2',
-      num: info?.corrections
+      num: info?.corrections ?? 0
     },
     {
       img: friends,
       label: 'Profile.Achievements.Achievement3',
-      num: info?.friends
+      num: info?.friends ?? 0
     },
     /* {
       img: ai,
@@ -85,7 +85,7 @@ export const Achivements = ({ info }) => {
     {
       img: posts,
       label: 'Profile.Achievements.Achievement4',
-      num: info?.posts
+      num: info?.posts ?? 0
     },
     /* {
       img: rate,
@@ -100,12 +100,12 @@ export const Achivements = ({ info }) => {
     {
       img: trad,
       label: 'Profile.Achievements.Achievement5',
-      num: info?.translates
+      num: info?.translates ?? 0
     },
     {
       img: chat,
       label: 'Profile.Achievements.Achievement6',
-      num: info?.chats_num
+      num: info?.chats_num ?? 0
     }
   ]
   return (
