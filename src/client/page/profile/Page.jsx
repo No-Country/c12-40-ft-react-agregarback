@@ -19,6 +19,8 @@ import { Post } from '../dashboard/models/Post'
 
 const ContainerStyled = styled(ContainerGeneral)`
 
+  padding: 1rem;
+
   margin-bottom: 6rem;
   @media screen and (min-width: 768px){
     .grid-container{
