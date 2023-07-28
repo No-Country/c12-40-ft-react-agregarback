@@ -8,6 +8,7 @@ export const ContainedPost = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 2rem;
   padding: 1rem;
   margin-bottom: 100px;
