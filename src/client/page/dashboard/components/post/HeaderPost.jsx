@@ -15,8 +15,6 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 export const HeaderPost = ({ name, photo, idUser }) => {
-  /* const currentUserUid = useAppSelector((state) => state.auth.user.user.uid) */
-
   const GridStyled = styled(Grid)`
 
   font-family: 'Nunito Sans', sans-serif;
@@ -87,7 +85,8 @@ export const HeaderPost = ({ name, photo, idUser }) => {
                 idUser={idUser}
                 currentUserUid={currentUserUid}
               />
-            )} Esto debe ir en el perfil */}
+            )}
+            */}
           </Box>
         </Box>
       </GridStyled>

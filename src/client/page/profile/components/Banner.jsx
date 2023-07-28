@@ -217,8 +217,6 @@ const Banner = ({ data, id }) => {
 
   const auth = useAppSelector((state) => state.auth.user)
 
-  console.log(friends)
-
   return (
     <BannerStyled>
 
@@ -241,7 +239,7 @@ const Banner = ({ data, id }) => {
         auth.user.uid === id
           ? <div>
             <EditIcon className='edit-icon' />
-            </div>
+          </div>
           : (friends[0]?.status === 'accepted' ? <Link to={`/client/dashboard/chats/${id}${auth.user.uid}`} className='interact'><img src={chat} /></Link> : (friends[0]?.status === 'pending' ? <div className='pending'><PersonAddAlt1 /></div> : <ButtonAddFriend idUser={id} currentUserUid={auth.user.uid} />))
       }
 
