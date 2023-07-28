@@ -1,14 +1,21 @@
-import { Typography } from '@mui/material'
 import React from 'react'
+import { styled } from 'styled-components'
+
+const TitleStyled = styled.div`
+  background-color: #A2CD37;
+  color: black;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+
+  width: 100%;
+`
 
 export const TitleSeparator = ({ children }) => {
   return (
-    <Typography
-      sx={{ border: '1px solid #B4D65E', p: 2, width: '100%', fontWeight: 'bold', borderRadius: '.5rem' }}
-      variant='h5'
-      component='h2'
-    >
+    <TitleStyled>
       {children}
-    </Typography>
+    </TitleStyled>
   )
 }

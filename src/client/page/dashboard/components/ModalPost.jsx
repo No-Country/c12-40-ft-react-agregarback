@@ -70,7 +70,6 @@ export const ModalPost = ({ open, close, setModal }) => {
         timestamp: serverTimestamp()
       })
 
-      console.log('Comentario enviado a Firebase')
       reset()
       setModal(false)
     } catch (error) {

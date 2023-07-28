@@ -113,7 +113,7 @@ const LayoutWhite = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  background: #fcfcfc;
+  background: #fcfcfca2;
   margin: auto;
   border-radius: 8px;
 
@@ -141,21 +141,23 @@ const Subtitle = styled.h4`
 
 const BoxWhyChoose = styled.section`
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   padding: 24px 16px;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   gap: 16px;
-  flex-wrap: wrap;
   background: ${secondary120};
 `
 
 const WhyChoose = styled.div`
+  flex: 1 1 173px;
   display: flex;
   width: 173px;
   padding: 8px;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   gap: 8px;
   border-radius: 8px;
   background: #f5f8ec;

@@ -1,7 +1,6 @@
 import { Avatar, Box, Button, Grid, Divider } from '@mui/material'
 import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded'
 
-
 import styled from '@emotion/styled'
 
 /* import { useAppSelector } from '../../../../../common/store/config'
@@ -15,10 +14,7 @@ import { Link } from 'react-router-dom'
 
 import { useTranslation } from 'react-i18next'
 
-
 export const HeaderPost = ({ name, photo, idUser }) => {
-  /* const currentUserUid = useAppSelector((state) => state.auth.user.user.uid) */
-
   const GridStyled = styled(Grid)`
 
   font-family: 'Nunito Sans', sans-serif;
@@ -65,8 +61,6 @@ export const HeaderPost = ({ name, photo, idUser }) => {
     fetchData()
   }, [])
 
-  console.log(data)
-
   const { t } = useTranslation()
 
   return (
@@ -85,13 +79,14 @@ export const HeaderPost = ({ name, photo, idUser }) => {
               <Divider orientation='vertical' variant='middle' className='divider-flags' />
               <LangBadgePost img={data?.selectorLanguage.photo} variant='learn' />
             </div>
-            <h3 className='post-info'>1 {t('HomeLog.Post.Modal.TimeEdit')}</h3>
+            {/* <h3 className='post-info'>1 {t('HomeLog.Post.Modal.TimeEdit')}</h3> */}
             {/* {idUser !== currentUserUid && (
               <ButtonAddFriend
                 idUser={idUser}
                 currentUserUid={currentUserUid}
               />
-            )} Esto debe ir en el perfil */}
+            )}
+            */}
           </Box>
         </Box>
       </GridStyled>

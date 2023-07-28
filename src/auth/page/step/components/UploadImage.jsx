@@ -12,9 +12,7 @@ export const UploadImage = ({ register, errors, name, setValue, watch }) => {
   const onDrop = (droppedFiles) => {
     if (droppedFiles && droppedFiles.length > 0) {
       const file = droppedFiles[0]
-      console.log(file)
       const url = URL.createObjectURL(file)
-      console.log(url)
       setUploadImage(url)
       setValue(name, file, { shouldValidate: true })
     }
