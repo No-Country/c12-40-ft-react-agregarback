@@ -73,7 +73,7 @@ export const ChatInd = ({ data }) => {
           overlap='circular'
           anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
           variant='dot'
-          isOnline={online}
+          invisible={online}
         >
           <Avatar src={data[1]?.userInfo?.photoURL ? data[1]?.userInfo?.photoURL : null} />
         </StyledBadge>

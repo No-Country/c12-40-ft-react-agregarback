@@ -1,9 +1,9 @@
 import { Badge, styled } from '@mui/material'
 
-export const StyledBadge = styled(Badge)(({ theme, isOnline }) => ({
+export const StyledBadge = styled(Badge)(({ theme, invisible }) => ({
   '& .MuiBadge-badge': {
-    backgroundColor: isOnline ? '#44b700' : 'red', // Cambiar a rojo si está offline
-    color: isOnline ? '#44b700' : 'red', // Cambiar a rojo si está offline
+    backgroundColor: invisible ? '#44b700' : 'red',
+    color: invisible ? '#44b700' : 'red',
     boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
     '&::after': {
       position: 'absolute',
